@@ -972,31 +972,39 @@ function renderSalesChart() {
 /* ---- INTERACTIVE OPERATIONS ---- */
 function toggleVerifyCar(displayId) {
   const numericId = parseInt(displayId.replace('AD', ''));
-  const userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
-  
-  const idx = userCars.findIndex(c => c.id === numericId);
-  if (idx !== -1) {
-    userCars[idx].verified = !userCars[idx].verified;
-    localStorage.setItem('mg_user_cars', JSON.stringify(userCars));
-    showToast('✅ Verification updated successfully!');
-    setTimeout(() => location.reload(), 1000);
+  const car = mgDB.getCarById(numericId);
+  if (car) {
+    const nextStatus = !car.verified;
+    const success = mgDB.toggleVerifyCar(numericId, nextStatus);
+    if (success) {
+      showToast('✅ Verification updated successfully!');
+      setTimeout(() => location.reload(), 1000);
+    } else {
+      showToast('⚠️ Verification could not be updated.');
+    }
   } else {
-    showToast('⚠️ Default cars verification cannot be changed permanently');
+    showToast('⚠️ Car listing not found.');
   }
 }
 
 function markSold(displayId) {
-  showToast(`🚗 Car listing ${displayId} marked sold!`);
+  const numericId = parseInt(displayId.replace('AD', ''));
+  const success = mgDB.markSold(numericId);
+  if (success) {
+    showToast(`🚗 Car listing ${displayId} marked sold!`);
+    setTimeout(() => location.reload(), 1000);
+  } else {
+    showToast('⚠️ Car listing could not be marked sold.');
+  }
 }
 
 function resolveEnquiry(custName) {
-  const enquiries = mgDB.getEnquiries();
-  const idx = enquiries.findIndex(e => e.name === custName);
-  if (idx !== -1) {
-    enquiries[idx].status = 'replied';
-    localStorage.setItem('mg_enquiries', JSON.stringify(enquiries));
+  const success = mgDB.resolveEnquiry(custName);
+  if (success) {
     showToast('✅ Enquiry resolved!');
     setTimeout(() => location.reload(), 1000);
+  } else {
+    showToast('⚠️ Enquiry could not be resolved.');
   }
 }
 
@@ -1005,21 +1013,21 @@ function saveLead() {
   const mobile = document.querySelector('#addLeadModal input[placeholder="+91..."]').value;
   const car = document.querySelector('#addLeadModal input[placeholder="e.g. Maruti Swift 2020-22"]').value;
   const budget = document.querySelector('#addLeadModal input[placeholder="e.g. 5-8 Lakh"]').value;
+  const assigned = document.querySelector('#addLeadModal select[placeholder="Rahul Sharma"], #addLeadModal select').value;
+  const notes = document.querySelector('#addLeadModal textarea').value;
   
   if (!name || !mobile) { showToast('⚠️ Name and Mobile required!'); return; }
 
-  const leads = mgDB.getLeads();
-  leads.unshift({
+  mgDB.addLead({
     name: name,
     mobile: mobile,
     car: car,
     budget: budget || 'Any',
     source: 'Walk-in',
     stage: 'new',
-    assigned: 'Rajesh Patel',
+    assigned: assigned || 'Rajesh Patel',
     date: 'Today'
   });
-  localStorage.setItem('mg_leads', JSON.stringify(leads));
   
   hideModal('addLeadModal');
   showToast('✅ Lead added successfully!');
@@ -1034,8 +1042,7 @@ function saveUser() {
   
   if (!fName || !email) { showToast('⚠️ Name and Email required!'); return; }
 
-  const staff = mgDB.getStaff();
-  staff.push({
+  mgDB.addStaff({
     name: fName + ' ' + lName,
     email: email,
     role: role,
@@ -1043,7 +1050,6 @@ function saveUser() {
     status: 'active',
     last: 'Just now'
   });
-  localStorage.setItem('mg_staff', JSON.stringify(staff));
 
   hideModal('addUserModal');
   showToast('✅ Staff user created!');
