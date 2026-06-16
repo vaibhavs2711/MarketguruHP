@@ -168,6 +168,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="cars-data.js"></script>
 <script>
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -180,11 +181,43 @@ function selectRole(el, role) {
   el.classList.add('active');
 }
 function doLogin() {
-  const id = document.getElementById('loginId').value;
+  const id = document.getElementById('loginId').value.trim();
   const pwd = document.getElementById('loginPwd').value;
   if (!id || !pwd) { showToast('⚠️ Please fill all fields'); return; }
   
-  // Save credentials to mock session
+  if (mgDB.isBackendOnline()) {
+    showToast('🔐 Authenticating...');
+    fetch(`${mgDB.getApiBase()}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, password: pwd })
+    })
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error('Invalid credentials');
+    })
+    .then(data => {
+      if (data.status === 'success') {
+        localStorage.setItem('mg_current_user', data.user.name);
+        localStorage.setItem('mg_current_user_mobile', data.user.mobile);
+        localStorage.setItem('mg_current_user_type', data.user.type);
+        showToast('✅ Login successful! Redirecting...');
+        setTimeout(() => {
+          if (data.user.type === 'admin') {
+            window.location = 'admin/dashboard.html';
+          } else {
+            window.location = 'customer-dashboard.html';
+          }
+        }, 1200);
+      }
+    })
+    .catch(err => {
+      showToast('❌ Login failed: ' + err.message);
+    });
+    return;
+  }
+  
+  // Save credentials to mock session (Fallback)
   let name = "Guest User";
   let uType = "private";
   if (id.includes('@')) {
@@ -207,13 +240,49 @@ function doRegister() {
   const fName = document.querySelector('#panel-register input[placeholder="Raj"]').value.trim();
   const lName = document.querySelector('#panel-register input[placeholder="Shah"]').value.trim();
   const mobile = document.querySelector('#panel-register input[placeholder="+91 XXXXX XXXXX"]').value.trim();
+  const email = document.querySelector('#panel-register input[placeholder="raj@example.com"]').value.trim();
+  const pwd = document.querySelector('#panel-register input[type="password"]').value;
   const uType = document.getElementById('registerType').value;
   
-  if (!fName || !mobile) {
-    showToast('⚠️ Name and Mobile are required!');
+  if (!fName || !mobile || !pwd) {
+    showToast('⚠️ Name, Mobile, and Password are required!');
+    return;
+  }
+
+  if (mgDB.isBackendOnline()) {
+    showToast('💾 Creating account...');
+    fetch(`${mgDB.getApiBase()}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fName: fName,
+        lName: lName,
+        mobile: mobile,
+        email: email || `${fName.toLowerCase()}@example.com`,
+        password: pwd,
+        account_type: uType
+      })
+    })
+    .then(res => {
+      if (res.ok) return res.json();
+      return res.json().then(d => { throw new Error(d.message || 'Registration failed'); });
+    })
+    .then(data => {
+      if (data.status === 'success') {
+        localStorage.setItem('mg_current_user', data.user.name);
+        localStorage.setItem('mg_current_user_mobile', data.user.mobile);
+        localStorage.setItem('mg_current_user_type', data.user.type);
+        showToast('✅ Account created! Redirecting...');
+        setTimeout(() => window.location = 'customer-dashboard.html', 1200);
+      }
+    })
+    .catch(err => {
+      showToast('❌ Register failed: ' + err.message);
+    });
     return;
   }
   
+  // Fallback
   localStorage.setItem('mg_current_user', fName + ' ' + lName);
   localStorage.setItem('mg_current_user_mobile', mobile);
   localStorage.setItem('mg_current_user_type', uType);
@@ -222,9 +291,36 @@ function doRegister() {
   setTimeout(()=>window.location='customer-dashboard.html', 1500);
 }
 function doAdminLogin() {
-  const email = document.getElementById('adminEmail').value;
+  const email = document.getElementById('adminEmail').value.trim();
   const pwd = document.getElementById('adminPwd').value;
   if (!email || !pwd) { showToast('⚠️ Please fill all fields'); return; }
+
+  if (mgDB.isBackendOnline()) {
+    showToast('🔐 Authenticating admin...');
+    fetch(`${mgDB.getApiBase()}/auth/admin-login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: pwd })
+    })
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error('Invalid Admin credentials');
+    })
+    .then(data => {
+      if (data.status === 'success') {
+        localStorage.setItem('mg_current_user', data.user.name);
+        localStorage.setItem('mg_current_user_mobile', '0000000000');
+        localStorage.setItem('mg_current_user_type', data.user.type);
+        showToast('✅ Admin authorized! Redirecting...');
+        setTimeout(() => window.location = 'admin/dashboard.html', 1200);
+      }
+    })
+    .catch(err => {
+      showToast('❌ Admin login failed: ' + err.message);
+    });
+    return;
+  }
+
   showToast('🔐 Authenticating admin...');
   setTimeout(()=>window.location='admin/dashboard.html', 1500);
 }
