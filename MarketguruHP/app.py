@@ -3,6 +3,7 @@ import hashlib
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import mysql.connector
+from mysql.connector import pooling
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
 from init_db import init_database
 
@@ -15,7 +16,25 @@ try:
 except Exception as e:
     print(f"Database init warning: {e}")
 
+# Initialize Connection Pool
+try:
+    db_pool = pooling.MySQLConnectionPool(
+        pool_name="mg_pool",
+        pool_size=10,
+        host=DB_HOST,
+        port=DB_PORT,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    print("MySQL Connection Pool initialized successfully with size 10.")
+except Exception as pool_err:
+    print(f"Warning: Connection Pool initialization failed: {pool_err}")
+    db_pool = None
+
 def get_db_connection():
+    if db_pool:
+        return db_pool.get_connection()
     return mysql.connector.connect(
         host=DB_HOST,
         port=DB_PORT,
@@ -50,7 +69,11 @@ def ping():
 @app.route('/api/init', methods=['GET'])
 def db_init_data():
     try:
-        cars = query_db("SELECT * FROM cars")
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        
+        cursor.execute("SELECT * FROM cars")
+        cars = cursor.fetchall()
         # Format features from string to list
         for car in cars:
             if car['features']:
@@ -60,20 +83,36 @@ def db_init_data():
             # Map database field verified to true/false
             car['verified'] = bool(car['verified'])
 
-        leads = query_db("SELECT * FROM leads")
-        enquiries = query_db("SELECT * FROM enquiries")
-        customers = query_db("SELECT * FROM customers")
-        followups = query_db("SELECT * FROM followups")
-        revenue = query_db("SELECT * FROM revenue")
-        staff = query_db("SELECT * FROM staff")
-        
+        cursor.execute("SELECT * FROM leads")
+        leads = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM enquiries")
+        enquiries = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM customers")
+        customers = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM followups")
+        followups = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM revenue")
+        revenue = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM staff")
+        staff = cursor.fetchall()
         # Exclude password hashes from staff data
         for s in staff:
             if 'password' in s:
                 del s['password']
 
-        wishlist = query_db("SELECT * FROM wishlist")
-        subscriptions = query_db("SELECT * FROM subscriptions")
+        cursor.execute("SELECT * FROM wishlist")
+        wishlist = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM subscriptions")
+        subscriptions = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
 
         return jsonify({
             "status": "success",

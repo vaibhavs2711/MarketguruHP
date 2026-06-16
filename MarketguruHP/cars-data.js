@@ -134,22 +134,11 @@ async function requestAsync(method, endpoint, payload = null) {
 
 // Initialize database connection
 function initializeDatabase() {
-  // Test connection to backend synchronously
+  // Directly request init to test connection and fetch data in one single roundtrip
   try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${apiBase}/ping`, false);
-    xhr.send(null);
-    if (xhr.status === 200) {
-      isBackendConnected = true;
-      console.log("MySQL Flask backend is connected!");
-    }
-  } catch (e) {
-    console.log("MySQL Flask backend not running. Falling back to LocalStorage.");
-  }
-
-  if (isBackendConnected) {
     const initData = requestSync('GET', 'init');
     if (initData && initData.status === 'success') {
+      isBackendConnected = true;
       carsState = initData.cars;
       leadsState = initData.leads;
       enquiriesState = initData.enquiries;
@@ -159,10 +148,14 @@ function initializeDatabase() {
       staffState = initData.staff;
       wishlistState = initData.wishlist;
       subscriptionsState = initData.subscriptions;
+      console.log("MySQL Flask backend is connected and data synchronized successfully!");
       return;
     }
+  } catch (e) {
+    console.log("MySQL Flask backend not running or init failed. Falling back to LocalStorage.");
   }
 
+  isBackendConnected = false;
   // Fallback to localStorage mock database
   const userCars = getDB('mg_user_cars', []);
   carsState = [...DEFAULT_USED_CARS, ...userCars];
