@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Details - Market Guru HP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;--steel:#2A3A5C;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;--muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
+  a{text-decoration:none;color:inherit;}
+  .navbar {
+    background: var(--charcoal);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .nav-main {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0;
+    padding: 0 20px; height: 90px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    height: 75px;
+  }
+  .logo img {
+    height: 100%;
+    width: auto;
+    display: block;
+    transform: scale(1.35) translateX(-12px);
+    transform-origin: left center;
+  }
+  .nav-links { display: flex; gap: 6px; flex: 1; }
+  .nav-links a {
+    color: #eee; font-size: 16px; font-weight: 700;
+    padding: 8px 16px; border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.12); }
+  .btn-red {
+    background: var(--red); color: #1A1A2E;
+    padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 800;
+    cursor: pointer; border: none; transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
+  }
+  .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); color: #1A1A2E; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45); }
+
+  .breadcrumb{background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;font-size:13px;color:var(--muted);}
+  .breadcrumb a{color:var(--red);}
+  .breadcrumb-inner{max-width:1280px;margin:0 auto;}
+
+  .page-wrap{max-width:1280px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:1fr 340px;gap:24px;}
+
+  /* GALLERY */
+  .main-gallery{background:var(--white);border-radius:12px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:20px;}
+  .main-img{height:400px;background:linear-gradient(135deg,#e8eef5,#ccd4e0);display:flex;align-items:center;justify-content:center;font-size:120px;position:relative;}
+  .img-badges{position:absolute;top:16px;left:16px;display:flex;gap:8px;}
+  .img-badge{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:700;color:#fff;}
+  .badge-v{background:var(--success);}
+  .badge-hot{background:var(--red);}
+  .thumb-row{display:flex;gap:12px;padding:12px;}
+  .thumb{width:80px;height:60px;border-radius:6px;background:linear-gradient(135deg,#e0e8f0,#c8d4e0);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;}
+  .thumb.active{border-color:var(--red);}
+  .thumb:hover{border-color:var(--muted);}
+
+  /* CAR HEADER */
+  .car-header{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:24px;margin-bottom:20px;}
+  .car-title-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+  .car-main-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.5px;}
+  .car-main-variant{font-size:15px;color:var(--muted);margin-top:4px;}
+  .price-block{text-align:right;}
+  .price-main{font-size:36px;font-weight:800;color:var(--red);}
+  .price-emi{font-size:13px;color:var(--muted);margin-top:4px;}
+  .specs-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding-top:16px;border-top:1px solid var(--border);}
+  .spec-box{text-align:center;padding:12px 8px;background:var(--silver);border-radius:8px;}
+  .spec-val{font-size:15px;font-weight:700;margin-bottom:4px;}
+  .spec-key{font-size:11px;color:var(--muted);}
+
+  /* INSPECTION */
+  .card{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:24px;margin-bottom:20px;}
+  .card-title{font-size:17px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+  .inspection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .inspect-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;}
+  .inspect-item.pass{background:#f0fdf4;}
+  .inspect-item.warn{background:#fffbeb;}
+  .inspect-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .pass .inspect-dot{background:var(--success);}
+  .warn .inspect-dot{background:#F59E0B;}
+  .inspect-text{font-size:12px;font-weight:500;}
+
+  /* FEATURES */
+  .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .feat-item{display:flex;align-items:center;gap:8px;font-size:13px;padding:10px;background:var(--silver);border-radius:8px;}
+  .feat-check{color:var(--success);font-weight:700;}
+
+  /* SELLER INFO */
+  .seller-box{background:var(--charcoal);border-radius:12px;padding:24px;color:#fff;margin-bottom:16px;}
+  .seller-row{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+  .seller-avatar{width:56px;height:56px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:24px;}
+  .seller-name{font-size:17px;font-weight:700;}
+  .seller-type{font-size:12px;color:#99aacc;margin-top:2px;}
+  .seller-stats{display:flex;gap:24px;margin-bottom:16px;}
+  .s-stat-num{font-size:20px;font-weight:800;}
+  .s-stat-label{font-size:11px;color:#99aacc;}
+  .btn-call-now{width:100%;padding:14px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px;}
+  .btn-whatsapp{width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;}
+  .btn-test-drive{width:100%;padding:13px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;}
+
+  /* EMI CALC */
+  .emi-box{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:20px;margin-bottom:16px;}
+  .emi-title{font-size:15px;font-weight:700;margin-bottom:14px;}
+  .emi-field label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:5px;margin-top:10px;}
+  .emi-field input,  .emi-field select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;}
+  .emi-result{background:var(--silver);border-radius:8px;padding:14px;margin-top:14px;text-align:center;}
+  .emi-amount{font-size:28px;font-weight:800;color:var(--red);}
+  .emi-label{font-size:12px;color:var(--muted);margin-top:4px;}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
+  .toast.show{transform:translateY(0);}
+
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}
+  .modal-overlay.show{display:flex;}
+  .modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
+  .modal h3{font-size:20px;font-weight:700;margin-bottom:20px;}
+  .form-field{margin-bottom:14px;}
+  .form-field label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+  .form-field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;}
+  .form-field input:focus{outline:none;border-color:var(--red);}
+  .modal-btns{display:flex;gap:12px;margin-top:20px;}
+  .btn-modal-submit{flex:2;padding:12px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;}
+  .btn-modal-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid var(--border);border-radius:8px;font-size:14px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+  <div class="nav-main">
+    <a href="index.html" class="logo" id="brand-logo">
+      <img src="logo.png" alt="Market Guru HP Logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">🏠 Home</a>
+      <a href="buy-cars.html">Used Cars</a>
+      <a href="sell.html">Sell Car</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a> › <a href="buy-cars.html">Buy Cars</a> › Maruti Swift VXi 2021
+  </div>
+</div>
+
+<div class="page-wrap">
+  <!-- LEFT COLUMN -->
+  <div>
+    <!-- GALLERY -->
+    <div class="main-gallery">
+      <div class="main-img" id="mainImg">
+        🚗
+        <div class="img-badges">
+          <span class="img-badge badge-v">✓ 150-Point Verified</span>
+          <span class="img-badge badge-hot">🔥 Hot Deal</span>
+        </div>
+      </div>
+      <div class="thumb-row">
+        <div class="thumb active" onclick="selectThumb(this,'🚗')">🚗</div>
+        <div class="thumb" onclick="selectThumb(this,'🪟')">🪟</div>
+        <div class="thumb" onclick="selectThumb(this,'🛞')">🛞</div>
+        <div class="thumb" onclick="selectThumb(this,'🪑')">🪑</div>
+        <div class="thumb" onclick="selectThumb(this,'⚙️')">⚙️</div>
+        <div class="thumb" onclick="selectThumb(this,'📋')">📋</div>
+      </div>
+    </div>
+
+    <!-- CAR HEADER INFO -->
+    <div class="car-header">
+      <div class="car-title-row">
+        <div>
+          <div class="car-main-title">Maruti Swift VXi (O)</div>
+          <div class="car-main-variant">2021 · Petrol · Manual · 1st Owner · White</div>
+        </div>
+        <div class="price-block">
+          <div class="price-main">₹5.20 Lakh</div>
+        </div>
+      </div>
+      <div class="specs-row">
+        <div class="spec-box"><div class="spec-val">32,000</div><div class="spec-key">KM Driven</div></div>
+        <div class="spec-box"><div class="spec-val">2021</div><div class="spec-key">Year</div></div>
+        <div class="spec-box"><div class="spec-val">Petrol</div><div class="spec-key">Fuel</div></div>
+        <div class="spec-box"><div class="spec-val">Manual</div><div class="spec-key">Trans</div></div>
+        <div class="spec-box"><div class="spec-val">1st</div><div class="spec-key">Owner</div></div>
+      </div>
+    </div>
+
+    <!-- INSPECTION REPORT -->
+    <div class="card">
+      <div class="card-title">🔍 Inspection Report</div>
+      <div class="inspection-grid">
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Engine & Transmission</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Brakes & Suspension</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">AC & Electricals</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Tyres & Wheels</div></div>
+        <div class="inspect-item warn"><div class="inspect-dot"></div><div class="inspect-text">Minor Scratch (Rear)</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Interior Condition</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">RC & Documents</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Insurance Valid</div></div>
+        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Odometer Verified</div></div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="card">
+      <div class="card-title">✨ Features & Specifications</div>
+      <div class="features-grid">
+        <div class="feat-item"><span class="feat-check">✓</span>Power Windows (All 4)</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Driver Airbag</div>
+        <div class="feat-item"><span class="feat-check">✓</span>ABS + EBD</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Rear Parking Sensor</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Bluetooth Audio</div>
+        <div class="feat-item"><span class="feat-check">✓</span>SmartPlay Studio</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Auto Climate Control</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Keyless Entry</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Steering Controls</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Rear Defogger</div>
+        <div class="feat-item"><span class="feat-check">✓</span>USB Charging</div>
+        <div class="feat-item"><span class="feat-check">✓</span>Alloy Wheels 15"</div>
+      </div>
+    </div>
+
+    <!-- DETAILS TABLE -->
+    <div class="card">
+      <div class="card-title">📋 Car Details</div>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;">
+        <tr style="background:var(--silver)">
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted);border-radius:6px;width:40%">Registration Number</td>
+          <td style="padding:10px 14px">GJ-06-XX-XXXX (disclosed on request)</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Registration City</td>
+          <td style="padding:10px 14px">Vadodara, Gujarat</td>
+        </tr>
+        <tr style="background:var(--silver)">
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Insurance</td>
+          <td style="padding:10px 14px">Comprehensive · Valid till Dec 2025</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Engine CC</td>
+          <td style="padding:10px 14px">1197 cc</td>
+        </tr>
+        <tr style="background:var(--silver)">
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Mileage</td>
+          <td style="padding:10px 14px">22.4 kmpl (ARAI)</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Color</td>
+          <td style="padding:10px 14px">Pearl Arctic White</td>
+        </tr>
+        <tr style="background:var(--silver)">
+          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Last Service</td>
+          <td style="padding:10px 14px">October 2024 (at Maruti authorized)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside>
+    <!-- SELLER -->
+    <div class="seller-box">
+      <div class="seller-row">
+        <div class="seller-avatar">👨‍💼</div>
+        <div>
+          <div class="seller-name">Market Guru HP Vadodara</div>
+          <div class="seller-type">⭐⭐⭐⭐⭐ Certified Dealer</div>
+        </div>
+      </div>
+      <div class="seller-stats">
+        <div>
+          <div class="s-stat-num">247</div>
+          <div class="s-stat-label">Cars Sold</div>
+        </div>
+        <div>
+          <div class="s-stat-num">4.9</div>
+          <div class="s-stat-label">Rating</div>
+        </div>
+        <div>
+          <div class="s-stat-num">8yr</div>
+          <div class="s-stat-label">Experience</div>
+        </div>
+      </div>
+      <button class="btn-call-now">📞 Call Now: +91 98765 XXXXX</button>
+      <button class="btn-whatsapp">💬 WhatsApp: +91 98765 XXXXX</button>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div style="background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:20px;">
+      <div style="font-size:14px;font-weight:700;margin-bottom:14px;">Quick Actions</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button onclick="showToast('❤️ Added to wishlist!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">❤️ Save to Wishlist</button>
+        <button onclick="showToast('🔗 Link copied!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">🔗 Share this Car</button>
+        <button onclick="showToast('📊 Added to comparison!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">📊 Compare Cars</button>
+        <button onclick="showToast('⚠️ Report submitted. Thank you!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">⚠️ Report Issue</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- CONTACT VERIFICATION MODAL (OTP FLOW) -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal" id="modal-step-phone" style="max-width:400px;">
+    <h3>🔓 Unlock Dealer Contact</h3>
+    <p style="font-size:13px; color:var(--muted); margin: 8px 0 20px; line-height:1.4;">Verify your mobile number to instantly reveal the dealer's call & WhatsApp numbers and connect directly.</p>
+    <div class="form-field">
+      <label>Mobile Number</label>
+      <input type="tel" id="verifyPhone" placeholder="Enter 10-digit number" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:8px;">
+    </div>
+    <div class="modal-btns" style="margin-top:24px;">
+      <button class="btn-modal-cancel" onclick="hideContactModal()" style="padding:12px; border:1.5px solid var(--border); background:transparent; border-radius:8px; cursor:pointer;">Cancel</button>
+      <button class="btn-modal-submit" onclick="sendOTP()" style="padding:12px; background:var(--red); border:none; border-radius:8px; font-weight:700; cursor:pointer; color:#1A1A2E;">Send Code</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="modal-step-otp" style="max-width:400px; display:none;">
+    <h3>💬 Verify Mobile Number</h3>
+    <p style="font-size:13px; color:var(--muted); margin: 8px 0 20px; line-height:1.4;">We've sent a 4-digit mock verification code to your number.<br><strong style="color:var(--red);">Testing code: 1234</strong></p>
+    <div class="form-field">
+      <label>Verification OTP</label>
+      <input type="text" id="verifyOTP" placeholder="Enter 1234" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:8px; text-align:center; font-size:18px; letter-spacing:4px; font-weight:700;">
+    </div>
+    <div class="modal-btns" style="margin-top:24px;">
+      <button class="btn-modal-cancel" onclick="showPhoneStep()" style="padding:12px; border:1.5px solid var(--border); background:transparent; border-radius:8px; cursor:pointer;">Back</button>
+      <button class="btn-modal-submit" onclick="verifyOTPCode()" style="padding:12px; background:var(--red); border:none; border-radius:8px; font-weight:700; cursor:pointer; color:#1A1A2E;">Verify & Reveal</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="cars-data.js"></script>
+<script>
+let currentCar = null;
+
+function initPage() {
+  const params = new URLSearchParams(window.location.search);
+  let id = parseInt(params.get('id')) || 1; // Default to Maruti Swift
+  
+  currentCar = mgDB.getCarById(id);
+  if (!currentCar) {
+    showToast('⚠️ Car listing not found. Loading swift...');
+    currentCar = mgDB.getCarById(1);
+  }
+
+  renderCarDetails();
+  calcEMI();
+}
+
+function renderCarDetails() {
+  if (!currentCar) return;
+
+
+
+  // Title & Variant
+  document.querySelector('.car-main-title').textContent = currentCar.name;
+  document.querySelector('.car-main-variant').textContent = `${currentCar.year} · ${currentCar.fuel} · ${currentCar.trans} · ${currentCar.owner || '1st'} Owner · ${currentCar.city || 'Vadodara'}`;
+
+  // Price
+  document.querySelector('.price-main').textContent = `₹${currentCar.price} Lakh`;
+
+  // Breadcrumb
+  document.querySelector('.breadcrumb-inner').innerHTML = `<a href="index.html">Home</a> › <a href="buy-cars.html">Buy Cars</a> › ${currentCar.name}`;
+
+  // Gallery Emoji
+  document.getElementById('mainImg').childNodes[0].textContent = currentCar.emoji || '🚗';
+
+  // Specs Boxes
+  const specBoxes = document.querySelectorAll('.spec-box .spec-val');
+  if (specBoxes.length >= 5) {
+    specBoxes[0].textContent = currentCar.km || 'New';
+    specBoxes[1].textContent = currentCar.year;
+    specBoxes[2].textContent = currentCar.fuel;
+    specBoxes[3].textContent = currentCar.trans;
+    specBoxes[4].textContent = currentCar.owner || '1st';
+  }
+
+  // Features
+  const featuresGrid = document.querySelector('.features-grid');
+  const features = currentCar.features || ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry'];
+  featuresGrid.innerHTML = features.map(f => `
+    <div class="feat-item"><span class="feat-check">✓</span>${f}</div>
+  `).join('');
+
+  // Loan default - not needed (EMI calc removed)
+
+  // Verify Badge
+  const badgeContainer = document.querySelector('.img-badges');
+  badgeContainer.innerHTML = `
+    ${currentCar.verified ? '<span class="img-badge badge-v">✓ 150-Point Verified</span>' : '<span class="img-badge badge-hot">Inspection Pending</span>'}
+    <span class="img-badge badge-hot">🔥 Hot Deal</span>
+  `;
+
+  // Wishlist Button UI
+  updateWishlistBtnUI();
+}
+
+function updateWishlistBtnUI() {
+  const btn = document.querySelector('button[onclick*="wishlist"]');
+  if (btn && currentCar) {
+    const isSaved = mgDB.isWishlisted(currentCar.id);
+    btn.textContent = isSaved ? '❤️ Saved to Wishlist' : '❤️ Save to Wishlist';
+  }
+}
+
+function toggleWishlistDetail() {
+  if (!currentCar) return;
+  const added = mgDB.toggleWishlist(currentCar.id);
+  showToast(added ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
+  updateWishlistBtnUI();
+}
+
+function shareCar() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast('🔗 Link copied to clipboard!');
+  }).catch(() => {
+    showToast('⚠️ Failed to copy link');
+  });
+}
+
+function selectThumb(el, emoji) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('mainImg').childNodes[0].textContent = emoji;
+}
+
+let verificationTrigger = 'call';
+
+function checkContactVerification() {
+  const isVerified = localStorage.getItem('mg_dealer_verified') === 'true';
+  const callBtn = document.querySelector('.btn-call-now');
+  const waBtn = document.querySelector('.btn-whatsapp');
+  
+  if (isVerified) {
+    if (callBtn) {
+      callBtn.innerHTML = '📞 Call Now: +91 98765 43210';
+      callBtn.setAttribute('onclick', "window.location.href='tel:+919876543210'");
+    }
+    if (waBtn) {
+      waBtn.innerHTML = '💬 WhatsApp: +91 98765 43210';
+      waBtn.setAttribute('onclick', "window.open('https://wa.me/919876543210', '_blank')");
+    }
+  } else {
+    if (callBtn) {
+      callBtn.innerHTML = '📞 Call Now: +91 98765 XXXXX';
+      callBtn.setAttribute('onclick', "triggerVerification('call')");
+    }
+    if (waBtn) {
+      waBtn.innerHTML = '💬 WhatsApp: +91 98765 XXXXX';
+      waBtn.setAttribute('onclick', "triggerVerification('whatsapp')");
+    }
+  }
+}
+
+function triggerVerification(type) {
+  verificationTrigger = type;
+  document.getElementById('contactModal').classList.add('show');
+  showPhoneStep();
+}
+
+function hideContactModal() {
+  document.getElementById('contactModal').classList.remove('show');
+}
+
+function showPhoneStep() {
+  document.getElementById('modal-step-phone').style.display = 'block';
+  document.getElementById('modal-step-otp').style.display = 'none';
+}
+
+function sendOTP() {
+  const phone = document.getElementById('verifyPhone').value.trim();
+  if (!phone || phone.length < 10) {
+    showToast('⚠️ Please enter a valid 10-digit mobile number');
+    return;
+  }
+  document.getElementById('modal-step-phone').style.display = 'none';
+  document.getElementById('modal-step-otp').style.display = 'block';
+  showToast('💬 Verification code sent! Use 1234 to verify.');
+}
+
+function verifyOTPCode() {
+  const otp = document.getElementById('verifyOTP').value.trim();
+  if (otp !== '1234') {
+    showToast('❌ Invalid verification code! Try 1234.');
+    return;
+  }
+  
+  localStorage.setItem('mg_dealer_verified', 'true');
+  const buyerMobile = document.getElementById('verifyPhone').value.trim();
+  localStorage.setItem('mg_verified_buyer_mobile', buyerMobile);
+  
+  // Add lead to CRM
+  mgDB.addLead({
+    name: 'Verified Buyer (' + buyerMobile.slice(-4) + ')',
+    mobile: buyerMobile,
+    car: currentCar ? currentCar.name : 'Unknown Car',
+    budget: currentCar ? currentCar.price + 'L' : 'Any',
+    source: 'Influencer Lead',
+    stage: 'new',
+    assigned: 'Rahul Sharma',
+    date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
+  });
+  
+  hideContactModal();
+  showToast('✅ Mobile verified successfully!');
+  checkContactVerification();
+  
+  setTimeout(() => {
+    if (verificationTrigger === 'call') {
+      window.location.href = 'tel:+919876543210';
+    } else {
+      window.open('https://wa.me/919876543210', '_blank');
+    }
+  }, 1000);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// Bind wishlist button action dynamically
+const wishBtn = document.querySelector('button[onclick*="wishlist"]');
+if (wishBtn) {
+  wishBtn.setAttribute('onclick', 'toggleWishlistDetail()');
+}
+
+// Bind share button action dynamically
+const shareBtn = document.querySelector('button[onclick*="copied"]');
+if (shareBtn) {
+  shareBtn.setAttribute('onclick', 'shareCar()');
+}
+
+window.onload = function() {
+  initPage();
+  checkLoginState();
+  checkContactVerification();
+};
+
+// Dynamic login state update
+function checkLoginState() {
+  const currentUser = localStorage.getItem('mg_current_user');
+  if (currentUser) {
+    const loginLinks = document.querySelectorAll('a[href="login.html"]');
+    loginLinks.forEach(link => {
+      link.href = 'customer-dashboard.html';
+      const btn = link.querySelector('button');
+      if (btn) {
+        if (btn.textContent.trim().toLowerCase() === 'login') {
+          btn.textContent = 'Dashboard';
+        }
+      } else {
+        if (link.textContent.includes('Login / Register')) {
+          link.textContent = 'My Dashboard';
+        }
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>

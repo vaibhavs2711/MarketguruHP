@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Market Guru HP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;--muted:#6B7A99;--border:#DDE3EE;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--charcoal),var(--navy));min-height:100vh;display:flex;align-items:center;justify-content:center;}
+
+  .login-container{display:grid;grid-template-columns:1fr 1fr;max-width:960px;width:90%;background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.4);}
+
+  .login-left{background:linear-gradient(135deg,var(--charcoal),var(--navy));padding:48px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;}
+  .login-logo{margin-bottom:32px;height:140px;display:flex;align-items:center;justify-content:center;}
+  .login-logo img{height:100%;width:auto;object-fit:contain;display:block;}
+  .login-left h2{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;line-height:1.2;margin-bottom:16px;}
+  .login-left h2 em{color:var(--red);font-style:normal;}
+  .login-left p{color:#99aacc;font-size:14px;line-height:1.6;margin-bottom:32px;}
+  .login-perks{display:flex;flex-direction:column;gap:14px;}
+  .perk{display:flex;align-items:center;gap:12px;}
+  .perk-icon{width:36px;height:36px;background:rgba(255,204,0,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .perk-text{font-size:13px;color:#ccd;}
+
+  .login-right{padding:48px;}
+  .login-right h3{font-size:24px;font-weight:700;margin-bottom:6px;}
+  .login-right p{font-size:14px;color:var(--muted);margin-bottom:32px;}
+
+  .tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:28px;}
+  .tab{flex:1;text-align:center;padding:10px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
+  .tab.active{color:var(--red);border-bottom-color:var(--red);}
+
+  .form-panel{display:none;}
+  .form-panel.active{display:block;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+  .field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;transition:border-color 0.2s;}
+  .field input:focus{outline:none;border-color:var(--red);}
+  .field-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .remember{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);}
+  .remember input{accent-color:var(--red);}
+  .forgot{font-size:13px;color:var(--red);cursor:pointer;}
+  .btn-login{width:100%;padding:13px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s;}
+  .btn-login:hover{background:var(--red-dark);color:#1A1A2E;}
+  .divider{text-align:center;margin:20px 0;color:var(--muted);font-size:12px;position:relative;}
+  .divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border);}
+  .divider span{background:var(--white);padding:0 12px;position:relative;}
+  .btn-google{width:100%;padding:12px;background:var(--white);border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;transition:border-color 0.2s;}
+  .btn-google:hover{border-color:var(--charcoal);}
+  .switch-note{text-align:center;margin-top:20px;font-size:13px;color:var(--muted);}
+  .switch-note a{color:var(--red);font-weight:600;cursor:pointer;}
+
+  /* ROLE PILLS */
+  .role-select{display:flex;gap:10px;margin-bottom:16px;}
+  .role-pill{flex:1;padding:10px;border:1.5px solid var(--border);border-radius:8px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+  .role-pill.active{border-color:var(--red);color:var(--red);background:#FFFBEB;}
+
+  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
+  .toast.show{transform:translateY(0);}
+
+  @media(max-width:700px){.login-left{display:none;}.login-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <!-- LEFT -->
+  <div class="login-left">
+    <div>
+      <div class="login-logo">
+        <img src="logo.png" alt="Market Guru HP Logo">
+      </div>
+      <h2>Welcome<br>Back to <em>Market Guru HP</em></h2>
+      <p>Your gateway to Gujarat's best pre-owned car deals. Buy, sell, and manage everything in one place.</p>
+    </div>
+    <div class="login-perks">
+      <div class="perk"><div class="perk-icon">🚗</div><div class="perk-text">Browse 2,400+ verified cars</div></div>
+      <div class="perk"><div class="perk-icon">💰</div><div class="perk-text">Get instant car valuation</div></div>
+      <div class="perk"><div class="perk-icon">📋</div><div class="perk-text">Track your listings & enquiries</div></div>
+      <div class="perk"><div class="perk-icon">🔐</div><div class="perk-text">Secure payments and RC transfer</div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="login-right">
+    <h3>Sign in to Market Guru HP</h3>
+    <p>Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--red);font-weight:600">Register free</a></p>
+
+    <div class="tabs">
+      <div class="tab active" id="tab-login" onclick="switchTab('login')">Login</div>
+      <div class="tab" id="tab-register" onclick="switchTab('register')">Register</div>
+      <div class="tab" id="tab-admin" onclick="switchTab('admin')">Admin Login</div>
+    </div>
+
+    <!-- LOGIN PANEL -->
+    <div class="form-panel active" id="panel-login">
+      <div class="role-select">
+        <div class="role-pill active" onclick="selectRole(this,'buyer')">👤 Buyer</div>
+        <div class="role-pill" onclick="selectRole(this,'seller')">🏪 Seller</div>
+        <div class="role-pill" onclick="selectRole(this,'dealer')">🏢 Dealer</div>
+      </div>
+      <div class="field">
+        <label>Mobile Number / Email</label>
+        <input type="text" placeholder="+91 XXXXX XXXXX or email@example.com" id="loginId">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password" id="loginPwd">
+      </div>
+      <div class="field-row">
+        <label class="remember"><input type="checkbox"> Remember me</label>
+        <span class="forgot">Forgot password?</span>
+      </div>
+      <button class="btn-login" onclick="doLogin()">Sign In →</button>
+      <div class="divider"><span>or continue with</span></div>
+      <button class="btn-google" onclick="showToast('🔐 Google sign-in coming soon')">
+        <span style="font-size:18px">G</span> Continue with Google
+      </button>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="form-panel" id="panel-register">
+      <div class="role-select">
+        <div class="role-pill active" onclick="selectRole(this,'buyer')">👤 Buyer</div>
+        <div class="role-pill" onclick="selectRole(this,'seller')">🏪 Seller</div>
+        <div class="role-pill" onclick="selectRole(this,'dealer')">🏢 Dealer</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="field"><label>First Name</label><input type="text" placeholder="Raj"></div>
+        <div class="field"><label>Last Name</label><input type="text" placeholder="Shah"></div>
+      </div>
+      <div class="field"><label>Mobile Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="field"><label>Email Address</label><input type="email" placeholder="raj@example.com"></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="Create a strong password"></div>
+      <div class="field">
+        <label>Account Type</label>
+        <select id="registerType" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
+          <option value="private">Individual Seller (Free)</option>
+          <option value="dealer">Car Dealer (₹1,999/month Plan)</option>
+        </select>
+      </div>
+      <button class="btn-login" onclick="doRegister()">Create Account →</button>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="form-panel" id="panel-admin">
+      <div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:8px;padding:12px;margin-bottom:16px;font-size:13px;color:#B45309;display:flex;gap:8px;align-items:center;">
+        🔐 <strong>Restricted Access</strong> — Authorized personnel only
+      </div>
+      <div class="field"><label>Admin Email</label><input type="email" placeholder="admin@marketguruhp.in" id="adminEmail"></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="Admin password" id="adminPwd"></div>
+      <div class="field">
+        <label>Role</label>
+        <select style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
+          <option>Super Admin</option>
+          <option>Sales Manager</option>
+          <option>Executive</option>
+          <option>Finance</option>
+        </select>
+      </div>
+      <button class="btn-login" onclick="doAdminLogin()">Access Admin Panel →</button>
+      <div class="switch-note"><a href="index.html">← Back to public site</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+function selectRole(el, role) {
+  el.closest('.role-select').querySelectorAll('.role-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+}
+function doLogin() {
+  const id = document.getElementById('loginId').value;
+  const pwd = document.getElementById('loginPwd').value;
+  if (!id || !pwd) { showToast('⚠️ Please fill all fields'); return; }
+  
+  // Save credentials to mock session
+  let name = "Guest User";
+  let uType = "private";
+  if (id.includes('@')) {
+    name = id.split('@')[0];
+  } else {
+    name = "Raj Shah";
+    localStorage.setItem('mg_current_user_mobile', id);
+  }
+  if (id.toLowerCase().includes('dealer') || id.toLowerCase().includes('98765')) {
+    uType = "dealer";
+  }
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  localStorage.setItem('mg_current_user', name);
+  localStorage.setItem('mg_current_user_type', uType);
+  
+  showToast('✅ Login successful! Redirecting...');
+  setTimeout(()=>window.location='customer-dashboard.html', 1500);
+}
+function doRegister() {
+  const fName = document.querySelector('#panel-register input[placeholder="Raj"]').value.trim();
+  const lName = document.querySelector('#panel-register input[placeholder="Shah"]').value.trim();
+  const mobile = document.querySelector('#panel-register input[placeholder="+91 XXXXX XXXXX"]').value.trim();
+  const uType = document.getElementById('registerType').value;
+  
+  if (!fName || !mobile) {
+    showToast('⚠️ Name and Mobile are required!');
+    return;
+  }
+  
+  localStorage.setItem('mg_current_user', fName + ' ' + lName);
+  localStorage.setItem('mg_current_user_mobile', mobile);
+  localStorage.setItem('mg_current_user_type', uType);
+  
+  showToast('✅ Account created! Redirecting...');
+  setTimeout(()=>window.location='customer-dashboard.html', 1500);
+}
+function doAdminLogin() {
+  const email = document.getElementById('adminEmail').value;
+  const pwd = document.getElementById('adminPwd').value;
+  if (!email || !pwd) { showToast('⚠️ Please fill all fields'); return; }
+  showToast('🔐 Authenticating admin...');
+  setTimeout(()=>window.location='admin/dashboard.html', 1500);
+}
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// Handle Query Parameters on load
+window.onload = function() {
+  const params = new URLSearchParams(window.location.search);
+  const tab = params.get('tab');
+  const type = params.get('type');
+  if (tab === 'admin' || tab === 'register') {
+    switchTab(tab);
+  }
+  if (type === 'dealer') {
+    const regTypeSelect = document.getElementById('registerType');
+    if (regTypeSelect) regTypeSelect.value = 'dealer';
+  }
+  
+  const currentUser = localStorage.getItem('mg_current_user');
+  if (currentUser && tab !== 'admin') {
+    showToast('⚡ Already logged in! Redirecting to dashboard...');
+    setTimeout(() => {
+      window.location = 'customer-dashboard.html';
+    }, 1200);
+  }
+};
+</script>
+</body>
+</html>

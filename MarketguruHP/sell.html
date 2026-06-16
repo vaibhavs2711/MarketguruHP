@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell Your Car - Market Guru HP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;--muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
+  a{text-decoration:none;color:inherit;}
+  .navbar{background:var(--charcoal);position:sticky;top:0;z-index:100;}
+  .nav-main{max-width:1280px;margin:0 auto;display:flex;align-items:center;padding:0 20px;height:80px;gap:0;}
+  .logo{display:flex;align-items:center;margin-right:40px;height:60px;}
+  .logo img{height:100%;width:auto;display:block;}
+  .nav-links{display:flex;gap:4px;flex:1;}
+  .nav-links a{color:#ccd;font-size:14px;font-weight:500;padding:8px 14px;border-radius:6px;}
+  .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,0.08);}
+  .nav-links a.active{background:rgba(255,204,0,0.15);}
+  .btn-red{background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;border:none;}
+
+  /* HERO */
+  .sell-hero{background:linear-gradient(135deg,var(--charcoal),var(--navy));padding:60px 20px;}
+  .sell-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:60px;align-items:center;}
+  .sell-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;}
+  .sell-hero h1 em{color:var(--red);font-style:normal;}
+  .sell-hero p{color:#99aacc;font-size:16px;margin-bottom:32px;}
+  .why-sell{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .why-item{background:rgba(255,255,255,0.05);border-radius:10px;padding:16px;color:#fff;}
+  .why-icon{font-size:24px;margin-bottom:8px;}
+  .why-title{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .why-desc{font-size:12px;color:#778aaa;}
+
+  /* FORM */
+  .sell-form-box{background:var(--white);border-radius:16px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+  .form-title{font-size:22px;font-weight:700;margin-bottom:8px;}
+  .form-sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
+
+  /* STEPPER */
+  .stepper{display:flex;align-items:center;margin-bottom:28px;}
+  .step{display:flex;align-items:center;gap:8px;flex:1;}
+  .step-circle{width:28px;height:28px;border-radius:50%;background:var(--border);color:var(--muted);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step.active .step-circle{background:var(--red);color:#fff;}
+  .step.done .step-circle{background:var(--success);color:#fff;}
+  .step-label{font-size:11px;font-weight:600;color:var(--muted);}
+  .step.active .step-label{color:var(--text);}
+  .step-line{flex:1;height:2px;background:var(--border);margin:0 8px;}
+  .step.done .step-line{background:var(--success);}
+
+  /* FORM FIELDS */
+  .field-group{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;transition:border-color 0.2s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);}
+  .field textarea{resize:vertical;min-height:80px;}
+  .btn-next{width:100%;padding:14px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Inter',sans-serif;}
+  .btn-next:hover{background:var(--red-dark);}
+
+  /* PHOTO UPLOAD */
+  .upload-area{border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:14px;}
+  .upload-area:hover{border-color:var(--red);background:#fff5f5;}
+  .upload-icon{font-size:40px;margin-bottom:10px;}
+  .upload-text{font-size:14px;font-weight:600;margin-bottom:4px;}
+  .upload-sub{font-size:12px;color:var(--muted);}
+  .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+  .photo-thumb{aspect-ratio:4/3;border-radius:8px;background:var(--silver);display:flex;align-items:center;justify-content:center;font-size:24px;border:1.5px solid var(--border);cursor:pointer;}
+
+  /* VALUATION RESULT */
+  .valuation-result{background:linear-gradient(135deg,var(--charcoal),var(--navy));border-radius:12px;padding:28px;color:#fff;text-align:center;margin-bottom:16px;display:none;}
+  .valuation-result.show{display:block;}
+  .val-range{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:800;color:var(--red);margin:12px 0;}
+  .val-label{font-size:13px;color:#99aacc;}
+
+  /* PAGE CONTENT */
+  .page-content{max-width:1100px;margin:0 auto;padding:60px 20px;}
+  .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;}
+  .how-step{text-align:center;padding:24px;}
+  .how-num{width:48px;height:48px;border-radius:50%;background:var(--red);color:#1A1A2E;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+  .how-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+  .how-desc{font-size:13px;color:var(--muted);}
+
+  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
+  .toast.show{transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-main">
+    <a href="index.html" class="logo" id="brand-logo">
+      <img src="logo.png" alt="Market Guru HP Logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">🏠 Home</a>
+      <a href="buy-cars.html">Buy Cars</a>
+      <a href="sell.html" class="active">Sell Car</a>
+    </div>
+    <a href="login.html"><button class="btn-red">Login</button></a>
+  </div>
+</nav>
+
+<div class="sell-hero">
+  <div class="sell-hero-inner">
+    <div>
+      <h1>Sell Your Car<br>Get <em>Best Price</em><br>Guaranteed</h1>
+      <p>Free inspection, instant valuation, paperwork handled, payment within 24 hours.</p>
+      <div class="why-sell">
+        <div class="why-item">
+          <div class="why-icon">⚡</div>
+          <div class="why-title">Instant Valuation</div>
+          <div class="why-desc">Get price in under 60 seconds</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🛡️</div>
+          <div class="why-title">Free Inspection</div>
+          <div class="why-desc">Expert evaluation at your doorstep</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📋</div>
+          <div class="why-title">We Handle Paperwork</div>
+          <div class="why-desc">RC transfer & NOC, everything handled</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">💰</div>
+          <div class="why-title">Payment in 24hr</div>
+          <div class="why-desc">Direct bank transfer, no middleman</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELL FORM -->
+    <div class="sell-form-box">
+      <div class="form-title">List Your Car</div>
+      <div class="form-sub">Get instant valuation — takes just 2 minutes</div>
+
+      <div class="stepper">
+        <div class="step active" id="s1"><div class="step-circle">1</div><div class="step-label">Car Info</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="s2"><div class="step-circle">2</div><div class="step-label">Condition</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="s3"><div class="step-circle">3</div><div class="step-label">Photos</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="s4"><div class="step-circle">4</div><div class="step-label">Price</div></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="step1">
+        <div class="field" style="margin-bottom: 20px;">
+          <label>Seller Account Type *</label>
+          <select id="sellerType" onchange="toggleSellerTypeWarning()" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:8px; font-family:'Inter',sans-serif;">
+            <option value="private">Individual Seller (Free - 1 car limit)</option>
+            <option value="dealer">Car Dealer Partner (₹1,999/month subscription)</option>
+          </select>
+          <div id="dealer-warn-text" style="display:none; margin-top:8px; font-size:12px; color:#B45309; background:#FFFBEB; padding:8px 12px; border-radius:6px; border:1px solid #FCD34D;">
+            ℹ️ Dealers must have an active subscription (₹1,999/month) to submit listings.
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Brand *</label>
+            <select id="brand" onchange="loadModels()">
+              <option value="">Select Brand</option>
+              <option>Maruti Suzuki</option><option>Hyundai</option><option>Honda</option>
+              <option>Toyota</option><option>Tata</option><option>Mahindra</option>
+              <option>Kia</option><option>MG</option><option>Ford</option><option>Volkswagen</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Model *</label>
+            <select id="model"><option value="">Select Model</option></select>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Year *</label>
+            <select id="year">
+              <option value="">Select Year</option>
+              <option>2024</option><option>2023</option><option>2022</option>
+              <option>2021</option><option>2020</option><option>2019</option>
+              <option>2018</option><option>2017</option><option>2016</option><option>2015</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>KM Driven *</label>
+            <input type="number" placeholder="e.g. 35000" id="km">
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Fuel Type</label>
+            <select id="fuel">
+              <option>Petrol</option><option>Diesel</option><option>CNG</option><option>Electric</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Transmission</label>
+            <select id="trans"><option>Manual</option><option>Automatic</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Owner Number</label>
+          <select id="owner"><option>1st Owner</option><option>2nd Owner</option><option>3rd Owner</option></select>
+        </div>
+        <button class="btn-next" onclick="validateStep1()">Next: Condition →</button>
+      </div>
+
+      <!-- STEP 2 (hidden) -->
+      <div id="step2" style="display:none">
+        <div class="field">
+          <label>Overall Condition</label>
+          <select id="cond">
+            <option>Excellent – Like new, no issues</option>
+            <option>Good – Minor wear, no damage</option>
+            <option>Fair – Visible wear, minor scratches</option>
+            <option>Needs Work – Requires repair</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Any accidents?</label>
+          <select id="accidents"><option>No accidents</option><option>Minor accident (repaired)</option><option>Major accident (repaired)</option></select>
+        </div>
+        <div class="field">
+          <label>Modifications (if any)</label>
+          <input type="text" placeholder="e.g. CNG kit, alloy wheels..." id="mods">
+        </div>
+        <div class="field">
+          <label>Insurance Type</label>
+          <select id="insurance"><option>Comprehensive</option><option>Third Party</option><option>Expired</option></select>
+        </div>
+        <div class="field">
+          <label>Additional Notes</label>
+          <textarea placeholder="Any other info buyers should know..." id="notes"></textarea>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn-next" style="background:transparent;border:1.5px solid var(--border);color:var(--text)" onclick="nextStep(1)">← Back</button>
+          <button class="btn-next" onclick="nextStep(3)">Next: Photos →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 (hidden) -->
+      <div id="step3" style="display:none">
+        <div class="upload-area" onclick="mockPhotoUpload()">
+          <div class="upload-icon" id="uploadStatusIcon">📸</div>
+          <div class="upload-text" id="uploadStatusText">Upload Car Photos</div>
+          <div class="upload-sub">Tap to add photos (Front, Rear, Interior, Engine)</div>
+        </div>
+        <div class="photo-grid">
+          <div class="photo-thumb" id="thumb-front" onclick="showToast('📸 Front view ready')">📷<br><span style="font-size:10px">Front</span></div>
+          <div class="photo-thumb" id="thumb-rear" onclick="showToast('📸 Rear view ready')">📷<br><span style="font-size:10px">Rear</span></div>
+          <div class="photo-thumb" id="thumb-interior" onclick="showToast('📸 Interior ready')">📷<br><span style="font-size:10px">Interior</span></div>
+          <div class="photo-thumb" id="thumb-engine" onclick="showToast('📸 Engine ready')">📷<br><span style="font-size:10px">Engine</span></div>
+        </div>
+        <div class="field">
+          <label>Your Contact Number *</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" id="mobile">
+        </div>
+        <div class="field">
+          <label>City</label>
+          <select id="city">
+            <option>Vadodara</option><option>Ahmedabad</option><option>Surat</option>
+            <option>Rajkot</option><option>Gandhinagar</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn-next" style="background:transparent;border:1.5px solid var(--border);color:var(--text)" onclick="nextStep(2)">← Back</button>
+          <button class="btn-next" onclick="validateStep3()">Get My Valuation →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 - RESULT (hidden) -->
+      <div id="step4" style="display:none">
+        <div class="valuation-result show">
+          <div class="val-label">Estimated Market Value</div>
+          <div class="val-range" id="valRangeText">₹4.8L – ₹5.5L</div>
+          <div class="val-label">Based on market data for similar cars in Vadodara</div>
+        </div>
+        <div class="field">
+          <label>Your Asking Price (₹ Lakh) *</label>
+          <input type="number" step="0.05" placeholder="e.g. 5.20" id="askPrice">
+        </div>
+        <div style="background:var(--silver);border-radius:8px;padding:14px;margin-bottom:14px;font-size:13px;color:var(--muted)">
+          💡 <strong style="color:var(--text)">Pro Tip:</strong> Cars priced within the suggested range sell 3x faster.
+        </div>
+        <button class="btn-next" onclick="submitListing()">🚀 Submit Listing</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="page-content">
+  <div style="text-align:center">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800">How <span style="color:var(--red)">Selling</span> Works</h2>
+    <p style="color:var(--muted);margin-top:8px">Simple, transparent, and fast</p>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div class="how-title">Submit Details</div>
+      <div class="how-desc">Fill in your car info and get an instant price estimate</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div class="how-title">Free Inspection</div>
+      <div class="how-desc">Our expert visits you for a 150-point inspection</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div class="how-title">Get Best Offer</div>
+      <div class="how-desc">Receive a final offer based on inspection results</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">4</div>
+      <div class="how-title">Get Paid</div>
+      <div class="how-desc">Accept the offer and get money in your account within 24 hours</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="cars-data.js"></script>
+<script>
+const models = {'Maruti Suzuki':['Swift','Baleno','Alto','Dzire','Brezza'],'Hyundai':['i20','Creta','Venue','Verna'],'Honda':['City','Amaze','Jazz'],'Toyota':['Innova','Fortuner','Glanza'],'Tata':['Nexon','Harrier','Altroz'],'Mahindra':['XUV300','Thar','Bolero'],'Kia':['Seltos','Sonet'],'MG':['Hector','ZS EV']};
+function loadModels() {
+  const b = document.getElementById('brand').value;
+  const m = document.getElementById('model');
+  m.innerHTML = '<option value="">Select Model</option>';
+  (models[b]||[]).forEach(v=>{const o=document.createElement('option');o.textContent=v;m.appendChild(o);});
+}
+let currentStep = 1;
+function nextStep(n) {
+  document.getElementById('step'+currentStep).style.display='none';
+  document.getElementById('s'+currentStep).classList.remove('active');
+  if(currentStep<n) document.getElementById('s'+currentStep).classList.add('done');
+  currentStep=n;
+  document.getElementById('step'+n).style.display='block';
+  document.getElementById('s'+n).classList.add('active');
+}
+
+function validateStep1() {
+  const brand = document.getElementById('brand').value;
+  const model = document.getElementById('model').value;
+  const year = document.getElementById('year').value;
+  const km = document.getElementById('km').value;
+  
+  if (!brand || !model || !year || !km) {
+    showToast('⚠️ Please fill all required fields!');
+    return;
+  }
+  nextStep(2);
+}
+
+function mockPhotoUpload() {
+  showToast('📸 Mock Photos uploaded successfully!');
+  document.getElementById('uploadStatusIcon').textContent = '✅';
+  document.getElementById('uploadStatusText').textContent = 'Photos Attached';
+  document.getElementById('thumb-front').textContent = '🚗';
+  document.getElementById('thumb-rear').textContent = '🍑';
+  document.getElementById('thumb-interior').textContent = '🪑';
+  document.getElementById('thumb-engine').textContent = '⚙️';
+}
+
+function validateStep3() {
+  const mobile = document.getElementById('mobile').value.trim();
+  if (!mobile) {
+    showToast('⚠️ Contact number is required!');
+    return;
+  }
+  
+  // Save user name and mobile for session if not set
+  if (!localStorage.getItem('mg_current_user')) {
+    localStorage.setItem('mg_current_user', 'Raj Shah');
+    localStorage.setItem('mg_current_user_mobile', mobile);
+  }
+
+  // Auto calculate range based on year and model
+  const year = parseInt(document.getElementById('year').value) || 2020;
+  const basePrice = Math.max(2.5, (year - 2010) * 0.9);
+  
+  document.getElementById('valRangeText').textContent = `₹${(basePrice - 0.5).toFixed(1)}L – ₹${(basePrice + 0.5).toFixed(1)}L`;
+  document.getElementById('askPrice').value = basePrice.toFixed(2);
+
+  getValuation();
+}
+
+function getValuation() {
+  showToast('⚡ Calculating your car value...');
+  setTimeout(()=>nextStep(4), 1200);
+}
+
+function submitListing() {
+  const ask = parseFloat(document.getElementById('askPrice').value);
+  if (!ask || ask <= 0) {
+    showToast('⚠️ Please enter a valid asking price!');
+    return;
+  }
+
+  const brand = document.getElementById('brand').value;
+  const model = document.getElementById('model').value;
+  const year = parseInt(document.getElementById('year').value);
+  const kmVal = parseInt(document.getElementById('km').value);
+  const fuel = document.getElementById('fuel').value;
+  const trans = document.getElementById('trans').value;
+  const owner = document.getElementById('owner').value;
+  const city = document.getElementById('city').value;
+  const descNotes = document.getElementById('notes').value.trim();
+  const mods = document.getElementById('mods').value.trim();
+
+  const isDealerSelect = document.getElementById('sellerType').value === 'dealer';
+  const loggedMobile = localStorage.getItem('mg_current_user_mobile') || '';
+  
+  if (isDealerSelect) {
+    const details = mgDB.getSubscriptionDetails(loggedMobile);
+    if (details.status !== 'active') {
+      showToast('🔒 Subscription Required! Redirecting to dashboard...');
+      localStorage.setItem('mg_current_user_type', 'dealer'); // convert if they chose dealer
+      setTimeout(() => window.location = 'customer-dashboard.html?tab=subscription', 2000);
+      return;
+    }
+  }
+
+  // Call mock database function to save
+  mgDB.addUserCar({
+    name: brand + ' ' + model,
+    year: year,
+    price: ask.toFixed(2),
+    priceN: Math.round(ask * 100000),
+    km: kmVal.toLocaleString('en-IN'),
+    fuel: fuel,
+    trans: trans,
+    owner: owner,
+    color: '#e8eef5',
+    emoji: '🚗',
+    city: city,
+    desc: descNotes || `Clean and well maintained ${brand} ${model}. Modifications: ${mods || 'None'}.`,
+    features: ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry']
+  });
+
+  showToast('🎉 Listing submitted! Redirecting to dashboard...');
+  setTimeout(()=>window.location='customer-dashboard.html', 2200);
+}
+
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function toggleSellerTypeWarning() {
+  const isDealer = document.getElementById('sellerType').value === 'dealer';
+  document.getElementById('dealer-warn-text').style.display = isDealer ? 'block' : 'none';
+}
+
+function checkLoginState() {
+  const currentUser = localStorage.getItem('mg_current_user');
+  const loggedType = localStorage.getItem('mg_current_user_type') || 'private';
+  
+  const typeSelect = document.getElementById('sellerType');
+  if (typeSelect) {
+    typeSelect.value = loggedType;
+    toggleSellerTypeWarning();
+  }
+  
+  if (currentUser) {
+    const loginLinks = document.querySelectorAll('a[href="login.html"]');
+    loginLinks.forEach(link => {
+      link.href = 'customer-dashboard.html';
+      const btn = link.querySelector('button');
+      if (btn) {
+        if (btn.textContent.trim().toLowerCase() === 'login') {
+          btn.textContent = 'Dashboard';
+        }
+      } else {
+        if (link.textContent.includes('Login / Register')) {
+          link.textContent = 'My Dashboard';
+        }
+      }
+    });
+  }
+}
+checkLoginState();
+</script>
+</body>
+</html>
