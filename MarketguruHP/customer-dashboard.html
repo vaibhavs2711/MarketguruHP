@@ -223,9 +223,6 @@
       </div>
     </div>
 
-      </div>
-    </div>
-
     <!-- SUBSCRIPTION PANEL -->
     <div class="page-section" id="pg-subscription">
       <!-- Active status card -->
@@ -278,6 +275,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </main>
 
@@ -285,9 +283,15 @@
 
 <script src="cars-data.js"></script>
 <script>
-  let currentUser = localStorage.getItem('mg_current_user') || 'Raj Shah';
-  let currentUserMobile = localStorage.getItem('mg_current_user_mobile') || '+91 98765 43210';
+  let currentUser = localStorage.getItem('mg_current_user') || '';
+  let currentUserMobile = localStorage.getItem('mg_current_user_mobile') || '';
   let userType = localStorage.getItem('mg_current_user_type') || 'private';
+
+  // Redirect to login if no session exists
+  if (!currentUser) {
+    // Allow viewing with guest defaults instead of forcing redirect
+    currentUser = 'Guest User';
+  }
 
   function initDashboard() {
     document.getElementById('userDisplayName').textContent = currentUser;
@@ -497,7 +501,25 @@
     setTimeout(() => t.classList.remove('show'), 2500);
   }
 
-  window.onload = initDashboard;
+  window.onload = function() {
+    initDashboard();
+    // Handle URL query params e.g. ?tab=subscription
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+    if (tab) {
+      const navMap = {
+        'overview': null,
+        'wishlist': document.querySelectorAll('.nav-item')[1],
+        'listings': document.querySelectorAll('.nav-item')[2],
+        'enquiries': document.querySelectorAll('.nav-item')[3],
+        'subscription': document.getElementById('nav-subscription')
+      };
+      const targetNav = navMap[tab];
+      if (targetNav) {
+        setTimeout(() => showPage(tab, targetNav), 100);
+      }
+    }
+  };
 </script>
 </body>
 </html>

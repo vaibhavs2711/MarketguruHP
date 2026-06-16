@@ -241,16 +241,17 @@
 
       <!-- STEP 3 (hidden) -->
       <div id="step3" style="display:none">
-        <div class="upload-area" onclick="mockPhotoUpload()">
+        <input type="file" id="carPhotosInput" multiple accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+        <div class="upload-area" onclick="triggerPhotoUpload()">
           <div class="upload-icon" id="uploadStatusIcon">📸</div>
           <div class="upload-text" id="uploadStatusText">Upload Car Photos</div>
           <div class="upload-sub">Tap to add photos (Front, Rear, Interior, Engine)</div>
         </div>
         <div class="photo-grid">
-          <div class="photo-thumb" id="thumb-front" onclick="showToast('📸 Front view ready')">📷<br><span style="font-size:10px">Front</span></div>
-          <div class="photo-thumb" id="thumb-rear" onclick="showToast('📸 Rear view ready')">📷<br><span style="font-size:10px">Rear</span></div>
-          <div class="photo-thumb" id="thumb-interior" onclick="showToast('📸 Interior ready')">📷<br><span style="font-size:10px">Interior</span></div>
-          <div class="photo-thumb" id="thumb-engine" onclick="showToast('📸 Engine ready')">📷<br><span style="font-size:10px">Engine</span></div>
+          <div class="photo-thumb" id="thumb-front" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Front</span></div>
+          <div class="photo-thumb" id="thumb-rear" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Rear</span></div>
+          <div class="photo-thumb" id="thumb-interior" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Interior</span></div>
+          <div class="photo-thumb" id="thumb-engine" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Engine</span></div>
         </div>
         <div class="field">
           <label>Your Contact Number *</label>
@@ -353,14 +354,46 @@ function validateStep1() {
   nextStep(2);
 }
 
+let uploadedPhotos = [];
+
+function triggerPhotoUpload() {
+  document.getElementById('carPhotosInput').click();
+}
+
+function handlePhotoUpload(event) {
+  const files = Array.from(event.target.files);
+  if (files.length === 0) return;
+  uploadedPhotos = files;
+  showToast('📸 ' + files.length + ' photo(s) selected!');
+  document.getElementById('uploadStatusIcon').textContent = '✅';
+  document.getElementById('uploadStatusText').textContent = files.length + ' Photo(s) Selected';
+
+  const thumbIds = ['thumb-front', 'thumb-rear', 'thumb-interior', 'thumb-engine'];
+  const labels = ['Front', 'Rear', 'Interior', 'Engine'];
+  files.forEach((file, i) => {
+    if (i >= thumbIds.length) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const thumb = document.getElementById(thumbIds[i]);
+      thumb.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" alt="${labels[i]}">`;
+    };
+    reader.readAsDataURL(file);
+  });
+  // Fill remaining thumbs with emoji if fewer than 4 photos
+  const emojis = ['🚗', '🍑', '🪑', '⚙️'];
+  for (let i = files.length; i < thumbIds.length; i++) {
+    document.getElementById(thumbIds[i]).innerHTML = emojis[i] + '<br><span style="font-size:10px">' + labels[i] + '</span>';
+  }
+}
+
 function mockPhotoUpload() {
-  showToast('📸 Mock Photos uploaded successfully!');
+  showToast('📸 Photos uploaded successfully!');
   document.getElementById('uploadStatusIcon').textContent = '✅';
   document.getElementById('uploadStatusText').textContent = 'Photos Attached';
-  document.getElementById('thumb-front').textContent = '🚗';
-  document.getElementById('thumb-rear').textContent = '🍑';
-  document.getElementById('thumb-interior').textContent = '🪑';
-  document.getElementById('thumb-engine').textContent = '⚙️';
+  document.getElementById('thumb-front').innerHTML = '🚗';
+  document.getElementById('thumb-rear').innerHTML = '🍑';
+  document.getElementById('thumb-interior').innerHTML = '🪑';
+  document.getElementById('thumb-engine').innerHTML = '⚙️';
 }
 
 function validateStep3() {
@@ -370,11 +403,12 @@ function validateStep3() {
     return;
   }
   
-  // Save user name and mobile for session if not set
-  if (!localStorage.getItem('mg_current_user')) {
-    localStorage.setItem('mg_current_user', 'Raj Shah');
-    localStorage.setItem('mg_current_user_mobile', mobile);
+  // Save mobile for session (always update from form for sell flow)
+  const existingUser = localStorage.getItem('mg_current_user');
+  if (!existingUser) {
+    localStorage.setItem('mg_current_user', 'Guest User');
   }
+  localStorage.setItem('mg_current_user_mobile', mobile);
 
   // Auto calculate range based on year and model
   const year = parseInt(document.getElementById('year').value) || 2020;
