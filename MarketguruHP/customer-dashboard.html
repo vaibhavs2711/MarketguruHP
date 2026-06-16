@@ -81,6 +81,24 @@
   .s-active { background: #dcfce7; color: #15803d; }
   .s-pending { background: #fef9c3; color: #a16207; }
 
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; }
+  .modal-box { background: #fff; border-radius: 16px; padding: 32px; max-width: 440px; width: 90%; box-shadow: 0 24px 80px rgba(0,0,0,0.3); }
+  .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .modal-field { margin-bottom: 16px; }
+  .modal-field label { display: block; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .modal-field input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; }
+  .modal-field input:focus { outline: none; border-color: var(--red); }
+  .modal-actions { display: flex; gap: 10px; margin-top: 8px; }
+  .btn-modal-primary { flex: 1; padding: 12px; background: var(--red); color: #1A1A2E; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-modal-secondary { flex: 1; padding: 12px; background: transparent; color: var(--text); border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-modal-danger { flex: 1; padding: 12px; background: #FEE2E2; color: #DC2626; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .action-btn { padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: 600; cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
+  .action-edit { background: #EFF6FF; color: #1D4ED8; }
+  .action-remove { background: #FEE2E2; color: #DC2626; }
+
   /* TOAST */
   .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--red); }
   .toast.show { transform: translateY(0); }
@@ -203,7 +221,7 @@
         </div>
         <table>
           <thead>
-            <tr><th>Car Name</th><th>Year</th><th>Asking Price</th><th>KM</th><th>Fuel</th><th>Status</th></tr>
+            <tr><th>Car Name</th><th>Year</th><th>Asking Price</th><th>KM</th><th>Fuel</th><th>Status</th><th>Actions</th></tr>
           </thead>
           <tbody id="listingsTable"></tbody>
         </table>
@@ -278,6 +296,48 @@
 
   </div>
 </main>
+
+<!-- EDIT PRICE MODAL -->
+<div class="modal-overlay" id="editPriceModal">
+  <div class="modal-box">
+    <div class="modal-title">✏️ Edit Listing Details</div>
+    <div class="modal-sub" id="editModalCarName">Update your car listing price and details</div>
+    <input type="hidden" id="editCarId">
+    <div class="modal-field">
+      <label>New Asking Price (₹ Lakh) *</label>
+      <input type="number" step="0.05" id="editPrice" placeholder="e.g. 5.50">
+    </div>
+    <div class="modal-field">
+      <label>Current KM Reading</label>
+      <input type="text" id="editKm" placeholder="e.g. 35,000">
+    </div>
+    <div class="modal-field">
+      <label>Description / Notes</label>
+      <input type="text" id="editDesc" placeholder="Any updates for buyers...">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal-secondary" onclick="closeModal('editPriceModal')">Cancel</button>
+      <button class="btn-modal-primary" onclick="saveEditPrice()">💾 Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM REMOVE MODAL -->
+<div class="modal-overlay" id="confirmRemoveModal">
+  <div class="modal-box">
+    <div class="modal-title">🗑️ Remove Listing</div>
+    <div class="modal-sub" id="removeModalCarName">This will permanently remove this car from the active listings.</div>
+    <input type="hidden" id="removeCarId">
+    <div style="background: #FEF2F2; border: 1.5px solid #FCA5A5; border-radius: 8px; padding: 14px; margin-bottom: 20px; font-size: 13px; color: #991B1B; line-height: 1.5;">
+      ⚠️ Choose an action below. <strong>Mark as Sold</strong> records this in revenue. <strong>Remove Listing</strong> just deletes the listing without a sale record.
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal-secondary" onclick="closeModal('confirmRemoveModal')">Cancel</button>
+      <button class="btn-modal-danger" onclick="doRemoveListing(false)">🗑️ Remove Listing</button>
+      <button class="btn-modal-primary" onclick="doRemoveListing(true)">✅ Mark as Sold</button>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast"></div>
 
@@ -392,12 +452,7 @@
 
   function renderStats() {
     const wishlist = mgDB.getWishlist();
-    let userCars = [];
-    if (mgDB.isBackendOnline()) {
-      userCars = mgDB.getUsedCars().filter(c => c.listed_by === currentUserMobile);
-    } else {
-      userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
-    }
+    const userCars = mgDB.getUserListings(currentUserMobile);
     const enquiries = mgDB.getEnquiries().filter(e => e.name.toLowerCase() === currentUser.toLowerCase());
 
     document.getElementById('statWishlist').textContent = wishlist.length;
@@ -441,29 +496,92 @@
   }
 
   function renderUserListings() {
-    let userCars = [];
-    if (mgDB.isBackendOnline()) {
-      userCars = mgDB.getUsedCars().filter(c => c.listed_by === currentUserMobile);
-    } else {
-      userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
-    }
+    const userCars = mgDB.getUserListings(currentUserMobile);
     const tbody = document.getElementById('listingsTable');
 
     if (userCars.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted)">You haven't listed any cars for sale yet.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding:28px;">You haven't listed any cars for sale yet. <a href="sell.html" style="color:var(--red);font-weight:700;">List your first car →</a></td></tr>`;
       return;
     }
 
     tbody.innerHTML = userCars.map(c => `
       <tr>
-        <td><strong>${c.name}</strong></td>
+        <td><strong>${c.name || c.title || 'Unknown Car'}</strong></td>
         <td>${c.year}</td>
         <td style="font-weight:700;color:var(--red-dark)">₹${c.price}L</td>
-        <td>${c.km} km</td>
-        <td>${c.fuel}</td>
-        <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? 'Active Listing' : 'Pending inspection'}</span></td>
+        <td>${c.km || '—'} km</td>
+        <td>${c.fuel || '—'}</td>
+        <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>
+        <td style="display:flex;gap:6px;align-items:center;">
+          <button class="action-btn action-edit" onclick="openEditModal(${c.id}, '${(c.name||'').replace(/'/g,"&apos;")}', '${c.price}', '${c.km||''}', '${(c.description||c.desc||'').replace(/'/g,"&apos;").substring(0,80)}')">✏️ Edit</button>
+          <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id}, '${(c.name||'').replace(/'/g,"&apos;")}')">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
+        </td>
       </tr>
     `).join('');
+  }
+
+  /* --- Modal Handlers --- */
+  function openEditModal(carId, carName, currentPrice, currentKm, currentDesc) {
+    document.getElementById('editCarId').value = carId;
+    document.getElementById('editModalCarName').textContent = 'Editing: ' + carName;
+    document.getElementById('editPrice').value = currentPrice || '';
+    document.getElementById('editKm').value = currentKm || '';
+    document.getElementById('editDesc').value = currentDesc || '';
+    document.getElementById('editPriceModal').classList.add('show');
+  }
+
+  function saveEditPrice() {
+    const carId = parseInt(document.getElementById('editCarId').value);
+    const price = document.getElementById('editPrice').value.trim();
+    const km = document.getElementById('editKm').value.trim();
+    const desc = document.getElementById('editDesc').value.trim();
+
+    if (!price || parseFloat(price) <= 0) {
+      showToast('⚠️ Please enter a valid price!');
+      return;
+    }
+
+    const updates = {
+      price: parseFloat(price).toFixed(2),
+      priceN: Math.round(parseFloat(price) * 100000)
+    };
+    if (km) updates.km = km;
+    if (desc) updates.description = desc;
+
+    showToast('💾 Saving changes...');
+    const success = mgDB.updateListing(carId, updates, currentUserMobile);
+    if (success) {
+      closeModal('editPriceModal');
+      showToast('✅ Listing updated successfully!');
+      renderUserListings();
+      renderStats();
+    } else {
+      showToast('❌ Failed to save. Please try again.');
+    }
+  }
+
+  function confirmRemoveListing(carId, carName) {
+    document.getElementById('removeCarId').value = carId;
+    document.getElementById('removeModalCarName').textContent = 'Removing: ' + carName;
+    document.getElementById('confirmRemoveModal').classList.add('show');
+  }
+
+  function doRemoveListing(markAsSold) {
+    const carId = parseInt(document.getElementById('removeCarId').value);
+    showToast(markAsSold ? '✅ Marking as sold...' : '🗑️ Removing listing...');
+    const success = mgDB.removeListing(carId, currentUserMobile);
+    if (success) {
+      closeModal('confirmRemoveModal');
+      showToast(markAsSold ? '🎉 Car marked as sold!' : '✅ Listing removed successfully!');
+      renderUserListings();
+      renderStats();
+    } else {
+      showToast('❌ Could not remove listing. Please try again.');
+    }
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).classList.remove('show');
   }
 
   function renderUserEnquiries() {

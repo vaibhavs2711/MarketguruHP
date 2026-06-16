@@ -242,10 +242,76 @@ const db = {
     const nextId = 1000 + userCars.length;
     car.id = nextId;
     car.emi = car.emi || Math.round(car.priceN * 0.019).toLocaleString('en-IN') + '/mo';
+    car.listed_by = localStorage.getItem('mg_current_user_mobile') || '';
     userCars.push(car);
     saveDB('mg_user_cars', userCars);
     carsState.push(car);
     return car;
+  },
+
+  // Fetch all cars listed by the current user (with mobile normalization)
+  getUserListings: (mobile) => {
+    const bare = (m) => String(m || '').replace(/[\s\-\+]/g, '').replace(/^91(\d{10})$/, '$1');
+    const userBare = bare(mobile);
+
+    if (isBackendConnected) {
+      const result = requestSync('POST', 'cars/by-user', { mobile: mobile });
+      if (result && result.status === 'success') {
+        return result.cars;
+      }
+    }
+
+    // Fallback: check localStorage user_cars with normalized mobile
+    const userCars = getDB('mg_user_cars', []);
+    return userCars.filter(c => bare(c.listed_by) === userBare);
+  },
+
+  // Update a listing's price/km/description
+  updateListing: (carId, updates, mobile) => {
+    carId = parseInt(carId);
+    if (isBackendConnected) {
+      const result = requestSync('POST', 'cars/update', { car_id: carId, mobile: mobile, ...updates });
+      if (result && result.status === 'success') {
+        const car = carsState.find(c => c.id === carId);
+        if (car) Object.assign(car, updates);
+        return true;
+      }
+    }
+
+    // Fallback
+    const userCars = getDB('mg_user_cars', []);
+    const idx = userCars.findIndex(c => c.id === carId);
+    if (idx !== -1) {
+      Object.assign(userCars[idx], updates);
+      saveDB('mg_user_cars', userCars);
+      const car = carsState.find(c => c.id === carId);
+      if (car) Object.assign(car, updates);
+      return true;
+    }
+    return false;
+  },
+
+  // Remove a listing (seller removes their own car)
+  removeListing: (carId, mobile) => {
+    carId = parseInt(carId);
+    if (isBackendConnected) {
+      const result = requestSync('POST', 'cars/delete', { car_id: carId, mobile: mobile });
+      if (result && result.status === 'success') {
+        carsState = carsState.filter(c => c.id !== carId);
+        return true;
+      }
+    }
+
+    // Fallback
+    const userCars = getDB('mg_user_cars', []);
+    const idx = userCars.findIndex(c => c.id === carId);
+    if (idx !== -1) {
+      userCars.splice(idx, 1);
+      saveDB('mg_user_cars', userCars);
+      carsState = carsState.filter(c => c.id !== carId);
+      return true;
+    }
+    return false;
   },
 
   addEnquiry: (enquiry) => {

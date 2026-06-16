@@ -209,13 +209,103 @@ def sell_car_api():
     try:
         data = request.json
         car_id = int(data.get('car_id'))
-        # Typically we delete or update verification/status
-        # For simplicity, we delete from active listings or we can set status
-        # We will delete the car or set its status
-        # Since table schema has no 'status' column directly, we can verify as 0 or remove it
-        # Let's delete it so it's marked as sold in active inventory
         query_db("DELETE FROM cars WHERE id = %s", (car_id,), commit=True)
         return jsonify({"status": "success", "car_id": car_id})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/cars/by-user', methods=['POST'])
+def get_cars_by_user():
+    """Fetch all cars listed by a specific user, with flexible mobile number matching."""
+    try:
+        data = request.json
+        mobile = str(data.get('mobile', '')).strip()
+        # Normalize: strip +91 prefix and spaces for matching
+        mobile_bare = mobile.lstrip('+').replace(' ', '').replace('-', '')
+        if mobile_bare.startswith('91') and len(mobile_bare) == 12:
+            mobile_bare = mobile_bare[2:]  # strip country code
+
+        # Query with both formats: exact match and bare 10-digit
+        cars = query_db(
+            "SELECT * FROM cars WHERE listed_by = %s OR listed_by = %s OR listed_by = %s",
+            (mobile, '+91' + mobile_bare, mobile_bare)
+        )
+        for car in cars:
+            if car['features']:
+                car['features'] = [f.strip() for f in car['features'].split(',') if f.strip()]
+            else:
+                car['features'] = []
+            car['verified'] = bool(car['verified'])
+
+        return jsonify({"status": "success", "cars": cars})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/cars/update', methods=['POST'])
+def update_car():
+    """Update a car listing's price, km, or description."""
+    try:
+        data = request.json
+        car_id = int(data.get('car_id'))
+        mobile = str(data.get('mobile', '')).strip()
+
+        # Build dynamic update
+        updates = []
+        params = []
+        if 'price' in data:
+            updates.append('price = %s')
+            params.append(str(data['price']))
+        if 'priceN' in data:
+            updates.append('priceN = %s')
+            params.append(int(data['priceN']))
+        if 'km' in data:
+            updates.append('km = %s')
+            params.append(str(data['km']))
+        if 'description' in data:
+            updates.append('description = %s')
+            params.append(str(data['description']))
+
+        if not updates:
+            return jsonify({"status": "error", "message": "No fields to update"}), 400
+
+        params.append(car_id)
+        query_db(f"UPDATE cars SET {', '.join(updates)} WHERE id = %s", tuple(params), commit=True)
+        return jsonify({"status": "success", "car_id": car_id})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/cars/delete', methods=['POST'])
+def delete_car():
+    """Delete/remove a car listing. Only the owner can delete their own listing."""
+    try:
+        data = request.json
+        car_id = int(data.get('car_id'))
+        mobile = str(data.get('mobile', '')).strip()
+
+        # Normalize mobile for matching
+        mobile_bare = mobile.lstrip('+').replace(' ', '').replace('-', '')
+        if mobile_bare.startswith('91') and len(mobile_bare) == 12:
+            mobile_bare = mobile_bare[2:]
+
+        # Verify ownership first
+        car = query_db(
+            "SELECT id, listed_by FROM cars WHERE id = %s",
+            (car_id,), one=True
+        )
+        if not car:
+            return jsonify({"status": "error", "message": "Car not found"}), 404
+
+        # Allow deletion if ownership matches OR mobile is empty (admin)
+        owner = str(car.get('listed_by') or '').strip()
+        owner_bare = owner.lstrip('+').replace(' ', '').replace('-', '')
+        if owner_bare.startswith('91') and len(owner_bare) == 12:
+            owner_bare = owner_bare[2:]
+
+        if mobile and owner_bare and mobile_bare != owner_bare:
+            return jsonify({"status": "error", "message": "Not authorized to delete this listing"}), 403
+
+        query_db("DELETE FROM cars WHERE id = %s", (car_id,), commit=True)
+        return jsonify({"status": "success", "car_id": car_id, "message": "Listing removed"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
