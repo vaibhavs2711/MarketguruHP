@@ -388,7 +388,12 @@
 
   function renderStats() {
     const wishlist = mgDB.getWishlist();
-    const userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
+    let userCars = [];
+    if (mgDB.isBackendOnline()) {
+      userCars = mgDB.getUsedCars().filter(c => c.listed_by === currentUserMobile);
+    } else {
+      userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
+    }
     const enquiries = mgDB.getEnquiries().filter(e => e.name.toLowerCase() === currentUser.toLowerCase());
 
     document.getElementById('statWishlist').textContent = wishlist.length;
@@ -432,7 +437,12 @@
   }
 
   function renderUserListings() {
-    const userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
+    let userCars = [];
+    if (mgDB.isBackendOnline()) {
+      userCars = mgDB.getUsedCars().filter(c => c.listed_by === currentUserMobile);
+    } else {
+      userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
+    }
     const tbody = document.getElementById('listingsTable');
 
     if (userCars.length === 0) {
