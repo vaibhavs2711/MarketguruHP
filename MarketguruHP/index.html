@@ -814,52 +814,170 @@
   }
 
   /* FOOTER */
-  .footer { background: var(--charcoal); color: #aaa; padding: 48px 20px 24px; }
+  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 0; }
   .footer-inner { max-width: 1280px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-  .footer-brand .logo { display: flex; margin-bottom: 12px; height: 50px; }
-  .footer-brand .logo img { height: 100%; width: auto; display: block; }
-  .footer-brand p { font-size: 13px; line-height: 1.6; color: #778aaa; }
-  .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
-  .footer-socials a {
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 85px; }
+  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
+  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
+  
+  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+  .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
+  .footer-col a:hover { color: var(--red); }
+  
+  .quick-links-split { display: flex; gap: 30px; }
+  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
+  .ql-col { display: flex; flex-direction: column; }
+
+  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
+  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
+  
+  .footer-bottom-bar { 
+    background: #333; 
+    border-radius: 40px; 
+    padding: 12px 24px; 
+    display: flex; justify-content: space-between; align-items: center;
+    color: #bbb; font-size: 13px; font-weight: 500;
+  }
+  .fbb-left { display: flex; align-items: center; gap: 16px; }
+  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
+  .fbb-socials { display: flex; gap: 12px; }
+  .fbb-socials a {
     display: flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px; border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05); color: #778aaa;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #fff; color: #111;
+    transition: all 0.3s ease;
   }
-  .footer-socials a:hover {
-    color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.2);
+  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+  .fbb-socials svg { width: 16px; height: 16px; fill: currentColor; }
+  
+  .fbb-links { display: flex; gap: 8px; align-items: center; }
+  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
+  .fbb-links a:hover { color: var(--white); }
+  
+  @media(max-width: 800px) {
+    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
+    .fbb-left { flex-direction: column; gap: 10px; }
   }
-  .footer-socials a.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent; }
-  .footer-socials a.youtube:hover { background: #ff0000; border-color: #ff0000; }
-  .footer-socials a.facebook:hover { background: #1877f2; border-color: #1877f2; }
-  .footer-socials svg { width: 18px; height: 18px; fill: currentColor; transition: fill 0.2s; }
-  .footer-col h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .footer-col a { display: block; font-size: 13px; color: #778aaa; margin-bottom: 8px; transition: color 0.2s; }
-  .footer-col a:hover { color: var(--white); }
-  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; color: #556; }
 
   /* TOAST */
-  .toast {
-    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-    background: var(--charcoal); color: var(--white);
-    padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3); transform: translateY(100px);
-    transition: transform 0.3s ease; border-left: 4px solid var(--red);
-  }
+  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--red); }
   .toast.show { transform: translateY(0); }
 
-  @media (max-width: 900px) {
-    .hero-content { grid-template-columns: 1fr; gap: 20px; }
-    .hero-right { order: -1; }
-    .dealer-promo-grid { grid-template-columns: 1fr; }
-    .cars-grid { grid-template-columns: repeat(2, 1fr); }
-    .search-row { grid-template-columns: 1fr 1fr; }
-    .trust-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+
+  /* STATIC SOCIAL BANNER */
+  .social-banner-container {
+    display: flex;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    justify-content: space-between;
+  }
+  .sb-left-wrap {
+    position: relative;
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 30px 12px 20px;
+    z-index: 1;
+    min-width: max-content;
+  }
+  .sb-left-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -50px; right: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--charcoal) 100%);
+    transform: skewX(-20deg);
+    transform-origin: bottom right;
+    border-right: 2px solid var(--red);
+    box-shadow: 4px 0 15px rgba(255,204,0,0.15);
+    z-index: -1;
+  }
+  .sb-left-icon svg { width: 30px; height: 30px; stroke: var(--red); }
+  .sb-left-text { display: flex; flex-direction: column; }
+  .sb-left-text h4 { color: var(--red); font-size: 13px; font-weight: 800; margin: 0 0 2px; letter-spacing: 0.5px; white-space: nowrap; }
+  .sb-left-text p { color: #fff; font-size: 11px; margin: 0; font-weight: 500; white-space: nowrap; }
+
+  .sb-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 0px;
+  }
+  .sb-link-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .sb-link-block:hover {
+    transform: translateY(-2px);
+  }
+  .sb-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 4px;
+  }
+  .sb-logo svg {
+    width: 36px; height: 36px;
+  }
+  .sb-info {
+    display: flex; flex-direction: column;
+  }
+  .sb-info h5 {
+    font-size: 14px; font-weight: 800; color: #fff; margin: 0 0 2px 0; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .sb-info span {
+    font-size: 11px; font-weight: 600; color: var(--red); white-space: nowrap;
+  }
+  .sb-btn {
+    margin-left: 6px;
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    color: var(--red);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .sb-link-block:hover .sb-btn {
+    background: var(--red); color: #000;
+  }
+
+  .sb-right-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 12px 20px 12px 40px;
+    z-index: 1;
+    min-width: max-content;
+  }
+  .sb-right-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: -50px; bottom: 0;
+    background: linear-gradient(90deg, var(--charcoal) 0%, var(--navy) 100%);
+    transform: skewX(-20deg);
+    transform-origin: bottom left;
+    border-left: 2px solid var(--red);
+    box-shadow: -4px 0 15px rgba(255,204,0,0.15);
+    z-index: -1;
+  }
+  .sb-right-text { text-align: right; }
+  .sb-right-text h4 { font-size: 13px; font-weight: 700; color: #fff; margin: 0; line-height: 1.2; white-space: nowrap; }
+  .sb-right-text h4.yellow { color: var(--red); font-weight: 900; font-size: 16px; }
+  
+  @media(max-width: 1150px) {
+    .sb-left-wrap, .sb-right-wrap { display: none; }
+    .sb-links { flex-wrap: wrap; padding: 16px 0; gap: 10px; }
+    .sb-divider { display: none; }
   }
 </style>
 </head>
@@ -965,6 +1083,92 @@
 
 
 
+
+<!-- STATIC SOCIAL BANNER -->
+<div class="social-banner-container">
+  <div class="sb-left-wrap">
+    <div class="sb-left-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>
+    </div>
+    <div class="sb-left-text">
+      <h4>STAY CONNECTED</h4>
+      <p>Follow us on social media</p>
+    </div>
+  </div>
+  
+  <div class="sb-links">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/marketguruhp" target="_blank" class="sb-link-block">
+      <div class="sb-logo">
+        <svg viewBox="0 0 24 24">
+          <defs>
+            <linearGradient id="ig-grad" x1="15%" y1="100%" x2="85%" y2="0%">
+              <stop offset="0%" stop-color="#fdf497"/>
+              <stop offset="25%" stop-color="#fd5946"/>
+              <stop offset="50%" stop-color="#d6249f"/>
+              <stop offset="100%" stop-color="#285AEB"/>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#ig-grad)" />
+          <rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.5" />
+          <circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.5" />
+          <circle cx="16.5" cy="7.5" r="1" fill="#fff" />
+        </svg>
+      </div>
+      <div class="sb-info">
+         <h5>INSTAGRAM</h5>
+         <span>@marketguru.hp</span>
+      </div>
+      <div class="sb-btn">FOLLOW &rarr;</div>
+    </a>
+    
+    <div class="sb-divider"></div>
+    
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@marketguruhp" target="_blank" class="sb-link-block">
+      <div class="sb-logo">
+        <svg viewBox="0 0 24 24">
+          <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+          <path fill="#FFFFFF" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </div>
+      <div class="sb-info">
+         <h5>YOUTUBE</h5>
+         <span>Market Guru HP</span>
+      </div>
+      <div class="sb-btn">SUBSCRIBE &rarr;</div>
+    </a>
+    
+    <div class="sb-divider"></div>
+    
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/marketguruhp" target="_blank" class="sb-link-block">
+      <div class="sb-logo">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="12" fill="#1877F2"/>
+          <path fill="#FFFFFF" d="M15.4 12H13v8h-3v-8H8v-2.8h2V7.4c0-2.2 1-3.4 3.6-3.4h2.4v2.8h-1.5c-1.1 0-1.2.4-1.2 1.3v1.1h2.9l-.2 2.8z"/>
+        </svg>
+      </div>
+      <div class="sb-info">
+         <h5>FACEBOOK</h5>
+         <span>@marketguru.hp</span>
+      </div>
+      <div class="sb-btn">FOLLOW &rarr;</div>
+    </a>
+  </div>
+  
+  <div class="sb-right-wrap">
+    <div class="sb-right-text">
+      <h4>✨ Join Our</h4>
+      <h4 class="yellow">Community!</h4>
+    </div>
+  </div>
+</div>
 <!-- FEATURED CARS -->
 <section class="section">
   <div class="section-inner">
@@ -1099,40 +1303,60 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand">
+      <div class="footer-col-brand">
         <a href="index.html" class="logo" id="footer-brand-logo">
           <img src="logo.png" alt="Market Guru HP Logo">
         </a>
-        <p>Gujarat's most trusted pre-owned car marketplace. Buy & sell with confidence. Based in Vadodara, serving all of Gujarat.</p>
-        <div class="footer-socials">
+        <div class="footer-copyright">
+          © 2006 - 2026 Market Guru HP.<br>
+          All rights reserved in favour of Market Guru HP.
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick guide links</h4>
+        <div class="quick-links-split">
+          <div class="ql-col">
+            <a href="buy-cars.html">Buy car</a>
+            <a href="sell.html">Sell car</a>
+          </div>
+          <div class="ql-divider"></div>
+          <div class="ql-col">
+            <a href="about.html">About us</a>
+            <a href="login.html">Account</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
+        </div>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <a href="tel:08600004513">08600004513</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom-bar">
+      <div class="fbb-left">
+        <div class="fbb-connect-text">Connect with us :</div>
+        <div class="fbb-socials">
+          <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
           <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram">
             <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
           <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
             <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
-          <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="buy-cars.html">Buy Cars</a>
-        <a href="sell.html">Sell Car</a>
-        <a href="emi-calculator.html">EMI Calculator</a>
+      <div class="fbb-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
       </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="about.html">About Us</a>
-        <a href="about.html#contact">Contact Us</a>
-        <a href="login.html">Login / Register</a>
-        <a href="login.html?tab=admin">Admin Panel</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 Market Guru HP. All rights reserved.</span>
-      <span>Privacy Policy | Terms of Service</span>
     </div>
   </div>
 </footer>

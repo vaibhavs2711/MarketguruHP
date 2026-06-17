@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us & Contact - Market Guru HP</title>
+<title>Terms of Service - Market Guru HP</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -47,43 +47,17 @@
   .breadcrumb-inner { max-width: 1280px; margin: 0 auto; }
 
   /* HERO */
-  .about-hero { background: linear-gradient(135deg, var(--charcoal), var(--navy)); color: #fff; padding: 80px 20px; text-align: center; }
+  .about-hero { background: linear-gradient(135deg, var(--charcoal), var(--navy)); color: #fff; padding: 60px 20px; text-align: center; }
   .about-hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 800; margin-bottom: 16px; }
   .about-hero h1 span { color: var(--red); }
   .about-hero p { color: #99aacc; font-size: 16px; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
   /* MAIN WRAPPER */
-  .main-inner { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-
-  /* VALUES */
-  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 40px; }
-  .section-title span { color: var(--red); }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
-  .value-card { background: var(--silver); border-radius: 12px; padding: 24px; text-align: center; border: 1.5px solid var(--border); }
-  .value-icon { font-size: 40px; margin-bottom: 16px; }
-  .value-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .value-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-  /* ABOUT CO & CONTACT FORM SPLIT */
-  .split-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: start; margin-bottom: 80px; }
-  .company-info h3 { font-size: 24px; font-weight: 700; margin-bottom: 16px; }
-  .company-info p { font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 16px; }
-  
-  .contact-box { background: var(--white); border-radius: 16px; border: 1.5px solid var(--border); padding: 30px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
-  .contact-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
-  .field { margin-bottom: 14px; }
-  .field label { display: block; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .field input, .field textarea { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; transition: border-color 0.2s; }
-  .field input:focus, .field textarea:focus { outline: none; border-color: var(--red); }
-  .field textarea { resize: vertical; min-height: 80px; }
-  .btn-submit { width: 100%; padding: 12px; background: var(--red); color: #1A1A2E; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-  .btn-submit:hover { background: var(--red-dark); }
-
-  /* SHOWROOM LIST */
-  .showroom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .showroom-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 20px; background: var(--white); }
-  .showroom-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-  .showroom-detail { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .main-inner { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+  .terms-content h2 { font-size: 24px; font-weight: 700; margin-top: 40px; margin-bottom: 16px; color: var(--charcoal); border-bottom: 2px solid var(--silver); padding-bottom: 8px; }
+  .terms-content p { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 16px; }
+  .terms-content ul { padding-left: 20px; margin-bottom: 16px; }
+  .terms-content li { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 8px; }
 
   /* FOOTER */
   .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 0; }
@@ -132,10 +106,6 @@
     .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
     .fbb-left { flex-direction: column; gap: 10px; }
   }
-
-  /* TOAST */
-  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--red); }
-  .toast.show { transform: translateY(0); }
 </style>
 </head>
 <body>
@@ -149,7 +119,7 @@
       <a href="index.html">🏠 Home</a>
       <a href="buy-cars.html">Buy Cars</a>
       <a href="sell.html">Sell Car</a>
-      <a href="about.html" class="active">About</a>
+      <a href="about.html">About</a>
     </div>
     <div class="nav-actions">
       <a href="login.html"><button class="btn-outline-white">Login</button></a>
@@ -160,86 +130,51 @@
 
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
-    <a href="index.html">Home</a> › About Us & Contact
+    <a href="index.html">Home</a> › Terms of Service
   </div>
 </div>
 
 <section class="about-hero">
-  <h1>About <span>Market Guru HP</span></h1>
-  <p>Gujarat's premier automotive information and certified pre-owned car sales platform. Empowering buyers and sellers with transparency and trust since 2017.</p>
+  <h1>Terms of <span>Service</span></h1>
+  <p>Please read these terms carefully before using Market Guru HP.</p>
 </section>
 
 <div class="main-inner">
-  <!-- CORE VALUES -->
-  <div class="section-title">Our Core <span>Values</span></div>
-  <div class="grid-3">
-    <div class="value-card">
-      <div class="value-icon">🔗</div>
-      <div class="value-title">We're a Platform, Not a Dealer</div>
-      <div class="value-desc">Market Guru HP is a marketplace. We connect buyers with verified sellers and dealers across Gujarat — we don't own, buy, or sell any cars ourselves.</div>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">🎥</div>
-      <div class="value-title">Influencer-Power Visibility</div>
-      <div class="value-desc">Hiren Patel (HP Bhai) reviews listed cars on Instagram Reels, YouTube, and Facebook — giving your listing a reach of 9.3 Lakh+ engaged car buyers.</div>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">🛡️</div>
-      <div class="value-title">Transparent, Honest Listings</div>
-      <div class="value-desc">Every listing must include accurate km, ownership history, and condition. We uphold transparency so buyers can make confident, informed decisions.</div>
-    </div>
-  </div>
+  <div class="terms-content">
+    <p>Last Updated: October 2025</p>
 
-  <!-- ABOUT & CONTACT SPLIT -->
-  <div class="split-grid" id="contact">
-    <div class="company-info">
-      <h3>The Market Guru HP Story</h3>
-      <p>Market Guru HP started in Vadodara with a clear mission: to bring trust and transparency to Gujarat's pre-owned car market. Hiren Patel (popularly known as HP Bhai) built a massive social media following by being radically honest about cars — reviewing every detail on camera, calling out meter tampering, accident history, and hidden flaws.</p>
-      <p>Today, we're a full-fledged digital marketplace connecting buyers with dealers and private sellers across Vadodara, Ahmedabad, Surat, Rajkot, and all of Gujarat. <strong>We are not a car dealer.</strong> We are a platform — a mediator — between HP Bhai's trusted audience and Gujarat's best car sellers.</p>
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing or using Market Guru HP, you agree to be bound by these Terms of Service. If you do not agree to all the terms and conditions, then you may not access the website or use any services.</p>
 
-      <h3 style="margin-top: 30px; margin-bottom: 16px;">Our Social Reach</h3>
-      <div class="showroom-grid">
-        <div class="showroom-card">
-          <div class="showroom-title">📸 Instagram</div>
-          <div class="showroom-detail">566k+ Followers</div>
-          <div class="showroom-detail">@marketguruhp</div>
-        </div>
-        <div class="showroom-card">
-          <div class="showroom-title">📺 YouTube</div>
-          <div class="showroom-detail">70k+ Subscribers</div>
-          <div class="showroom-detail">Market Guru HP</div>
-        </div>
-        <div class="showroom-card">
-          <div class="showroom-title">📱 Facebook</div>
-          <div class="showroom-detail">300k+ Reach</div>
-          <div class="showroom-detail">Market Guru HP</div>
-        </div>
-      </div>
-    </div>
+    <h2>2. Description of Service</h2>
+    <p>Market Guru HP is an online platform that connects buyers and sellers of pre-owned cars. We provide listing services and related automotive information. We do not own, sell, or buy any vehicles listed on our platform.</p>
+    
+    <h2>3. User Responsibilities</h2>
+    <p>As a user of our platform, you agree to:</p>
+    <ul>
+      <li>Provide accurate and complete information when registering or listing a vehicle.</li>
+      <li>Not use the platform for any illegal or unauthorized purpose.</li>
+      <li>Respect the intellectual property rights of others.</li>
+      <li>Not attempt to compromise the security or integrity of our systems.</li>
+    </ul>
 
-    <!-- CONTACT FORM -->
-    <div class="contact-box">
-      <h3>Get In Touch</h3>
-      <form id="contactForm" onsubmit="handleContactSubmit(event)">
-        <div class="field">
-          <label>Your Name *</label>
-          <input type="text" id="contactName" placeholder="e.g. Raj Shah" required>
-        </div>
-        <div class="field">
-          <label>Mobile Number *</label>
-          <input type="tel" id="contactMobile" placeholder="+91 XXXXX XXXXX" required>
-        </div>
-        <div class="field">
-          <label>Email Address</label>
-          <input type="email" id="contactEmail" placeholder="e.g. raj@example.com">
-        </div>
-        <div class="field">
-          <label>Your Message *</label>
-          <textarea id="contactMessage" placeholder="How can we help you?" required></textarea>
-        </div>
-        <button class="btn-submit" type="submit">Send Message →</button>
-      </form>
-    </div>
+    <h2>4. Vehicle Listings and Accuracy</h2>
+    <p>While we strive for transparency, Market Guru HP does not guarantee the accuracy, completeness, or reliability of any vehicle listings. Buyers are solely responsible for inspecting vehicles, verifying documents, and negotiating terms directly with the sellers.</p>
+
+    <h2>5. Pricing and Fees</h2>
+    <p>Individual sellers can list a single vehicle for free. Dealerships and bulk sellers may be required to purchase a subscription plan. All fees are non-refundable unless otherwise stated. We reserve the right to change our pricing structure at any time.</p>
+
+    <h2>6. Limitation of Liability</h2>
+    <p>Market Guru HP shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or inability to use our services, or from any transactions conducted through our platform.</p>
+
+    <h2>7. Intellectual Property</h2>
+    <p>All content on Market Guru HP, including text, graphics, logos, and images, is the property of Market Guru HP or its content suppliers and is protected by copyright laws.</p>
+
+    <h2>8. Changes to Terms</h2>
+    <p>We reserve the right to modify or replace these Terms of Service at any time. We will provide reasonable notice of any material changes. Your continued use of the platform after such changes constitutes acceptance of the new terms.</p>
+
+    <h2>9. Contact Us</h2>
+    <p>If you have any questions about these Terms of Service, please contact us at contact@brotomotiv.in.</p>
   </div>
 </div>
 
@@ -304,42 +239,7 @@
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
-
-<script src="cars-data.js"></script>
 <script>
-  function handleContactSubmit(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('contactName').value.trim();
-    const mobile = document.getElementById('contactMobile').value.trim();
-    const email = document.getElementById('contactEmail').value.trim();
-    const message = document.getElementById('contactMessage').value.trim();
-
-    if (!name || !mobile || !message) {
-      showToast('⚠️ Please fill out all required fields.');
-      return;
-    }
-
-    // Save message to mock DB enquiries
-    mgDB.addEnquiry({
-      name: name,
-      mobile: mobile,
-      car: 'General Contact Query',
-      query: `${message} (Email: ${email || 'none'})`
-    });
-
-    document.getElementById('contactForm').reset();
-    showToast('✉️ Message sent! We will contact you shortly.');
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
-  }
-
   // Dynamic login state update
   function checkLoginState() {
     const currentUser = localStorage.getItem('mg_current_user');
