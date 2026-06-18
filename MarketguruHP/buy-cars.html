@@ -66,18 +66,37 @@
   /* FILTERS SIDEBAR */
   .sidebar{}
   .filter-box{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:20px;margin-bottom:16px;}
-  .filter-title{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
-  .filter-clear{font-size:11px;color:var(--red);cursor:pointer;}
-  .filter-group{margin-bottom:16px;}
-  .filter-group h5{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
-  .check-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;}
-  .check-item input{accent-color:var(--red);}
-  .check-item label{font-size:13px;cursor:pointer;flex:1;}
-  .check-item span{font-size:11px;color:var(--muted);}
-  .price-range{display:flex;gap:8px;}
-  .price-input{flex:1;padding:8px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;}
-  .price-input:focus{outline:none;border-color:var(--red);}
-  .btn-apply{width:100%;padding:10px;background:var(--red);color:#1A1A2E;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;}
+  .filter-title{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;text-transform:uppercase;letter-spacing:0.5px;color:var(--charcoal);}
+  .filter-clear{font-size:12px;color:var(--red-dark);cursor:pointer;font-weight:700;transition:color 0.2s;}
+  .filter-clear:hover{color:var(--charcoal);}
+  .filter-group{margin-bottom:18px;}
+  .filter-group h5{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
+  
+  .filter-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--charcoal);
+    background-color: var(--white);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+  }
+  .filter-select:hover {
+    border-color: #cbd5e1;
+  }
 
   /* LISTING AREA */
   .listing-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
@@ -157,50 +176,68 @@
 
       <div class="filter-group">
         <h5>Budget</h5>
-        <div class="price-range">
-          <input class="price-input" placeholder="Min ₹" id="minPrice">
-          <input class="price-input" placeholder="Max ₹" id="maxPrice">
-        </div>
-        <button class="btn-apply" onclick="applyFilters()">Apply</button>
+        <select id="priceSelect" class="filter-select" onchange="applyFilters()">
+          <option value="">All Budgets</option>
+          <option value="1-2">1 to 2 Lakh</option>
+          <option value="2-3">2 to 3 Lakh</option>
+          <option value="3-5">3 to 5 Lakh</option>
+          <option value="5-7">5 to 7 Lakh</option>
+          <option value="7+">7+ Lakh</option>
+        </select>
       </div>
 
       <div class="filter-group">
         <h5>Brand</h5>
-        <div class="check-item"><input type="checkbox" id="b1" onchange="applyFilters()"><label for="b1">Maruti Suzuki</label><span>482</span></div>
-        <div class="check-item"><input type="checkbox" id="b2" onchange="applyFilters()"><label for="b2">Hyundai</label><span>318</span></div>
-        <div class="check-item"><input type="checkbox" id="b3" onchange="applyFilters()"><label for="b3">Honda</label><span>201</span></div>
-        <div class="check-item"><input type="checkbox" id="b4" onchange="applyFilters()"><label for="b4">Toyota</label><span>178</span></div>
-        <div class="check-item"><input type="checkbox" id="b5" onchange="applyFilters()"><label for="b5">Tata</label><span>234</span></div>
-        <div class="check-item"><input type="checkbox" id="b6" onchange="applyFilters()"><label for="b6">Mahindra</label><span>156</span></div>
-        <div class="check-item"><input type="checkbox" id="b7" onchange="applyFilters()"><label for="b7">Kia</label><span>89</span></div>
+        <select id="brandSelect" class="filter-select" onchange="applyFilters()">
+          <option value="">All Brands</option>
+          <option value="maruti">Maruti Suzuki</option>
+          <option value="hyundai">Hyundai</option>
+          <option value="honda">Honda</option>
+          <option value="toyota">Toyota</option>
+          <option value="tata">Tata</option>
+          <option value="mahindra">Mahindra</option>
+          <option value="kia">Kia</option>
+        </select>
       </div>
 
       <div class="filter-group">
         <h5>Fuel Type</h5>
-        <div class="check-item"><input type="checkbox" id="f1" onchange="applyFilters()"><label for="f1">Petrol</label><span>892</span></div>
-        <div class="check-item"><input type="checkbox" id="f2" onchange="applyFilters()"><label for="f2">Diesel</label><span>634</span></div>
-        <div class="check-item"><input type="checkbox" id="f3" onchange="applyFilters()"><label for="f3">CNG</label><span>287</span></div>
-        <div class="check-item"><input type="checkbox" id="f4" onchange="applyFilters()"><label for="f4">Electric</label><span>54</span></div>
+        <select id="fuelSelect" class="filter-select" onchange="applyFilters()">
+          <option value="">All Fuel Types</option>
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+          <option value="cng">CNG</option>
+          <option value="electric">Electric</option>
+        </select>
       </div>
 
       <div class="filter-group">
         <h5>Transmission</h5>
-        <div class="check-item"><input type="checkbox" id="t1" onchange="applyFilters()"><label for="t1">Manual</label><span>1,402</span></div>
-        <div class="check-item"><input type="checkbox" id="t2" onchange="applyFilters()"><label for="t2">Automatic</label><span>465</span></div>
+        <select id="transSelect" class="filter-select" onchange="applyFilters()">
+          <option value="">All Transmissions</option>
+          <option value="manual">Manual</option>
+          <option value="automatic">Automatic</option>
+        </select>
       </div>
 
       <div class="filter-group">
         <h5>Year</h5>
-        <div class="check-item"><input type="checkbox" id="y1" onchange="applyFilters()"><label for="y1">2022 – 2024</label><span>312</span></div>
-        <div class="check-item"><input type="checkbox" id="y2" onchange="applyFilters()"><label for="y2">2020 – 2021</label><span>498</span></div>
-        <div class="check-item"><input type="checkbox" id="y3" onchange="applyFilters()"><label for="y3">2018 – 2019</label><span>421</span></div>
-        <div class="check-item"><input type="checkbox" id="y4" onchange="applyFilters()"><label for="y4">Before 2018</label><span>637</span></div>
+        <select id="yearSelect" class="filter-select" onchange="applyFilters()">
+          <option value="">All Years</option>
+          <option value="2022-2024">2022 – 2024</option>
+          <option value="2020-2021">2020 – 2021</option>
+          <option value="2018-2019">2018 – 2019</option>
+          <option value="before-2018">Before 2018</option>
+        </select>
       </div>
 
       <div class="filter-group">
         <h5>Condition</h5>
-        <div class="check-item"><input type="checkbox" id="c2" onchange="applyFilters()"><label for="c2">1st Owner</label><span>1,120</span></div>
-        <div class="check-item"><input type="checkbox" id="c3" onchange="applyFilters()"><label for="c3">With Warranty</label><span>267</span></div>
+        <select id="conditionSelect" class="filter-select" onchange="applyFilters()">
+          <option value="">All Conditions</option>
+          <option value="1st">1st Owner</option>
+          <option value="warranty">With Warranty</option>
+        </select>
       </div>
     </div>
   </aside>
@@ -256,34 +293,33 @@ function parseQueryParams() {
   const brand = params.get('brand');
   if (brand) {
     const brandLower = brand.toLowerCase();
-    if (brandLower.includes('maruti')) document.getElementById('b1').checked = true;
-    else if (brandLower.includes('hyundai')) document.getElementById('b2').checked = true;
-    else if (brandLower.includes('honda')) document.getElementById('b3').checked = true;
-    else if (brandLower.includes('toyota')) document.getElementById('b4').checked = true;
-    else if (brandLower.includes('tata')) document.getElementById('b5').checked = true;
-    else if (brandLower.includes('mahindra')) document.getElementById('b6').checked = true;
-    else if (brandLower.includes('kia')) document.getElementById('b7').checked = true;
+    const brandSel = document.getElementById('brandSelect');
+    if (brandLower.includes('maruti')) brandSel.value = 'maruti';
+    else if (brandLower.includes('hyundai')) brandSel.value = 'hyundai';
+    else if (brandLower.includes('honda')) brandSel.value = 'honda';
+    else if (brandLower.includes('toyota')) brandSel.value = 'toyota';
+    else if (brandLower.includes('tata')) brandSel.value = 'tata';
+    else if (brandLower.includes('mahindra')) brandSel.value = 'mahindra';
+    else if (brandLower.includes('kia')) brandSel.value = 'kia';
   }
 
   // Budget
   const budget = params.get('budget');
   if (budget) {
-    if (budget.includes('Under 3') || budget.includes('Under ₹3')) {
-      document.getElementById('maxPrice').value = '3';
-    } else if (budget.includes('3–5') || budget.includes('3-5')) {
-      document.getElementById('minPrice').value = '3';
-      document.getElementById('maxPrice').value = '5';
-    } else if (budget.includes('5–8') || budget.includes('5-8')) {
-      document.getElementById('minPrice').value = '5';
-      document.getElementById('maxPrice').value = '8';
-    } else if (budget.includes('8–12') || budget.includes('8-12')) {
-      document.getElementById('minPrice').value = '8';
-      document.getElementById('maxPrice').value = '12';
-    } else if (budget.includes('12–20') || budget.includes('12-20')) {
-      document.getElementById('minPrice').value = '12';
-      document.getElementById('maxPrice').value = '20';
-    } else if (budget.includes('Above 20') || budget.includes('Above ₹20')) {
-      document.getElementById('minPrice').value = '20';
+    const priceSel = document.getElementById('priceSelect');
+    if (budget.includes('1-2') || budget.includes('1 to 2') || budget.includes('1to2')) {
+      priceSel.value = '1-2';
+    } else if (budget.includes('2-3') || budget.includes('2 to 3') || budget.includes('2to3')) {
+      priceSel.value = '2-3';
+    } else if (budget.includes('3-5') || budget.includes('3 to 5') || budget.includes('3to5')) {
+      priceSel.value = '3-5';
+    } else if (budget.includes('5-7') || budget.includes('5 to 7') || budget.includes('5to7')) {
+      priceSel.value = '5-7';
+    } else if (budget.includes('7+') || budget.includes('Above 7') || budget.includes('7+')) {
+      priceSel.value = '7+';
+    } else if (budget.includes('Under 3') || budget.includes('Under ₹3') || budget.includes('3')) {
+      // Fallback maps to closest range
+      priceSel.value = '3-5';
     }
   }
 }
@@ -375,54 +411,62 @@ function changePage(p) {
 function applyFilters() {
   let list = [...allCars];
 
-  // Budget Range Filter
-  const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
-  const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 999;
-  list = list.filter(c => {
-    const price = parseFloat(c.price);
-    return price >= minPrice && price <= maxPrice;
-  });
-
-  // Brand Filters
-  const brands = [];
-  if (document.getElementById('b1').checked) brands.push('maruti');
-  if (document.getElementById('b2').checked) brands.push('hyundai');
-  if (document.getElementById('b3').checked) brands.push('honda');
-  if (document.getElementById('b4').checked) brands.push('toyota');
-  if (document.getElementById('b5').checked) brands.push('tata');
-  if (document.getElementById('b6').checked) brands.push('mahindra');
-  if (document.getElementById('b7').checked) brands.push('kia');
-
-  if (brands.length > 0) {
-    list = list.filter(c => brands.some(b => c.name.toLowerCase().includes(b)));
+  // Budget Select Filter
+  const priceRange = document.getElementById('priceSelect').value;
+  if (priceRange) {
+    if (priceRange === '1-2') {
+      list = list.filter(c => parseFloat(c.price) >= 1.0 && parseFloat(c.price) <= 2.0);
+    } else if (priceRange === '2-3') {
+      list = list.filter(c => parseFloat(c.price) >= 2.0 && parseFloat(c.price) <= 3.0);
+    } else if (priceRange === '3-5') {
+      list = list.filter(c => parseFloat(c.price) >= 3.0 && parseFloat(c.price) <= 5.0);
+    } else if (priceRange === '5-7') {
+      list = list.filter(c => parseFloat(c.price) >= 5.0 && parseFloat(c.price) <= 7.0);
+    } else if (priceRange === '7+') {
+      list = list.filter(c => parseFloat(c.price) >= 7.0);
+    }
   }
 
-  // Fuel Filters
-  const fuels = [];
-  if (document.getElementById('f1').checked) fuels.push('petrol');
-  if (document.getElementById('f2').checked) fuels.push('diesel');
-  if (document.getElementById('f3').checked) fuels.push('cng');
-  if (document.getElementById('f4').checked) fuels.push('electric');
-
-  if (fuels.length > 0) {
-    list = list.filter(c => fuels.includes(c.fuel.toLowerCase()));
+  // Brand Filter
+  const brandVal = document.getElementById('brandSelect').value;
+  if (brandVal) {
+    list = list.filter(c => c.name.toLowerCase().includes(brandVal.toLowerCase()));
   }
 
-  // Transmission Filters
-  const trans = [];
-  if (document.getElementById('t1').checked) trans.push('manual');
-  if (document.getElementById('t2').checked) trans.push('automatic');
-
-  if (trans.length > 0) {
-    list = list.filter(c => trans.includes(c.trans.toLowerCase()));
+  // Fuel Filter
+  const fuelVal = document.getElementById('fuelSelect').value;
+  if (fuelVal) {
+    list = list.filter(c => c.fuel.toLowerCase() === fuelVal.toLowerCase());
   }
 
-  // Condition/Verification Filters
-  if (document.getElementById('c2').checked) {
-    list = list.filter(c => c.owner.includes('1st'));
+  // Transmission Filter
+  const transVal = document.getElementById('transSelect').value;
+  if (transVal) {
+    list = list.filter(c => c.trans.toLowerCase() === transVal.toLowerCase());
   }
-  if (document.getElementById('c3').checked) {
-    list = list.filter(c => c.year >= 2021); // Warranty proxy
+
+  // Year Filter
+  const yearVal = document.getElementById('yearSelect').value;
+  if (yearVal) {
+    if (yearVal === '2022-2024') {
+      list = list.filter(c => c.year >= 2022 && c.year <= 2024);
+    } else if (yearVal === '2020-2021') {
+      list = list.filter(c => c.year >= 2020 && c.year <= 2021);
+    } else if (yearVal === '2018-2019') {
+      list = list.filter(c => c.year >= 2018 && c.year <= 2019);
+    } else if (yearVal === 'before-2018') {
+      list = list.filter(c => c.year < 2018);
+    }
+  }
+
+  // Condition Filter
+  const conditionVal = document.getElementById('conditionSelect').value;
+  if (conditionVal) {
+    if (conditionVal === '1st') {
+      list = list.filter(c => c.owner.includes('1st'));
+    } else if (conditionVal === 'warranty') {
+      list = list.filter(c => c.year >= 2021); // Warranty proxy
+    }
   }
 
   filteredCars = list;
@@ -437,26 +481,46 @@ function renderActiveFilters() {
   const container = document.getElementById('activeFilters');
   const items = [];
   
-  if (document.getElementById('minPrice').value || document.getElementById('maxPrice').value) {
-    const min = document.getElementById('minPrice').value || '0';
-    const max = document.getElementById('maxPrice').value || 'Max';
-    items.push(`Budget: ₹${min}-${max}L`);
+  const priceVal = document.getElementById('priceSelect').value;
+  if (priceVal) {
+    if (priceVal === '7+') {
+      items.push('Budget: 7+ Lakh');
+    } else {
+      items.push(`Budget: ${priceVal} Lakh`);
+    }
   }
-  
-  // Brands
-  if (document.getElementById('b1').checked) items.push('Maruti');
-  if (document.getElementById('b2').checked) items.push('Hyundai');
-  if (document.getElementById('b3').checked) items.push('Honda');
-  if (document.getElementById('b4').checked) items.push('Toyota');
-  if (document.getElementById('b5').checked) items.push('Tata');
-  if (document.getElementById('b6').checked) items.push('Mahindra');
-  if (document.getElementById('b7').checked) items.push('Kia');
 
-  // Fuels
-  if (document.getElementById('f1').checked) items.push('Petrol');
-  if (document.getElementById('f2').checked) items.push('Diesel');
-  if (document.getElementById('f3').checked) items.push('CNG');
-  if (document.getElementById('f4').checked) items.push('Electric');
+  const brandVal = document.getElementById('brandSelect').value;
+  if (brandVal) {
+    const capBrand = brandVal.charAt(0).toUpperCase() + brandVal.slice(1);
+    items.push(`Brand: ${capBrand}`);
+  }
+
+  const fuelVal = document.getElementById('fuelSelect').value;
+  if (fuelVal) {
+    const capFuel = fuelVal.charAt(0).toUpperCase() + fuelVal.slice(1);
+    items.push(`Fuel: ${capFuel}`);
+  }
+
+  const transVal = document.getElementById('transSelect').value;
+  if (transVal) {
+    const capTrans = transVal.charAt(0).toUpperCase() + transVal.slice(1);
+    items.push(`Trans: ${capTrans}`);
+  }
+
+  const yearVal = document.getElementById('yearSelect').value;
+  if (yearVal) {
+    items.push(`Year: ${yearVal}`);
+  }
+
+  const conditionVal = document.getElementById('conditionSelect').value;
+  if (conditionVal) {
+    if (conditionVal === '1st') {
+      items.push('Owner: 1st Owner');
+    } else if (conditionVal === 'warranty') {
+      items.push('Warranty: Yes');
+    }
+  }
 
   container.innerHTML = items.map(f => `
     <div class="filter-tag">
@@ -466,9 +530,12 @@ function renderActiveFilters() {
 }
 
 function clearAll() {
-  document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
-  document.getElementById('minPrice').value = '';
-  document.getElementById('maxPrice').value = '';
+  document.getElementById('priceSelect').value = '';
+  document.getElementById('brandSelect').value = '';
+  document.getElementById('fuelSelect').value = '';
+  document.getElementById('transSelect').value = '';
+  document.getElementById('yearSelect').value = '';
+  document.getElementById('conditionSelect').value = '';
   applyFilters();
   showToast('✅ All filters cleared');
 }
