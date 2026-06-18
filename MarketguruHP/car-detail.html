@@ -136,23 +136,32 @@
   .btn-modal-submit{flex:2;padding:12px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;}
   .btn-modal-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid var(--border);border-radius:8px;font-size:14px;cursor:pointer;}
 
-  /* GALLERY SIDEBAR INSIGHTS */
+  /* GALLERY OVERLAY INSIGHTS */
   .gallery-layout {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    background: #0B111E;
     position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
   }
   
   .gallery-insights {
-    background: #0B111E;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 335px;
+    background: rgba(11, 17, 30, 0.76);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 35px 28px;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 22px;
-    border-right: 1px solid rgba(255,255,255,0.08);
+    border-right: 1px solid rgba(255,255,255,0.15);
+    z-index: 10;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
   
   .insights-group {
@@ -214,14 +223,16 @@
   }
   
   @media (max-width: 800px) {
-    .gallery-layout {
-      grid-template-columns: 1fr;
-    }
     .gallery-insights {
+      width: 100%;
+      height: auto;
+      top: auto;
+      bottom: 0;
       border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 24px;
-      gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 18px 20px;
+      gap: 12px;
+      background: rgba(11, 17, 30, 0.85);
     }
   }
 
@@ -396,8 +407,16 @@
     <!-- GALLERY -->
     <div class="main-gallery">
       <div class="gallery-layout">
+        <!-- Right Side: Main Image Slider -->
+        <div class="main-img" id="mainImg" style="width: 100%;">
+          <span class="gallery-car-emoji" id="galleryEmoji">🚗</span>
+          <div class="img-badges">
+            <span class="img-badge badge-hot">🔥 Hot Deal</span>
+          </div>
+        </div>
+
         <!-- Left Side: Price Insights Card -->
-        <div class="gallery-insights">
+        <div class="gallery-insights" id="galleryInsights">
           <div class="insights-group">
             <div class="insight-label">Car Price</div>
             <div class="insight-value-row">
@@ -417,14 +436,6 @@
           </div>
           
           <a class="insights-link" onclick="switchTab(null, 'price')">More Price Insights</a>
-        </div>
-        
-        <!-- Right Side: Main Image Slider -->
-        <div class="main-img" id="mainImg">
-          🚗
-          <div class="img-badges">
-            <span class="img-badge badge-hot">🔥 Hot Deal</span>
-          </div>
         </div>
       </div>
       <div class="thumb-row">
@@ -741,7 +752,7 @@ function renderCarDetails() {
   document.querySelector('.breadcrumb-inner').innerHTML = `<a href="index.html">Home</a> › <a href="buy-cars.html">Buy Vehicle</a> › ${currentCar.name}`;
 
   // Gallery Emoji
-  document.getElementById('mainImg').childNodes[0].textContent = currentCar.emoji || '🚗';
+  document.getElementById('galleryEmoji').textContent = currentCar.emoji || '🚗';
 
   // Overview Tab Fields
   document.getElementById('ovPrice').textContent = `Rs. ${currentCar.price} Lakh`;
@@ -812,7 +823,20 @@ function shareCar() {
 function selectThumb(el, emoji) {
   document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('mainImg').childNodes[0].textContent = emoji;
+  document.getElementById('galleryEmoji').textContent = emoji;
+  
+  // Toggle overlay insights: only show for the first main image thumbnail
+  const thumbs = Array.from(document.querySelectorAll('.thumb'));
+  const idx = thumbs.indexOf(el);
+  const insights = document.getElementById('galleryInsights');
+  
+  if (idx === 0) {
+    insights.style.opacity = '1';
+    insights.style.visibility = 'visible';
+  } else {
+    insights.style.opacity = '0';
+    insights.style.visibility = 'hidden';
+  }
 }
 
 let verificationTrigger = 'call';
