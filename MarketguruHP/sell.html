@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  if (!localStorage.getItem('mg_current_user')) {
+    window.location.replace('login.html?redirect=sell.html');
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sell Your Car - Market Guru HP</title>
@@ -94,8 +99,8 @@
     </a>
     <div class="nav-links">
       <a href="index.html">🏠 Home</a>
-      <a href="buy-cars.html">Buy Cars</a>
-      <a href="sell.html" class="active">Sell Car</a>
+      <a href="buy-cars.html">Buy Vehicle</a>
+      <a href="sell.html" class="active">Sell Vehicles</a>
     </div>
     <a href="login.html"><button class="btn-red">Login</button></a>
   </div>

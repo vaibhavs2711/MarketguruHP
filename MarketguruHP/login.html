@@ -203,7 +203,11 @@ function doLogin() {
         localStorage.setItem('mg_current_user_type', data.user.type);
         showToast('✅ Login successful! Redirecting...');
         setTimeout(() => {
-          if (data.user.type === 'admin') {
+          const params = new URLSearchParams(window.location.search);
+          const redirect = params.get('redirect');
+          if (redirect) {
+            window.location = redirect;
+          } else if (data.user.type === 'admin') {
             window.location = 'admin/dashboard.html';
           } else {
             window.location = 'customer-dashboard.html';
@@ -234,7 +238,11 @@ function doLogin() {
   localStorage.setItem('mg_current_user_type', uType);
   
   showToast('✅ Login successful! Redirecting...');
-  setTimeout(()=>window.location='customer-dashboard.html', 1500);
+  setTimeout(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+    window.location = redirect || 'customer-dashboard.html';
+  }, 1500);
 }
 function doRegister() {
   const fName = document.querySelector('#panel-register input[placeholder="Raj"]').value.trim();
@@ -273,7 +281,11 @@ function doRegister() {
         localStorage.setItem('mg_current_user_mobile', data.user.mobile);
         localStorage.setItem('mg_current_user_type', data.user.type);
         showToast('✅ Account created! Redirecting...');
-        setTimeout(() => window.location = 'customer-dashboard.html', 1200);
+        setTimeout(() => {
+          const params = new URLSearchParams(window.location.search);
+          const redirect = params.get('redirect');
+          window.location = redirect || 'customer-dashboard.html';
+        }, 1200);
       }
     })
     .catch(err => {
@@ -288,7 +300,11 @@ function doRegister() {
   localStorage.setItem('mg_current_user_type', uType);
   
   showToast('✅ Account created! Redirecting...');
-  setTimeout(()=>window.location='customer-dashboard.html', 1500);
+  setTimeout(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+    window.location = redirect || 'customer-dashboard.html';
+  }, 1500);
 }
 function doAdminLogin() {
   const email = document.getElementById('adminEmail').value.trim();

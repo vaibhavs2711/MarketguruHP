@@ -132,8 +132,8 @@
     </a>
     <div class="nav-links">
       <a href="index.html">🏠 Home</a>
-      <a href="buy-cars.html" class="active">Used Cars</a>
-      <a href="sell.html">Sell Car</a>
+      <a href="buy-cars.html" class="active">Buy Vehicle</a>
+      <a href="sell.html">Sell Vehicles</a>
       <a href="about.html">About</a>
     </div>
   </div>
@@ -199,7 +199,6 @@
 
       <div class="filter-group">
         <h5>Condition</h5>
-        <div class="check-item"><input type="checkbox" id="c1" onchange="applyFilters()"><label for="c1">✓ Verified Cars</label><span>834</span></div>
         <div class="check-item"><input type="checkbox" id="c2" onchange="applyFilters()"><label for="c2">1st Owner</label><span>1,120</span></div>
         <div class="check-item"><input type="checkbox" id="c3" onchange="applyFilters()"><label for="c3">With Warranty</label><span>267</span></div>
       </div>
@@ -209,7 +208,7 @@
   <!-- LISTING -->
   <main>
     <div class="listing-header">
-      <div class="result-count"><strong id="count">2,400+</strong> Buy Cars in Vadodara</div>
+      <div class="result-count"><strong id="count">2,400+</strong> Buy Vehicle in Vadodara</div>
       <select class="sort-select" onchange="sortCars(this)">
         <option>Relevance</option>
         <option>Price: Low to High</option>
@@ -312,8 +311,6 @@ function renderCars() {
     <div class="car-list-item" onclick="window.location='car-detail.html?id=${c.id}'">
       <div class="car-list-img" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
         <span style="font-size:80px">${c.emoji || '🚗'}</span>
-        <div class="car-emi" style="position:absolute; bottom:8px; left:8px; background:rgba(0,0,0,0.7); color:#fff; font-size:11px; font-weight:600; padding:3px 8px; border-radius:4px;">₹${c.emi}</div>
-        ${c.verified ? '<div class="badge-verified">✓ Verified</div>' : ''}
       </div>
       <div class="car-list-info">
         <div class="car-list-name">${c.name}</div>
@@ -332,7 +329,6 @@ function renderCars() {
       <div class="car-list-action">
         <div>
           <div class="car-price-big">₹${c.price}L</div>
-          <div class="car-emi">EMI ₹${c.emi}/mo</div>
         </div>
         <div style="width:100%">
           <button class="btn-details" onclick="event.stopPropagation();window.location='car-detail.html?id=${c.id}'">View Details</button>
@@ -422,9 +418,6 @@ function applyFilters() {
   }
 
   // Condition/Verification Filters
-  if (document.getElementById('c1').checked) {
-    list = list.filter(c => c.verified === true);
-  }
   if (document.getElementById('c2').checked) {
     list = list.filter(c => c.owner.includes('1st'));
   }

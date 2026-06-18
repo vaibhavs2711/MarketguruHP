@@ -147,8 +147,8 @@
     </a>
     <div class="nav-links">
       <a href="index.html">🏠 Home</a>
-      <a href="buy-cars.html">Used Cars</a>
-      <a href="sell.html">Sell Car</a>
+      <a href="buy-cars.html">Buy Vehicle</a>
+      <a href="sell.html">Sell Vehicles</a>
       <a href="about.html">About</a>
     </div>
   </div>
@@ -156,7 +156,7 @@
 
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
-    <a href="index.html">Home</a> › <a href="buy-cars.html">Buy Cars</a> › Maruti Swift VXi 2021
+    <a href="index.html">Home</a> › <a href="buy-cars.html">Buy Vehicle</a> › Maruti Swift VXi 2021
   </div>
 </div>
 
@@ -168,7 +168,6 @@
       <div class="main-img" id="mainImg">
         🚗
         <div class="img-badges">
-          <span class="img-badge badge-v">✓ 150-Point Verified</span>
           <span class="img-badge badge-hot">🔥 Hot Deal</span>
         </div>
       </div>
@@ -377,7 +376,7 @@ function renderCarDetails() {
   document.querySelector('.price-main').textContent = `₹${currentCar.price} Lakh`;
 
   // Breadcrumb
-  document.querySelector('.breadcrumb-inner').innerHTML = `<a href="index.html">Home</a> › <a href="buy-cars.html">Buy Cars</a> › ${currentCar.name}`;
+  document.querySelector('.breadcrumb-inner').innerHTML = `<a href="index.html">Home</a> › <a href="buy-cars.html">Buy Vehicle</a> › ${currentCar.name}`;
 
   // Gallery Emoji
   document.getElementById('mainImg').childNodes[0].textContent = currentCar.emoji || '🚗';
@@ -404,7 +403,6 @@ function renderCarDetails() {
   // Verify Badge
   const badgeContainer = document.querySelector('.img-badges');
   badgeContainer.innerHTML = `
-    ${currentCar.verified ? '<span class="img-badge badge-v">✓ 150-Point Verified</span>' : '<span class="img-badge badge-hot">Inspection Pending</span>'}
     <span class="img-badge badge-hot">🔥 Hot Deal</span>
   `;
 
