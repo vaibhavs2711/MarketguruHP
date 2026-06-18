@@ -135,6 +135,236 @@
   .modal-btns{display:flex;gap:12px;margin-top:20px;}
   .btn-modal-submit{flex:2;padding:12px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;}
   .btn-modal-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid var(--border);border-radius:8px;font-size:14px;cursor:pointer;}
+
+  /* GALLERY SIDEBAR INSIGHTS */
+  .gallery-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    background: #0B111E;
+    position: relative;
+  }
+  
+  .gallery-insights {
+    background: #0B111E;
+    padding: 35px 28px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  
+  .insights-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .insight-label {
+    font-size: 12.5px;
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .insight-value-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .insight-price-val {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--white);
+  }
+  
+  .insight-badge {
+    font-size: 11px;
+    background: rgba(255, 204, 0, 0.12);
+    color: var(--red);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    white-space: nowrap;
+  }
+  
+  .insight-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e2e8f0;
+  }
+  
+  .insights-link {
+    font-size: 13.5px;
+    color: var(--red);
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.2s;
+    margin-top: 10px;
+    align-self: start;
+  }
+  .insights-link:hover {
+    color: var(--red-dark);
+  }
+  
+  @media (max-width: 800px) {
+    .gallery-layout {
+      grid-template-columns: 1fr;
+    }
+    .gallery-insights {
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      gap: 16px;
+    }
+  }
+
+  /* TABS SYSTEM */
+  .tabs-container {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .tabs-header {
+    display: flex;
+    background: #f8fafc;
+    border-bottom: 1.5px solid var(--border);
+  }
+  
+  .tab-btn {
+    padding: 16px 24px;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .tab-btn:hover {
+    color: var(--charcoal);
+    background: rgba(0,0,0,0.02);
+  }
+  
+  .tab-btn.active {
+    color: var(--charcoal);
+    border-bottom-color: #0d9488;
+  }
+  
+  .tab-content {
+    padding: 24px;
+  }
+  
+  .tab-panel {
+    display: none;
+  }
+  
+  .tab-panel.active {
+    display: block;
+  }
+  
+  .panel-title {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--charcoal);
+  }
+  
+  /* OVERVIEW GRID */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .overview-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border-right: 1.5px solid var(--border);
+    border-bottom: 1.5px solid var(--border);
+    background: #ffffff;
+  }
+  
+  .overview-item:nth-child(3n) {
+    border-right: none;
+  }
+  
+  .overview-item:nth-child(n+10) {
+    border-bottom: none;
+  }
+  
+  .overview-icon {
+    font-size: 20px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border-radius: 10px;
+    color: var(--charcoal);
+    flex-shrink: 0;
+  }
+  
+  .overview-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .overview-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  
+  .overview-val {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  
+  @media (max-width: 900px) {
+    .overview-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .overview-item:nth-child(3n) {
+      border-right: 1.5px solid var(--border);
+    }
+    .overview-item:nth-child(2n) {
+      border-right: none;
+    }
+    .overview-item:nth-child(n+11) {
+      border-bottom: none;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .overview-grid {
+      grid-template-columns: 1fr;
+    }
+    .overview-item {
+      border-right: none !important;
+    }
+    .overview-item:last-child {
+      border-bottom: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -165,10 +395,36 @@
   <div>
     <!-- GALLERY -->
     <div class="main-gallery">
-      <div class="main-img" id="mainImg">
-        🚗
-        <div class="img-badges">
-          <span class="img-badge badge-hot">🔥 Hot Deal</span>
+      <div class="gallery-layout">
+        <!-- Left Side: Price Insights Card -->
+        <div class="gallery-insights">
+          <div class="insights-group">
+            <div class="insight-label">Car Price</div>
+            <div class="insight-value-row">
+              <span class="insight-price-val" id="insPrice">Rs. 69.5 Lakh</span>
+              <span class="insight-badge" id="insDiscount">📉 16% below market</span>
+            </div>
+          </div>
+          
+          <div class="insights-group">
+            <div class="insight-label">Avg. Market Price</div>
+            <div class="insight-val" id="insAvgPrice">82.5 Lakh</div>
+          </div>
+          
+          <div class="insights-group">
+            <div class="insight-label">New Car On-Road Price</div>
+            <div class="insight-val" id="insNewPrice">Rs. 1.31 Crore</div>
+          </div>
+          
+          <a class="insights-link" onclick="switchTab(null, 'price')">More Price Insights</a>
+        </div>
+        
+        <!-- Right Side: Main Image Slider -->
+        <div class="main-img" id="mainImg">
+          🚗
+          <div class="img-badges">
+            <span class="img-badge badge-hot">🔥 Hot Deal</span>
+          </div>
         </div>
       </div>
       <div class="thumb-row">
@@ -192,83 +448,152 @@
           <div class="price-main">₹5.20 Lakh</div>
         </div>
       </div>
-      <div class="specs-row">
-        <div class="spec-box"><div class="spec-val">32,000</div><div class="spec-key">KM Driven</div></div>
-        <div class="spec-box"><div class="spec-val">2021</div><div class="spec-key">Year</div></div>
-        <div class="spec-box"><div class="spec-val">Petrol</div><div class="spec-key">Fuel</div></div>
-        <div class="spec-box"><div class="spec-val">Manual</div><div class="spec-key">Trans</div></div>
-        <div class="spec-box"><div class="spec-val">1st</div><div class="spec-key">Owner</div></div>
-      </div>
     </div>
 
-    <!-- INSPECTION REPORT -->
-    <div class="card">
-      <div class="card-title">🔍 Inspection Report</div>
-      <div class="inspection-grid">
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Engine & Transmission</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Brakes & Suspension</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">AC & Electricals</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Tyres & Wheels</div></div>
-        <div class="inspect-item warn"><div class="inspect-dot"></div><div class="inspect-text">Minor Scratch (Rear)</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Interior Condition</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">RC & Documents</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Insurance Valid</div></div>
-        <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Odometer Verified</div></div>
+    <!-- TABBED SECTION -->
+    <div class="tabs-container">
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchTab(event, 'overview')">Car Overview</button>
+        <button class="tab-btn" onclick="switchTab(event, 'specs')">Specs & Features</button>
+        <button class="tab-btn" onclick="switchTab(event, 'price')">Price Guide</button>
       </div>
-    </div>
-
-    <!-- FEATURES -->
-    <div class="card">
-      <div class="card-title">✨ Features & Specifications</div>
-      <div class="features-grid">
-        <div class="feat-item"><span class="feat-check">✓</span>Power Windows (All 4)</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Driver Airbag</div>
-        <div class="feat-item"><span class="feat-check">✓</span>ABS + EBD</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Rear Parking Sensor</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Bluetooth Audio</div>
-        <div class="feat-item"><span class="feat-check">✓</span>SmartPlay Studio</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Auto Climate Control</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Keyless Entry</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Steering Controls</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Rear Defogger</div>
-        <div class="feat-item"><span class="feat-check">✓</span>USB Charging</div>
-        <div class="feat-item"><span class="feat-check">✓</span>Alloy Wheels 15"</div>
+      
+      <div class="tab-content">
+        <!-- Panel 1: Car Overview -->
+        <div id="tab-overview" class="tab-panel active">
+          <h3 class="panel-title">Car Overview</h3>
+          <div class="overview-grid">
+            <div class="overview-item">
+              <div class="overview-icon">🪙</div>
+              <div class="overview-details">
+                <span class="overview-label">Price</span>
+                <strong class="overview-val" id="ovPrice">Rs. 69.5 Lakh</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">⏱️</div>
+              <div class="overview-details">
+                <span class="overview-label">Kilometer</span>
+                <strong class="overview-val" id="ovKm">38,500 km</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">⛽</div>
+              <div class="overview-details">
+                <span class="overview-label">Fuel type</span>
+                <strong class="overview-val" id="ovFuel">Diesel</strong>
+              </div>
+            </div>
+            
+            <div class="overview-item">
+              <div class="overview-icon">📅</div>
+              <div class="overview-details">
+                <span class="overview-label">Registration year</span>
+                <strong class="overview-val" id="ovRegYear">Not Available</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">🗓️</div>
+              <div class="overview-details">
+                <span class="overview-label">Manufacturing Year</span>
+                <strong class="overview-val" id="ovMfgYear">Jun 2021</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">👤</div>
+              <div class="overview-details">
+                <span class="overview-label">No. of owners</span>
+                <strong class="overview-val" id="ovOwner">First</strong>
+              </div>
+            </div>
+            
+            <div class="overview-item">
+              <div class="overview-icon">⚙️</div>
+              <div class="overview-details">
+                <span class="overview-label">Transmission</span>
+                <strong class="overview-val" id="ovTrans">Automatic (TC)</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">🎨</div>
+              <div class="overview-details">
+                <span class="overview-label">Color</span>
+                <strong class="overview-val" id="ovColor">Black</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">📍</div>
+              <div class="overview-details">
+                <span class="overview-label">Car Available at</span>
+                <strong class="overview-val" id="ovCity">Subhanpura, Vadodara</strong>
+              </div>
+            </div>
+            
+            <div class="overview-item">
+              <div class="overview-icon">🛡️</div>
+              <div class="overview-details">
+                <span class="overview-label">Insurance</span>
+                <strong class="overview-val" id="ovInsurance">Comprehensive</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">📝</div>
+              <div class="overview-details">
+                <span class="overview-label">Registration Type</span>
+                <strong class="overview-val">Individual</strong>
+              </div>
+            </div>
+            <div class="overview-item">
+              <div class="overview-icon">🕒</div>
+              <div class="overview-details">
+                <span class="overview-label">Last Updated</span>
+                <strong class="overview-val">20 day(s) ago</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Panel 2: Specs & Features -->
+        <div id="tab-specs" class="tab-panel">
+          <h3 class="panel-title">Inspection Report</h3>
+          <div class="inspection-grid" style="margin-bottom: 30px;">
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Engine & Transmission</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Brakes & Suspension</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">AC & Electricals</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Tyres & Wheels</div></div>
+            <div class="inspect-item warn"><div class="inspect-dot"></div><div class="inspect-text">Minor Scratch (Rear)</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Interior Condition</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">RC & Documents</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Insurance Valid</div></div>
+            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Odometer Verified</div></div>
+          </div>
+          
+          <h3 class="panel-title">Features & Specifications</h3>
+          <div class="features-grid" id="featuresTabGrid">
+            <!-- Loaded dynamically in JS -->
+          </div>
+        </div>
+        
+        <!-- Panel 3: Price Guide -->
+        <div id="tab-price" class="tab-panel">
+          <h3 class="panel-title">Price Guide & Depreciation Insights</h3>
+          <div style="background:var(--silver); padding:24px; border-radius:12px; border:1.5px solid var(--border); line-height:1.6;">
+            <p style="margin-bottom:12px; font-weight:600; color:var(--charcoal);">HP Bhai's Pricing Evaluation:</p>
+            <p style="font-size:14px; color:var(--muted); margin-bottom:16px;">This vehicle is currently priced at <strong style="color:var(--red-dark); font-size:16px;" id="pgPrice">₹5.20 Lakh</strong>. Given the current used auto market indexing in Vadodara, this represents an excellent deal with verified documentation.</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+              <div style="background:#fff; padding:16px; border-radius:8px; border:1.5px solid var(--border);">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:4px;">Average Dealer Listing</div>
+                <strong style="font-size:18px; color:var(--charcoal);" id="pgAvg">₹6.12 Lakh</strong>
+              </div>
+              <div style="background:#fff; padding:16px; border-radius:8px; border:1.5px solid var(--border);">
+                <div style="font-size:11px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:4px;">Estimated Savings</div>
+                <strong style="font-size:18px; color:#10B981;" id="pgSavings">₹92,000</strong>
+              </div>
+            </div>
+            <p style="font-size:13px; color:var(--muted);">✓ No middlemen commission | ✓ Direct-to-Buyer rates | ✓ HPI certified history</p>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- DETAILS TABLE -->
-    <div class="card">
-      <div class="card-title">📋 Car Details</div>
-      <table style="width:100%;border-collapse:collapse;font-size:14px;">
-        <tr style="background:var(--silver)">
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted);border-radius:6px;width:40%">Registration Number</td>
-          <td style="padding:10px 14px">GJ-06-XX-XXXX (disclosed on request)</td>
-        </tr>
-        <tr>
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Registration City</td>
-          <td style="padding:10px 14px">Vadodara, Gujarat</td>
-        </tr>
-        <tr style="background:var(--silver)">
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Insurance</td>
-          <td style="padding:10px 14px">Comprehensive · Valid till Dec 2025</td>
-        </tr>
-        <tr>
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Engine CC</td>
-          <td style="padding:10px 14px">1197 cc</td>
-        </tr>
-        <tr style="background:var(--silver)">
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Mileage</td>
-          <td style="padding:10px 14px">22.4 kmpl (ARAI)</td>
-        </tr>
-        <tr>
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Color</td>
-          <td style="padding:10px 14px">Pearl Arctic White</td>
-        </tr>
-        <tr style="background:var(--silver)">
-          <td style="padding:10px 14px;font-weight:600;color:var(--muted)">Last Service</td>
-          <td style="padding:10px 14px">October 2024 (at Maruti authorized)</td>
-        </tr>
-      </table>
     </div>
   </div>
 
@@ -363,10 +688,47 @@ function initPage() {
   calcEMI();
 }
 
+function switchTab(e, tabId) {
+  if (e) {
+    e.preventDefault();
+  }
+  // Set active tab button
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  
+  // Find button corresponding to tabId
+  const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
+    btn.getAttribute('onclick').includes(tabId)
+  );
+  if (targetBtn) targetBtn.classList.add('active');
+  
+  // Set active tab panel
+  document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+}
+
 function renderCarDetails() {
   if (!currentCar) return;
 
+  const carPrice = parseFloat(currentCar.price);
+  const avgMarketPrice = carPrice * 1.18; // 18% above listing price
+  const newCarPrice = carPrice * 1.8; // 80% above listing price
+  const discountPct = 15; // mock percentage
 
+  // Gallery Insights Sidebar
+  document.getElementById('insPrice').textContent = `Rs. ${currentCar.price} Lakh`;
+  document.getElementById('insDiscount').textContent = `📉 ${discountPct}% below market`;
+  document.getElementById('insAvgPrice').textContent = `${avgMarketPrice.toFixed(1)} Lakh`;
+  if (newCarPrice >= 100) {
+    document.getElementById('insNewPrice').textContent = `Rs. ${(newCarPrice / 100).toFixed(2)} Crore`;
+  } else {
+    document.getElementById('insNewPrice').textContent = `Rs. ${newCarPrice.toFixed(1)} Lakh`;
+  }
+
+  // Price Guide Tab Populating
+  document.getElementById('pgPrice').textContent = `₹${currentCar.price} Lakh`;
+  document.getElementById('pgAvg').textContent = `₹${avgMarketPrice.toFixed(2)} Lakh`;
+  const savingsRupees = Math.round((avgMarketPrice - carPrice) * 100000);
+  document.getElementById('pgSavings').textContent = `₹${savingsRupees.toLocaleString('en-IN')}`;
 
   // Title & Variant
   document.querySelector('.car-main-title').textContent = currentCar.name;
@@ -381,24 +743,38 @@ function renderCarDetails() {
   // Gallery Emoji
   document.getElementById('mainImg').childNodes[0].textContent = currentCar.emoji || '🚗';
 
-  // Specs Boxes
-  const specBoxes = document.querySelectorAll('.spec-box .spec-val');
-  if (specBoxes.length >= 5) {
-    specBoxes[0].textContent = currentCar.km || 'New';
-    specBoxes[1].textContent = currentCar.year;
-    specBoxes[2].textContent = currentCar.fuel;
-    specBoxes[3].textContent = currentCar.trans;
-    specBoxes[4].textContent = currentCar.owner || '1st';
-  }
+  // Overview Tab Fields
+  document.getElementById('ovPrice').textContent = `Rs. ${currentCar.price} Lakh`;
+  document.getElementById('ovKm').textContent = `${currentCar.km || '32,000'} km`;
+  document.getElementById('ovFuel').textContent = currentCar.fuel;
+  document.getElementById('ovRegYear').textContent = currentCar.year;
+  document.getElementById('ovMfgYear').textContent = `Jun ${currentCar.year}`;
+  
+  const ownerVal = currentCar.owner ? (currentCar.owner.toLowerCase().includes('1') ? 'First' : currentCar.owner.toLowerCase().includes('2') ? 'Second' : 'Third') : 'First';
+  document.getElementById('ovOwner').textContent = ownerVal;
+  document.getElementById('ovTrans').textContent = currentCar.trans;
+  
+  const colorNames = {
+    '#e8eef5': 'Arctic White',
+    '#eef0f5': 'Sleek Silver',
+    '#f0eef5': 'Graphite Grey',
+    '#eef5f0': 'Emerald Green',
+    '#f5eef0': 'Crimson Red',
+    '#eff5ee': 'Champagne Gold',
+    '#f5f0ee': 'Pearl White',
+    '#eef2f5': 'Shadow Black'
+  };
+  document.getElementById('ovColor').textContent = colorNames[currentCar.color] || 'Premium Black';
+  document.getElementById('ovCity').textContent = `Subhanpura, ${currentCar.city || 'Vadodara'}`;
 
   // Features
-  const featuresGrid = document.querySelector('.features-grid');
   const features = currentCar.features || ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry'];
-  featuresGrid.innerHTML = features.map(f => `
-    <div class="feat-item"><span class="feat-check">✓</span>${f}</div>
-  `).join('');
-
-  // Loan default - not needed (EMI calc removed)
+  const featuresTabGrid = document.getElementById('featuresTabGrid');
+  if (featuresTabGrid) {
+    featuresTabGrid.innerHTML = features.map(f => `
+      <div class="feat-item"><span class="feat-check">✓</span>${f}</div>
+    `).join('');
+  }
 
   // Verify Badge
   const badgeContainer = document.querySelector('.img-badges');
