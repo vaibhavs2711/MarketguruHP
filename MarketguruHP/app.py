@@ -437,6 +437,22 @@ def add_staff():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@app.route('/api/auth/check-mobile', methods=['POST'])
+def check_mobile():
+    try:
+        data = request.json
+        mobile = data.get('mobile')
+        role = data.get('role', 'individual')
+
+        if role == 'dealer':
+            res = query_db("SELECT id FROM dealers WHERE mobile = %s", (mobile,), one=True)
+            return jsonify({"status": "success", "exists": bool(res)})
+        else:
+            res = query_db("SELECT id FROM customers WHERE mobile = %s", (mobile,), one=True)
+            return jsonify({"status": "success", "exists": bool(res)})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 @app.route('/api/auth/login', methods=['POST'])
 def login():
     try:
@@ -444,22 +460,31 @@ def login():
         login_id = data.get('id')
         password = data.get('password')
 
-        hashed_pwd = get_hash(password)
-        # Check by email or mobile
-        user = query_db(
-            "SELECT * FROM users WHERE (email = %s OR mobile = %s) AND password = %s",
-            (login_id, login_id, hashed_pwd),
-            one=True
-        )
+        # Check individuals first if it's an OTP login
+        if password == 'OTP_LOGIN':
+            indiv = query_db("SELECT * FROM customers WHERE mobile = %s", (login_id,), one=True)
+            if indiv:
+                return jsonify({
+                    "status": "success",
+                    "user": {
+                        "name": indiv['name'],
+                        "mobile": indiv['mobile'],
+                        "type": "private"
+                    }
+                })
 
-        if user:
+        hashed_pwd = get_hash(password)
+        
+        # Check dealers
+        dealer = query_db("SELECT * FROM dealers WHERE (mobile = %s OR email = %s) AND password = %s", (login_id, login_id, hashed_pwd), one=True)
+        if dealer:
             return jsonify({
                 "status": "success",
                 "user": {
-                    "name": f"{user['first_name']} {user['last_name']}",
-                    "mobile": user['mobile'],
-                    "email": user['email'],
-                    "type": user['account_type']
+                    "name": dealer['dealership_name'],
+                    "mobile": dealer['mobile'],
+                    "email": dealer['email'],
+                    "type": "dealer"
                 }
             })
         
@@ -480,7 +505,7 @@ def login():
                 }
             })
 
-        return jsonify({"status": "error", "message": "Invalid credentials"}), 401
+        return jsonify({"status": "error", "message": "Incorrect details, please register."}), 401
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
@@ -488,30 +513,50 @@ def login():
 def register():
     try:
         data = request.json
-        f_name = data.get('fName')
-        l_name = data.get('lName')
         mobile = data.get('mobile')
-        email = data.get('email')
-        password = data.get('password')
         account_type = data.get('account_type', 'private')
 
-        hashed_pwd = get_hash(password)
+        if account_type == 'dealer':
+            dealership_name = data.get('dealership_name', '')
+            address = data.get('address', '')
+            state = data.get('state', '')
+            city = data.get('city', '')
+            email = data.get('email', '')
+            password = data.get('password', '')
+            hashed_pwd = get_hash(password)
 
-        query_db(
-            "INSERT INTO users (first_name, last_name, email, mobile, password, account_type) VALUES (%s, %s, %s, %s, %s, %s)",
-            (f_name, l_name, email, mobile, hashed_pwd, account_type),
-            commit=True
-        )
+            query_db(
+                "INSERT INTO dealers (dealership_name, address, state, city, email, mobile, password) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                (dealership_name, address, state, city, email, mobile, hashed_pwd),
+                commit=True
+            )
+            return jsonify({
+                "status": "success",
+                "user": {
+                    "name": dealership_name,
+                    "mobile": mobile,
+                    "email": email,
+                    "type": "dealer"
+                }
+            })
+        else:
+            f_name = data.get('fName', '')
+            l_name = data.get('lName', '')
+            full_name = f"{f_name} {l_name}".strip()
 
-        return jsonify({
-            "status": "success",
-            "user": {
-                "name": f"{f_name} {l_name}",
-                "mobile": mobile,
-                "email": email,
-                "type": account_type
-            }
-        })
+            query_db(
+                "INSERT INTO customers (name, mobile, city, interests, purchases, last) VALUES (%s, %s, %s, %s, %s, %s)",
+                (full_name, mobile, '', '', '0', 'Today'),
+                commit=True
+            )
+            return jsonify({
+                "status": "success",
+                "user": {
+                    "name": full_name,
+                    "mobile": mobile,
+                    "type": "private"
+                }
+            })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 

@@ -30,17 +30,7 @@ def init_database():
     cursor = conn.cursor()
 
     # 1. Create tables
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        first_name VARCHAR(50),
-        last_name VARCHAR(50),
-        email VARCHAR(100) UNIQUE,
-        mobile VARCHAR(20) UNIQUE,
-        password VARCHAR(255),
-        account_type VARCHAR(20)
-    )
-    """)
+
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS cars (
@@ -230,21 +220,7 @@ def init_database():
         )
         print("Enquiries seeded.")
 
-    # Seed Customers
-    cursor.execute("SELECT COUNT(*) FROM customers")
-    if cursor.fetchone()[0] == 0:
-        default_customers = [
-            ('Arjun Mehta', '+91 98765-43210', 'Vadodara', 'Sedan, Budget 5-8L', '1', '12 Jun 2025'),
-            ('Priya Shah', '+91 87654-32109', 'Ahmedabad', 'SUV, Automatic', '0', '12 Jun 2025'),
-            ('Kiran Patel', '+91 76543-21098', 'Vadodara', 'MUV, Diesel', '2', '10 Jun 2025'),
-            ('Rahul Gupta', '+91 65432-10987', 'Surat', 'Hatchback', '1', '9 Jun 2025'),
-            ('Meera Trivedi', '+91 54321-09876', 'Vadodara', 'SUV, Petrol', '0', '10 Jun 2025')
-        ]
-        cursor.executemany(
-            "INSERT INTO customers (name, mobile, city, interests, purchases, last) VALUES (%s, %s, %s, %s, %s, %s)",
-            default_customers
-        )
-        print("Customers seeded.")
+
 
     # Seed Followups
     cursor.execute("SELECT COUNT(*) FROM followups")
@@ -278,18 +254,7 @@ def init_database():
         )
         print("Revenue seeded.")
 
-    # Seed Default User
-    cursor.execute("SELECT COUNT(*) FROM users")
-    if cursor.fetchone()[0] == 0:
-        default_users = [
-            ('Raj', 'Shah', 'raj@example.com', '98765-43210', get_hash('password123'), 'private'),
-            ('Vadodara', 'Car Hub', 'dealer@example.com', '9876543210', get_hash('password123'), 'dealer')
-        ]
-        cursor.executemany(
-            "INSERT INTO users (first_name, last_name, email, mobile, password, account_type) VALUES (%s, %s, %s, %s, %s, %s)",
-            default_users
-        )
-        print("Default users seeded.")
+
 
     conn.commit()
     cursor.close()

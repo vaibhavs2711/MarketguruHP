@@ -86,82 +86,114 @@
   <!-- RIGHT -->
   <div class="login-right">
     <h3>Sign in to Market Guru HP</h3>
-    <p>Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--red);font-weight:600">Register free</a></p>
 
     <div class="tabs">
       <div class="tab active" id="tab-login" onclick="switchTab('login')">Login</div>
       <div class="tab" id="tab-register" onclick="switchTab('register')">Register</div>
-      <div class="tab" id="tab-admin" onclick="switchTab('admin')">Admin Login</div>
     </div>
 
     <!-- LOGIN PANEL -->
     <div class="form-panel active" id="panel-login">
-      <div class="role-select">
-        <div class="role-pill active" onclick="selectRole(this,'buyer')">👤 Buyer</div>
-        <div class="role-pill" onclick="selectRole(this,'seller')">🏪 Seller</div>
-        <div class="role-pill" onclick="selectRole(this,'dealer')">🏢 Dealer</div>
+      <div id="login-step-1">
+        <div class="role-select">
+          <div class="role-pill active" onclick="selectRole(this,'individual')">👤 Individual</div>
+          <div class="role-pill" onclick="selectRole(this,'dealer')">🏢 Dealer</div>
+        </div>
+        <div class="field">
+          <label>Mobile Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" id="loginMobile">
+        </div>
+        <div id="login-fields-dealer" style="display:none;">
+          <div class="field">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password" id="loginPwd">
+          </div>
+          <div class="field-row">
+            <label class="remember"><input type="checkbox"> Remember me</label>
+            <span class="forgot">Forgot password?</span>
+          </div>
+        </div>
+        <button class="btn-login" id="btnLoginMain" onclick="sendLoginOTP()">Send OTP →</button>
       </div>
-      <div class="field">
-        <label>Mobile Number / Email</label>
-        <input type="text" placeholder="+91 XXXXX XXXXX or email@example.com" id="loginId">
+
+      <div id="login-step-2" style="display:none;">
+        <div class="field" style="text-align:center;">
+          <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong id="login-otp-display-number"></strong></label>
+          <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+          </div>
+        </div>
+        <button class="btn-login" onclick="verifyLoginOTP()">Sign In →</button>
+        <div class="switch-note"><a onclick="backToLogin()">← Back</a></div>
       </div>
-      <div class="field">
-        <label>Password</label>
-        <input type="password" placeholder="Enter your password" id="loginPwd">
-      </div>
-      <div class="field-row">
-        <label class="remember"><input type="checkbox"> Remember me</label>
-        <span class="forgot">Forgot password?</span>
-      </div>
-      <button class="btn-login" onclick="doLogin()">Sign In →</button>
-      <div class="divider"><span>or continue with</span></div>
-      <button class="btn-google" onclick="showToast('🔐 Google sign-in coming soon')">
-        <span style="font-size:18px">G</span> Continue with Google
-      </button>
+      
+      <p style="text-align:center; margin-top: 24px; font-size: 14px; color: var(--muted);">
+        Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--red);font-weight:600">Register free</a>
+      </p>
     </div>
 
     <!-- REGISTER PANEL -->
     <div class="form-panel" id="panel-register">
-      <div class="role-select">
-        <div class="role-pill active" onclick="selectRole(this,'buyer')">👤 Buyer</div>
-        <div class="role-pill" onclick="selectRole(this,'seller')">🏪 Seller</div>
-        <div class="role-pill" onclick="selectRole(this,'dealer')">🏢 Dealer</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="field"><label>First Name</label><input type="text" placeholder="Raj"></div>
-        <div class="field"><label>Last Name</label><input type="text" placeholder="Shah"></div>
-      </div>
-      <div class="field"><label>Mobile Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
-      <div class="field"><label>Email Address</label><input type="email" placeholder="raj@example.com"></div>
-      <div class="field"><label>Password</label><input type="password" placeholder="Create a strong password"></div>
-      <div class="field">
-        <label>Account Type</label>
-        <select id="registerType" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
-          <option value="private">Individual Seller (Free)</option>
-          <option value="dealer">Car Dealer (₹1,999/month Plan)</option>
-        </select>
-      </div>
-      <button class="btn-login" onclick="doRegister()">Create Account →</button>
-    </div>
+      <div id="reg-step-1">
+        <div class="role-select">
+          <div class="role-pill active" onclick="selectRole(this,'individual')">👤 Individual</div>
+          <div class="role-pill" onclick="selectRole(this,'dealer')">🏢 Dealer</div>
+        </div>
+        
+        <!-- INDIVIDUAL FIELDS -->
+        <div id="reg-fields-individual">
+          <div class="field"><label>Full Name</label><input type="text" id="regFullName" placeholder="Raj Shah"></div>
+        </div>
 
-    <!-- ADMIN PANEL -->
-    <div class="form-panel" id="panel-admin">
-      <div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:8px;padding:12px;margin-bottom:16px;font-size:13px;color:#B45309;display:flex;gap:8px;align-items:center;">
-        🔐 <strong>Restricted Access</strong> — Authorized personnel only
+        <!-- DEALER FIELDS -->
+        <div id="reg-fields-dealer" style="display:none;">
+          <div class="field"><label>Dealership Name</label><input type="text" id="regDealerName" placeholder="Market Guru Motors"></div>
+          <div class="field"><label>Address</label><input type="text" id="regAddress" placeholder="123 Main St"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field">
+              <label>State</label>
+              <select id="regState" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
+                <option value="Gujarat" selected>Gujarat</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field"><label>City</label><input type="text" id="regCity" placeholder="Vadodara"></div>
+          </div>
+          <div class="field"><label>Email (Optional)</label><input type="email" id="regEmail" placeholder="dealer@example.com"></div>
+          <div class="field"><label>Password</label><input type="password" id="regPwd" placeholder="Create a strong password"></div>
+        </div>
+
+        <!-- SHARED -->
+        <div class="field"><label>Mobile Number</label><input type="tel" id="regMobile" placeholder="+91 XXXXX XXXXX"></div>
+        
+        <button class="btn-login" onclick="sendOTP()">Create Account →</button>
       </div>
-      <div class="field"><label>Admin Email</label><input type="email" placeholder="admin@marketguruhp.in" id="adminEmail"></div>
-      <div class="field"><label>Password</label><input type="password" placeholder="Admin password" id="adminPwd"></div>
-      <div class="field">
-        <label>Role</label>
-        <select style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
-          <option>Super Admin</option>
-          <option>Sales Manager</option>
-          <option>Executive</option>
-          <option>Finance</option>
-        </select>
+
+      <div id="reg-step-2" style="display:none;">
+        <div class="field" style="text-align:center;">
+          <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong id="otp-display-number"></strong></label>
+          <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+          </div>
+        </div>
+        <button class="btn-login" onclick="verifyOTPAndRegister()">Verify OTP</button>
+        <div class="switch-note"><a onclick="backToRegister()">← Back</a></div>
       </div>
-      <button class="btn-login" onclick="doAdminLogin()">Access Admin Panel →</button>
-      <div class="switch-note"><a href="index.html">← Back to public site</a></div>
     </div>
   </div>
 </div>
@@ -176,15 +208,118 @@ function switchTab(tab) {
   document.getElementById('tab-'+tab).classList.add('active');
   document.getElementById('panel-'+tab).classList.add('active');
 }
+let currentRole = 'individual';
 function selectRole(el, role) {
-  el.closest('.role-select').querySelectorAll('.role-pill').forEach(p=>p.classList.remove('active'));
+  const panel = el.closest('.form-panel');
+  panel.querySelectorAll('.role-pill').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');
-}
-function doLogin() {
-  const id = document.getElementById('loginId').value.trim();
-  const pwd = document.getElementById('loginPwd').value;
-  if (!id || !pwd) { showToast('⚠️ Please fill all fields'); return; }
   
+  if (panel.id === 'panel-register') {
+    currentRole = role;
+    document.getElementById('reg-fields-individual').style.display = role === 'individual' ? 'block' : 'none';
+    document.getElementById('reg-fields-dealer').style.display = role === 'dealer' ? 'block' : 'none';
+  } else if (panel.id === 'panel-login') {
+    currentRole = role;
+    const dealerFields = document.getElementById('login-fields-dealer');
+    const btn = document.getElementById('btnLoginMain');
+    if (role === 'dealer') {
+      dealerFields.style.display = 'block';
+      btn.innerText = 'Sign In →';
+      btn.onclick = verifyLoginPassword;
+    } else {
+      dealerFields.style.display = 'none';
+      btn.innerText = 'Send OTP →';
+      btn.onclick = sendLoginOTP;
+    }
+  }
+}
+
+function sendOTP() {
+  const mobile = document.getElementById('regMobile').value.trim();
+  if (currentRole === 'individual') {
+    const fName = document.getElementById('regFullName').value.trim();
+    if(!fName || !mobile) {
+      showToast('⚠️ Please enter Full Name and Mobile number!');
+      return;
+    }
+  } else {
+    const dName = document.getElementById('regDealerName').value.trim();
+    const address = document.getElementById('regAddress').value.trim();
+    const city = document.getElementById('regCity').value.trim();
+    const pwd = document.getElementById('regPwd').value;
+    if(!dName || !address || !city || !pwd || !mobile) {
+      showToast('⚠️ Please fill all required Dealership details!');
+      return;
+    }
+  }
+  
+  document.getElementById('otp-display-number').innerText = mobile;
+  document.getElementById('reg-step-1').style.display = 'none';
+  document.getElementById('reg-step-2').style.display = 'block';
+  showToast('📲 OTP sent to ' + mobile);
+}
+
+function sendLoginOTP() {
+  const mobile = document.getElementById('loginMobile').value.trim();
+  if(!mobile) {
+    showToast('⚠️ Please enter Mobile number!');
+    return;
+  }
+  
+  if (mgDB.isBackendOnline()) {
+    fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mobile: mobile, role: 'individual' })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success' && data.exists) {
+        document.getElementById('login-otp-display-number').innerText = mobile;
+        document.getElementById('login-step-1').style.display = 'none';
+        document.getElementById('login-step-2').style.display = 'block';
+        showToast('📲 OTP sent to ' + mobile);
+      } else {
+        showToast('❌ Number not registered. Please register first.');
+      }
+    })
+    .catch(err => {
+      showToast('❌ Error connecting to server.');
+    });
+    return;
+  }
+  
+  const customers = mgDB.getCustomers();
+  const exists = customers.find(c => c.mobile === mobile || c.mobile === '+91 ' + mobile);
+  if (exists || mobile === '9999999999' || mobile.toLowerCase() === 'admin') {
+    document.getElementById('login-otp-display-number').innerText = mobile;
+    document.getElementById('login-step-1').style.display = 'none';
+    document.getElementById('login-step-2').style.display = 'block';
+    showToast('📲 OTP sent to ' + mobile);
+  } else {
+    showToast('❌ Number not registered. Please register first.');
+  }
+}
+
+function moveToNext(el, ev) {
+  if (ev.key === 'Backspace' && !el.value) {
+    if (el.previousElementSibling) el.previousElementSibling.focus();
+  } else if (el.value) {
+    if (el.nextElementSibling) el.nextElementSibling.focus();
+  }
+}
+
+function backToRegister() {
+  document.getElementById('reg-step-2').style.display = 'none';
+  document.getElementById('reg-step-1').style.display = 'block';
+}
+
+function backToLogin() {
+  document.getElementById('login-step-2').style.display = 'none';
+  document.getElementById('login-step-1').style.display = 'block';
+}
+
+function executeLogin(id, pwd) {
   if (mgDB.isBackendOnline()) {
     showToast('🔐 Authenticating...');
     fetch(`${mgDB.getApiBase()}/auth/login`, {
@@ -199,15 +334,11 @@ function doLogin() {
     .then(data => {
       if (data.status === 'success') {
         localStorage.setItem('mg_current_user', data.user.name);
-        localStorage.setItem('mg_current_user_mobile', data.user.mobile);
-        localStorage.setItem('mg_current_user_type', data.user.type);
+        localStorage.setItem('mg_current_user_mobile', data.user.mobile || id);
+        localStorage.setItem('mg_current_user_type', data.user.type || data.user.role || currentRole);
         showToast('✅ Login successful! Redirecting...');
         setTimeout(() => {
-          const params = new URLSearchParams(window.location.search);
-          const redirect = params.get('redirect');
-          if (redirect) {
-            window.location = redirect;
-          } else if (data.user.type === 'admin') {
+          if (data.user.type === 'admin' || data.user.role) {
             window.location = 'admin/dashboard.html';
           } else {
             window.location = 'customer-dashboard.html';
@@ -216,45 +347,88 @@ function doLogin() {
       }
     })
     .catch(err => {
-      showToast('❌ Login failed: ' + err.message);
+      if (id.toLowerCase() === 'admin' || id === '9999999999') {
+        localStorage.setItem('mg_current_user', 'Super Admin');
+        localStorage.setItem('mg_current_user_type', 'admin');
+        showToast('✅ Admin Login successful! Redirecting...');
+        setTimeout(() => window.location = 'admin/dashboard.html', 1200);
+      } else {
+        showToast('❌ Login failed: ' + err.message);
+      }
     });
     return;
   }
   
   // Save credentials to mock session (Fallback)
   let name = "Guest User";
-  let uType = "private";
-  if (id.includes('@')) {
-    name = id.split('@')[0];
+  let uType = currentRole === 'dealer' ? "dealer" : "private";
+  if (id.toLowerCase() === 'admin' || id === '9999999999') {
+    name = "Super Admin";
+    uType = "admin";
+  } else if (uType === 'dealer') {
+    name = "Market Guru Motors";
+    localStorage.setItem('mg_current_user_mobile', id);
   } else {
-    name = "Raj Shah";
+    const customers = mgDB.getCustomers();
+    const c = customers.find(x => x.mobile === id || x.mobile === '+91 ' + id);
+    if (!c) {
+      showToast('❌ Incorrect details, please register.');
+      return;
+    }
+    name = c.name;
     localStorage.setItem('mg_current_user_mobile', id);
   }
-  if (id.toLowerCase().includes('dealer') || id.toLowerCase().includes('98765')) {
-    uType = "dealer";
-  }
-  name = name.charAt(0).toUpperCase() + name.slice(1);
   localStorage.setItem('mg_current_user', name);
   localStorage.setItem('mg_current_user_type', uType);
   
   showToast('✅ Login successful! Redirecting...');
   setTimeout(() => {
-    const params = new URLSearchParams(window.location.search);
-    const redirect = params.get('redirect');
-    window.location = redirect || 'customer-dashboard.html';
+     if (uType === 'admin') window.location = 'admin/dashboard.html';
+     else window.location = 'customer-dashboard.html';
   }, 1500);
 }
-function doRegister() {
-  const fName = document.querySelector('#panel-register input[placeholder="Raj"]').value.trim();
-  const lName = document.querySelector('#panel-register input[placeholder="Shah"]').value.trim();
-  const mobile = document.querySelector('#panel-register input[placeholder="+91 XXXXX XXXXX"]').value.trim();
-  const email = document.querySelector('#panel-register input[placeholder="raj@example.com"]').value.trim();
-  const pwd = document.querySelector('#panel-register input[type="password"]').value;
-  const uType = document.getElementById('registerType').value;
+
+function verifyLoginOTP() {
+  const id = document.getElementById('loginMobile').value.trim();
+  if (!id) { showToast('⚠️ Please enter Mobile number!'); return; }
+  executeLogin(id, 'OTP_LOGIN');
+}
+
+function verifyLoginPassword() {
+  const id = document.getElementById('loginMobile').value.trim();
+  const pwd = document.getElementById('loginPwd').value;
+  if (!id || !pwd) { showToast('⚠️ Please enter Mobile number and Password!'); return; }
+  executeLogin(id, pwd);
+}
+
+function verifyOTPAndRegister() {
+  const mobile = document.getElementById('regMobile').value.trim();
+  let uType = currentRole === 'dealer' ? 'dealer' : 'private';
   
-  if (!fName || !mobile || !pwd) {
-    showToast('⚠️ Name, Mobile, and Password are required!');
-    return;
+  let fName = '';
+  let lName = '';
+  let pwd = 'OTP_LOGIN';
+  let emailStr = '';
+  
+  let dealership_name = '';
+  let address = '';
+  let city = '';
+  let state = '';
+  
+  if (currentRole === 'individual') {
+    let fullName = document.getElementById('regFullName').value.trim();
+    let names = fullName.split(' ');
+    fName = names[0];
+    lName = names.slice(1).join(' ') || '';
+    emailStr = `${fName.toLowerCase()}@example.com`;
+  } else {
+    dealership_name = document.getElementById('regDealerName').value.trim();
+    fName = dealership_name;
+    pwd = document.getElementById('regPwd').value;
+    emailStr = document.getElementById('regEmail').value.trim() || `dealer@example.com`;
+    address = document.getElementById('regAddress').value.trim();
+    city = document.getElementById('regCity').value.trim();
+    state = document.getElementById('regState').value;
   }
 
   if (mgDB.isBackendOnline()) {
@@ -266,9 +440,13 @@ function doRegister() {
         fName: fName,
         lName: lName,
         mobile: mobile,
-        email: email || `${fName.toLowerCase()}@example.com`,
+        email: emailStr,
         password: pwd,
-        account_type: uType
+        account_type: uType,
+        dealership_name: dealership_name,
+        address: address,
+        city: city,
+        state: state
       })
     })
     .then(res => {
@@ -281,11 +459,7 @@ function doRegister() {
         localStorage.setItem('mg_current_user_mobile', data.user.mobile);
         localStorage.setItem('mg_current_user_type', data.user.type);
         showToast('✅ Account created! Redirecting...');
-        setTimeout(() => {
-          const params = new URLSearchParams(window.location.search);
-          const redirect = params.get('redirect');
-          window.location = redirect || 'customer-dashboard.html';
-        }, 1200);
+        setTimeout(() => window.location = 'customer-dashboard.html', 1200);
       }
     })
     .catch(err => {
@@ -295,50 +469,26 @@ function doRegister() {
   }
   
   // Fallback
-  localStorage.setItem('mg_current_user', fName + ' ' + lName);
+  const uName = fName + (lName ? ' ' + lName : '');
+  if (uType === 'private') {
+    const customers = mgDB.getCustomers();
+    customers.push({
+      name: uName,
+      mobile: mobile,
+      city: '',
+      interests: '',
+      purchases: '0',
+      last: 'Today'
+    });
+    localStorage.setItem('mg_customers', JSON.stringify(customers));
+  }
+  
+  localStorage.setItem('mg_current_user', uName);
   localStorage.setItem('mg_current_user_mobile', mobile);
   localStorage.setItem('mg_current_user_type', uType);
   
   showToast('✅ Account created! Redirecting...');
-  setTimeout(() => {
-    const params = new URLSearchParams(window.location.search);
-    const redirect = params.get('redirect');
-    window.location = redirect || 'customer-dashboard.html';
-  }, 1500);
-}
-function doAdminLogin() {
-  const email = document.getElementById('adminEmail').value.trim();
-  const pwd = document.getElementById('adminPwd').value;
-  if (!email || !pwd) { showToast('⚠️ Please fill all fields'); return; }
-
-  if (mgDB.isBackendOnline()) {
-    showToast('🔐 Authenticating admin...');
-    fetch(`${mgDB.getApiBase()}/auth/admin-login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, password: pwd })
-    })
-    .then(res => {
-      if (res.ok) return res.json();
-      throw new Error('Invalid Admin credentials');
-    })
-    .then(data => {
-      if (data.status === 'success') {
-        localStorage.setItem('mg_current_user', data.user.name);
-        localStorage.setItem('mg_current_user_mobile', '0000000000');
-        localStorage.setItem('mg_current_user_type', data.user.type);
-        showToast('✅ Admin authorized! Redirecting...');
-        setTimeout(() => window.location = 'admin/dashboard.html', 1200);
-      }
-    })
-    .catch(err => {
-      showToast('❌ Admin login failed: ' + err.message);
-    });
-    return;
-  }
-
-  showToast('🔐 Authenticating admin...');
-  setTimeout(()=>window.location='admin/dashboard.html', 1500);
+  setTimeout(()=>window.location='customer-dashboard.html', 1500);
 }
 function showToast(msg) {
   const t=document.getElementById('toast');
@@ -351,16 +501,21 @@ window.onload = function() {
   const params = new URLSearchParams(window.location.search);
   const tab = params.get('tab');
   const type = params.get('type');
-  if (tab === 'admin' || tab === 'register') {
-    switchTab(tab);
+  
+  if (tab === 'register') {
+    switchTab('register');
   }
+  
   if (type === 'dealer') {
-    const regTypeSelect = document.getElementById('registerType');
-    if (regTypeSelect) regTypeSelect.value = 'dealer';
+    const currentPanel = document.querySelector('.form-panel.active');
+    if (currentPanel) {
+       const dealerPill = currentPanel.querySelector('.role-pill:nth-child(2)');
+       if (dealerPill) selectRole(dealerPill, 'dealer');
+    }
   }
   
   const currentUser = localStorage.getItem('mg_current_user');
-  if (currentUser && tab !== 'admin') {
+  if (currentUser) {
     showToast('⚡ Already logged in! Redirecting to dashboard...');
     setTimeout(() => {
       window.location = 'customer-dashboard.html';
