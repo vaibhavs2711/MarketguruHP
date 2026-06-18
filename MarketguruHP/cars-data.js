@@ -225,6 +225,7 @@ const db = {
         owner: car.owner,
         color: car.color,
         emoji: car.emoji,
+        image: car.image,
         city: car.city,
         desc: car.desc,
         features: car.features,

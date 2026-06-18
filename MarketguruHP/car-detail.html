@@ -58,7 +58,7 @@
   /* GALLERY */
   .main-gallery{background:var(--white);border-radius:12px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:20px;}
   .main-img{height:400px;background:linear-gradient(135deg,#e8eef5,#ccd4e0);display:flex;align-items:center;justify-content:center;font-size:120px;position:relative;}
-  .img-badges{position:absolute;top:16px;left:16px;display:flex;gap:8px;}
+  .img-badges{position:absolute;top:16px;left:16px;display:flex;gap:8px;z-index:5;}
   .img-badge{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:700;color:#fff;}
   .badge-v{background:var(--success);}
   .badge-hot{background:var(--red);}
@@ -751,8 +751,49 @@ function renderCarDetails() {
   // Breadcrumb
   document.querySelector('.breadcrumb-inner').innerHTML = `<a href="index.html">Home</a> › <a href="buy-cars.html">Buy Vehicle</a> › ${currentCar.name}`;
 
-  // Gallery Emoji
-  document.getElementById('galleryEmoji').textContent = currentCar.emoji || '🚗';
+  // Gallery Image / Emoji handling
+  const mainImg = document.getElementById('mainImg');
+  const emojiEl = document.getElementById('galleryEmoji');
+  const thumbs = document.querySelectorAll('.thumb');
+  
+  // Remove any previously added uploaded-car-image to avoid duplicates
+  const existingImg = mainImg.querySelector('img.uploaded-car-image');
+  if (existingImg) {
+    existingImg.remove();
+  }
+
+  if (currentCar.image) {
+    // Create an img element
+    const imgEl = document.createElement('img');
+    imgEl.src = currentCar.image;
+    imgEl.className = 'uploaded-car-image';
+    imgEl.style.width = '100%';
+    imgEl.style.height = '100%';
+    imgEl.style.objectFit = 'cover';
+    imgEl.style.position = 'absolute';
+    imgEl.style.top = '0';
+    imgEl.style.left = '0';
+    imgEl.style.zIndex = '1';
+    
+    // Insert imgEl as the first child of mainImg (so badges stay on top of it)
+    mainImg.insertBefore(imgEl, mainImg.firstChild);
+    
+    // Hide emoji element
+    if (emojiEl) emojiEl.style.display = 'none';
+    
+    // Update first thumbnail to show the custom image
+    if (thumbs.length > 0) {
+      thumbs[0].innerHTML = `<img src="${currentCar.image}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />`;
+    }
+  } else {
+    if (emojiEl) {
+      emojiEl.style.display = 'block';
+      emojiEl.textContent = currentCar.emoji || '🚗';
+    }
+    if (thumbs.length > 0) {
+      thumbs[0].textContent = currentCar.emoji || '🚗';
+    }
+  }
 
   // Overview Tab Fields
   document.getElementById('ovPrice').textContent = `Rs. ${currentCar.price} Lakh`;
@@ -823,12 +864,26 @@ function shareCar() {
 function selectThumb(el, emoji) {
   document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('galleryEmoji').textContent = emoji;
   
   // Toggle overlay insights: only show for the first main image thumbnail
   const thumbs = Array.from(document.querySelectorAll('.thumb'));
   const idx = thumbs.indexOf(el);
   const insights = document.getElementById('galleryInsights');
+  
+  const mainImg = document.getElementById('mainImg');
+  const mainImageEl = mainImg.querySelector('img.uploaded-car-image');
+  const emojiEl = document.getElementById('galleryEmoji');
+  
+  if (idx === 0 && currentCar && currentCar.image) {
+    if (mainImageEl) mainImageEl.style.display = 'block';
+    if (emojiEl) emojiEl.style.display = 'none';
+  } else {
+    if (mainImageEl) mainImageEl.style.display = 'none';
+    if (emojiEl) {
+      emojiEl.style.display = 'block';
+      emojiEl.textContent = emoji;
+    }
+  }
   
   if (idx === 0) {
     insights.style.opacity = '1';

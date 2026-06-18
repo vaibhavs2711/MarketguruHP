@@ -1,7 +1,7 @@
 import mysql.connector
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
 
-def alter_users_table():
+def alter_cars_table():
     try:
         conn = mysql.connector.connect(
             host=DB_HOST,
@@ -11,19 +11,19 @@ def alter_users_table():
             database=DB_NAME
         )
         cursor = conn.cursor()
-        print("Checking if columns exist...")
-        cursor.execute("SHOW COLUMNS FROM users LIKE 'dealership_name'")
+        print("Checking if column exist...")
+        cursor.execute("SHOW COLUMNS FROM cars LIKE 'image'")
         if not cursor.fetchone():
-            print("Adding dealer columns...")
-            cursor.execute("ALTER TABLE users ADD COLUMN dealership_name VARCHAR(100), ADD COLUMN address VARCHAR(255), ADD COLUMN city VARCHAR(50), ADD COLUMN state VARCHAR(50)")
+            print("Adding image column...")
+            cursor.execute("ALTER TABLE cars ADD COLUMN image LONGTEXT")
             conn.commit()
-            print("Columns added successfully.")
+            print("Image column added successfully.")
         else:
-            print("Columns already exist.")
+            print("Image column already exists.")
         cursor.close()
         conn.close()
     except Exception as e:
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    alter_users_table()
+    alter_cars_table()

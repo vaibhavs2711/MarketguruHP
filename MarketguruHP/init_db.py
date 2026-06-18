@@ -45,6 +45,7 @@ def init_database():
         owner VARCHAR(20),
         color VARCHAR(20),
         emoji VARCHAR(20),
+        image LONGTEXT,
         verified BOOLEAN,
         emi VARCHAR(20),
         city VARCHAR(50),

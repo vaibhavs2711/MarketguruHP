@@ -360,6 +360,7 @@ function validateStep1() {
 }
 
 let uploadedPhotos = [];
+let firstPhotoBase64 = '';
 
 function triggerPhotoUpload() {
   document.getElementById('carPhotosInput').click();
@@ -381,6 +382,9 @@ function handlePhotoUpload(event) {
     reader.onload = (e) => {
       const thumb = document.getElementById(thumbIds[i]);
       thumb.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" alt="${labels[i]}">`;
+      if (i === 0) {
+        firstPhotoBase64 = e.target.result;
+      }
     };
     reader.readAsDataURL(file);
   });
@@ -473,6 +477,7 @@ function submitListing() {
     owner: owner,
     color: '#e8eef5',
     emoji: '🚗',
+    image: firstPhotoBase64,
     city: city,
     desc: descNotes || `Clean and well maintained ${brand} ${model}. Modifications: ${mods || 'None'}.`,
     features: ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry']

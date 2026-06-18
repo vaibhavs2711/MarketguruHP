@@ -146,6 +146,7 @@ def add_car():
         city = data.get('city', 'Vadodara')
         description = data.get('desc', '')
         listed_by = data.get('listed_by')
+        image = data.get('image', None)
         
         features_list = data.get('features', [])
         if isinstance(features_list, list):
@@ -162,8 +163,8 @@ def add_car():
         verified = int(data.get('verified', 0))
 
         car_id = query_db(
-            "INSERT INTO cars (name, year, price, priceN, km, fuel, trans, owner, color, emoji, verified, emi, city, description, features, listed_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (name, year, price, priceN, km, fuel, trans, owner, color, emoji, verified, emi, city, description, features, listed_by),
+            "INSERT INTO cars (name, year, price, priceN, km, fuel, trans, owner, color, emoji, image, verified, emi, city, description, features, listed_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (name, year, price, priceN, km, fuel, trans, owner, color, emoji, image, verified, emi, city, description, features, listed_by),
             commit=True
         )
 
@@ -181,6 +182,7 @@ def add_car():
                 "owner": owner,
                 "color": color,
                 "emoji": emoji,
+                "image": image,
                 "verified": bool(verified),
                 "emi": emi,
                 "city": city,
