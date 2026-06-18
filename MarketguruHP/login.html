@@ -319,6 +319,21 @@ function backToLogin() {
   document.getElementById('login-step-1').style.display = 'block';
 }
 
+function redirectAfterLogin() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const redirectUrl = urlParams.get('redirect');
+  if (redirectUrl) {
+    window.location = redirectUrl;
+  } else {
+    const userType = localStorage.getItem('mg_current_user_type');
+    if (userType === 'admin') {
+      window.location = 'admin/dashboard.html';
+    } else {
+      window.location = 'customer-dashboard.html';
+    }
+  }
+}
+
 function executeLogin(id, pwd) {
   if (mgDB.isBackendOnline()) {
     showToast('🔐 Authenticating...');
@@ -337,13 +352,7 @@ function executeLogin(id, pwd) {
         localStorage.setItem('mg_current_user_mobile', data.user.mobile || id);
         localStorage.setItem('mg_current_user_type', data.user.type || data.user.role || currentRole);
         showToast('✅ Login successful! Redirecting...');
-        setTimeout(() => {
-          if (data.user.type === 'admin' || data.user.role) {
-            window.location = 'admin/dashboard.html';
-          } else {
-            window.location = 'customer-dashboard.html';
-          }
-        }, 1200);
+        setTimeout(redirectAfterLogin, 1200);
       }
     })
     .catch(err => {
@@ -351,7 +360,7 @@ function executeLogin(id, pwd) {
         localStorage.setItem('mg_current_user', 'Super Admin');
         localStorage.setItem('mg_current_user_type', 'admin');
         showToast('✅ Admin Login successful! Redirecting...');
-        setTimeout(() => window.location = 'admin/dashboard.html', 1200);
+        setTimeout(redirectAfterLogin, 1200);
       } else {
         showToast('❌ Login failed: ' + err.message);
       }
@@ -382,10 +391,7 @@ function executeLogin(id, pwd) {
   localStorage.setItem('mg_current_user_type', uType);
   
   showToast('✅ Login successful! Redirecting...');
-  setTimeout(() => {
-     if (uType === 'admin') window.location = 'admin/dashboard.html';
-     else window.location = 'customer-dashboard.html';
-  }, 1500);
+  setTimeout(redirectAfterLogin, 1500);
 }
 
 function verifyLoginOTP() {
@@ -459,7 +465,7 @@ function verifyOTPAndRegister() {
         localStorage.setItem('mg_current_user_mobile', data.user.mobile);
         localStorage.setItem('mg_current_user_type', data.user.type);
         showToast('✅ Account created! Redirecting...');
-        setTimeout(() => window.location = 'customer-dashboard.html', 1200);
+        setTimeout(redirectAfterLogin, 1200);
       }
     })
     .catch(err => {
@@ -488,7 +494,7 @@ function verifyOTPAndRegister() {
   localStorage.setItem('mg_current_user_type', uType);
   
   showToast('✅ Account created! Redirecting...');
-  setTimeout(()=>window.location='customer-dashboard.html', 1500);
+  setTimeout(redirectAfterLogin, 1500);
 }
 function showToast(msg) {
   const t=document.getElementById('toast');
@@ -516,10 +522,8 @@ window.onload = function() {
   
   const currentUser = localStorage.getItem('mg_current_user');
   if (currentUser) {
-    showToast('⚡ Already logged in! Redirecting to dashboard...');
-    setTimeout(() => {
-      window.location = 'customer-dashboard.html';
-    }, 1200);
+    showToast('⚡ Already logged in! Redirecting...');
+    setTimeout(redirectAfterLogin, 1200);
   }
 };
 </script>

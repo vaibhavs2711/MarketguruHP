@@ -869,245 +869,7 @@
       border-color: var(--white);
     }
 
-    /* ── NEW SUBSCRIPTION SECTION ───────────────────────────────────────────── */
-    .sub-section {
-      background: #010914;
-      padding: 80px 20px 60px;
-    }
 
-    .sub-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .sub-left {
-      flex: 1;
-      min-width: 320px;
-      max-width: 360px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .phone-mockup {
-      width: 100%;
-      max-width: 340px;
-      display: block;
-    }
-
-    .sub-right {
-      flex: 2;
-      min-width: 600px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sub-heading-wrap {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .sub-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(32px, 4vw, 46px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .sub-title span {
-      color: var(--red);
-    }
-
-    .sub-sub {
-      color: #a0aec0;
-      font-size: 16px;
-    }
-
-    .sub-cards-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 30px;
-    }
-
-    .sub-card {
-      border-radius: 16px;
-      padding: 30px 28px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* Individual Seller */
-    .sub-card-ind {
-      background: #0b172e;
-      border: 1px solid #283350;
-    }
-
-    /* Dealer Network */
-    .sub-card-dealer {
-      background: #050e1e;
-      border: 1.5px solid var(--red);
-    }
-
-    .sub-ribbon {
-      position: absolute;
-      top: 24px;
-      right: -40px;
-      background: var(--red);
-      color: #000;
-      font-size: 11px;
-      font-weight: 900;
-      padding: 6px 40px;
-      transform: rotate(45deg);
-      letter-spacing: 0.5px;
-    }
-
-    .sc-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .sc-price {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--red);
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-
-    .sc-price span {
-      font-size: 18px;
-      color: #a0aec0;
-      font-weight: 500;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .sc-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 30px;
-      flex: 1;
-    }
-
-    .sc-list li {
-      font-size: 15px;
-      color: #ccd;
-      padding: 6px 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.4;
-    }
-
-    .sc-list li::before {
-      content: '✔';
-      color: var(--red);
-      font-weight: 900;
-    }
-
-    /* Buttons */
-    .sc-btn {
-      display: block;
-      text-align: center;
-      padding: 14px 20px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s;
-      text-decoration: none;
-      margin-top: auto;
-    }
-
-    .sc-btn-outline {
-      border: 1.5px solid var(--red);
-      color: var(--white);
-      background: transparent;
-    }
-
-    .sc-btn-outline:hover {
-      background: rgba(255, 204, 0, 0.1);
-    }
-
-    .sc-btn-fill {
-      background: var(--red);
-      color: #000;
-    }
-
-    .sc-btn-fill:hover {
-      background: var(--red-dark);
-      transform: scale(1.02);
-    }
-
-    /* Bottom Banner */
-    .sub-bottom-banner {
-      background: #101620;
-      border-radius: 16px;
-      padding: 24px 30px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      border: 1px solid #1e293b;
-    }
-
-    .banner-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .bi-icon {
-      font-size: 28px;
-      color: var(--red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .bi-text strong {
-      display: block;
-      color: var(--white);
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 2px;
-    }
-
-    .bi-text span {
-      display: block;
-      color: #8a9abf;
-      font-size: 11px;
-      line-height: 1.3;
-    }
-
-    @media (max-width: 1024px) {
-      .sub-right {
-        min-width: 100%;
-      }
-
-      .sub-bottom-banner {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .sub-cards-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .sub-bottom-banner {
-        grid-template-columns: 1fr;
-      }
-    }
 
     /* ── TRUST 3D CAROUSEL ────────────────────────────────────────────────── */
     .trust-section {
@@ -1360,7 +1122,7 @@
     transition: all 0.3s ease;
   }
   .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-  .fbb-socials svg { width: 16px; height: 16px; fill: currentColor; }
+  .fbb-socials svg { width: 16px !important; height: 16px !important; fill: currentColor; }
   
   .fbb-links { display: flex; gap: 8px; align-items: center; }
   .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
@@ -1374,6 +1136,120 @@
   /* TOAST */
   .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--red); }
   .toast.show { transform: translateY(0); }
+
+  /* STATIC SOCIAL BANNER */
+  .social-banner-container {
+    display: flex;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    justify-content: space-between;
+  }
+  .sb-left-wrap {
+    position: relative;
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 30px 12px 20px;
+    z-index: 1;
+    min-width: max-content;
+  }
+  .sb-left-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -50px; right: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--charcoal) 100%);
+    transform: skewX(-20deg);
+    transform-origin: bottom right;
+    border-right: 2px solid var(--red);
+    box-shadow: 4px 0 15px rgba(255,204,0,0.15);
+    z-index: -1;
+  }
+  .sb-left-icon svg { width: 30px; height: 30px; stroke: var(--red); }
+  .sb-left-text { display: flex; flex-direction: column; }
+  .sb-left-text h4 { color: var(--red); font-size: 13px; font-weight: 800; margin: 0 0 2px; letter-spacing: 0.5px; white-space: nowrap; }
+  .sb-left-text p { color: #fff; font-size: 11px; margin: 0; font-weight: 500; white-space: nowrap; }
+
+  .sb-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 0px;
+  }
+  .sb-link-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .sb-link-block:hover {
+    transform: translateY(-2px);
+  }
+  .sb-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 4px;
+  }
+  .sb-logo svg {
+    width: 36px !important; height: 36px !important; display: block;
+  }
+  .sb-info {
+    display: flex; flex-direction: column;
+  }
+  .sb-info h5 {
+    font-size: 14px; font-weight: 800; color: #fff; margin: 0 0 2px 0; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .sb-info span {
+    font-size: 11px; font-weight: 600; color: var(--red); white-space: nowrap;
+  }
+  .sb-btn {
+    margin-left: 6px;
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    color: var(--red);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .sb-link-block:hover .sb-btn {
+    background: var(--red); color: #000;
+  }
+
+  .sb-right-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 12px 20px 12px 40px;
+    z-index: 1;
+    min-width: max-content;
+  }
+  .sb-right-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: -50px; bottom: 0;
+    background: linear-gradient(90deg, var(--charcoal) 0%, var(--navy) 100%);
+    transform: skewX(-20deg);
+    transform-origin: bottom left;
+    border-left: 2px solid var(--red);
+    box-shadow: -4px 0 15px rgba(255,204,0,0.15);
+    z-index: -1;
+  }
+  .sb-right-text { text-align: right; }
+  .sb-right-text h4 { font-size: 13px; font-weight: 700; color: #fff; margin: 0; line-height: 1.2; white-space: nowrap; }
+  .sb-right-text h4.yellow { color: var(--red); font-weight: 900; font-size: 16px; }
+  
+  @media(max-width: 1150px) {
+    .sb-left-wrap, .sb-right-wrap { display: none; }
+    .sb-links { flex-wrap: wrap; padding: 16px 0; gap: 10px; }
+    .sb-divider { display: none; }
+  }
 </style>
 </head>
 
@@ -1388,8 +1264,8 @@
       </a>
       <div class="nav-links">
         <a href="index.html" class="active">🏠 Home</a>
-        <a href="buy-cars.html">Buy Cars</a>
-        <a href="sell.html">Sell Car</a>
+        <a href="buy-cars.html">Buy Vehicle</a>
+        <a href="sell.html">Sell Vehicles</a>
         <a href="about.html">About</a>
       </div>
       <div class="nav-actions">
@@ -1592,78 +1468,7 @@
     </div>
   </section>
 
-  <!-- SELL & SUBSCRIPTIONS — Redesigned Premium Section -->
-  <section class="section sub-section">
-    <div class="sub-container">
-      <div class="sub-left">
-        <img src="phone-mockup.png" alt="Market Guru HP Instagram" class="phone-mockup">
-      </div>
-      <div class="sub-right">
-        <div class="sub-heading-wrap">
-          <h2 class="sub-title">Choose Your <span>Listing Account</span></h2>
-          <p class="sub-sub">Sell your pre-owned car or advertise your dealership inventory to our 9.3 Lakh+ reach</p>
-        </div>
-        <div class="sub-cards-wrap">
-          <div class="sub-card sub-card-ind">
-            <h3 class="sc-title">Individual Seller</h3>
-            <div class="sc-price">Free <span>(1 Active Listing)</span></div>
-            <ul class="sc-list">
-              <li>List 1 pre-owned car in minutes</li>
-              <li>Direct calls from verified buyers</li>
-              <li>Standard search visibility</li>
-              <li>Free RC transfer guidance</li>
-            </ul>
-            <a href="sell.html" class="sc-btn sc-btn-outline">List Your Car Free</a>
-          </div>
-          <div class="sub-card sub-card-dealer">
-            <div class="sub-ribbon">RECOMMENDED</div>
-            <h3 class="sc-title">Car Dealer Network</h3>
-            <div class="sc-price">₹1,999<span>/month</span></div>
-            <ul class="sc-list">
-              <li>Unlimited pre-owned car listings</li>
-              <li>Influencer video reviews (Reels)</li>
-              <li>Pulsing verification badges on your cars</li>
-              <li>Verified Lead Capture dashboard</li>
-              <li>Premium top-of-search exposure</li>
-            </ul>
-            <a href="login.html?tab=register&type=dealer" class="sc-btn sc-btn-fill">Get Dealer Subscription</a>
-          </div>
-        </div>
 
-        <!-- Bottom Banner -->
-        <div class="sub-bottom-banner">
-          <div class="banner-item">
-            <div class="bi-icon">🎯</div>
-            <div class="bi-text">
-              <strong>9.3 Lakh+</strong>
-              <span>Active Audience<br>Across Platforms</span>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="bi-icon">👁️</div>
-            <div class="bi-text">
-              <strong>High Visibility</strong>
-              <span>Top Search & Premium<br>Placement</span>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="bi-icon">🛡️</div>
-            <div class="bi-text">
-              <strong>Trusted Platform</strong>
-              <span>Verified Buyers<br>& Genuine Leads</span>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="bi-icon">📈</div>
-            <div class="bi-text">
-              <strong>Better Reach</strong>
-              <span>More Views,<br>More Potential Buyers</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- TRUST / WHY US — 3D Carousel -->
   <section class="trust-section">
@@ -1733,8 +1538,8 @@
           <h4>Quick guide links</h4>
           <div class="quick-links-split">
             <div class="ql-col">
-              <a href="buy-cars.html">Buy car</a>
-              <a href="sell.html">Sell car</a>
+              <a href="buy-cars.html">Buy Vehicle</a>
+              <a href="sell.html">Sell Vehicles</a>
             </div>
             <div class="ql-divider"></div>
             <div class="ql-col">
@@ -1771,23 +1576,30 @@
           <div class="fbb-socials">
             <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook"
               aria-label="Facebook">
-              <svg viewBox="0 0 24 24">
+              <svg viewBox="0 0 24 24" width="16" height="16">
                 <path
                   d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
             </a>
             <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram"
               aria-label="Instagram">
-              <svg viewBox="0 0 24 24">
+              <svg viewBox="0 0 24 24" width="16" height="16">
                 <path
                   d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
               </svg>
             </a>
             <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube"
               aria-label="YouTube">
-              <svg viewBox="0 0 24 24">
+              <svg viewBox="0 0 24 24" width="16" height="16">
                 <path
                   d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp"
+              aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.79 9.79 0 0 0-6.979-2.88c-5.439 0-9.865 4.37-9.87 9.8-.001 1.774.475 3.503 1.378 5.027L1.993 21.5l5.59-1.464c-.305-.186-.612-.372-.936-.882zM17.15 14.54c-.28-.14-1.65-.81-1.902-.9-.253-.09-.438-.14-.623.14-.184.28-.714.9-.876 1.09-.162.19-.323.21-.603.07-1.125-.56-1.96-1.03-2.67-2.24-.26-.45-.06-.7.14-.9.18-.18.4-.47.6-.7.2-.23.27-.38.4-.64.13-.26.07-.49-.03-.7-.1-.21-.87-2.1-1.2-2.88-.31-.77-.64-.67-.88-.68-.22-.01-.48-.01-.73-.01-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22s1.38 3.73 1.58 3.99c.2.26 2.72 4.15 6.59 5.82.92.4 1.64.64 2.2.82.93.3 1.77.26 2.44.16.74-.11 2.28-.93 2.6-1.83.32-.9.32-1.67.22-1.83-.09-.16-.35-.26-.63-.4z" />
               </svg>
             </a>
           </div>
