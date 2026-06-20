@@ -456,11 +456,7 @@
   </div>
 </nav>
 
-<div class="breadcrumb">
-  <div class="breadcrumb-inner">
-    <a href="index.html">Home</a> › <a href="buy-cars.html">Buy Vehicle</a> › Maruti Swift VXi 2021
-  </div>
-</div>
+
 
 <div class="page-wrap">
   <!-- LEFT COLUMN -->
@@ -704,8 +700,6 @@
       <div style="display:flex;flex-direction:column;gap:8px;">
         <button onclick="showToast('❤️ Added to wishlist!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">❤️ Save to Wishlist</button>
         <button onclick="showToast('🔗 Link copied!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">🔗 Share this Car</button>
-        <button onclick="showToast('📊 Added to comparison!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">📊 Compare Cars</button>
-        <button onclick="showToast('⚠️ Report submitted. Thank you!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">⚠️ Report Issue</button>
       </div>
     </div>
   </aside>
@@ -810,6 +804,10 @@
 <script>
 let currentCar = null;
 
+function calcEMI() {
+  // Stub function to prevent ReferenceError
+}
+
 function initPage() {
   const params = new URLSearchParams(window.location.search);
   let id = parseInt(params.get('id')) || 1; // Default to Maruti Swift
@@ -873,8 +871,7 @@ function renderCarDetails() {
   // Price
   document.querySelector('.price-main').textContent = `₹${currentCar.price} Lakh`;
 
-  // Breadcrumb
-  document.querySelector('.breadcrumb-inner').innerHTML = `<a href="index.html">Home</a> › <a href="buy-cars.html">Buy Vehicle</a> › ${currentCar.name}`;
+
 
   // Gallery Image / Emoji handling
   const mainImg = document.getElementById('mainImg');
@@ -1001,7 +998,9 @@ function selectThumb(el, emoji) {
   
   if (idx === 0 && currentCar && currentCar.image) {
     if (mainImageEl) mainImageEl.style.display = 'block';
-    if (emojiEl) emojiEl.style.display = 'none';
+    if (emojiEl) {
+      if (emojiEl) emojiEl.style.display = 'none';
+    }
   } else {
     if (mainImageEl) mainImageEl.style.display = 'none';
     if (emojiEl) {
@@ -1009,40 +1008,41 @@ function selectThumb(el, emoji) {
       emojiEl.textContent = emoji;
     }
   }
-  
-  if (idx === 0) {
-    insights.style.opacity = '1';
-    insights.style.visibility = 'visible';
-  } else {
-    insights.style.opacity = '0';
-    insights.style.visibility = 'hidden';
-  }
 }
 
 let verificationTrigger = 'call';
 
 function checkContactVerification() {
-  const isVerified = localStorage.getItem('mg_dealer_verified') === 'true';
+  const isVerified = localStorage.getItem('mg_current_user') && localStorage.getItem('mg_current_user') !== 'Guest User';
   const callBtn = document.querySelector('.btn-call-now');
   const waBtn = document.querySelector('.btn-whatsapp');
   
+  // Get seller number from currentCar
+  let rawPhone = (currentCar && (currentCar.listed_by || currentCar.mobile || currentCar.phone)) || '9876543210';
+  let cleanPhone = String(rawPhone).replace(/[\s\-\+]/g, '').replace(/^91/, '');
+  if (cleanPhone.length < 10) cleanPhone = '9876543210';
+  
+  const displayPhoneFull = `+91 ${cleanPhone.substring(0, 5)} ${cleanPhone.substring(5)}`;
+  const displayPhoneMasked = `+91 ${cleanPhone.substring(0, 5)} XXXXX`;
+  
   if (isVerified) {
     if (callBtn) {
-      callBtn.innerHTML = '📞 Call Now: +91 98765 43210';
-      callBtn.setAttribute('onclick', "window.location.href='tel:+919876543210'");
+      callBtn.innerHTML = `📞 Call Now: ${displayPhoneFull}`;
+      callBtn.setAttribute('onclick', `window.location.href='tel:+91${cleanPhone}'`);
     }
     if (waBtn) {
-      waBtn.innerHTML = '💬 WhatsApp: +91 98765 43210';
-      waBtn.setAttribute('onclick', "window.open('https://wa.me/919876543210', '_blank')");
+      waBtn.innerHTML = `💬 WhatsApp: ${displayPhoneFull}`;
+      waBtn.setAttribute('onclick', `window.open('https://wa.me/91${cleanPhone}', '_blank')`);
     }
   } else {
+    const loginRedirectUrl = `login.html?redirect=${encodeURIComponent(window.location.href)}`;
     if (callBtn) {
-      callBtn.innerHTML = '📞 Call Now: +91 98765 XXXXX';
-      callBtn.setAttribute('onclick', "triggerVerification('call')");
+      callBtn.innerHTML = `📞 Call Now: ${displayPhoneMasked}`;
+      callBtn.setAttribute('onclick', `window.location.href='${loginRedirectUrl}'`);
     }
     if (waBtn) {
-      waBtn.innerHTML = '💬 WhatsApp: +91 98765 XXXXX';
-      waBtn.setAttribute('onclick', "triggerVerification('whatsapp')");
+      waBtn.innerHTML = `💬 WhatsApp: ${displayPhoneMasked}`;
+      waBtn.setAttribute('onclick', `window.location.href='${loginRedirectUrl}'`);
     }
   }
 }
@@ -1057,6 +1057,7 @@ function hideContactModal() {
   document.getElementById('contactModal').classList.remove('show');
 }
 
+// Keep helper functions in case they are referenced, but override behavior
 function showPhoneStep() {
   document.getElementById('modal-step-phone').style.display = 'block';
   document.getElementById('modal-step-otp').style.display = 'none';
@@ -1070,13 +1071,13 @@ function sendOTP() {
   }
   document.getElementById('modal-step-phone').style.display = 'none';
   document.getElementById('modal-step-otp').style.display = 'block';
-  showToast('💬 Verification code sent! Use 1234 to verify.');
+  showToast('💬 Verification code sent! Enter any code to verify.');
 }
 
 function verifyOTPCode() {
   const otp = document.getElementById('verifyOTP').value.trim();
-  if (otp !== '1234') {
-    showToast('❌ Invalid verification code! Try 1234.');
+  if (!otp) {
+    showToast('❌ Please enter the verification code.');
     return;
   }
   
@@ -1101,10 +1102,14 @@ function verifyOTPCode() {
   checkContactVerification();
   
   setTimeout(() => {
+    let rawPhone = (currentCar && (currentCar.listed_by || currentCar.mobile || currentCar.phone)) || '9876543210';
+    let cleanPhone = String(rawPhone).replace(/[\s\-\+]/g, '').replace(/^91/, '');
+    if (cleanPhone.length < 10) cleanPhone = '9876543210';
+    
     if (verificationTrigger === 'call') {
-      window.location.href = 'tel:+919876543210';
+      window.location.href = `tel:+91${cleanPhone}`;
     } else {
-      window.open('https://wa.me/919876543210', '_blank');
+      window.open(`https://wa.me/91${cleanPhone}`, '_blank');
     }
   }, 1000);
 }

@@ -12,14 +12,14 @@
     :root {
       --red: #FFCC00;
       --red-dark: #CC9900;
-      --charcoal: #0B0F19;
-      --navy: #1A233D;
-      --steel: #2A3A5C;
-      --silver: #0d111b;
+      --charcoal: #1A1A2E;
+      --navy: #FFFFFF;
+      --steel: #F8FAFC;
+      --silver: #F0F4F8;
       --white: #FFFFFF;
-      --text: #F0F4F8;
-      --muted: #8A9ABF;
-      --border: rgba(255, 255, 255, 0.08);
+      --text: #1A1A2E;
+      --muted: #6B7A99;
+      --border: #DDE3EE;
       --success: #10B981;
     }
 
@@ -32,22 +32,31 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: var(--charcoal);
+      background: var(--silver);
       min-height: 100vh;
     }
 
     /* TOPBAR */
     .topbar {
       background: #10172A;
-      border-bottom: 1px solid var(--border);
-      padding: 0 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0;
       height: 80px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+    }
+
+    .topbar-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .topbar-left {
@@ -154,7 +163,7 @@
       border: 1px solid var(--border);
       padding: 28px;
       margin-bottom: 32px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
 
     .card-header {
@@ -171,7 +180,7 @@
       font-weight: 700;
       font-family: 'Barlow Condensed', sans-serif;
       letter-spacing: 0.5px;
-      color: #fff;
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -193,7 +202,7 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
     }
 
     .kpi-icon {
@@ -211,7 +220,7 @@
     .kpi-num {
       font-size: 28px;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
     }
 
     .kpi-label {
@@ -229,7 +238,7 @@
     }
 
     .car-card {
-      background: #0d111b;
+      background: var(--white);
       border-radius: 12px;
       border: 1px solid var(--border);
       overflow: hidden;
@@ -322,18 +331,18 @@
       letter-spacing: 0.5px;
       padding: 16px;
       border-bottom: 1px solid var(--border);
-      background: #0d111b;
+      background: var(--steel);
     }
 
     td {
       padding: 16px;
       font-size: 14px;
       border-bottom: 1px solid var(--border);
-      color: #e2e8f0;
+      color: var(--text);
     }
 
     tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 0, 0, 0.02);
     }
 
     .status-badge {
@@ -346,12 +355,12 @@
 
     .s-active {
       background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
+      color: #059669;
     }
 
     .s-pending {
       background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
+      color: #d97706;
     }
 
     /* ACTIONS BUTTONS */
@@ -368,7 +377,7 @@
 
     .action-edit {
       background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
+      color: #2563eb;
       border: 1px solid rgba(59, 130, 246, 0.3);
     }
 
@@ -379,7 +388,7 @@
 
     .action-remove {
       background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
+      color: #dc2626;
       border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
@@ -393,7 +402,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -411,8 +420,8 @@
       padding: 32px;
       max-width: 480px;
       width: 90%;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-      color: #fff;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
+      color: var(--text);
     }
 
     .modal-title {
@@ -420,7 +429,7 @@
       font-weight: 700;
       margin-bottom: 8px;
       font-family: 'Barlow Condensed', sans-serif;
-      color: var(--red);
+      color: var(--charcoal);
     }
 
     .modal-sub {
@@ -450,8 +459,8 @@
       border-radius: 8px;
       font-size: 14px;
       font-family: 'Inter', sans-serif;
-      background: #0d111b;
-      color: #fff;
+      background: var(--steel);
+      color: var(--text);
     }
 
     .modal-field input:focus {
@@ -487,7 +496,7 @@
       flex: 1;
       padding: 12px;
       background: transparent;
-      color: #fff;
+      color: var(--text);
       border: 1.5px solid var(--border);
       border-radius: 8px;
       font-size: 14px;
@@ -498,14 +507,14 @@
     }
 
     .btn-modal-secondary:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .btn-modal-danger {
       flex: 1;
       padding: 12px;
       background: rgba(239, 68, 68, 0.2);
-      color: #f87171;
+      color: #ef4444;
       border: 1px solid rgba(239, 68, 68, 0.3);
       border-radius: 8px;
       font-size: 14px;
@@ -548,18 +557,20 @@
 
   <!-- TOP NAVBAR -->
   <header class="topbar">
-    <a href="index.html" class="topbar-left">
-      <img src="logo.png" alt="Market Guru HP Logo" class="topbar-logo-img">
-      <span class="topbar-title" id="dashboardTitle">PARTNER CONSOLE</span>
-    </a>
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-left">
+        <img src="logo.png" alt="Market Guru HP Logo" class="topbar-logo-img">
+        <span class="topbar-title" id="dashboardTitle">PARTNER CONSOLE</span>
+      </a>
 
-    <div class="topbar-actions">
-      <!-- Back to site button with yellow illumination -->
-      <a href="index.html" class="btn-back-site">🏠 Go Back to Site</a>
-      <!-- Profile circular icon (opens profile edit modal) -->
-      <div class="profile-btn" onclick="openProfileModal()" id="headerAvatar" title="Modify Profile Details">RS</div>
-      <!-- Logout button -->
-      <button class="btn-logout-header" onclick="logoutUser()">🚪 Logout</button>
+      <div class="topbar-actions">
+        <!-- Back to site button with yellow illumination -->
+        <a href="index.html" class="btn-back-site">🏠 Go Back to Site</a>
+        <!-- Profile circular icon (opens profile edit modal) -->
+        <div class="profile-btn" onclick="openProfileModal()" id="headerAvatar" title="Modify Profile Details">RS</div>
+        <!-- Logout button -->
+        <button class="btn-logout-header" onclick="logoutUser()">🚪 Logout</button>
+      </div>
     </div>
   </header>
 
@@ -570,8 +581,8 @@
     <div class="welcome-row"
       style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
       <div>
-        <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: #fff;">Welcome
-          Back, <span id="welcomeName" style="color: var(--red);">Raj Shah</span>!</h2>
+        <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--text);">Welcome
+          Back, <span id="welcomeName" style="color: var(--red-dark);">Raj Shah</span>!</h2>
         <p style="color: var(--muted); font-size: 14px; margin-top: 4px;">Manage your inventory, active listings, and
           saved cars from one place.</p>
       </div>
@@ -663,7 +674,7 @@
       <div class="modal-field">
         <label>Mobile Number (Read-Only)</label>
         <input type="text" id="editProfilePhone" disabled
-          style="background:#0d111b; color:var(--muted); border-color:#2A3A5C; cursor:not-allowed;">
+          style="background:var(--steel); color:var(--muted); border-color:var(--border); cursor:not-allowed;">
       </div>
 
       <div class="modal-actions">
@@ -801,7 +812,7 @@
           </div>
           <div class="car-info">
             <div>
-              <div class="car-name"><a href="car-detail.html?id=${c.id}" style="color:#fff; font-weight:700; text-decoration:none;">${c.name}</a></div>
+              <div class="car-name"><a href="car-detail.html?id=${c.id}" style="color:var(--text); font-weight:700; text-decoration:none;">${c.name}</a></div>
               <div class="car-meta">${c.year} · ${c.km || 'New'} · ${c.fuel}</div>
               <div class="car-price">${c.isNew ? c.price : '₹' + c.price + 'L'}</div>
             </div>

@@ -148,6 +148,27 @@ def init_database():
         expiry VARCHAR(50)
     )
     """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS individuals (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        full_name VARCHAR(100),
+        mobile VARCHAR(20) UNIQUE
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS dealers (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        dealership_name VARCHAR(100),
+        address VARCHAR(255),
+        state VARCHAR(50),
+        city VARCHAR(50),
+        email VARCHAR(100),
+        mobile VARCHAR(20) UNIQUE,
+        password VARCHAR(255)
+    )
+    """)
     conn.commit()
 
     # 2. Seed data if tables are empty

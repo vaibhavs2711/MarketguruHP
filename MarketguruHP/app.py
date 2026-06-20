@@ -498,27 +498,50 @@ def login():
         if password == 'OTP_LOGIN':
             if role == 'dealer':
                 dealer = query_db("SELECT * FROM dealers WHERE mobile = %s", (login_id,), one=True)
-                if dealer:
-                    return jsonify({
-                        "status": "success",
-                        "user": {
-                            "name": dealer['dealership_name'],
-                            "mobile": dealer['mobile'],
-                            "email": dealer['email'],
-                            "type": "dealer"
-                        }
-                    })
+                if not dealer:
+                    try:
+                        query_db(
+                            "INSERT INTO dealers (dealership_name, mobile, email, password, address, city, state) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                            ("Dealer Partner", login_id, f"dealer_{login_id}@example.com", "OTP_LOGIN", "Vadodara Address", "Vadodara", "Gujarat"),
+                            commit=True
+                        )
+                        dealer = query_db("SELECT * FROM dealers WHERE mobile = %s", (login_id,), one=True)
+                    except Exception as ins_err:
+                        print(f"Auto-create dealer warning: {ins_err}")
+                
+                user_name = dealer['dealership_name'] if dealer else "Dealer Partner"
+                user_email = dealer['email'] if dealer else f"dealer_{login_id}@example.com"
+                return jsonify({
+                    "status": "success",
+                    "user": {
+                        "name": user_name,
+                        "mobile": login_id,
+                        "email": user_email,
+                        "type": "dealer"
+                    }
+                })
             else:
                 indiv = query_db("SELECT * FROM customers WHERE mobile = %s", (login_id,), one=True)
-                if indiv:
-                    return jsonify({
-                        "status": "success",
-                        "user": {
-                            "name": indiv['name'],
-                            "mobile": indiv['mobile'],
-                            "type": "private"
-                        }
-                    })
+                if not indiv:
+                    try:
+                        query_db(
+                            "INSERT INTO customers (name, mobile, city, interests, purchases, last) VALUES (%s, %s, %s, %s, %s, %s)",
+                            ("Member Client", login_id, "Vadodara", "Private Customer", "0", "Just now"),
+                            commit=True
+                        )
+                        indiv = query_db("SELECT * FROM customers WHERE mobile = %s", (login_id,), one=True)
+                    except Exception as ins_err:
+                        print(f"Auto-create customer warning: {ins_err}")
+                
+                user_name = indiv['name'] if indiv else "Member Client"
+                return jsonify({
+                    "status": "success",
+                    "user": {
+                        "name": user_name,
+                        "mobile": login_id,
+                        "type": "private"
+                    }
+                })
 
         hashed_pwd = get_hash(password)
         
@@ -751,4 +774,5 @@ def serve_static(path):
     return send_from_directory('.', path)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)

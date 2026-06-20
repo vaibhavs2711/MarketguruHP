@@ -108,21 +108,15 @@
     }
 
     .btn-outline-white {
-      border: none;
-      color: #1A1A2E;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: var(--white);
       padding: 10px 22px;
       border-radius: 8px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
-      background: var(--red);
-      box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
-    }
-    .btn-outline-white:hover {
-      background: var(--red-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45);
+      background: transparent;
     }
 
     /* PROFILE ICON (shown when logged in) */
@@ -280,67 +274,47 @@
       letter-spacing: 0.5px;
     }
 
-    /* HERO RIGHT: simple white login card (replaces influencer card) */
+    /* INFLUENCER HERO CARD */
     .hero-right {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .login-card {
-      background: var(--white);
-      border-radius: 18px;
-      padding: 28px;
-      max-width: 420px;
+    .influencer-card {
+      background: rgba(26, 26, 46, 0.95);
+      border: 3.5px solid var(--red);
+      border-radius: 28px;
+      padding: clamp(12px, 2.2vh, 20px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.65);
+      max-width: 400px;
       width: 100%;
-      box-shadow: 0 30px 60px rgba(10,12,30,0.35);
-      border: 1px solid rgba(26,26,46,0.06);
-      font-family: 'Inter', sans-serif;
+      transition: transform 0.3s;
     }
 
-    .login-card h3 { font-size: 20px; margin-bottom: 6px; color: var(--charcoal); font-weight:800; }
-    .login-card p { color: var(--muted); margin-bottom: 18px; }
-
-    .tabs { display:flex; gap:8px; margin-bottom:14px; }
-    .tab { flex:1; text-align:center; padding:8px; border-radius:10px; font-weight:700; cursor:pointer; border:1.5px solid var(--border); background: #fff; }
-    .tab.active { background: linear-gradient(90deg, #FFF7E6, #FFFBEB); border-color: rgba(255,204,0,0.45); }
-
-    .role-select { display:flex; gap:10px; margin-bottom:14px; }
-    .role-pill { flex:1; padding:10px; border-radius:10px; text-align:center; border:1.5px solid var(--border); cursor:pointer; font-weight:700; }
-    .role-pill.active { border-color: var(--red); color:var(--red); background:#FFFBEB; }
-
-    .field { margin-bottom:12px; }
-    .field label { display:block; font-size:11px; font-weight:700; color:var(--muted); margin-bottom:6px; text-transform:uppercase; }
-    .field input { width:100%; padding:12px 14px; border-radius:8px; border:1.5px solid var(--border); font-size:14px; }
-    .btn-login { width:100%; padding:12px; background:var(--red); color:#111; border:none; border-radius:10px; font-weight:800; cursor:pointer; }
-    .btn-login:hover { background:var(--red-dark); }
-
-    /* Canvas wrapper (car frames) — keep but flip the image to face the login card */
-    .influencer-img-wrapper { width: 100%; height: min(720px, calc(100vh - 240px)); border-radius: 18px; overflow: hidden; margin-bottom: 12px; position: relative; }
-    #scrollCanvas { width:100%; height:100%; display:block; transform: scaleX(-1) translateZ(0); }
-    /* Hero small perks (reused content from login page) */
-    .hero-perks { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
-    .hero-perks .perk { background: rgba(255,255,255,0.06); border-radius:12px; padding:12px; text-align:center; color:#fff; border:1px solid rgba(255,255,255,0.04); }
-    .hero-perks .perk .perk-icon { font-size:20px; margin-bottom:8px; }
-    .hero-perks .perk .perk-label { font-weight:800; font-size:13px; }
-    .hero-perks .perk .perk-sub { font-size:12px; color: rgba(255,255,255,0.8); margin-top:4px; }
-
-    /* Static car background for hero-left (uses one frame as fallback) */
-    .hero-left { position: relative; overflow: visible; }
-    .hero-left::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('frames/frame_041.jpg');
-      background-size: cover;
-      background-position: center left;
-      transform: scaleX(-1); /* flip horizontally so car faces right */
-      filter: brightness(0.35) saturate(0.9);
-      z-index: 0;
-      border-radius: 8px;
-      opacity: 1;
+    .influencer-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 45px 80px rgba(255, 204, 0, 0.15);
     }
-    .hero-left > * { position: relative; z-index: 1; }
+
+    .influencer-img-wrapper {
+      width: 100%;
+      height: min(720px, calc(100vh - 240px));
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: clamp(8px, 1.5vh, 14px);
+      border: 3.5px solid var(--red);
+      position: relative;
+      transform: translateZ(0);
+    }
+
+    .influencer-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
 
     /* CANVAS LOADER OVERLAY */
     #canvas-loader {
@@ -1364,51 +1338,26 @@
               <button class="btn-search" onclick="window.location='buy-cars.html'">🔍 Search Cars</button>
             </div>
           </div>
-          <div class="hero-perks" aria-hidden="false">
-            <div class="perk">
-              <div class="perk-icon">🚗</div>
-              <div class="perk-label">Browse 2,400+</div>
-              <div class="perk-sub">verified cars</div>
-            </div>
-            <div class="perk">
-              <div class="perk-icon">₹</div>
-              <div class="perk-label">Get instant</div>
-              <div class="perk-sub">car valuation</div>
-            </div>
-            <div class="perk">
-              <div class="perk-icon">📋</div>
-              <div class="perk-label">Track your</div>
-              <div class="perk-sub">listings &amp; enquiries</div>
-            </div>
-            <div class="perk">
-              <div class="perk-icon">🛡️</div>
-              <div class="perk-label">Secure payments</div>
-              <div class="perk-sub">and RC transfer</div>
-            </div>
-          </div>
-
         </div>
 
         <div class="hero-right">
-          <div class="login-card">
-            <h3>Sign in to Market Guru HP</h3>
-            <p style="margin-bottom:10px">Your gateway to Gujarat's best pre-owned car deals.</p>
-            <div class="tabs">
-              <div class="tab active">Login</div>
-              <div class="tab">Register</div>
+          <div class="influencer-card">
+            <div class="influencer-img-wrapper">
+              <div id="canvas-loader">
+                <div class="loader-spinner"></div>
+                <div id="loader-text">Loading Experience... 0%</div>
+              </div>
+              <canvas id="scrollCanvas" width="400" height="603"
+                style="width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; will-change: contents; transform: translateZ(0);"></canvas>
             </div>
-            <div class="role-select">
-              <div class="role-pill active">👤 Individual</div>
-              <div class="role-pill">🏢 Dealer</div>
+            <div class="influencer-info">
+              <div class="influencer-name">Market Guru HP (Hiren Patel)</div>
+              <div class="influencer-title">🔥 GUJARAT'S NO.1 AUTO INFLUENCER</div>
+              <div class="influencer-social-reach">
+                <span class="social-reach-badge">🎥 Reels Review Done</span>
+                <span class="social-reach-badge">⭐ 100% Certified Car</span>
+              </div>
             </div>
-            <div class="field">
-              <label>MOBILE NUMBER</label>
-              <input type="tel" placeholder="+91 XXXXX XXXXX">
-            </div>
-            <button class="btn-login">Send OTP →</button>
-            <div style="text-align:center;margin:14px 0;color:var(--muted);font-weight:600">OR</div>
-            <button class="btn-google" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px;border-radius:10px;border:1.5px solid var(--border);">Continue with Google</button>
-            <p style="text-align:center;margin-top:14px;color:var(--muted);">Don't have an account? <a href="login.html" style="color:var(--red);font-weight:700">Register free</a></p>
           </div>
         </div>
       </div>
@@ -1764,23 +1713,10 @@
       const loginLink = document.getElementById('nav-login-link');
       const loginBtn = document.getElementById('nav-login-btn');
       if (currentUser && loginLink && loginBtn) {
-        let initials = '👤';
-        try {
-          const userObj = JSON.parse(currentUser);
-          const name = userObj.name || '';
-          if (name) {
-            const parts = name.split(' ');
-            if (parts.length > 1) {
-              initials = (parts[0][0] + parts[1][0]).toUpperCase();
-            } else {
-              initials = name.substring(0, 2).toUpperCase();
-            }
-          }
-        } catch(e) {}
-        
+        // Replace Login button with a circular profile icon
         loginLink.href = 'customer-dashboard.html';
-        loginLink.innerHTML = `<span class="profile-btn" title="My Profile" style="font-size:15px; font-weight:700; color:var(--red); text-transform:uppercase;">${initials}</span>`;
-        
+        loginLink.innerHTML = '<span class="profile-btn" title="My Profile">👤</span>';
+        // Also update any footer login links
         document.querySelectorAll('a[href="login.html"]').forEach(link => {
           if (link.textContent.includes('Login / Register')) {
             link.href = 'customer-dashboard.html';
