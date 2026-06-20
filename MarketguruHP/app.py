@@ -159,6 +159,20 @@ def add_car():
             # calculate a mock emi
             emi = f"{int(priceN * 0.019):,}"
             
+        # Check if listed_by is a dealer or private
+        user_type = data.get('user_type', 'private')
+        if listed_by:
+            if user_type == 'dealer':
+                # Verify they are actually registered as a dealer
+                is_dealer = query_db("SELECT id FROM dealers WHERE mobile = %s", (listed_by,), one=True)
+                if not is_dealer:
+                    return jsonify({"status": "error", "message": "Account is not registered as a dealer partner."}), 400
+            else:
+                # Individual seller: check active listing count
+                active_count = query_db("SELECT COUNT(*) as count FROM cars WHERE listed_by = %s", (listed_by,), one=True)
+                if active_count and active_count.get('count', 0) >= 1:
+                    return jsonify({"status": "error", "message": "Individual sellers are limited to exactly 1 car listing."}), 400
+
         # Default verification
         verified = int(data.get('verified', 0))
 
@@ -445,13 +459,30 @@ def check_mobile():
         data = request.json
         mobile = data.get('mobile')
         role = data.get('role', 'individual')
+        check_all = data.get('check_all', False)
+
+        if check_all:
+            res_d = query_db("SELECT id FROM dealers WHERE mobile = %s", (mobile,), one=True)
+            res_c = query_db("SELECT id FROM customers WHERE mobile = %s", (mobile,), one=True)
+            return jsonify({"status": "success", "exists": bool(res_d or res_c)})
+
+        res_d = query_db("SELECT id FROM dealers WHERE mobile = %s", (mobile,), one=True)
+        res_c = query_db("SELECT id FROM customers WHERE mobile = %s", (mobile,), one=True)
 
         if role == 'dealer':
-            res = query_db("SELECT id FROM dealers WHERE mobile = %s", (mobile,), one=True)
-            return jsonify({"status": "success", "exists": bool(res)})
+            if res_d:
+                return jsonify({"status": "success", "exists": True})
+            elif res_c:
+                return jsonify({"status": "success", "exists": False, "registered_role": "individual"})
+            else:
+                return jsonify({"status": "success", "exists": False, "registered_role": None})
         else:
-            res = query_db("SELECT id FROM customers WHERE mobile = %s", (mobile,), one=True)
-            return jsonify({"status": "success", "exists": bool(res)})
+            if res_c:
+                return jsonify({"status": "success", "exists": True})
+            elif res_d:
+                return jsonify({"status": "success", "exists": False, "registered_role": "dealer"})
+            else:
+                return jsonify({"status": "success", "exists": False, "registered_role": None})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
@@ -461,19 +492,33 @@ def login():
         data = request.json
         login_id = data.get('id')
         password = data.get('password')
+        role = data.get('role', 'individual')
 
-        # Check individuals first if it's an OTP login
+        # Check OTP login based on role
         if password == 'OTP_LOGIN':
-            indiv = query_db("SELECT * FROM customers WHERE mobile = %s", (login_id,), one=True)
-            if indiv:
-                return jsonify({
-                    "status": "success",
-                    "user": {
-                        "name": indiv['name'],
-                        "mobile": indiv['mobile'],
-                        "type": "private"
-                    }
-                })
+            if role == 'dealer':
+                dealer = query_db("SELECT * FROM dealers WHERE mobile = %s", (login_id,), one=True)
+                if dealer:
+                    return jsonify({
+                        "status": "success",
+                        "user": {
+                            "name": dealer['dealership_name'],
+                            "mobile": dealer['mobile'],
+                            "email": dealer['email'],
+                            "type": "dealer"
+                        }
+                    })
+            else:
+                indiv = query_db("SELECT * FROM customers WHERE mobile = %s", (login_id,), one=True)
+                if indiv:
+                    return jsonify({
+                        "status": "success",
+                        "user": {
+                            "name": indiv['name'],
+                            "mobile": indiv['mobile'],
+                            "type": "private"
+                        }
+                    })
 
         hashed_pwd = get_hash(password)
         
@@ -511,12 +556,51 @@ def login():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@app.route('/api/auth/profile/update', methods=['POST'])
+def update_profile():
+    try:
+        data = request.json
+        mobile = data.get('mobile')
+        new_name = data.get('name')
+        new_email = data.get('email', '')
+        new_city = data.get('city', '')
+        user_type = data.get('type', 'private')
+
+        if user_type == 'dealer':
+            dealer = query_db("SELECT id FROM dealers WHERE mobile = %s", (mobile,), one=True)
+            if dealer:
+                query_db(
+                    "UPDATE dealers SET dealership_name = %s, email = %s, city = %s WHERE mobile = %s",
+                    (new_name, new_email, new_city, mobile),
+                    commit=True
+                )
+                return jsonify({"status": "success", "message": "Dealer profile updated successfully."})
+        else:
+            customer = query_db("SELECT id FROM customers WHERE mobile = %s", (mobile,), one=True)
+            if customer:
+                query_db(
+                    "UPDATE customers SET name = %s, city = %s WHERE mobile = %s",
+                    (new_name, new_city, mobile),
+                    commit=True
+                )
+                return jsonify({"status": "success", "message": "Customer profile updated successfully."})
+        
+        return jsonify({"status": "error", "message": "User not found."}), 404
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 @app.route('/api/auth/register', methods=['POST'])
 def register():
     try:
         data = request.json
         mobile = data.get('mobile')
         account_type = data.get('account_type', 'private')
+
+        # Check if mobile number is already registered in either table
+        exists_dealer = query_db("SELECT id FROM dealers WHERE mobile = %s", (mobile,), one=True)
+        exists_customer = query_db("SELECT id FROM customers WHERE mobile = %s", (mobile,), one=True)
+        if exists_dealer or exists_customer:
+            return jsonify({"status": "error", "message": f"Mobile number {mobile} is already registered on the platform."}), 400
 
         if account_type == 'dealer':
             dealership_name = data.get('dealership_name', '')

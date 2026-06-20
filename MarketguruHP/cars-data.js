@@ -230,7 +230,8 @@ const db = {
         desc: car.desc,
         features: car.features,
         verified: car.verified ? 1 : 0,
-        listed_by: localStorage.getItem('mg_current_user_mobile')
+        listed_by: localStorage.getItem('mg_current_user_mobile'),
+        user_type: localStorage.getItem('mg_current_user_type') || 'private'
       });
       if (result && result.status === 'success') {
         carsState.push(result.car);
@@ -557,6 +558,14 @@ const db = {
     saveDB('mg_staff', staff);
     staffState.push(staffMember);
     return staffMember;
+  },
+
+  updateProfile: (profileData) => {
+    if (isBackendConnected) {
+      const result = requestSync('POST', 'auth/profile/update', profileData);
+      return result && result.status === 'success';
+    }
+    return true;
   }
 };
 

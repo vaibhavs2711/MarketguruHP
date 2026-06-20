@@ -26,18 +26,19 @@ class TestMarketGuruAPI(unittest.TestCase):
     def test_03_register(self):
         """Test client registration"""
         payload = {
-            "fName": "Automation",
-            "lName": "Tester",
+            "dealership_name": "Automation Dealer",
             "mobile": "9999988888",
             "email": "test_auto@example.com",
             "password": "testpassword123",
-            "account_type": "private"
+            "account_type": "dealer",
+            "address": "123 Automation St",
+            "state": "Gujarat",
+            "city": "Vadodara"
         }
         # Delete if exists from previous runs
         res = requests.post(f"{BASE_URL}/auth/register", json=payload)
-        # Register could return 500 if already exists, but for clean DB it returns 200
-        # If it returns 500 (due to UNIQUE constraints), it's fine since we verify login next
-        self.assertIn(res.status_code, [200, 500])
+        # If it returns 400 or 500 (due to uniqueness checks), it's fine since we verify login next
+        self.assertIn(res.status_code, [200, 400, 500])
         if res.status_code == 200:
             data = res.json()
             self.assertEqual(data.get("status"), "success")
@@ -218,6 +219,64 @@ class TestMarketGuruAPI(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         data = res.json()
         self.assertEqual(data.get("status"), "success")
+
+    def test_15_individual_seller_limit(self):
+        """Test that an individual seller is restricted to exactly 1 listing"""
+        # Register a client (individual)
+        register_payload = {
+            "fName": "Limit",
+            "lName": "Tester",
+            "mobile": "9999977777",
+            "email": "limit_test@example.com",
+            "password": "testpassword",
+            "account_type": "private"
+        }
+        requests.post(f"{BASE_URL}/auth/register", json=register_payload)
+
+        # First car listing submission (should succeed)
+        car1_payload = {
+            "name": "Limit Test Car 1",
+            "year": 2020,
+            "price": "5.00",
+            "priceN": 500000,
+            "km": "30,000",
+            "fuel": "Petrol",
+            "trans": "Manual",
+            "owner": "1st",
+            "color": "#e8eef5",
+            "emoji": "🚗",
+            "city": "Vadodara",
+            "desc": "Individual limit test car 1.",
+            "features": [],
+            "listed_by": "9999977777"
+        }
+        res1 = requests.post(f"{BASE_URL}/cars", json=car1_payload)
+        self.assertEqual(res1.status_code, 200)
+        car1_id = res1.json().get("car", {}).get("id")
+
+        # Second car listing submission (should fail with 400)
+        car2_payload = {
+            "name": "Limit Test Car 2",
+            "year": 2021,
+            "price": "6.00",
+            "priceN": 600000,
+            "km": "20,000",
+            "fuel": "Petrol",
+            "trans": "Manual",
+            "owner": "1st",
+            "color": "#e8eef5",
+            "emoji": "🚗",
+            "city": "Vadodara",
+            "desc": "Individual limit test car 2.",
+            "features": [],
+            "listed_by": "9999977777"
+        }
+        res2 = requests.post(f"{BASE_URL}/cars", json=car2_payload)
+        self.assertEqual(res2.status_code, 400)
+        self.assertEqual(res2.json().get("status"), "error")
+
+        # Cleanup: delete the first car
+        requests.post(f"{BASE_URL}/cars/sold", json={"car_id": car1_id})
 
 if __name__ == "__main__":
     unittest.main()

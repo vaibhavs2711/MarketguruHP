@@ -33,11 +33,16 @@
   .nav-links a.active { background: rgba(255,204,0,0.15); }
   .nav-actions { display: flex; gap: 10px; align-items: center; }
   .btn-outline-white {
-    border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
-    padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s; background: transparent;
+    border: none; color: #1A1A2E;
+    padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; background: var(--red);
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
   }
-  .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+  .btn-outline-white:hover { 
+    background: var(--red-dark); 
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(255, 204, 0, 0.4); 
+  }
   .btn-red { background: var(--red); color: #1A1A2E; padding: 8px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
   .btn-red:hover { background: var(--red-dark); }
 
@@ -152,8 +157,7 @@
       <a href="about.html" class="active">About</a>
     </div>
     <div class="nav-actions">
-      <a href="login.html"><button class="btn-outline-white">Login</button></a>
-      <a href="sell.html"><button class="btn-red">+ Sell Vehicles</button></a>
+      <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
     </div>
   </div>
 </nav>
@@ -346,18 +350,45 @@
   // Dynamic login state update
   function checkLoginState() {
     const currentUser = localStorage.getItem('mg_current_user');
+    const loginLink = document.getElementById('nav-login-link');
+    const loginBtn = document.getElementById('nav-login-btn');
+    if (currentUser && loginLink && loginBtn) {
+      let initials = '👤';
+      try {
+        const userObj = JSON.parse(currentUser);
+        const name = userObj.name || '';
+        if (name) {
+          const parts = name.split(' ');
+          if (parts.length > 1) {
+            initials = (parts[0][0] + parts[1][0]).toUpperCase();
+          } else {
+            initials = name.substring(0, 2).toUpperCase();
+          }
+        }
+      } catch(e) {}
+      
+      loginLink.href = 'customer-dashboard.html';
+      loginLink.innerHTML = `
+        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 204, 0, 0.15); border: 2px solid var(--red); display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--red); text-transform: uppercase; transition: all 0.2s;">
+          ${initials}
+        </div>
+      `;
+    }
+
     if (currentUser) {
       const loginLinks = document.querySelectorAll('a[href="login.html"]');
       loginLinks.forEach(link => {
-        link.href = 'customer-dashboard.html';
-        const btn = link.querySelector('button');
-        if (btn) {
-          if (btn.textContent.trim().toLowerCase() === 'login') {
-            btn.textContent = 'Dashboard';
-          }
-        } else {
-          if (link.textContent.includes('Login / Register')) {
-            link.textContent = 'My Dashboard';
+        if (link.id !== 'nav-login-link') {
+          link.href = 'customer-dashboard.html';
+          const btn = link.querySelector('button');
+          if (btn) {
+            if (btn.textContent.trim().toLowerCase() === 'login') {
+              btn.textContent = 'Dashboard';
+            }
+          } else {
+            if (link.textContent.includes('Login / Register')) {
+              link.textContent = 'My Dashboard';
+            }
           }
         }
       });
