@@ -431,6 +431,48 @@
           <select id="insurance"><option>Comprehensive</option><option>Third Party</option><option>Expired</option></select>
         </div>
         <div class="field">
+          <label style="font-weight: 700; margin-bottom: 10px; color: var(--charcoal);">Select Car Features</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Airbags" style="width: auto; cursor: pointer;"> Airbags
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="ABS (Anti-lock Braking)" style="width: auto; cursor: pointer;"> ABS (Anti-lock Braking)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Sunroof" style="width: auto; cursor: pointer;"> Sunroof
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Alloy Wheels" style="width: auto; cursor: pointer;"> Alloy Wheels
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Touchscreen Infotainment" style="width: auto; cursor: pointer;"> Touchscreen Infotainment
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Reverse Parking Camera" style="width: auto; cursor: pointer;"> Reverse Camera
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Leather Seats" style="width: auto; cursor: pointer;"> Leather Seats
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Cruise Control" style="width: auto; cursor: pointer;"> Cruise Control
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Automatic Climate Control" style="width: auto; cursor: pointer;"> Auto Climate Control
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Power Steering" style="width: auto; cursor: pointer;"> Power Steering
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Power Windows" style="width: auto; cursor: pointer;"> Power Windows
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Custom Features & Specs</label>
+          <input type="text" placeholder="e.g. LED Projector Headlamps, Ventilated Seats, Keyless Entry..." id="custom_features">
+        </div>
+        <div class="field">
           <label>Additional Notes</label>
           <textarea placeholder="Any other info buyers should know..." id="notes"></textarea>
         </div>
@@ -722,6 +764,18 @@ function submitListing() {
     }
   }
 
+  // Collect features & specifications
+  const selectedFeatures = Array.from(document.querySelectorAll('input[name="car_features"]:checked')).map(cb => cb.value);
+  const customFeatsStr = document.getElementById('custom_features').value.trim();
+  if (customFeatsStr) {
+    customFeatsStr.split(',').forEach(f => {
+      const trimmed = f.trim();
+      if (trimmed && !selectedFeatures.includes(trimmed)) {
+        selectedFeatures.push(trimmed);
+      }
+    });
+  }
+
   // Call mock database function to save
   mgDB.addUserCar({
     name: brand + ' ' + model,
@@ -737,7 +791,7 @@ function submitListing() {
     image: firstPhotoBase64,
     city: city,
     desc: descNotes || `Clean and well maintained ${brand} ${model}. Modifications: ${mods || 'None'}.`,
-    features: ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry']
+    features: selectedFeatures.length > 0 ? selectedFeatures : ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry']
   });
 
   showToast('🎉 Listing submitted! Redirecting to dashboard...');
