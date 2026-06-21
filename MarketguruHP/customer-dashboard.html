@@ -550,6 +550,58 @@
     .toast.show {
       transform: translateY(0);
     }
+
+    @media(max-width: 768px) {
+      .topbar-inner {
+        flex-direction: column;
+        padding: 10px;
+        height: auto;
+        gap: 10px;
+      }
+      .topbar {
+        height: auto;
+        padding: 10px 0;
+      }
+      .topbar-actions {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .btn-back-site {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+      .btn-logout-header {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+      .welcome-row {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 16px;
+      }
+      .wishlist-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .card {
+        padding: 16px;
+      }
+    }
+
+    @media(max-width: 580px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .car-card {
+        flex-direction: column;
+      }
+      .car-img {
+        width: 100%;
+        height: 150px;
+      }
+    }
   </style>
 </head>
 

@@ -151,6 +151,75 @@
   /* TOAST */
   .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
   .toast.show{transform:translateY(0);}
+
+  .sidebar-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--charcoal);
+    padding: 4px 8px;
+    margin-right: 8px;
+    border-radius: 4px;
+  }
+  .sidebar-toggle:hover {
+    background: var(--silver);
+  }
+
+  /* Responsive styles */
+  @media(max-width: 992px) {
+    .sidebar {
+      left: -260px;
+      transition: left 0.3s ease;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+    .main {
+      margin-left: 0;
+    }
+    .sidebar-toggle {
+      display: block;
+    }
+    .topbar {
+      padding: 0 16px;
+    }
+    .topbar-search {
+      margin: 0 12px;
+    }
+    .grid2, .grid3 {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .pipeline {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media(max-width: 768px) {
+    .topbar-search {
+      display: none; /* Hide search bar on small screens to save space */
+    }
+    .pipeline {
+      grid-template-columns: 1fr;
+    }
+    .content {
+      padding: 16px;
+    }
+    .kpi-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media(max-width: 480px) {
+    .kpi-grid {
+      grid-template-columns: 1fr;
+    }
+    .topbar-actions a {
+      display: none; /* Hide View Site on very small screens */
+    }
+  }
 </style>
 </head>
 <body>
@@ -247,6 +316,7 @@
 <main class="main">
   <!-- TOPBAR -->
   <div class="topbar">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">☰</button>
     <div class="page-title" id="pageTitle">Dashboard</div>
     <div class="topbar-search">
       <span class="search-icon">🔍</span>
@@ -757,6 +827,26 @@
 
 <script src="../cars-data.js"></script>
 <script>
+// Sidebar Toggle handling
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebarToggle && sidebar) {
+    sidebarToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 992 && sidebar.classList.contains('active')) {
+        if (!sidebar.contains(e.target) && e.target !== sidebarToggle) {
+          sidebar.classList.remove('active');
+        }
+      }
+    });
+  }
+});
+
 // Mock DB variables
 const carsData = mgDB.getUsedCars().map(c => ({
   id: typeof c.id === 'number' && c.id < 1000 ? 'AD' + String(c.id).padStart(3, '0') : 'AD' + c.id,

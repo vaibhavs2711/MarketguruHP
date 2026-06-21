@@ -1245,10 +1245,167 @@
   .sb-right-text h4 { font-size: 13px; font-weight: 700; color: #fff; margin: 0; line-height: 1.2; white-space: nowrap; }
   .sb-right-text h4.yellow { color: var(--red); font-weight: 900; font-size: 16px; }
   
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 101;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
   @media(max-width: 1150px) {
     .sb-left-wrap, .sb-right-wrap { display: none; }
     .sb-links { flex-wrap: wrap; padding: 16px 0; gap: 10px; }
     .sb-divider { display: none; }
+  }
+
+  @media(max-width: 992px) {
+    .hero-scroll-container {
+      height: auto !important;
+    }
+    .hero {
+      position: relative !important;
+      top: 0 !important;
+      height: auto !important;
+      padding: 60px 20px;
+    }
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+    .hero-stats {
+      justify-content: center;
+    }
+    .hero-right {
+      order: -1;
+    }
+    .influencer-card {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+    .influencer-img-wrapper {
+      height: 380px;
+    }
+    #scrollCanvas {
+      max-height: 380px;
+    }
+  }
+
+  @media(max-width: 768px) {
+    .nav-main {
+      justify-content: space-between;
+      height: 70px;
+      position: relative;
+    }
+    .logo {
+      margin-right: 0;
+      height: 55px;
+    }
+    .logo img {
+      transform: scale(1.1) translateX(0);
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--charcoal);
+      padding: 20px;
+      gap: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      z-index: 99;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-actions {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: calc(70px + 200px);
+      left: 0;
+      right: 0;
+      background: var(--charcoal);
+      padding: 0 20px 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      z-index: 98;
+    }
+    .nav-links.active ~ .nav-actions {
+      display: flex;
+      position: static;
+      padding: 10px 0 0 0;
+      box-shadow: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    .search-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .btn-search {
+      width: 100%;
+    }
+
+    .cars-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .brands-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .dealer-promo-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .quick-links-split {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ql-divider {
+      display: none;
+    }
+  }
+
+  @media(max-width: 480px) {
+    .brands-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section-title {
+      font-size: 32px;
+    }
   }
 </style>
 </head>
@@ -1271,6 +1428,11 @@
       <div class="nav-actions">
         <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
       </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
@@ -1615,6 +1777,20 @@
 
   <script src="cars-data.js"></script>
   <script>
+    // Responsive Navbar Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      const navActions = document.querySelector('.nav-actions');
+      if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+          menuToggle.classList.toggle('active');
+          if (navLinks) navLinks.classList.toggle('active');
+          if (navActions) navActions.classList.toggle('active');
+        });
+      }
+    });
+
     function renderCars() {
       const grid = document.getElementById('featuredCars');
       const featured = mgDB.getUsedCars().slice(0, 8); // Grab up to 8 cars

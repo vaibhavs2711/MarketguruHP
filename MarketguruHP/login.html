@@ -543,6 +543,31 @@
       text-align: center;
     }
   }
+
+  @media(max-width: 480px) {
+    .login-perks {
+      grid-template-columns: 1fr;
+    }
+    .login-card {
+      padding: 24px;
+    }
+    .login-left-section h2 {
+      font-size: 28px;
+    }
+    .login-main-wrapper {
+      padding-top: 80px;
+    }
+    .login-logo {
+      height: 60px;
+    }
+    .footer-trust-badges {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-trust-badges div {
+      display: none !important; /* Hide separator lines */
+    }
+  }
 </style>
 </head>
 <body>

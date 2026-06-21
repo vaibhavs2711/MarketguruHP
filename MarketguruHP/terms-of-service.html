@@ -111,6 +111,107 @@
     .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
     .fbb-left { flex-direction: column; gap: 10px; }
   }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 101;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  @media(max-width: 768px) {
+    .nav-main {
+      justify-content: space-between;
+      height: 70px;
+      position: relative;
+    }
+    .logo {
+      margin-right: 0;
+      height: 55px;
+    }
+    .logo img {
+      transform: scale(1.1) translateX(0);
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--charcoal);
+      padding: 20px;
+      gap: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      z-index: 99;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-actions {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: calc(70px + 200px);
+      left: 0;
+      right: 0;
+      background: var(--charcoal);
+      padding: 0 20px 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      z-index: 98;
+    }
+    .nav-links.active ~ .nav-actions {
+      display: flex;
+      position: static;
+      padding: 10px 0 0 0;
+      box-shadow: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    .about-hero h1 {
+      font-size: 36px;
+    }
+    .main-inner {
+      margin: 40px auto;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .quick-links-split {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ql-divider {
+      display: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -129,6 +230,11 @@
     <div class="nav-actions">
       <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
     </div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
 
@@ -243,6 +349,20 @@
 </footer>
 
 <script>
+// Responsive Navbar Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navActions = document.querySelector('.nav-actions');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      if (navLinks) navLinks.classList.toggle('active');
+      if (navActions) navActions.classList.toggle('active');
+    });
+  }
+});
+
   // Dynamic login state update
   function checkLoginState() {
     const currentUser = localStorage.getItem('mg_current_user');
