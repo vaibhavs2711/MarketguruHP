@@ -900,20 +900,22 @@
         <td>${c.fuel || '—'}</td>
         <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>
         <td style="display:flex;gap:8px;align-items:center;">
-          <button class="action-btn action-edit" onclick="openEditModal(${c.id}, '${(c.name || '').replace(/'/g, "&apos;").replace(/[\r\n]+/g, " ")}', '${c.price}', '${c.km || ''}', '${(c.description || c.desc || '').replace(/'/g, "&apos;").replace(/[\r\n]+/g, " ").substring(0, 80)}')">✏️ Edit</button>
-          <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id}, '${(c.name || '').replace(/'/g, "&apos;").replace(/[\r\n]+/g, " ")}')">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
+          <button class="action-btn action-edit" onclick="openEditModal(${c.id})">✏️ Edit</button>
+          <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id})">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
         </td>
       </tr>
     `).join('');
     }
 
     /* --- Modal Handlers --- */
-    function openEditModal(carId, carName, currentPrice, currentKm, currentDesc) {
+    function openEditModal(carId) {
+      const car = mgDB.getCarById(carId);
+      if (!car) return;
       document.getElementById('editCarId').value = carId;
-      document.getElementById('editModalCarName').textContent = 'Editing: ' + carName;
-      document.getElementById('editPrice').value = currentPrice || '';
-      document.getElementById('editKm').value = currentKm || '';
-      document.getElementById('editDesc').value = currentDesc || '';
+      document.getElementById('editModalCarName').textContent = 'Editing: ' + car.name;
+      document.getElementById('editPrice').value = car.price || '';
+      document.getElementById('editKm').value = car.km || '';
+      document.getElementById('editDesc').value = car.description || car.desc || '';
       document.getElementById('editPriceModal').classList.add('show');
     }
 
@@ -947,9 +949,11 @@
       }
     }
 
-    function confirmRemoveListing(carId, carName) {
+    function confirmRemoveListing(carId) {
+      const car = mgDB.getCarById(carId);
+      if (!car) return;
       document.getElementById('removeCarId').value = carId;
-      document.getElementById('removeModalCarName').textContent = 'Removing: ' + carName;
+      document.getElementById('removeModalCarName').textContent = 'Removing: ' + car.name;
       document.getElementById('confirmRemoveModal').classList.add('show');
     }
 
