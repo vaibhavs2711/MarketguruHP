@@ -900,8 +900,8 @@
         <td>${c.fuel || '—'}</td>
         <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>
         <td style="display:flex;gap:8px;align-items:center;">
-          <button class="action-btn action-edit" onclick="openEditModal(${c.id}, '${(c.name || '').replace(/'/g, "&apos;")}', '${c.price}', '${c.km || ''}', '${(c.description || c.desc || '').replace(/'/g, "&apos;").substring(0, 80)}')">✏️ Edit</button>
-          <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id}, '${(c.name || '').replace(/'/g, "&apos;")}')">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
+          <button class="action-btn action-edit" onclick="openEditModal(${c.id}, '${(c.name || '').replace(/'/g, "&apos;").replace(/[\r\n]+/g, " ")}', '${c.price}', '${c.km || ''}', '${(c.description || c.desc || '').replace(/'/g, "&apos;").replace(/[\r\n]+/g, " ").substring(0, 80)}')">✏️ Edit</button>
+          <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id}, '${(c.name || '').replace(/'/g, "&apos;").replace(/[\r\n]+/g, " ")}')">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
         </td>
       </tr>
     `).join('');
