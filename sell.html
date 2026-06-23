@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  if (!localStorage.getItem('mg_current_user')) {
+    window.location.replace('login.html?redirect=sell.html');
+  }
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell Your Car - Market Guru HP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;--muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
+  a{text-decoration:none;color:inherit;}
+  .navbar{background:var(--charcoal);position:sticky;top:0;z-index:100;}
+  .nav-main{max-width:1280px;margin:0 auto;display:flex;align-items:center;padding:0 20px;height:80px;gap:0;}
+  .logo{display:flex;align-items:center;margin-right:40px;height:60px;}
+  .logo img{height:100%;width:auto;display:block;}
+  .nav-links{display:flex;gap:4px;flex:1;}
+  .nav-links a{color:#ccd;font-size:14px;font-weight:500;padding:8px 14px;border-radius:6px;}
+  .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,0.08);}
+  .nav-links a.active{background:rgba(255,204,0,0.15);}
+  .btn-red{background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;border:none;}
+
+  /* HERO */
+  .sell-hero{background:linear-gradient(135deg,var(--charcoal),var(--navy));padding:60px 20px;}
+  .sell-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:60px;align-items:center;}
+  .sell-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;}
+  .sell-hero h1 em{color:var(--red);font-style:normal;}
+  .sell-hero p{color:#99aacc;font-size:16px;margin-bottom:32px;}
+  .why-sell{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .why-item{background:rgba(255,255,255,0.05);border-radius:10px;padding:16px;color:#fff;}
+  .why-icon{font-size:24px;margin-bottom:8px;}
+  .why-title{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .why-desc{font-size:12px;color:#778aaa;}
+
+  /* FORM */
+  .sell-form-box{background:var(--white);border-radius:16px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+  .form-title{font-size:22px;font-weight:700;margin-bottom:8px;}
+  .form-sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
+
+  /* STEPPER */
+  .stepper{display:flex;align-items:center;margin-bottom:28px;}
+  .step{display:flex;align-items:center;gap:8px;flex:1;}
+  .step-circle{width:28px;height:28px;border-radius:50%;background:var(--border);color:var(--muted);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step.active .step-circle{background:var(--red);color:#fff;}
+  .step.done .step-circle{background:var(--success);color:#fff;}
+  .step-label{font-size:11px;font-weight:600;color:var(--muted);}
+  .step.active .step-label{color:var(--text);}
+  .step-line{flex:1;height:2px;background:var(--border);margin:0 8px;}
+  .step.done .step-line{background:var(--success);}
+
+  /* FORM FIELDS */
+  .field-group{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;transition:border-color 0.2s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);}
+  .field textarea{resize:vertical;min-height:80px;}
+  .btn-next{width:100%;padding:14px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Inter',sans-serif;}
+  .btn-next:hover{background:var(--red-dark);}
+
+  /* PHOTO UPLOAD */
+  .upload-area{border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:14px;}
+  .upload-area:hover{border-color:var(--red);background:#fff5f5;}
+  .upload-icon{font-size:40px;margin-bottom:10px;}
+  .upload-text{font-size:14px;font-weight:600;margin-bottom:4px;}
+  .upload-sub{font-size:12px;color:var(--muted);}
+  .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+  .photo-thumb{aspect-ratio:4/3;border-radius:8px;background:var(--silver);display:flex;align-items:center;justify-content:center;font-size:24px;border:1.5px solid var(--border);cursor:pointer;}
+
+  /* VALUATION RESULT */
+  .valuation-result{background:linear-gradient(135deg,var(--charcoal),var(--navy));border-radius:12px;padding:28px;color:#fff;text-align:center;margin-bottom:16px;display:none;}
+  .valuation-result.show{display:block;}
+  .val-range{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:800;color:var(--red);margin:12px 0;}
+  .val-label{font-size:13px;color:#99aacc;}
+
+  /* PAGE CONTENT */
+  .page-content{max-width:1100px;margin:0 auto;padding:60px 20px;}
+  .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;}
+  .how-step{text-align:center;padding:24px;}
+  .how-num{width:48px;height:48px;border-radius:50%;background:var(--red);color:#1A1A2E;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+  .how-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+  .how-desc{font-size:13px;color:var(--muted);}
+
+  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
+  .toast.show{transform:translateY(0);}
+
+  /* FOOTER */
+  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 85px; }
+  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
+  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
+  
+  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+  .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
+  .footer-col a:hover { color: var(--red); }
+  
+  .quick-links-split { display: flex; gap: 30px; }
+  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
+  .ql-col { display: flex; flex-direction: column; }
+
+  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
+  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
+  
+  .footer-bottom-bar { 
+    background: #333; 
+    border-radius: 40px; 
+    padding: 12px 24px; 
+    display: flex; justify-content: space-between; align-items: center;
+    color: #bbb; font-size: 13px; font-weight: 500;
+  }
+  .fbb-left { display: flex; align-items: center; gap: 16px; }
+  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
+  .fbb-socials { display: flex; gap: 12px; }
+  .fbb-socials a {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #fff; color: #111;
+    transition: all 0.3s ease;
+  }
+  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+  .fbb-socials svg { width: 16px !important; height: 16px !important; fill: currentColor; }
+  
+  .fbb-links { display: flex; gap: 8px; align-items: center; }
+  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
+  .fbb-links a:hover { color: var(--white); }
+  
+  @media(max-width: 800px) {
+    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
+    .fbb-left { flex-direction: column; gap: 10px; }
+  }
+
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
+  .btn-outline-white {
+    border: none; color: #1A1A2E;
+    padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; background: var(--red);
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+  }
+  .btn-outline-white:hover { 
+    background: var(--red-dark); 
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(255, 204, 0, 0.4); 
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 101;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  @media(max-width: 992px) {
+    .sell-hero-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .sell-hero h1 {
+      font-size: 38px;
+    }
+    .sell-form-box {
+      padding: 24px;
+    }
+  }
+
+  @media(max-width: 768px) {
+    .nav-main {
+      justify-content: space-between;
+      height: 70px;
+      position: relative;
+    }
+    .logo {
+      margin-right: 0;
+      height: 55px;
+    }
+    .logo img {
+      transform: scale(1.1) translateX(0);
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--charcoal);
+      padding: 20px;
+      gap: 12px;
+      box-shadow: none;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      z-index: 99;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-actions {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: 250px;
+      left: 0;
+      right: 0;
+      background: var(--charcoal);
+      padding: 10px 20px 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      z-index: 98;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      justify-content: center;
+    }
+    .nav-actions.active {
+      display: flex;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    .how-steps {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .quick-links-split {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ql-divider {
+      display: none;
+    }
+  }
+
+  @media(max-width: 580px) {
+    .why-sell {
+      grid-template-columns: 1fr;
+    }
+    .field-group {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .photo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media(max-width: 480px) {
+    .step-label {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-main">
+    <a href="index.html" class="logo" id="brand-logo">
+      <img src="logo.png" alt="Market Guru HP Logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">🏠 Home</a>
+      <a href="buy-cars.html">Buy Vehicle</a>
+      <a href="sell.html" class="active">Sell Vehicles</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions" id="nav-actions"></div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="sell-hero">
+  <div class="sell-hero-inner">
+    <div>
+      <h1>Sell Your Car<br>Get <em>Best Price</em><br>Guaranteed</h1>
+      <p>Free inspection, instant valuation, paperwork handled, payment within 24 hours.</p>
+      <div class="why-sell">
+        <div class="why-item">
+          <div class="why-icon">⚡</div>
+          <div class="why-title">Instant Valuation</div>
+          <div class="why-desc">Get price in under 60 seconds</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🛡️</div>
+          <div class="why-title">Free Inspection</div>
+          <div class="why-desc">Expert evaluation at your doorstep</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📋</div>
+          <div class="why-title">We Handle Paperwork</div>
+          <div class="why-desc">RC transfer & NOC, everything handled</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">💰</div>
+          <div class="why-title">Payment in 24hr</div>
+          <div class="why-desc">Direct bank transfer, no middleman</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELL FORM -->
+    <div class="sell-form-box">
+      <div class="form-title">List Your Car</div>
+      <div class="form-sub">Get instant valuation — takes just 2 minutes</div>
+
+      <div class="stepper">
+        <div class="step active" id="s1"><div class="step-circle">1</div><div class="step-label">Car Info</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="s2"><div class="step-circle">2</div><div class="step-label">Condition</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="s3"><div class="step-circle">3</div><div class="step-label">Photos</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="s4"><div class="step-circle">4</div><div class="step-label">Price</div></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="step1">
+        <div class="field" style="margin-bottom: 20px;">
+          <label>Seller Account Type *</label>
+          <select id="sellerType" onchange="toggleSellerTypeWarning()" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:8px; font-family:'Inter',sans-serif;">
+            <option value="private">Individual Seller (First listing will be free)</option>
+            <option value="dealer">Car Dealer Partner</option>
+          </select>
+          <div id="dealer-warn-text" style="display:none; margin-top:8px; font-size:12px; color:#B45309; background:#FFFBEB; padding:8px 12px; border-radius:6px; border:1px solid #FCD34D;">
+            ℹ️ Dealer partners can submit listings to show in their inventory.
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Brand *</label>
+            <select id="brand" onchange="loadModels()">
+              <option value="">Select Brand</option>
+              <option>Maruti Suzuki</option><option>Hyundai</option><option>Honda</option>
+              <option>Toyota</option><option>Tata</option><option>Mahindra</option>
+              <option>Kia</option><option>MG</option><option>Ford</option><option>Volkswagen</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Model *</label>
+            <select id="model"><option value="">Select Model</option></select>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Year *</label>
+            <select id="year">
+              <option value="">Select Year</option>
+              <option>2024</option><option>2023</option><option>2022</option>
+              <option>2021</option><option>2020</option><option>2019</option>
+              <option>2018</option><option>2017</option><option>2016</option><option>2015</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>KM Driven *</label>
+            <input type="number" placeholder="e.g. 35000" id="km">
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Fuel Type</label>
+            <select id="fuel">
+              <option>Petrol</option><option>Diesel</option><option>CNG</option><option>Electric</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Transmission</label>
+            <select id="trans"><option>Manual</option><option>Automatic</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Owner Number</label>
+          <select id="owner"><option>1st Owner</option><option>2nd Owner</option><option>3rd Owner</option></select>
+        </div>
+        <button class="btn-next" onclick="validateStep1()">Next: Condition →</button>
+      </div>
+
+      <!-- STEP 2 (hidden) -->
+      <div id="step2" style="display:none">
+        <div class="field">
+          <label>Overall Condition</label>
+          <select id="cond">
+            <option>Excellent – Like new, no issues</option>
+            <option>Good – Minor wear, no damage</option>
+            <option>Fair – Visible wear, minor scratches</option>
+            <option>Needs Work – Requires repair</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Any accidents?</label>
+          <select id="accidents"><option>No accidents</option><option>Minor accident (repaired)</option><option>Major accident (repaired)</option></select>
+        </div>
+        <div class="field">
+          <label>Modifications (if any)</label>
+          <input type="text" placeholder="e.g. CNG kit, alloy wheels..." id="mods">
+        </div>
+        <div class="field">
+          <label>Insurance Type</label>
+          <select id="insurance"><option>Comprehensive</option><option>Third Party</option><option>Expired</option></select>
+        </div>
+        <div class="field">
+          <label style="font-weight: 700; margin-bottom: 10px; color: var(--charcoal);">Select Car Features</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Airbags" style="width: auto; cursor: pointer;"> Airbags
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="ABS (Anti-lock Braking)" style="width: auto; cursor: pointer;"> ABS (Anti-lock Braking)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Sunroof" style="width: auto; cursor: pointer;"> Sunroof
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Alloy Wheels" style="width: auto; cursor: pointer;"> Alloy Wheels
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Touchscreen Infotainment" style="width: auto; cursor: pointer;"> Touchscreen Infotainment
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Reverse Parking Camera" style="width: auto; cursor: pointer;"> Reverse Camera
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Leather Seats" style="width: auto; cursor: pointer;"> Leather Seats
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Cruise Control" style="width: auto; cursor: pointer;"> Cruise Control
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Automatic Climate Control" style="width: auto; cursor: pointer;"> Auto Climate Control
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Power Steering" style="width: auto; cursor: pointer;"> Power Steering
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-transform: none;">
+              <input type="checkbox" name="car_features" value="Power Windows" style="width: auto; cursor: pointer;"> Power Windows
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Custom Features & Specs</label>
+          <input type="text" placeholder="e.g. LED Projector Headlamps, Ventilated Seats, Keyless Entry..." id="custom_features">
+        </div>
+        <div class="field">
+          <label>Additional Notes</label>
+          <textarea placeholder="Any other info buyers should know..." id="notes"></textarea>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn-next" style="background:transparent;border:1.5px solid var(--border);color:var(--text)" onclick="nextStep(1)">← Back</button>
+          <button class="btn-next" onclick="nextStep(3)">Next: Photos →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 (hidden) -->
+      <div id="step3" style="display:none">
+        <input type="file" id="carPhotosInput" multiple accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+        <div class="upload-area" onclick="triggerPhotoUpload()">
+          <div class="upload-icon" id="uploadStatusIcon">📸</div>
+          <div class="upload-text" id="uploadStatusText">Upload Car Photos</div>
+          <div class="upload-sub">Tap to add photos (Front, Rear, Interior, Engine)</div>
+        </div>
+        <div class="photo-grid">
+          <div class="photo-thumb" id="thumb-front" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Front</span></div>
+          <div class="photo-thumb" id="thumb-rear" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Rear</span></div>
+          <div class="photo-thumb" id="thumb-interior" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Interior</span></div>
+          <div class="photo-thumb" id="thumb-engine" onclick="triggerPhotoUpload()">📷<br><span style="font-size:10px">Engine</span></div>
+        </div>
+        <div class="field">
+          <label>Your Contact Number *</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" id="mobile">
+        </div>
+        <div class="field">
+          <label>City</label>
+          <select id="city">
+            <option>Vadodara</option><option>Ahmedabad</option><option>Surat</option>
+            <option>Rajkot</option><option>Gandhinagar</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn-next" style="background:transparent;border:1.5px solid var(--border);color:var(--text)" onclick="nextStep(2)">← Back</button>
+          <button class="btn-next" onclick="validateStep3()">Next: Pricing & Submit →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 - RESULT (hidden) -->
+      <div id="step4" style="display:none">
+        <div class="field">
+          <label>Your Asking Price (₹ Lakh) *</label>
+          <input type="number" step="0.05" placeholder="e.g. 5.20" id="askPrice">
+        </div>
+        <button class="btn-next" onclick="submitListing()">🚀 Submit Listing</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="page-content">
+  <div style="text-align:center">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800">How <span style="color:var(--red)">Selling</span> Works</h2>
+    <p style="color:var(--muted);margin-top:8px">Simple, transparent, and fast</p>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div class="how-title">Submit Details</div>
+      <div class="how-desc">Fill in your car info and get an instant price estimate</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div class="how-title">Free Inspection</div>
+      <div class="how-desc">Our expert visits you for a 150-point inspection</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div class="how-title">Get Best Offer</div>
+      <div class="how-desc">Receive a final offer based on inspection results</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">4</div>
+      <div class="how-title">Get Paid</div>
+      <div class="how-desc">Accept the offer and get money in your account within 24 hours</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col-brand">
+        <a href="index.html" class="logo" id="footer-brand-logo">
+          <img src="logo.png" alt="Market Guru HP Logo">
+        </a>
+        <div class="footer-copyright">
+          © 2006 - 2026 Market Guru HP.<br>
+          All rights reserved in favour of Market Guru HP.
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick guide links</h4>
+        <div class="quick-links-split">
+          <div class="ql-col">
+            <a href="buy-cars.html">Buy Vehicle</a>
+            <a href="sell.html">Sell Vehicles</a>
+          </div>
+          <div class="ql-divider"></div>
+          <div class="ql-col">
+            <a href="about.html">About us</a>
+            <a href="login.html">Account</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
+        </div>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <a href="tel:08600004513">08600004513</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom-bar">
+      <div class="fbb-left">
+        <div class="fbb-connect-text">Connect with us :</div>
+        <div class="fbb-socials">
+          <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.79 9.79 0 0 0-6.979-2.88c-5.439 0-9.865 4.37-9.87 9.8-.001 1.774.475 3.503 1.378 5.027L1.993 21.5l5.59-1.464c-.305-.186-.612-.372-.936-.882zM17.15 14.54c-.28-.14-1.65-.81-1.902-.9-.253-.09-.438-.14-.623.14-.184.28-.714.9-.876 1.09-.162.19-.323.21-.603.07-1.125-.56-1.96-1.03-2.67-2.24-.26-.45-.06-.7.14-.9.18-.18.4-.47.6-.7.2-.23.27-.38.4-.64.13-.26.07-.49-.03-.7-.1-.21-.87-2.1-1.2-2.88-.31-.77-.64-.67-.88-.68-.22-.01-.48-.01-.73-.01-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22s1.38 3.73 1.58 3.99c.2.26 2.72 4.15 6.59 5.82.92.4 1.64.64 2.2.82.93.3 1.77.26 2.44.16.74-.11 2.28-.93 2.6-1.83.32-.9.32-1.67.22-1.83-.09-.16-.35-.26-.63-.4z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="fbb-links">
+        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="cars-data.js"></script>
+<script>
+// Responsive Navbar Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navActions = document.querySelector('.nav-actions');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      if (navLinks) navLinks.classList.toggle('active');
+      if (navActions) navActions.classList.toggle('active');
+    });
+  }
+});
+
+const models = {'Maruti Suzuki':['Swift','Baleno','Alto','Dzire','Brezza'],'Hyundai':['i20','Creta','Venue','Verna'],'Honda':['City','Amaze','Jazz'],'Toyota':['Innova','Fortuner','Glanza'],'Tata':['Nexon','Harrier','Altroz'],'Mahindra':['XUV300','Thar','Bolero'],'Kia':['Seltos','Sonet'],'MG':['Hector','ZS EV']};
+function loadModels() {
+  const b = document.getElementById('brand').value;
+  const m = document.getElementById('model');
+  m.innerHTML = '<option value="">Select Model</option>';
+  (models[b]||[]).forEach(v=>{const o=document.createElement('option');o.textContent=v;m.appendChild(o);});
+}
+let currentStep = 1;
+function nextStep(n) {
+  document.getElementById('step'+currentStep).style.display='none';
+  document.getElementById('s'+currentStep).classList.remove('active');
+  if(currentStep<n) document.getElementById('s'+currentStep).classList.add('done');
+  currentStep=n;
+  document.getElementById('step'+n).style.display='block';
+  document.getElementById('s'+n).classList.add('active');
+}
+
+function validateStep1() {
+  const brand = document.getElementById('brand').value;
+  const model = document.getElementById('model').value;
+  const year = document.getElementById('year').value;
+  const km = document.getElementById('km').value;
+  
+  if (!brand || !model || !year || !km) {
+    showToast('⚠️ Please fill all required fields!');
+    return;
+  }
+  nextStep(2);
+}
+
+let uploadedPhotos = [];
+let firstPhotoBase64 = '';\nlet allPhotosBase64 = [];
+
+function triggerPhotoUpload() {
+  document.getElementById('carPhotosInput').click();
+}
+
+function handlePhotoUpload(event) {
+  const files = Array.from(event.target.files);
+  if (files.length === 0) return;
+  
+  uploadedPhotos = files;
+  allPhotosBase64 = []; // Reset on new upload
+  showToast('📸 ' + files.length + ' photo(s) selected!');
+  document.getElementById('uploadStatusIcon').textContent = '✅';
+  document.getElementById('uploadStatusText').textContent = files.length + ' Photo(s) Selected';
+
+  const thumbIds = ['thumb-front', 'thumb-rear', 'thumb-interior', 'thumb-engine'];
+  const labels = ['Front', 'Rear', 'Interior', 'Engine'];
+  
+  // Create an array to maintain order
+  let tempBase64 = new Array(Math.min(files.length, 4));
+  let loadedCount = 0;
+  
+  files.forEach((file, i) => {
+    if (i >= thumbIds.length) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const thumb = document.getElementById(thumbIds[i]);
+      thumb.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" alt="${labels[i]}">`;
+      
+      tempBase64[i] = e.target.result;
+      loadedCount++;
+      
+      if (loadedCount === Math.min(files.length, 4)) {
+         allPhotosBase64 = tempBase64;
+         firstPhotoBase64 = tempBase64[0];
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Fill remaining thumbs with emoji if fewer than 4 photos
+  const emojis = ['🚗', '🍑', '🪑', '⚙️'];
+  for (let i = files.length; i < thumbIds.length; i++) {
+    document.getElementById(thumbIds[i]).innerHTML = emojis[i] + '<br><span style="font-size:10px">' + labels[i] + '</span>';
+  }
+}
+
+function mockPhotoUpload() {
+  showToast('📸 Photos uploaded successfully!');
+  document.getElementById('uploadStatusIcon').textContent = '✅';
+  document.getElementById('uploadStatusText').textContent = 'Photos Attached';
+  document.getElementById('thumb-front').innerHTML = '🚗';
+  document.getElementById('thumb-rear').innerHTML = '🍑';
+  document.getElementById('thumb-interior').innerHTML = '🪑';
+  document.getElementById('thumb-engine').innerHTML = '⚙️';
+}
+
+function validateStep3() {
+  const mobile = document.getElementById('mobile').value.trim();
+  if (!mobile) {
+    showToast('⚠️ Contact number is required!');
+    return;
+  }
+  
+  // Save mobile for session (always update from form for sell flow)
+  const existingUser = localStorage.getItem('mg_current_user');
+  if (!existingUser) {
+    localStorage.setItem('mg_current_user', 'Guest User');
+  }
+  localStorage.setItem('mg_current_user_mobile', mobile);
+
+  // Leave input blank so the user enters price directly
+  document.getElementById('askPrice').value = '';
+
+  nextStep(4);
+}
+
+function submitListing() {
+  const ask = parseFloat(document.getElementById('askPrice').value);
+  if (!ask || ask <= 0) {
+    showToast('⚠️ Please enter a valid asking price!');
+    return;
+  }
+
+  const brand = document.getElementById('brand').value;
+  const model = document.getElementById('model').value;
+  const year = parseInt(document.getElementById('year').value);
+  const kmVal = parseInt(document.getElementById('km').value);
+  const fuel = document.getElementById('fuel').value;
+  const trans = document.getElementById('trans').value;
+  const owner = document.getElementById('owner').value;
+  const city = document.getElementById('city').value;
+  const descNotes = document.getElementById('notes').value.trim();
+  const mods = document.getElementById('mods').value.trim();
+
+  const isDealerSelect = document.getElementById('sellerType').value === 'dealer';
+  const loggedMobile = localStorage.getItem('mg_current_user_mobile') || '';
+  
+  if (isDealerSelect) {
+    localStorage.setItem('mg_current_user_type', 'dealer'); // convert if they chose dealer
+  } else if (loggedMobile) {
+    const userCars = mgDB.getUserListings(loggedMobile);
+    if (userCars && userCars.length >= 1) {
+      showToast('⚠️ Individual sellers are restricted to exactly 1 car listing!');
+      return;
+    }
+  }
+
+  // Collect features & specifications
+  const selectedFeatures = Array.from(document.querySelectorAll('input[name="car_features"]:checked')).map(cb => cb.value);
+  const customFeatsStr = document.getElementById('custom_features').value.trim();
+  if (customFeatsStr) {
+    customFeatsStr.split(',').forEach(f => {
+      const trimmed = f.trim();
+      if (trimmed && !selectedFeatures.includes(trimmed)) {
+        selectedFeatures.push(trimmed);
+      }
+    });
+  }
+
+  // Call mock database function to save
+  mgDB.addUserCar({
+    name: brand + ' ' + model,
+    year: year,
+    price: ask.toFixed(2),
+    priceN: Math.round(ask * 100000),
+    km: kmVal.toLocaleString('en-IN'),
+    fuel: fuel,
+    trans: trans,
+    owner: owner,
+    color: '#e8eef5',
+    emoji: '🚗',
+    image: allPhotosBase64.length > 0 ? JSON.stringify(allPhotosBase64) : '',
+    city: city,
+    desc: descNotes || `Clean and well maintained ${brand} ${model}. Modifications: ${mods || 'None'}.`,
+    features: selectedFeatures.length > 0 ? selectedFeatures : ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry']
+  });
+
+  showToast('🎉 Listing submitted! Redirecting to dashboard...');
+  setTimeout(()=>window.location='customer-dashboard.html', 2200);
+}
+
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function toggleSellerTypeWarning() {
+  const isDealer = document.getElementById('sellerType').value === 'dealer';
+  document.getElementById('dealer-warn-text').style.display = isDealer ? 'block' : 'none';
+}
+
+function checkLoginState() {
+  const currentUser = localStorage.getItem('mg_current_user');
+  const loggedType = localStorage.getItem('mg_current_user_type') || 'private';
+  const loggedMobile = localStorage.getItem('mg_current_user_mobile') || '';
+  
+  const typeSelect = document.getElementById('sellerType');
+  if (typeSelect) {
+    typeSelect.value = loggedType;
+    toggleSellerTypeWarning();
+  }
+
+  const navActions = document.getElementById('nav-actions');
+  if (navActions) {
+    if (currentUser) {
+      let initials = '👤';
+      try {
+        const userObj = JSON.parse(currentUser);
+        const name = userObj.name || '';
+        if (name) {
+          const parts = name.split(' ');
+          if (parts.length > 1) {
+            initials = (parts[0][0] + parts[1][0]).toUpperCase();
+          } else {
+            initials = name.substring(0, 2).toUpperCase();
+          }
+        }
+      } catch(e) {}
+      navActions.innerHTML = `
+        <a href="customer-dashboard.html" title="My Profile" style="text-decoration:none; display:block;">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 204, 0, 0.15); border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--red); text-transform: uppercase; transition: all 0.2s;">
+            ${initials}
+          </div>
+        </a>
+      `;
+    } else {
+      navActions.innerHTML = `
+        <a href="login.html" style="text-decoration:none;"><button class="btn-outline-white">Login</button></a>
+      `;
+    }
+  }
+  
+  if (currentUser) {
+    if (loggedType === 'private' && loggedMobile) {
+      const userCars = mgDB.getUserListings(loggedMobile);
+      if (userCars && userCars.length >= 1) {
+        showToast('ℹ️ Individual sellers are limited to exactly 1 active car listing.');
+      }
+    }
+    const loginLinks = document.querySelectorAll('a[href="login.html"]');
+    loginLinks.forEach(link => {
+      link.href = 'customer-dashboard.html';
+      const btn = link.querySelector('button');
+      if (btn) {
+        if (btn.textContent.trim().toLowerCase() === 'login') {
+          btn.textContent = 'Dashboard';
+        }
+      } else {
+        if (link.textContent.includes('Login / Register')) {
+          link.textContent = 'My Dashboard';
+        }
+      }
+    });
+  }
+}
+checkLoginState();
+</script>
+</body>
+</html>

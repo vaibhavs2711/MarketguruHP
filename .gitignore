@@ -4,3 +4,13 @@ __pycache__/
 *.pyd
 .ipynb_checkpoints/
 .DS_Store
+node_modules/
+frames/
+.env
+.venv/
+env/
+venv/
+result_0.mp4
+shrey_car_dataset.csv
+script_dump.txt
+generated_html.txt
