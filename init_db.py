@@ -1,6 +1,6 @@
 import mysql.connector
 import hashlib
-from config import MYSQLHOST, MYSQLPORT, MYSQLUSER, MYSQLPASSWORD, MYSQLDATABASE
+from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
 
 def get_hash(password):
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -8,10 +8,10 @@ def get_hash(password):
 def init_database():
     # Connect without database first to create it
     conn = mysql.connector.connect(
-        host=MYSQLHOST,
-        port=MYSQLPORT,
-        user=MYSQLUSER,
-        password=MYSQLPASSWORD
+        host=DB_HOST,
+        port=DB_PORT,
+        user=DB_USER,
+        password=DB_PASSWORD
     )
     cursor = conn.cursor()
     cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
@@ -21,11 +21,11 @@ def init_database():
 
     # Reconnect to the database
     conn = mysql.connector.connect(
-        host=MYSQLHOST,
-        port=MYSQLPORT,
-        user=MYSQLUSER,
-        password=MYSQLPASSWORD,
-        database=MYSQLDATABASE
+        host=DB_HOST,
+        port=DB_PORT,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
     )
     cursor = conn.cursor()
 
