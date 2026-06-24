@@ -1,6 +1,6 @@
 import mysql.connector
 import hashlib
-from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
+from config import MYSQLHOST, MYSQLPORT, MYSQLUSER, MYSQLPASSWORD, MYSQLDATABASE
 
 def get_hash(password):
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
