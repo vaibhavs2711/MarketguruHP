@@ -8,10 +8,10 @@ def get_hash(password):
 def init_database():
     # Connect without database first to create it
     conn = mysql.connector.connect(
-        host=DB_HOST,
-        port=DB_PORT,
-        user=DB_USER,
-        password=DB_PASSWORD
+        host=MYSQLHOST,
+        port=MYSQLPORT,
+        user=MYSQLUSER,
+        password=MYSQLPASSWORD
     )
     cursor = conn.cursor()
     cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
