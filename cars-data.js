@@ -63,7 +63,9 @@ const DEFAULT_STAFF = [
 ];
 
 // Database API connector settings
-const apiBase = 'http://localhost:5000/api';
+const apiBase = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
+    ? 'http://localhost:5000/api' 
+    : '/api';
 let isBackendConnected = false;
 
 // Local Memory State Cache loaded from Backend or local storage
