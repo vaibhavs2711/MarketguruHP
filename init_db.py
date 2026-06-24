@@ -21,11 +21,11 @@ def init_database():
 
     # Reconnect to the database
     conn = mysql.connector.connect(
-        host=DB_HOST,
-        port=DB_PORT,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME
+        host=MYSQLHOST,
+        port=MYSQLPORT,
+        user=MYSQLUSER,
+        password=MYSQLPASSWORD,
+        database=MYSQLDATABASE
     )
     cursor = conn.cursor()
 
