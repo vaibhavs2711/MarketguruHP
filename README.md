@@ -97,3 +97,4 @@ The Flask backend exposes the following REST API endpoints:
 *   `POST /api/subscription/activate` - Activates dealer partner subscription
 *   `POST /api/subscription/cancel` - Cancels dealer partner subscription
 *   `POST /api/wishlist/toggle` - Saves or removes a vehicle from customer wishlist
+
