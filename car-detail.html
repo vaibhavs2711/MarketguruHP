@@ -256,6 +256,16 @@
         <div>RTO: <span id="rRto">Vadodara (GJ06)</span></div>
       </div>
       
+      <div style="margin: auto 0; padding: 16px; background: rgba(255, 204, 0, 0.1); border-radius: 12px; border: 1px solid rgba(255, 204, 0, 0.3); text-align: left;">
+        <div style="font-weight: 800; color: var(--navy); margin-bottom: 8px; font-size: 14px; display:flex; align-items:center; gap:6px;">
+          <span style="font-size:18px;">🛡️</span> Market Guru HP Assured
+        </div>
+        <div style="font-size: 13px; color: var(--navy); display: flex; flex-direction: column; gap: 6px; font-weight: 500;">
+          <div>✓ 100% Verified Listing</div>
+          <div>✓ Transparent & Hassle Free Process</div>
+        </div>
+      </div>
+      
       <div style="margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; gap: 12px; justify-content: center;">
           <div class="ql-btn" style="flex:1; justify-content:center;" onclick="toggleWishlistDetail()">❤️ Save to Wishlist</div>
@@ -266,6 +276,11 @@
         <button class="btn-primary" id="btnGetSeller" style="width:100%; padding:14px; background:var(--blue); color:white; font-size:16px; font-weight:700; border:none; border-radius:8px; cursor:pointer;" onclick="openLeadModal()">
           Get Seller Details
         </button>
+
+        <div id="contactRevealedArea" style="display:none; flex-direction:column; gap:12px;">
+          <button class="btn-call" id="btnCall" style="background:#22C55E; color:white; width:100%; padding:14px; font-size:15px; font-weight:700; border:none; border-radius:8px; cursor:pointer;">📞 Call Now: </button>
+          <button class="btn-whatsapp" id="btnWa" style="background:#22C55E; color:white; width:100%; padding:14px; font-size:15px; font-weight:700; border:none; border-radius:8px; cursor:pointer;">💬 WhatsApp: </button>
+        </div>
       </div>
     </div>
   </div>
@@ -287,8 +302,6 @@
       <div class="tabs">
         <div class="tab active" onclick="switchTab('overview')">Overview</div>
         <div class="tab" onclick="switchTab('features')">Specs & Features</div>
-        <div class="tab" style="pointer-events:none; opacity:0.5;">Variants</div>
-        <div class="tab" style="pointer-events:none; opacity:0.5;">Inspection Report</div>
       </div>
 
       <!-- Overview Tab -->
@@ -345,27 +358,6 @@
 
   <!-- RIGHT COLUMN 2 -->
   <div class="right-col">
-
-    <!-- Dealer Card -->
-    <div class="dealer-card">
-      <div class="dc-header">
-        <div class="dc-avatar">👨‍💼</div>
-        <div>
-          <div class="dc-name">Market Guru HP Vadodara</div>
-          <div class="dc-rating">⭐ 4.9 (87 Reviews) | ✓ Certified Dealer</div>
-        </div>
-      </div>
-      
-      <div class="dc-list" style="padding-bottom:0;">
-        <div class="dc-item">✓ 100% Verified Dealer</div>
-        <div class="dc-item">✓ Transparent & Hassle Free Process</div>
-      </div>
-      
-      <div id="contactRevealedArea" style="display:none; flex-direction:column; gap:12px; margin-top:24px;">
-        <button class="btn-call" id="btnCall" style="background:#22C55E; color:white; width:100%; padding:14px; font-size:15px; font-weight:700; border:none; border-radius:8px; cursor:pointer;">📞 Call Now: </button>
-        <button class="btn-whatsapp" id="btnWa" style="background:#22C55E; color:white; width:100%; padding:14px; font-size:15px; font-weight:700; border:none; border-radius:8px; cursor:pointer;">💬 WhatsApp: </button>
-      </div>
-    </div>
 
     <!-- Quick Links Card -->
     <div class="ql-card">
