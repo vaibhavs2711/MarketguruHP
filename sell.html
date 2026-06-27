@@ -1517,54 +1517,108 @@
         const inp = document.getElementById('input-container');
         inp.style.display = 'block';
 
-        let yOpts = '<option value="">Select Year</option>';
-        for(let y=2026; y>=2010; y--) {
-           yOpts += `<option value="${y}" ${sellData.year == y ? 'selected' : ''}>${y}</option>`;
+        let yOpts = '';
+        for(let y=2026; y>=2000; y--) {
+           yOpts += `<div class="cd-item ${sellData.year == y ? 'selected' : ''}" onclick="selectCustomDropdown('year', '${y}')">${y}</div>`;
         }
 
-        let oOpts = '<option value="">Select No. of Owners</option>';
+        let oOpts = '';
         ['1st Owner', '2nd Owner', '3rd Owner', '4th Owner', '4+ Owner'].forEach(o => {
-           oOpts += `<option value="${o}" ${sellData.owner === o ? 'selected' : ''}>${o}</option>`;
+           oOpts += `<div class="cd-item ${sellData.owner === o ? 'selected' : ''}" onclick="selectCustomDropdown('owner', '${o}')">${o}</div>`;
         });
 
         inp.innerHTML = `
           <style>
-            .custom-dropdown {
-              width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-weight: 600; color: var(--charcoal); appearance: none; background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 16px center/16px; background-color: var(--white); cursor: pointer; transition: all 0.2s;
+            .cd-wrapper { position: relative; width: 100%; user-select: none; z-index: 10; }
+            .cd-box { 
+              padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 15px; font-weight: 600; color: var(--charcoal); 
+              background: var(--white) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 16px center/16px; 
+              cursor: pointer; transition: all 0.2s ease;
             }
-            .custom-dropdown:focus { outline: none; border-color: var(--primary); }
+            .cd-box.open { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(26,61,143,0.1); background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a3d8f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e"); }
+            .cd-list {
+              position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: var(--white); border-radius: 10px; border: 1px solid var(--border);
+              box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-height: 250px; overflow-y: auto; z-index: 100; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s ease;
+            }
+            .cd-list.open { opacity: 1; visibility: visible; transform: translateY(0); }
+            .cd-item { padding: 12px 16px; font-size: 14.5px; color: var(--charcoal); cursor: pointer; transition: background 0.2s ease; }
+            .cd-item:hover { background: #f8f9fa; }
+            .cd-item.selected { background: rgba(26,61,143,0.05); font-weight: 600; color: var(--primary); }
+            .cd-list::-webkit-scrollbar { width: 6px; }
+            .cd-list::-webkit-scrollbar-track { background: transparent; }
+            .cd-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
           </style>
-          <div style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
-            <div>
+          <div style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+            <div class="cd-wrapper" id="cd-year-wrapper">
               <label style="display:block; margin-bottom: 8px; font-weight: 600; color: var(--charcoal);">Registration Year</label>
-              <select id="year-select" class="custom-dropdown" onchange="window.checkStep4()">
+              <div class="cd-box" id="cd-year-box" onclick="toggleCustomDropdown('year')">
+                ${sellData.year || 'Select Year'}
+              </div>
+              <div class="cd-list" id="cd-year-list">
                 ${yOpts}
-              </select>
+              </div>
             </div>
-            <div>
+            
+            <div class="cd-wrapper" id="cd-owner-wrapper">
               <label style="display:block; margin-bottom: 8px; font-weight: 600; color: var(--charcoal);">Number of Owners</label>
-              <select id="owner-select" class="custom-dropdown" onchange="window.checkStep4()">
+              <div class="cd-box" id="cd-owner-box" onclick="toggleCustomDropdown('owner')">
+                ${sellData.owner || 'Select No. of Owners'}
+              </div>
+              <div class="cd-list" id="cd-owner-list">
                 ${oOpts}
-              </select>
+              </div>
             </div>
           </div>
         `;
 
-        window.checkStep4 = function() {
-          const y = document.getElementById('year-select').value;
-          const o = document.getElementById('owner-select').value;
-          const btn = document.getElementById('btn-continue');
-          if (y && o) {
-            sellData.year = y;
-            sellData.owner = o;
-            btn.disabled = false;
-            btn.style.display = 'block';
-          } else {
-            btn.disabled = true;
-          }
+        window.toggleCustomDropdown = function(type) {
+           const list = document.getElementById('cd-' + type + '-list');
+           const box = document.getElementById('cd-' + type + '-box');
+           
+           // Close others
+           if (type === 'year') {
+              document.getElementById('cd-owner-list').classList.remove('open');
+              document.getElementById('cd-owner-box').classList.remove('open');
+           } else {
+              document.getElementById('cd-year-list').classList.remove('open');
+              document.getElementById('cd-year-box').classList.remove('open');
+           }
+           
+           list.classList.toggle('open');
+           box.classList.toggle('open');
         };
 
-        window.checkStep4();
+        window.selectCustomDropdown = function(type, val) {
+           sellData[type] = val;
+           document.getElementById('cd-' + type + '-box').textContent = val;
+           
+           const items = document.getElementById('cd-' + type + '-list').querySelectorAll('.cd-item');
+           items.forEach(el => {
+              if (el.textContent === val) el.classList.add('selected');
+              else el.classList.remove('selected');
+           });
+           
+           document.getElementById('cd-' + type + '-list').classList.remove('open');
+           document.getElementById('cd-' + type + '-box').classList.remove('open');
+           
+           if (sellData.year && sellData.owner) {
+             setTimeout(() => {
+                nextStep();
+             }, 250);
+           }
+        };
+
+        if (!window.customDropdownListenerAdded) {
+          document.addEventListener('click', function(event) {
+            if (!event.target.closest('.cd-wrapper')) {
+              const dropdowns = document.querySelectorAll('.cd-list');
+              dropdowns.forEach(dd => dd.classList.remove('open'));
+              const boxes = document.querySelectorAll('.cd-box');
+              boxes.forEach(bx => bx.classList.remove('open'));
+            }
+          });
+          window.customDropdownListenerAdded = true;
+        }
       }
       else if (stepNum === 5) {
         document.getElementById('grid-container').style.display = 'none';
