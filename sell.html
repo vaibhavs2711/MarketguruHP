@@ -14,16 +14,20 @@
   <style>
     :root {
       --red: #FFCC00;
-      --red-dark: #F59E0B;
-      --charcoal: #1A1A2E;
-      --silver: #F9FAFB;
+      --red-dark: #E6B800;
+      --charcoal: #1A3D8F;
+      --navy: #0D2B6B;
+      --steel: #2A5CC7;
+      --silver: #F0F4F8;
       --white: #FFFFFF;
-      --text: #1F2937;
+      --text: #1A1A2E;
       --muted: #6B7A99;
-      --border: #E5E7EB;
-      --primary: #2563EB;
-      --primary-light: #EFF6FF;
-      --primary-hover: #DBEAFE;
+      --border: #DDE3EE;
+      --success: #A3D1B1;
+      --blue-light: #E8F0FE;
+      --primary: #1A3D8F;
+      --primary-light: #E8F0FE;
+      --primary-hover: #DDE3EE;
     }
 
     * {
@@ -45,10 +49,12 @@
 
     /* NAVBAR */
     .navbar {
-      background: var(--charcoal);
+      background: var(--white);
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border-bottom: 2px solid var(--border);
     }
 
     .nav-main {
@@ -66,6 +72,9 @@
       align-items: center;
       margin-right: 40px;
       height: 60px;
+      background: #10172A;
+      padding: 6px 16px;
+      border-radius: 8px;
     }
 
     .logo img {
@@ -85,10 +94,10 @@
     }
 
     .nav-links a {
-      color: #ccd;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 8px 14px;
+      color: var(--charcoal);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 8px 16px;
       border-radius: 6px;
       transition: all 0.2s;
       height: auto;
@@ -96,27 +105,26 @@
       border-bottom: none;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
+    .nav-links a:hover {
+      color: var(--charcoal);
+      background: rgba(26, 61, 143, 0.08);
     }
 
     .nav-links a.active {
-      background: rgba(255, 204, 0, 0.15);
+      color: var(--charcoal);
+      background: rgba(255, 204, 0, 0.2);
     }
 
     .btn-outline-white {
-      border: none;
-      color: #1A1A2E;
-      padding: 8px 18px;
-      border-radius: 6px;
-      font-size: 13px;
+      border: 2px solid var(--charcoal);
+      color: var(--charcoal);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
-      background: var(--red);
-      box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+      background: transparent;
     }
 
     .btn-outline-white:hover {
@@ -613,6 +621,25 @@
       transform: translateY(0);
     }
 
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 101;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--charcoal);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
     @media(max-width: 1024px) {
       .portal-box {
         grid-template-columns: 1fr;
@@ -625,8 +652,68 @@
         display: none;
       }
 
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-main {
+        justify-content: space-between;
+        height: 70px;
+        position: relative;
+      }
+
+      .logo {
+        margin-right: 0;
+        height: 55px;
+      }
+
+      .logo img {
+        transform: scale(1.1) translateX(0);
+      }
+
       .nav-links {
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 20px;
+        gap: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-top: 1px solid var(--border);
+        z-index: 99;
+        align-items: stretch;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-actions {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 290px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 10px 20px 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        z-index: 98;
+        border-top: 1px solid var(--border);
+        justify-content: center;
+      }
+      .nav-actions.active {
+        display: flex;
+      }
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
       }
     }
 
@@ -861,9 +948,7 @@
       color: var(--white);
     }
 
-    .menu-toggle {
-      display: none;
-    }
+
 
 
     /* PHOTO UPLOAD STEP */
@@ -1103,6 +1188,7 @@
         <a href="buy-cars.html">Buy Vehicle</a>
         <a href="sell.html" class="active">Sell Vehicles</a>
         <a href="about.html">About</a>
+        <a href="compare.html">⚖️ Compare</a>
       </div>
       <div class="nav-actions" id="nav-actions"></div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">

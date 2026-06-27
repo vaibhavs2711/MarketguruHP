@@ -7,18 +7,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;
-    --steel:#2A3A5C;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;
-    --muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;
+    --red: #FFCC00;
+    --red-dark: #E6B800;
+    --charcoal: #1A3D8F;
+    --navy: #0D2B6B;
+    --steel: #2A5CC7;
+    --silver: #F0F4F8;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #6B7A99;
+    --border: #DDE3EE;
+    --success: #A3D1B1;
+    --blue-light: #E8F0FE;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
   a{text-decoration:none;color:inherit;}
 
   .navbar {
-    background: var(--charcoal);
+    background: var(--white);
     position: sticky; top: 0; z-index: 9999;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-bottom: 2px solid var(--border);
   }
 
   .nav-main {
@@ -30,23 +40,24 @@
     display: flex;
     align-items: center;
     margin-right: 40px;
-    height: 75px;
+    height: 64px;
+    background: #10172A;
+    padding: 6px 16px;
+    border-radius: 8px;
   }
   .logo img {
     height: 100%;
     width: auto;
     display: block;
-    transform: scale(1.35) translateX(-12px);
-    transform-origin: left center;
   }
   .nav-links { display: flex; gap: 6px; flex: 1; }
   .nav-links a {
-    color: #eee; font-size: 16px; font-weight: 700;
+    color: var(--charcoal); font-size: 16px; font-weight: 700;
     padding: 8px 16px; border-radius: 6px;
     transition: all 0.2s;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.12); }
-  .nav-links a.active { background: rgba(255,204,0,0.25); }
+  .nav-links a:hover { color: var(--charcoal); background: rgba(26, 61, 143, 0.08); }
+  .nav-links a.active { color: var(--charcoal); background: rgba(255,204,0,0.2); }
   .btn-red {
     background: var(--red); color: #1A1A2E;
     padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 800;
@@ -249,7 +260,7 @@
     display: block;
     width: 25px;
     height: 3px;
-    background: var(--white);
+    background: var(--charcoal);
     transition: all 0.3s ease;
     border-radius: 2px;
   }
@@ -277,11 +288,11 @@
       top: 70px;
       left: 0;
       right: 0;
-      background: var(--charcoal);
+      background: var(--white);
       padding: 20px;
       gap: 12px;
-      box-shadow: none;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border-top: 1px solid var(--border);
       z-index: 99;
     }
     .nav-links.active {
@@ -294,11 +305,11 @@
       top: 250px;
       left: 0;
       right: 0;
-      background: var(--charcoal);
+      background: var(--white);
       padding: 10px 20px 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       z-index: 98;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid var(--border);
       justify-content: center;
     }
     .nav-actions.active {
@@ -675,6 +686,7 @@
       <a href="buy-cars.html" class="active">Buy Vehicle</a>
       <a href="sell.html">Sell Vehicles</a>
       <a href="about.html">About</a>
+      <a href="compare.html">⚖️ Compare</a>
     </div>
     <div class="nav-actions" id="nav-actions"></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
@@ -1010,6 +1022,12 @@
   </div>
 </footer>
 
+<div id="compare-bar" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:#fff;padding:14px 28px;border-radius:30px;box-shadow:0 8px 30px rgba(0,0,0,0.25);z-index:999;display:none;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.1);">
+  <span id="compare-bar-text" style="font-weight:700;font-size:14px;"></span>
+  <a href="compare.html" style="background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:20px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Compare Now &rarr;</a>
+  <button onclick="clearCompareBar()" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;padding:0 5px;">×</button>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="cars-data.js"></script>
@@ -1027,6 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navActions) navActions.classList.toggle('active');
     });
   }
+  updateCompareBar();
 });
 
 let allCars = [];
@@ -1153,6 +1172,9 @@ function renderCars() {
         <div class="car-action-buttons">
           <button class="btn-save" onclick="event.stopPropagation(); toggleSave(${c.id}, this)">
             <span>🤍</span> Save
+          </button>
+          <button class="btn-save" onclick="event.stopPropagation(); toggleCompare(${c.id}, event)" style="border-color:${isCompared(c.id) ? 'var(--charcoal)' : '#d1d5db'}; background:${isCompared(c.id) ? 'rgba(26,61,143,0.1)' : '#fff'}; color:${isCompared(c.id) ? 'var(--charcoal)' : '#4b5563'};">
+            ⚖️ ${isCompared(c.id) ? 'Added' : 'Compare'}
           </button>
           <button class="btn-view" onclick="event.stopPropagation(); window.location='car-detail.html?id=${c.id}'">
             <span>👁️</span> VIEW
@@ -1645,7 +1667,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fileName) {
           imgHtml = `<img src="logo_images/${fileName}" alt="${make.name}" style="width:20px;height:20px;object-fit:contain;margin-right:6px;" onerror="this.outerHTML='<span style=\\'font-size:16px; margin-right:6px;\\'>🚙</span>'">`;
         }
-
         const parentHtml = `
           <div class="tree-parent" onclick="toggleTree(this)">
             <div class="tree-parent-left">
@@ -1683,6 +1704,67 @@ document.addEventListener('DOMContentLoaded', () => {
       if(tc) tc.innerHTML = 'Error loading filters.';
     });
 });
+<<<<<<< HEAD
+function toggleCompare(id, e) {
+  if (e) e.stopPropagation();
+  let list = [];
+  try {
+    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+  } catch (err) {
+    list = [];
+  }
+  
+  if (list.includes(id)) {
+    list = list.filter(x => x !== id);
+    showToast('⚖️ Removed from comparison list');
+  } else {
+    if (list.length >= 3) {
+      showToast('⚠️ You can compare up to 3 vehicles at a time');
+      return;
+    }
+    list.push(id);
+    showToast('⚖️ Added to comparison list');
+  }
+  localStorage.setItem('mg_compare_list', JSON.stringify(list));
+  updateCompareBar();
+  renderCars();
+}
+
+function isCompared(id) {
+  try {
+    const list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+    return list.includes(id);
+  } catch (err) {
+    return false;
+  }
+}
+
+function updateCompareBar() {
+  const bar = document.getElementById('compare-bar');
+  const text = document.getElementById('compare-bar-text');
+  if (!bar) return;
+  
+  let list = [];
+  try {
+    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+  } catch (err) {
+    list = [];
+  }
+  
+  if (list.length > 0) {
+    bar.style.display = 'flex';
+    text.textContent = `⚖️ ${list.length} vehicle${list.length > 1 ? 's' : ''} selected for comparison`;
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function clearCompareBar() {
+  localStorage.setItem('mg_compare_list', JSON.stringify([]));
+  updateCompareBar();
+  renderCars();
+}
+
 </script>
 </body>
 </html>

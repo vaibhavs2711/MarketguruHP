@@ -6,14 +6,28 @@
 <title>Car Details - Market Guru HP</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;--steel:#2A3A5C;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;--muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;}
+  :root {
+    --red: #FFCC00;
+    --red-dark: #E6B800;
+    --charcoal: #1A3D8F;
+    --navy: #0D2B6B;
+    --steel: #2A5CC7;
+    --silver: #F0F4F8;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #6B7A99;
+    --border: #DDE3EE;
+    --success: #A3D1B1;
+    --blue-light: #E8F0FE;
+  }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
   a{text-decoration:none;color:inherit;}
   .navbar {
-    background: var(--charcoal);
+    background: var(--white);
     position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-bottom: 2px solid var(--border);
   }
 
   .nav-main {
@@ -25,33 +39,31 @@
     display: flex;
     align-items: center;
     margin-right: 40px;
-    height: 75px;
+    height: 64px;
+    background: #10172A;
+    padding: 6px 16px;
+    border-radius: 8px;
   }
   .logo img {
     height: 100%;
     width: auto;
     display: block;
-    transform: scale(1.35) translateX(-12px);
-    transform-origin: left center;
   }
   .nav-links { display: flex; gap: 6px; flex: 1; }
   .nav-links a {
-    color: #eee; font-size: 16px; font-weight: 700;
+    color: var(--charcoal); font-size: 16px; font-weight: 700;
     padding: 8px 16px; border-radius: 6px;
     transition: all 0.2s;
   }
-  .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.12); }
+  .nav-links a:hover { color: var(--charcoal); background: rgba(26, 61, 143, 0.08); }
   .nav-actions { display: flex; gap: 10px; align-items: center; }
   .btn-outline-white {
-    border: none; color: #1A1A2E;
-    padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; background: var(--red);
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+    border: 2px solid var(--charcoal); color: var(--charcoal);
+    padding: 10px 22px; border-radius: 8px; font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; background: transparent;
   }
   .btn-outline-white:hover { 
-    background: var(--red-dark); 
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(255, 204, 0, 0.4); 
+    background: var(--blue-light); 
   }
   .btn-red {
     background: var(--red); color: #1A1A2E;
@@ -628,6 +640,7 @@
       <a href="buy-cars.html">Buy Vehicle</a>
       <a href="sell.html">Sell Vehicles</a>
       <a href="about.html">About</a>
+      <a href="compare.html">⚖️ Compare</a>
     </div>
     <div class="nav-actions" id="nav-actions"></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">

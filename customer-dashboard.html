@@ -11,8 +11,8 @@
   <style>
     :root {
       --red: #FFCC00;
-      --red-dark: #CC9900;
-      --charcoal: #1A1A2E;
+      --red-dark: #E6B800;
+      --charcoal: #1A3D8F;
       --navy: #FFFFFF;
       --steel: #F8FAFC;
       --silver: #F0F4F8;
@@ -21,6 +21,7 @@
       --muted: #6B7A99;
       --border: #DDE3EE;
       --success: #10B981;
+      --blue-light: #E8F0FE;
     }
 
     * {
@@ -38,8 +39,8 @@
 
     /* TOPBAR */
     .topbar {
-      background: #10172A;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
       padding: 0;
       height: 80px;
       display: flex;
@@ -47,6 +48,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     }
 
     .topbar-inner {
@@ -69,13 +71,16 @@
     .topbar-logo-img {
       height: 44px;
       display: block;
+      background: #10172A;
+      padding: 4px 12px;
+      border-radius: 6px;
     }
 
     .topbar-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 22px;
       font-weight: 800;
-      color: var(--white);
+      color: var(--charcoal);
       letter-spacing: 0.5px;
     }
 
@@ -133,8 +138,8 @@
 
     .btn-logout-header {
       background: transparent;
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
-      color: #8a9abf;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
       padding: 10px 16px;
       border-radius: 8px;
       font-size: 13px;

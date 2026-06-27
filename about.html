@@ -8,40 +8,38 @@
 <style>
   :root {
     --red: #FFCC00;
-    --red-dark: #CC9900;
-    --charcoal: #1A1A2E;
-    --navy: #16213E;
-    --steel: #2A3A5C;
+    --red-dark: #E6B800;
+    --charcoal: #1A3D8F;
+    --navy: #0D2B6B;
+    --steel: #2A5CC7;
     --silver: #F0F4F8;
     --white: #FFFFFF;
     --text: #1A1A2E;
     --muted: #6B7A99;
     --border: #DDE3EE;
     --success: #A3D1B1;
+    --blue-light: #E8F0FE;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
   a { text-decoration: none; color: inherit; }
 
-  .navbar { background: var(--charcoal); position: sticky; top: 0; z-index: 100; }
+  .navbar { background: var(--white); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); border-bottom: 2px solid var(--border); }
   .nav-main { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; padding: 0 20px; height: 80px; gap: 0; }
-  .logo { display: flex; align-items: center; margin-right: 40px; height: 60px; }
+  .logo { display: flex; align-items: center; margin-right: 40px; height: 60px; background: #10172A; padding: 6px 16px; border-radius: 8px; }
   .logo img { height: 100%; width: auto; display: block; }
   .nav-links { display: flex; gap: 4px; flex: 1; }
-  .nav-links a { color: #ccd; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 6px; transition: all 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,0.08); }
-  .nav-links a.active { background: rgba(255,204,0,0.15); }
+  .nav-links a { color: var(--charcoal); font-size: 16px; font-weight: 700; padding: 8px 16px; border-radius: 6px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); background: rgba(26, 61, 143, 0.08); }
+  .nav-links a.active { color: var(--charcoal); background: rgba(255, 204, 0, 0.2); }
   .nav-actions { display: flex; gap: 10px; align-items: center; }
   .btn-outline-white {
-    border: none; color: #1A1A2E;
-    padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; background: var(--red);
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+    border: 2px solid var(--charcoal); color: var(--charcoal);
+    padding: 10px 22px; border-radius: 8px; font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; background: transparent;
   }
   .btn-outline-white:hover { 
-    background: var(--red-dark); 
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(255, 204, 0, 0.4); 
+    background: var(--blue-light); 
   }
   .btn-red { background: var(--red); color: #1A1A2E; padding: 8px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; }
   .btn-red:hover { background: var(--red-dark); }
@@ -152,7 +150,7 @@
     display: block;
     width: 25px;
     height: 3px;
-    background: var(--white);
+    background: var(--charcoal);
     transition: all 0.3s ease;
     border-radius: 2px;
   }
@@ -180,11 +178,11 @@
       top: 70px;
       left: 0;
       right: 0;
-      background: var(--charcoal);
+      background: var(--white);
       padding: 20px;
       gap: 12px;
-      box-shadow: none;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border-top: 1px solid var(--border);
       z-index: 99;
     }
     .nav-links.active {
@@ -197,11 +195,11 @@
       top: 250px;
       left: 0;
       right: 0;
-      background: var(--charcoal);
+      background: var(--white);
       padding: 10px 20px 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       z-index: 98;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid var(--border);
       justify-content: center;
     }
     .nav-actions.active {
@@ -269,6 +267,7 @@
       <a href="buy-cars.html">Buy Vehicle</a>
       <a href="sell.html">Sell Vehicles</a>
       <a href="about.html" class="active">About</a>
+      <a href="compare.html">⚖️ Compare</a>
     </div>
     <div class="nav-actions">
       <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
