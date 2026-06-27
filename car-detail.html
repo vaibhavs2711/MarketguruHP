@@ -379,8 +379,8 @@
       </div>
       
       <div class="pc-details" style="font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:6px; font-weight:500; margin-bottom:24px;">
-        <div>Reg. No. GJ01AB1234 • Insurance: <span id="rIns">Comprehensive</span></div>
-        <div>RTO: <span id="rRto">Vadodara (GJ06)</span></div>
+        <div>Ownership: <span id="rOwner">1st Owner</span> • Insurance: <span id="rIns">Comprehensive</span></div>
+        <div>Transmission: <span id="rTrans">Manual</span> • Engine: <span id="rFuelType">Petrol</span></div>
       </div>
       
       <div style="margin: auto 0; padding: 16px; background: rgba(255, 204, 0, 0.1); border-radius: 12px; border: 1px solid rgba(255, 204, 0, 0.3); text-align: left;">
@@ -678,7 +678,12 @@ function renderCarDetails() {
   document.getElementById('rCity').textContent = currentCar.city || 'Vadodara';
   const ins = currentCar.insurance || 'Comprehensive';
   document.getElementById('rIns').textContent = ins;
-  document.getElementById('rRto').textContent = (currentCar.city || 'Vadodara') + ' (GJ)';
+  const ownerEl = document.getElementById('rOwner');
+  if(ownerEl) ownerEl.textContent = currentCar.owner || '1st Owner';
+  const transEl = document.getElementById('rTrans');
+  if(transEl) transEl.textContent = currentCar.trans || 'Manual';
+  const fuelTypeEl = document.getElementById('rFuelType');
+  if(fuelTypeEl) fuelTypeEl.textContent = currentCar.fuel || 'Petrol';
 
   // Overview Tab
   document.getElementById('ovPrice').textContent = priceStr;
