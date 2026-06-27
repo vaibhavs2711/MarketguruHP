@@ -89,7 +89,7 @@ function renderCars() {
   list.innerHTML = visibleCars.map(c => `
     <div class="car-list-item" onclick="window.location='car-detail.html?id=${c.id}'">
       <div class="car-list-img" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
-        ${c.image ? `<img src="${c.image}" style="width:100%;height:100%;object-fit:cover;" />` : `<span style="font-size:80px">${c.emoji || '🚗'}</span>`}
+        ${c.image ? `<img src="${c.image}" style="width:100%;height:100%;object-fit:contain;" />` : `<span style="font-size:80px">${c.emoji || '🚗'}</span>`}
       </div>
       <div class="car-list-info">
         <div class="car-list-name">${c.name}</div>
