@@ -1884,8 +1884,9 @@
           }
         }
 
+        const safeId = item.id.toString().replace(/'/g, "\\'");
         return `
-      <div class="list-item" data-name="${item.name}" onclick="setSelection('${key}', '${item.id.toString().replace(\"'\", \"\\\\'\")}', '${textKey}', event)">
+      <div class="list-item" data-name="${item.name}" onclick="setSelection('${key}', '${safeId}', '${textKey}', event)">
         ${imgHTML}
         <div class="item-name">${item.name}</div>
         <div class="item-arrow">›</div>
