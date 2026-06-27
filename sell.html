@@ -1549,7 +1549,7 @@
             .cd-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
           </style>
           <div style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
-            <div class="cd-wrapper" id="cd-year-wrapper">
+            <div class="cd-wrapper" id="cd-year-wrapper" style="z-index: 20;">
               <label style="display:block; margin-bottom: 8px; font-weight: 600; color: var(--charcoal);">Registration Year</label>
               <div class="cd-box" id="cd-year-box" onclick="toggleCustomDropdown('year')">
                 ${sellData.year || 'Select Year'}
@@ -1559,7 +1559,7 @@
               </div>
             </div>
             
-            <div class="cd-wrapper" id="cd-owner-wrapper">
+            <div class="cd-wrapper" id="cd-owner-wrapper" style="z-index: 10;">
               <label style="display:block; margin-bottom: 8px; font-weight: 600; color: var(--charcoal);">Number of Owners</label>
               <div class="cd-box" id="cd-owner-box" onclick="toggleCustomDropdown('owner')">
                 ${sellData.owner || 'Select No. of Owners'}
