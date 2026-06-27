@@ -655,7 +655,7 @@
 
 <div class="page-wrap">
   <!-- LEFT COLUMN -->
-  <div>
+  <div style="min-width: 0;">
     <!-- GALLERY -->
     <div class="main-gallery">
       <div class="gallery-layout">
@@ -1111,7 +1111,7 @@ function renderCarDetails() {
       imagesToDisplay.forEach((imgSrc, idx) => {
           const thumb = document.createElement('div');
           thumb.className = idx === 0 ? 'thumb active' : 'thumb';
-          thumb.innerHTML = `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />`;
+          thumb.innerHTML = `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:contain;border-radius:4px;" />`;
           thumb.onclick = () => selectThumb(thumb, null, imgSrc, idx);
           thumbsContainer.appendChild(thumb);
       });
@@ -1233,7 +1233,7 @@ function setMainImage(imgSrc) {
       imgEl.className = 'uploaded-car-image';
       imgEl.style.width = '100%';
       imgEl.style.height = '100%';
-      imgEl.style.objectFit = 'cover';
+      imgEl.style.objectFit = 'contain';
       imgEl.style.position = 'absolute';
       imgEl.style.top = '0';
       imgEl.style.left = '0';

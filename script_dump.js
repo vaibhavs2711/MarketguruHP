@@ -441,7 +441,7 @@
           const brandStr = item.name.toLowerCase().replace(/[\s-]/g, '');
           const fileName = fileMap[brandStr];
           if (fileName) {
-            imgHTML = `<div class="item-img"><img src="car_make_logo_images/${fileName}" alt="${item.name}" style="width:36px;height:36px;object-fit:contain;" onerror="this.outerHTML='🚙'"></div>`;
+            imgHTML = `<div class="item-img"><img src="logo_images/${fileName}" alt="${item.name}" style="width:36px;height:36px;object-fit:contain;" onerror="this.outerHTML='🚙'"></div>`;
           }
         }
 
