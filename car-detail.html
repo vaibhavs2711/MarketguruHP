@@ -378,7 +378,7 @@
         <span style="font-size:14px; font-weight:600; color:var(--blue); cursor:pointer;">Make Offer</span>
       </div>
       
-      <div class="pc-details" style="font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:6px; font-weight:500; margin-bottom:24px;">
+      <div class="pc-details" style="font-size:14px; color:var(--muted); display:flex; flex-direction:column; gap:6px; font-weight:500; margin-bottom:24px;">
         <div>Ownership: <span id="rOwner">1st Owner</span> • Insurance: <span id="rIns">Comprehensive</span></div>
         <div>Transmission: <span id="rTrans">Manual</span> • Engine: <span id="rFuelType">Petrol</span></div>
       </div>
@@ -467,8 +467,8 @@
             <div class="ov-info"><span class="ov-label">City</span><span class="ov-val" id="ovCity">Vadodara</span></div>
           </div>
           <div class="ov-item">
-            <div class="ov-icon">🚙</div>
-            <div class="ov-info"><span class="ov-label">Variant</span><span class="ov-val" id="ovVariant">Base</span></div>
+            <div class="ov-icon">🏢</div>
+            <div class="ov-info"><span class="ov-label">Seller Type</span><span class="ov-val" id="ovSellerType">Dealer</span></div>
           </div>
         </div>
       </div>
@@ -695,12 +695,7 @@ function renderCarDetails() {
   document.getElementById('ovInsurance').textContent = ins;
   document.getElementById('ovCity').textContent = currentCar.city || 'Vadodara';
   
-  let variant = 'Standard';
-  if (currentCar.name) {
-     const parts = currentCar.name.split(' ');
-     if (parts.length > 2) variant = parts.slice(2).join(' ');
-  }
-  document.getElementById('ovVariant').textContent = variant;
+  document.getElementById('ovSellerType').textContent = currentCar.seller_type || 'Dealer';
 
   // Features
   const features = currentCar.features || ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry'];
