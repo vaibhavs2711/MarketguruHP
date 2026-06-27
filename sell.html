@@ -1697,6 +1697,43 @@
         inp.innerHTML = `
       <input type="number" id="inp-km" class="input-field" placeholder="KMs Driven (e.g. 45000)" required>
       <input type="number" step="0.1" id="inp-price" class="input-field" placeholder="Expected Price in Lakhs (e.g. 5.5)" required>
+      
+      <input type="text" id="inp-reg" class="input-field" placeholder="Registration Number (e.g. GJ-01-XX-1234)">
+      
+      <select id="inp-insurance" class="input-field" style="color: #666; font-size: 14px;">
+        <option value="" disabled selected>Select Insurance Type</option>
+        <option value="Comprehensive">Comprehensive</option>
+        <option value="Third Party">Third Party</option>
+        <option value="Zero Dep">Zero Depreciation</option>
+        <option value="Not Insured">Not Insured</option>
+      </select>
+
+      <div style="border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: #fff; margin-bottom: 16px; text-align: left;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px;">Choose a vehicle feature (optional)</div>
+        <div id="feature-tags-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;"></div>
+        <select id="feature-dropdown" onchange="addFeatureTag(this)" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; outline: none; background: #f8fafc; cursor: pointer; color: #666;">
+          <option value="" disabled selected>+ Select a feature...</option>
+          <option value="New Tyres">New Tyres</option>
+          <option value="360 Degree Camera">360 Degree Camera</option>
+          <option value="Ventilated Seat">Ventilated Seat</option>
+          <option value="Rear ac vents">Rear ac vents</option>
+          <option value="Spare wheel non used">Spare wheel non used</option>
+          <option value="Non accident chassis">Non accident chassis</option>
+          <option value="Under company warranty">Under company warranty</option>
+          <option value="Cruise Control">Cruise Control</option>
+          <option value="Adas feature">Adas feature</option>
+          <option value="Rear parking sensor">Rear parking sensor</option>
+          <option value="Company Tyre">Company Tyre</option>
+          <option value="Double keys">Double keys</option>
+          <option value="Company paint">Company paint</option>
+          <option value="Guaranteed kilometer">Guaranteed kilometer</option>
+          <option value="Alloy wheels">Alloy wheels</option>
+          <option value="Sequential cng">Sequential cng</option>
+          <option value="Push start">Push start</option>
+          <option value="Rear parking camera">Rear parking camera</option>
+        </select>
+      </div>
+
       <input type="tel" id="inp-mob" class="input-field" placeholder="Your Mobile Number" required>
     `;
         const btn = document.getElementById('btn-continue');
@@ -1707,7 +1744,35 @@
         // Auto fill mobile if logged in
         const m = localStorage.getItem('mg_current_user_mobile');
         if (m) document.getElementById('inp-mob').value = m;
+
+        // Reset features when step 7 loads
+        window.selectedFeatures = [];
+        renderFeatureTags();
       }
+    }
+
+    window.selectedFeatures = [];
+
+    function addFeatureTag(selectEl) {
+      const val = selectEl.value;
+      if (val && !window.selectedFeatures.includes(val)) {
+        window.selectedFeatures.push(val);
+        renderFeatureTags();
+      }
+      selectEl.value = "";
+    }
+
+    function removeFeatureTag(val) {
+      window.selectedFeatures = window.selectedFeatures.filter(f => f !== val);
+      renderFeatureTags();
+    }
+
+    function renderFeatureTags() {
+      const container = document.getElementById('feature-tags-container');
+      if (!container) return;
+      container.innerHTML = window.selectedFeatures.map(f => 
+        `<div style="display:inline-flex;align-items:center;gap:6px;background:#e2e8f0;color:#334155;padding:6px 12px;border-radius:4px;font-size:13px;font-weight:500;">${f} <span style="cursor:pointer;font-weight:bold;color:#64748b;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='#64748b'" onclick="removeFeatureTag('${f}')">×</span></div>`
+      ).join('');
     }
 
     function renderList(data, key, textKey) {
@@ -1815,6 +1880,8 @@
       const km = document.getElementById('inp-km').value;
       const price = document.getElementById('inp-price').value;
       const mob = document.getElementById('inp-mob').value;
+      const reg = document.getElementById('inp-reg') ? document.getElementById('inp-reg').value : '';
+      const insurance = document.getElementById('inp-insurance') ? document.getElementById('inp-insurance').value : '';
 
       if (!km || !price || !mob) {
         showToast('⚠️ Please fill all fields.');
@@ -1841,7 +1908,9 @@
         image: '',
         city: sellData.city,
         desc: `Clean ${sellData.brand} ${sellData.model}`,
-        features: ['Power Windows', 'Airbags', 'ABS'],
+        features: window.selectedFeatures && window.selectedFeatures.length > 0 ? window.selectedFeatures : ['Power Windows', 'Airbags', 'ABS'],
+        regNo: reg,
+        insurance: insurance,
         listed_by: mob,
         user_type: userType
       };
