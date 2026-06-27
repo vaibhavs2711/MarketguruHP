@@ -1494,18 +1494,8 @@
             <div class="search-row">
               <div class="search-field">
                 <label>Brand</label>
-                <select onchange="filterModel(this)">
+                <select id="brandSelect" onchange="filterModel(this)">
                   <option value="">All Brands</option>
-                  <option>Maruti Suzuki</option>
-                  <option>Hyundai</option>
-                  <option>Honda</option>
-                  <option>Toyota</option>
-                  <option>Tata</option>
-                  <option>Mahindra</option>
-                  <option>Kia</option>
-                  <option>MG</option>
-                  <option>Ford</option>
-                  <option>Volkswagen</option>
                 </select>
               </div>
               <div class="search-field">
@@ -1868,28 +1858,60 @@
       el.classList.add('active');
     }
 
-    const models = {
-      'Maruti Suzuki': ['Swift', 'Baleno', 'Alto', 'Dzire', 'Brezza', 'Ertiga'],
-      'Hyundai': ['i20', 'Creta', 'Venue', 'Verna', 'i10'],
-      'Honda': ['City', 'Amaze', 'Jazz', 'WR-V'],
-      'Toyota': ['Innova', 'Fortuner', 'Glanza', 'Urban Cruiser'],
-      'Tata': ['Nexon', 'Harrier', 'Altroz', 'Tigor'],
-      'Mahindra': ['XUV300', 'XUV700', 'Thar', 'Bolero'],
-      'Kia': ['Seltos', 'Sonet', 'Carens'],
-      'MG': ['Hector', 'Astor', 'ZS EV'],
-    };
-    function filterModel(sel) {
-      const m = document.getElementById('modelSelect');
-      m.innerHTML = '<option value="">All Models</option>';
-      (models[sel.value] || []).forEach(v => {
-        const o = document.createElement('option'); o.textContent = v; m.appendChild(o);
+    
+// Dynamic Automotive API Fetching
+document.addEventListener('DOMContentLoaded', () => {
+  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-makes')
+    .then(r => r.json())
+    .then(makes => {
+      const brandSel = document.getElementById('brandSelect');
+      if (!brandSel) return;
+      makes.forEach(m => {
+        const o = document.createElement('option');
+        o.value = m.id;
+        o.textContent = m.name;
+        brandSel.appendChild(o);
       });
-    }
+    })
+    .catch(e => console.error("Error loading makes:", e));
+});
+
+function filterModel(sel) {
+  const makeId = sel.value;
+  const m = document.getElementById('modelSelect');
+  m.innerHTML = '<option value="">All Models</option>';
+  m.disabled = true;
+  
+  if (!makeId) {
+      m.disabled = false;
+      return;
+  }
+  
+  m.innerHTML = '<option value="">Loading...</option>';
+  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-models?makeId=' + makeId)
+    .then(r => r.json())
+    .then(models => {
+      m.innerHTML = '<option value="">All Models</option>';
+      m.disabled = false;
+      models.forEach(v => {
+        const o = document.createElement('option');
+        o.value = v.id;
+        o.textContent = v.name;
+        m.appendChild(o);
+      });
+    })
+    .catch(e => {
+      console.error("Error loading models:", e);
+      m.innerHTML = '<option value="">Error Loading</option>';
+    });
+}
+
 
     function searchCars() {
       const brandSel = document.querySelector('.search-field select[onchange="filterModel(this)"]');
-      const brand = brandSel ? brandSel.value : '';
-      const model = document.getElementById('modelSelect').value;
+      const brand = brandSel && brandSel.value ? brandSel.options[brandSel.selectedIndex].text : '';
+      const modelSel = document.getElementById('modelSelect');
+      const model = modelSel && modelSel.value ? modelSel.options[modelSel.selectedIndex].text : '';
       const budgetSel = document.querySelector('.search-field select:not([onchange]):not([id])'); // Budget select
       const budget = budgetSel ? budgetSel.value : '';
 

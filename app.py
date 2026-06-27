@@ -80,6 +80,16 @@ def db_init_data():
                 car['features'] = [f.strip() for f in car['features'].split(',') if f.strip()]
             else:
                 car['features'] = []
+            
+            import json
+            if car.get('images'):
+                try:
+                    car['images'] = json.loads(car['images'])
+                except:
+                    car['images'] = []
+            else:
+                car['images'] = []
+                
             # Map database field verified to true/false
             car['verified'] = bool(car['verified'])
 
@@ -147,6 +157,9 @@ def add_car():
         description = data.get('desc', '')
         listed_by = data.get('listed_by')
         image = data.get('image', None)
+        import json
+        images_list = data.get('images', [])
+        images_str = json.dumps(images_list) if images_list else None
         
         features_list = data.get('features', [])
         if isinstance(features_list, list):
@@ -177,8 +190,8 @@ def add_car():
         verified = int(data.get('verified', 0))
 
         car_id = query_db(
-            "INSERT INTO cars (name, year, price, priceN, km, fuel, trans, owner, color, emoji, image, verified, emi, city, description, features, listed_by) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (name, year, price, priceN, km, fuel, trans, owner, color, emoji, image, verified, emi, city, description, features, listed_by),
+            "INSERT INTO cars (name, year, price, priceN, km, fuel, trans, owner, color, emoji, image, verified, emi, city, description, features, listed_by, images) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (name, year, price, priceN, km, fuel, trans, owner, color, emoji, image, verified, emi, city, description, features, listed_by, images_str),
             commit=True
         )
 
@@ -740,6 +753,94 @@ def toggle_wishlist():
                 commit=True
             )
             return jsonify({"status": "success", "added": True})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# --- Automotive Make / Model APIs ---
+
+MAKE_ORDER = [
+    "Maruti Suzuki", "Hyundai", "Tata", "Mahindra", "Honda", "Toyota", "Kia", "MG", "Renault", 
+    "Skoda", "Volkswagen", "Ford", "Nissan", "Jeep", "Citroen", "BYD", "Isuzu", "Force Motors", 
+    "BMW", "Mercedes-Benz", "Audi", "Volvo", "Jaguar", "Land Rover", "Lexus", "Mini", "Porsche", 
+    "Aston Martin", "Ferrari", "Lamborghini", "Bentley", "Rolls-Royce", "Maserati", "McLaren", 
+    "Chevrolet", "Fiat", "Datsun", "Mitsubishi", "Hindustan Motors"
+]
+
+def sort_makes_list(makes_list):
+    order_dict = {name: i for i, name in enumerate(MAKE_ORDER)}
+    return sorted(makes_list, key=lambda x: (order_dict.get(x['name'], 999), x['name']))
+
+@app.route('/api/car-makes', methods=['GET'])
+def get_car_makes():
+    try:
+        makes = query_db("SELECT id, name, slug FROM car_makes WHERE is_active = 1")
+        makes = sort_makes_list(makes)
+        return jsonify(makes)
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/car-models', methods=['GET'])
+def get_car_models():
+    make_id = request.args.get('makeId')
+    try:
+        query = "SELECT id, make_id, name, slug FROM car_models WHERE is_active = 1"
+        params = []
+        if make_id:
+            query += " AND make_id = %s"
+            params.append(make_id)
+        query += " ORDER BY name ASC"
+        models = query_db(query, tuple(params))
+        return jsonify(models)
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/admin/car-makes', methods=['POST', 'PUT'])
+def admin_car_makes():
+    data = request.json
+    try:
+        if request.method == 'POST':
+            slug = data['name'].lower().replace(' ', '-')
+            query_db("INSERT INTO car_makes (name, slug, is_active) VALUES (%s, %s, %s)", 
+                     (data['name'], slug, data.get('is_active', True)), commit=True)
+            return jsonify({"status": "success"})
+        elif request.method == 'PUT':
+            query_db("UPDATE car_makes SET name=%s, is_active=%s WHERE id=%s", 
+                     (data['name'], data.get('is_active', True), data['id']), commit=True)
+            return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/admin/car-models', methods=['POST', 'PUT'])
+def admin_car_models():
+    data = request.json
+    try:
+        if request.method == 'POST':
+            make_id = data['make_id']
+            slug = f"make-{make_id}-{data['name']}".lower().replace(' ', '-')
+            query_db("INSERT INTO car_models (make_id, name, slug, is_active) VALUES (%s, %s, %s, %s)", 
+                     (make_id, data['name'], slug, data.get('is_active', True)), commit=True)
+            return jsonify({"status": "success"})
+        elif request.method == 'PUT':
+            query_db("UPDATE car_models SET name=%s, is_active=%s WHERE id=%s", 
+                     (data['name'], data.get('is_active', True), data['id']), commit=True)
+            return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/car-hierarchy', methods=['GET'])
+def get_car_hierarchy():
+    try:
+        makes = query_db("SELECT id, name, slug FROM car_makes WHERE is_active = 1")
+        makes = sort_makes_list(makes)
+        models = query_db("SELECT id, make_id, name, slug FROM car_models WHERE is_active = 1 ORDER BY name ASC")
+        
+        hierarchy = []
+        for make in makes:
+            make_dict = dict(make)
+            make_dict['models'] = [m for m in models if m['make_id'] == make['id']]
+            hierarchy.append(make_dict)
+            
+        return jsonify(hierarchy)
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 

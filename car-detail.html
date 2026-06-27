@@ -74,7 +74,7 @@
   .img-badge{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:700;color:#fff;}
   .badge-v{background:var(--success);}
   .badge-hot{background:var(--red);}
-  .thumb-row{display:flex;gap:12px;padding:12px;}
+  .thumb-row{display:flex;gap:12px;padding:12px;overflow-x:auto;scrollbar-width:none;} .thumb-row::-webkit-scrollbar { display: none; } .thumb{flex-shrink:0;}
   .thumb{width:80px;height:60px;border-radius:6px;background:linear-gradient(135deg,#e0e8f0,#c8d4e0);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;}
   .thumb.active{border-color:var(--red);}
   .thumb:hover{border-color:var(--muted);}
@@ -161,19 +161,19 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 335px;
-    background: rgba(11, 17, 30, 0.76);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    width: 400px;
+    background: linear-gradient(to right, rgba(11, 17, 30, 0.95) 0%, rgba(11, 17, 30, 0.7) 50%, rgba(11, 17, 30, 0) 100%);
     padding: 35px 28px;
+    padding-right: 60px;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 22px;
-    border-right: 1px solid rgba(255,255,255,0.15);
     z-index: 10;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
   }
   
   .insights-group {
@@ -246,6 +246,36 @@
       gap: 12px;
       background: rgba(11, 17, 30, 0.85);
     }
+  }
+
+    /* GALLERY NAVIGATION BUTTONS */
+  .img-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.2s, transform 0.2s;
+    user-select: none;
+  }
+  .img-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1);
+  }
+  .img-nav-btn.prev {
+    left: 16px;
+  }
+  .img-nav-btn.next {
+    right: 16px; 
   }
 
   /* TABS SYSTEM */
@@ -618,6 +648,8 @@
       <div class="gallery-layout">
         <!-- Right Side: Main Image Slider -->
         <div class="main-img" id="mainImg" style="width: 100%;">
+          <div class="img-nav-btn prev" id="imgPrevBtn" style="display:none;" onclick="prevImage(event)">❮</div>
+          <div class="img-nav-btn next" id="imgNextBtn" style="display:none;" onclick="nextImage(event)">❯</div>
           <span class="gallery-car-emoji" id="galleryEmoji">🚗</span>
           <div class="img-badges">
             <span class="img-badge badge-hot">🔥 Hot Deal</span>
@@ -647,13 +679,8 @@
           <a class="insights-link" onclick="switchTab(null, 'price')">More Price Insights</a>
         </div>
       </div>
-      <div class="thumb-row">
-        <div class="thumb active" onclick="selectThumb(this,'🚗')">🚗</div>
-        <div class="thumb" onclick="selectThumb(this,'🪟')">🪟</div>
-        <div class="thumb" onclick="selectThumb(this,'🛞')">🛞</div>
-        <div class="thumb" onclick="selectThumb(this,'🪑')">🪑</div>
-        <div class="thumb" onclick="selectThumb(this,'⚙️')">⚙️</div>
-        <div class="thumb" onclick="selectThumb(this,'📋')">📋</div>
+      <div class="thumb-row" id="galleryThumbs">
+
       </div>
     </div>
 
@@ -1042,45 +1069,73 @@ function renderCarDetails() {
   // Gallery Image / Emoji handling
   const mainImg = document.getElementById('mainImg');
   const emojiEl = document.getElementById('galleryEmoji');
-  const thumbs = document.querySelectorAll('.thumb');
+  const thumbsContainer = document.getElementById('galleryThumbs');
   
-  // Remove any previously added uploaded-car-image to avoid duplicates
-  const existingImg = mainImg.querySelector('img.uploaded-car-image');
-  if (existingImg) {
-    existingImg.remove();
+  // Gather images
+  window.galleryImages = [];
+  window.currentImageIndex = 0;
+  if (currentCar.images && Array.isArray(currentCar.images) && currentCar.images.length > 0) {
+      window.galleryImages = currentCar.images;
+  } else if (currentCar.image) {
+      window.galleryImages = [currentCar.image];
+  }
+  let imagesToDisplay = window.galleryImages;
+  
+  // Show/hide navigation buttons
+  const prevBtn = document.getElementById('imgPrevBtn');
+  const nextBtn = document.getElementById('imgNextBtn');
+  if (imagesToDisplay.length > 1) {
+      if(prevBtn) prevBtn.style.display = 'flex';
+      if(nextBtn) nextBtn.style.display = 'flex';
+  } else {
+      if(prevBtn) prevBtn.style.display = 'none';
+      if(nextBtn) nextBtn.style.display = 'none';
   }
 
-  if (currentCar.image) {
-    // Create an img element
-    const imgEl = document.createElement('img');
-    imgEl.src = currentCar.image;
-    imgEl.className = 'uploaded-car-image';
-    imgEl.style.width = '100%';
-    imgEl.style.height = '100%';
-    imgEl.style.objectFit = 'cover';
-    imgEl.style.position = 'absolute';
-    imgEl.style.top = '0';
-    imgEl.style.left = '0';
-    imgEl.style.zIndex = '1';
-    
-    // Insert imgEl as the first child of mainImg (so badges stay on top of it)
-    mainImg.insertBefore(imgEl, mainImg.firstChild);
-    
-    // Hide emoji element
-    if (emojiEl) emojiEl.style.display = 'none';
-    
-    // Update first thumbnail to show the custom image
-    if (thumbs.length > 0) {
-      thumbs[0].innerHTML = `<img src="${currentCar.image}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />`;
-    }
+  // Generate Thumbnails
+  thumbsContainer.innerHTML = '';
+  if (imagesToDisplay.length > 0) {
+      imagesToDisplay.forEach((imgSrc, idx) => {
+          const thumb = document.createElement('div');
+          thumb.className = idx === 0 ? 'thumb active' : 'thumb';
+          thumb.innerHTML = `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />`;
+          thumb.onclick = () => selectThumb(thumb, null, imgSrc, idx);
+          thumbsContainer.appendChild(thumb);
+      });
   } else {
-    if (emojiEl) {
-      emojiEl.style.display = 'block';
-      emojiEl.textContent = currentCar.emoji || '🚗';
-    }
-    if (thumbs.length > 0) {
-      thumbs[0].textContent = currentCar.emoji || '🚗';
-    }
+      // Fallback emojis
+      const emojis = [currentCar.emoji || '🚗', '🪟', '🛞', '🪑', '⚙️', '📋'];
+      emojis.forEach((em, idx) => {
+          const thumb = document.createElement('div');
+          thumb.className = idx === 0 ? 'thumb active' : 'thumb';
+          thumb.textContent = em;
+          thumb.onclick = () => selectThumb(thumb, em, null, idx);
+          thumbsContainer.appendChild(thumb);
+      });
+  }
+  
+  // Set main image initially
+  if (imagesToDisplay.length > 0) {
+      setMainImage(imagesToDisplay[0]);
+      if (emojiEl) emojiEl.style.display = 'none';
+  } else {
+      setMainImage(null);
+      if (emojiEl) {
+          emojiEl.style.display = 'block';
+          emojiEl.textContent = currentCar.emoji || '🚗';
+      }
+  }
+  
+  // Initial overlay visibility
+  const overlay = document.querySelector('.gallery-insights');
+  if (overlay) {
+      if (window.galleryImages && window.galleryImages.length > 1 && window.currentImageIndex === window.galleryImages.length - 2) {
+          overlay.style.opacity = '1';
+          overlay.style.visibility = 'visible';
+      } else {
+          overlay.style.opacity = '0';
+          overlay.style.visibility = 'hidden';
+      }
   }
 
   // Overview Tab Fields
@@ -1149,31 +1204,80 @@ function shareCar() {
   });
 }
 
-function selectThumb(el, emoji) {
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  
-  // Toggle overlay insights: only show for the first main image thumbnail
-  const thumbs = Array.from(document.querySelectorAll('.thumb'));
-  const idx = thumbs.indexOf(el);
-  const insights = document.getElementById('galleryInsights');
-  
+function setMainImage(imgSrc) {
   const mainImg = document.getElementById('mainImg');
-  const mainImageEl = mainImg.querySelector('img.uploaded-car-image');
-  const emojiEl = document.getElementById('galleryEmoji');
-  
-  if (idx === 0 && currentCar && currentCar.image) {
-    if (mainImageEl) mainImageEl.style.display = 'block';
-    if (emojiEl) {
-      if (emojiEl) emojiEl.style.display = 'none';
-    }
-  } else {
-    if (mainImageEl) mainImageEl.style.display = 'none';
-    if (emojiEl) {
-      emojiEl.style.display = 'block';
-      emojiEl.textContent = emoji;
-    }
+  const existingImg = mainImg.querySelector('img.uploaded-car-image');
+  if (existingImg) {
+      if (imgSrc) {
+          existingImg.src = imgSrc;
+          existingImg.style.display = 'block';
+      } else {
+          existingImg.remove();
+      }
+  } else if (imgSrc) {
+      const imgEl = document.createElement('img');
+      imgEl.src = imgSrc;
+      imgEl.className = 'uploaded-car-image';
+      imgEl.style.width = '100%';
+      imgEl.style.height = '100%';
+      imgEl.style.objectFit = 'cover';
+      imgEl.style.position = 'absolute';
+      imgEl.style.top = '0';
+      imgEl.style.left = '0';
+      imgEl.style.zIndex = '1';
+      mainImg.insertBefore(imgEl, mainImg.firstChild);
   }
+}
+
+function selectThumb(el, emoji, imgSrc, idx) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  
+  const emojiEl = document.getElementById('galleryEmoji');
+  window.currentImageIndex = idx || 0;
+  
+  if (imgSrc) {
+      setMainImage(imgSrc);
+      if (emojiEl) emojiEl.style.display = 'none';
+  } else {
+      setMainImage(null);
+      if (emojiEl) {
+          emojiEl.style.display = 'block';
+          emojiEl.textContent = emoji || '🚗';
+      }
+  }
+
+  // Handle overlay visibility
+  const overlay = document.querySelector('.gallery-insights');
+  if (overlay) {
+      if (window.galleryImages && window.galleryImages.length > 1 && window.currentImageIndex === window.galleryImages.length - 2) {
+          overlay.style.opacity = '1';
+          overlay.style.visibility = 'visible';
+      } else {
+          overlay.style.opacity = '0';
+          overlay.style.visibility = 'hidden';
+      }
+  }
+}
+
+function nextImage(e) {
+    if(e) e.stopPropagation();
+    if (!window.galleryImages || window.galleryImages.length <= 1) return;
+    window.currentImageIndex = (window.currentImageIndex + 1) % window.galleryImages.length;
+    const nextImgSrc = window.galleryImages[window.currentImageIndex];
+    const thumbEls = document.querySelectorAll('.thumb');
+    const targetThumb = thumbEls[window.currentImageIndex] || null;
+    selectThumb(targetThumb, null, nextImgSrc, window.currentImageIndex);
+}
+
+function prevImage(e) {
+    if(e) e.stopPropagation();
+    if (!window.galleryImages || window.galleryImages.length <= 1) return;
+    window.currentImageIndex = (window.currentImageIndex - 1 + window.galleryImages.length) % window.galleryImages.length;
+    const prevImgSrc = window.galleryImages[window.currentImageIndex];
+    const thumbEls = document.querySelectorAll('.thumb');
+    const targetThumb = thumbEls[window.currentImageIndex] || null;
+    selectThumb(targetThumb, null, prevImgSrc, window.currentImageIndex);
 }
 
 let verificationTrigger = 'call';

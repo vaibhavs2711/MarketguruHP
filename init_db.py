@@ -51,7 +51,8 @@ def init_database():
         city VARCHAR(50),
         description TEXT,
         features TEXT,
-        listed_by VARCHAR(20)
+        listed_by VARCHAR(20),
+        images LONGTEXT
     )
     """)
 

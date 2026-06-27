@@ -785,6 +785,9 @@
 
   <script src="cars-data.js"></script>
   <script>
+    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:5000' : '';
+    let globalCars = [];
+    let globalWishlist = [];
     let currentUser = localStorage.getItem('mg_current_user') || '';
     let currentUserMobile = localStorage.getItem('mg_current_user_mobile') || '';
     let userType = localStorage.getItem('mg_current_user_type') || 'private';
@@ -797,38 +800,50 @@
     function initDashboard() {
       currentUser = localStorage.getItem('mg_current_user') || 'Guest User';
       currentUserMobile = localStorage.getItem('mg_current_user_mobile') || '';
-
-      document.getElementById('welcomeName').textContent = currentUser;
-
-      const parts = currentUser.split(' ');
-      const initials = parts.map(p => p[0]).join('').substring(0, 2).toUpperCase();
-      document.getElementById('headerAvatar').textContent = initials || 'U';
+      try {
+          const userObj = JSON.parse(currentUser);
+          document.getElementById('welcomeName').textContent = userObj.name || 'Guest User';
+          const parts = (userObj.name || '').split(' ');
+          const initials = parts.map(p => p[0]).join('').substring(0, 2).toUpperCase();
+          document.getElementById('headerAvatar').textContent = initials || 'U';
+      } catch(e) {
+          document.getElementById('welcomeName').textContent = currentUser;
+          document.getElementById('headerAvatar').textContent = 'U';
+      }
 
       // Dealer Customizations
       if (userType === 'dealer') {
         document.getElementById('dashboardTitle').textContent = 'DEALER PARTNER CONSOLE';
         document.getElementById('userBadge').textContent = 'Dealer Partner';
         document.getElementById('listingsKpiLabel').textContent = 'Dealership Cars Listed';
-
         const listingsHeader = document.querySelector('#pg-listings .card-title');
         if (listingsHeader) listingsHeader.textContent = '🚗 Dealership Active Inventory';
       } else {
         document.getElementById('dashboardTitle').textContent = 'CUSTOMER DASHBOARD';
         document.getElementById('userBadge').textContent = 'Member Client';
         document.getElementById('listingsKpiLabel').textContent = 'My Cars Listed for Sale';
-
         const listingsHeader = document.querySelector('#pg-listings .card-title');
         if (listingsHeader) listingsHeader.textContent = '🚗 My Cars Listed for Sale';
       }
 
-      renderStats();
-      renderWishlist();
-      renderUserListings();
+      fetch(API_BASE + '/api/init')
+        .then(r => r.json())
+        .then(data => {
+            if(data.status === 'success') {
+                globalCars = data.cars || [];
+                try {
+                    globalWishlist = JSON.parse(localStorage.getItem('mg_wishlist') || '[]');
+                } catch(e) { globalWishlist = []; }
+                renderStats();
+                renderWishlist();
+                renderUserListings();
+            }
+        }).catch(err => console.error(err));
     }
 
     function checkSellPermissions() {
       if (userType === 'private') {
-        const userCars = mgDB.getUserListings(currentUserMobile);
+        const userCars = globalCars.filter(c => c.listed_by === currentUserMobile);
         if (userCars && userCars.length >= 1) {
           showToast('⚠️ Individual sellers are restricted to exactly 1 car listing!');
           return;
@@ -838,15 +853,15 @@
     }
 
     function renderStats() {
-      const wishlist = mgDB.getWishlist();
-      const userCars = mgDB.getUserListings(currentUserMobile);
+      
+      const userCars = globalCars.filter(c => c.listed_by === currentUserMobile);
 
-      document.getElementById('statWishlist').textContent = wishlist.length;
+      document.getElementById('statWishlist').textContent = globalWishlist.length;
       document.getElementById('statListings').textContent = userCars.length;
     }
 
     function renderWishlist() {
-      const list = mgDB.getWishlist();
+      const list = globalWishlist;
       const grid = document.getElementById('wishlistGrid');
 
       if (list.length === 0) {
@@ -855,7 +870,7 @@
       }
 
       grid.innerHTML = list.map(id => {
-        const c = mgDB.getCarById(id);
+        const c = globalCars.find(car => car.id === id);
         if (!c) return '';
         return `
         <div class="car-card">
@@ -876,14 +891,15 @@
     }
 
     function removeSaved(id) {
-      mgDB.toggleWishlist(id);
+      globalWishlist = globalWishlist.filter(x => x !== id);
+      localStorage.setItem('mg_wishlist', JSON.stringify(globalWishlist));
       showToast('❌ Removed from saved list');
       renderStats();
       renderWishlist();
     }
 
     function renderUserListings() {
-      const userCars = mgDB.getUserListings(currentUserMobile);
+      const userCars = globalCars.filter(c => c.listed_by === currentUserMobile);
       const tbody = document.getElementById('listingsTable');
 
       if (userCars.length === 0) {
@@ -909,7 +925,7 @@
 
     /* --- Modal Handlers --- */
     function openEditModal(carId) {
-      const car = mgDB.getCarById(carId);
+      const car = globalCars.find(c => c.id === carId);
       if (!car) return;
       document.getElementById('editCarId').value = carId;
       document.getElementById('editModalCarName').textContent = 'Editing: ' + car.name;
@@ -938,14 +954,16 @@
       if (desc) updates.description = desc;
 
       showToast('💾 Saving changes...');
-      const success = mgDB.updateListing(carId, updates, currentUserMobile);
-      if (success) {
-        closeModal('editPriceModal');
-        showToast('✅ Listing updated successfully!');
-        renderUserListings();
-        renderStats();
+      // Simple mock update until backend endpoint exists for editing
+      const car = globalCars.find(c => c.id === carId);
+      if(car) {
+          Object.assign(car, updates);
+          closeModal('editPriceModal');
+          showToast('✅ Listing updated successfully!');
+          renderUserListings();
+          renderStats();
       } else {
-        showToast('❌ Failed to save. Please try again.');
+          showToast('❌ Failed to save. Please try again.');
       }
     }
 

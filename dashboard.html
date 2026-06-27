@@ -333,7 +333,10 @@
 
   <div class="nav-section">
     <div class="nav-section-title">Admin</div>
-    <div class="nav-item" onclick="showPage('users',this)">
+    <div class="nav-item" onclick="showPage(\'makesmodels\',this)">
+      <span class="icon">🏷️</span> Makes & Models
+    </div>
+    <div class="nav-item" onclick="showPage(\'users\',this)">
       <span class="icon">👤</span> Staff Users
     </div>
     <div class="nav-item" onclick="showPage('rbac',this)">
@@ -757,6 +760,38 @@
             <span><span class="perm-limited">~</span> Limited (own records)</span>
             <span><span class="perm-no">—</span> No Access</span>
           </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- ===== MAKES & MODELS PAGE ===== -->
+    <div class="page-section" id="pg-makesmodels">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🏷️ Car Makes</div>
+            <button class="btn-sm btn-red-sm" onclick="showAddMakeModal()">+ Add Make</button>
+          </div>
+          <table id="makesTable">
+            <thead>
+              <tr><th>Make</th><th>Slug</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🚗 Car Models</div>
+            <button class="btn-sm btn-red-sm" onclick="showAddModelModal()">+ Add Model</button>
+          </div>
+          <table id="modelsTable">
+            <thead>
+              <tr><th>Model</th><th>Make</th><th>Slug</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -1330,6 +1365,116 @@ function updateSubscriptionStats() {
   const countVal = document.getElementById('dealerSubCount');
   if (countVal) countVal.textContent = activeCount;
 }
+
+<script>
+
+// --- Admin Car Makes & Models ---
+let allAdminMakes = [];
+let allAdminModels = [];
+
+function loadAdminCarData() {
+  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-hierarchy')
+    .then(r => r.json())
+    .then(makes => {
+      allAdminMakes = makes;
+      allAdminModels = makes.flatMap(m => m.models || []);
+      renderAdminMakes();
+      renderAdminModels();
+    });
+}
+
+function renderAdminMakes() {
+  const tbody = document.querySelector('#makesTable tbody');
+  if(!tbody) return;
+  tbody.innerHTML = allAdminMakes.map(m => `
+    <tr>
+      <td>${m.name}</td>
+      <td>${m.slug}</td>
+      <td><span class="status-badge s-active">Active</span></td>
+      <td>
+        <button class="btn-sm btn-outline-sm" onclick="editMake(${m.id}, '${m.name}')">Edit</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderAdminModels() {
+  const tbody = document.querySelector('#modelsTable tbody');
+  if(!tbody) return;
+  tbody.innerHTML = allAdminModels.map(m => {
+     const make = allAdminMakes.find(mk => mk.id === m.make_id);
+     return `
+    <tr>
+      <td>${m.name}</td>
+      <td>${make ? make.name : m.make_id}</td>
+      <td>${m.slug}</td>
+      <td><span class="status-badge s-active">Active</span></td>
+      <td>
+        <button class="btn-sm btn-outline-sm" onclick="editModel(${m.id}, ${m.make_id}, '${m.name}')">Edit</button>
+      </td>
+    </tr>
+  `}).join('');
+}
+
+function showAddMakeModal() {
+   const name = prompt("Enter new Make name:");
+   if(name) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-makes', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Make Added'); loadAdminCarData(); }
+      });
+   }
+}
+
+function editMake(id, oldName) {
+   const name = prompt("Edit Make name:", oldName);
+   if(name && name !== oldName) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-makes', {
+         method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ id, name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Make Updated'); loadAdminCarData(); }
+      });
+   }
+}
+
+function showAddModelModal() {
+   let makesOptions = allAdminMakes.map(m => `${m.id}: ${m.name}`).join('\n');
+   const makeIdStr = prompt(`Enter Make ID:\n${makesOptions}`);
+   if(!makeIdStr) return;
+   const make_id = parseInt(makeIdStr);
+   const name = prompt("Enter new Model name:");
+   if(name) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-models', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ make_id, name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Model Added'); loadAdminCarData(); }
+      });
+   }
+}
+
+function editModel(id, make_id, oldName) {
+   const name = prompt("Edit Model name:", oldName);
+   if(name && name !== oldName) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-models', {
+         method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ id, make_id, name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Model Updated'); loadAdminCarData(); }
+      });
+   }
+}
+
+document.addEventListener('DOMContentLoaded', loadAdminCarData);
+
+</script>
 </script>
 </body>
 </html>

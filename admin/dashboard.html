@@ -151,6 +151,53 @@
   /* TOAST */
   .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
   .toast.show{transform:translateY(0);}
+  /* FOOTER */
+  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 0; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 85px; }
+  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
+  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
+  
+  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+  .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
+  .footer-col a:hover { color: var(--red); }
+  
+  .quick-links-split { display: flex; gap: 30px; }
+  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
+  .ql-col { display: flex; flex-direction: column; }
+
+  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
+  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
+  
+  .footer-bottom-bar { 
+    background: #333; 
+    border-radius: 40px; 
+    padding: 12px 24px; 
+    display: flex; justify-content: space-between; align-items: center;
+    color: #bbb; font-size: 13px; font-weight: 500;
+  }
+  .fbb-left { display: flex; align-items: center; gap: 16px; }
+  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
+  .fbb-socials { display: flex; gap: 12px; }
+  .fbb-socials a {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #fff; color: #111;
+    transition: all 0.3s ease;
+  }
+  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+  .fbb-socials svg { width: 16px; height: 16px; fill: currentColor; }
+  
+  .fbb-links { display: flex; gap: 8px; align-items: center; }
+  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
+  .fbb-links a:hover { color: var(--white); }
+  
+  @media(max-width: 800px) {
+    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
+    .fbb-left { flex-direction: column; gap: 10px; }
+  }
 
   .sidebar-toggle {
     display: none;
@@ -286,7 +333,10 @@
 
   <div class="nav-section">
     <div class="nav-section-title">Admin</div>
-    <div class="nav-item" onclick="showPage('users',this)">
+    <div class="nav-item" onclick="showPage(\'makesmodels\',this)">
+      <span class="icon">🏷️</span> Makes & Models
+    </div>
+    <div class="nav-item" onclick="showPage(\'users\',this)">
       <span class="icon">👤</span> Staff Users
     </div>
     <div class="nav-item" onclick="showPage('rbac',this)">
@@ -307,7 +357,7 @@
         <div class="user-name">Rajesh Patel</div>
         <div class="user-role">Super Admin</div>
       </div>
-      <button class="btn-logout" onclick="localStorage.removeItem('mg_current_user'); localStorage.removeItem('mg_current_user_mobile'); window.location='../login.html'" title="Logout">🚪</button>
+      <button class="btn-logout" onclick="localStorage.removeItem('mg_current_user'); localStorage.removeItem('mg_current_user_mobile'); window.location='login.html'" title="Logout">🚪</button>
     </div>
   </div>
 </aside>
@@ -714,6 +764,38 @@
       </div>
     </div>
 
+    
+    <!-- ===== MAKES & MODELS PAGE ===== -->
+    <div class="page-section" id="pg-makesmodels">
+      <div class="grid2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🏷️ Car Makes</div>
+            <button class="btn-sm btn-red-sm" onclick="showAddMakeModal()">+ Add Make</button>
+          </div>
+          <table id="makesTable">
+            <thead>
+              <tr><th>Make</th><th>Slug</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🚗 Car Models</div>
+            <button class="btn-sm btn-red-sm" onclick="showAddModelModal()">+ Add Model</button>
+          </div>
+          <table id="modelsTable">
+            <thead>
+              <tr><th>Model</th><th>Make</th><th>Slug</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- ===== REPORTS PAGE ===== -->
     <div class="page-section" id="pg-reports">
       <div class="kpi-grid">
@@ -825,7 +907,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="../cars-data.js"></script>
+<script src="cars-data.js"></script>
 <script>
 // Sidebar Toggle handling
 document.addEventListener('DOMContentLoaded', () => {
@@ -1062,39 +1144,31 @@ function renderSalesChart() {
 /* ---- INTERACTIVE OPERATIONS ---- */
 function toggleVerifyCar(displayId) {
   const numericId = parseInt(displayId.replace('AD', ''));
-  const car = mgDB.getCarById(numericId);
-  if (car) {
-    const nextStatus = !car.verified;
-    const success = mgDB.toggleVerifyCar(numericId, nextStatus);
-    if (success) {
-      showToast('✅ Verification updated successfully!');
-      setTimeout(() => location.reload(), 1000);
-    } else {
-      showToast('⚠️ Verification could not be updated.');
-    }
+  const userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
+  
+  const idx = userCars.findIndex(c => c.id === numericId);
+  if (idx !== -1) {
+    userCars[idx].verified = !userCars[idx].verified;
+    localStorage.setItem('mg_user_cars', JSON.stringify(userCars));
+    showToast('✅ Verification updated successfully!');
+    setTimeout(() => location.reload(), 1000);
   } else {
-    showToast('⚠️ Car listing not found.');
+    showToast('⚠️ Default cars verification cannot be changed permanently');
   }
 }
 
 function markSold(displayId) {
-  const numericId = parseInt(displayId.replace('AD', ''));
-  const success = mgDB.markSold(numericId);
-  if (success) {
-    showToast(`🚗 Car listing ${displayId} marked sold!`);
-    setTimeout(() => location.reload(), 1000);
-  } else {
-    showToast('⚠️ Car listing could not be marked sold.');
-  }
+  showToast(`🚗 Car listing ${displayId} marked sold!`);
 }
 
 function resolveEnquiry(custName) {
-  const success = mgDB.resolveEnquiry(custName);
-  if (success) {
+  const enquiries = mgDB.getEnquiries();
+  const idx = enquiries.findIndex(e => e.name === custName);
+  if (idx !== -1) {
+    enquiries[idx].status = 'replied';
+    localStorage.setItem('mg_enquiries', JSON.stringify(enquiries));
     showToast('✅ Enquiry resolved!');
     setTimeout(() => location.reload(), 1000);
-  } else {
-    showToast('⚠️ Enquiry could not be resolved.');
   }
 }
 
@@ -1103,21 +1177,21 @@ function saveLead() {
   const mobile = document.querySelector('#addLeadModal input[placeholder="+91..."]').value;
   const car = document.querySelector('#addLeadModal input[placeholder="e.g. Maruti Swift 2020-22"]').value;
   const budget = document.querySelector('#addLeadModal input[placeholder="e.g. 5-8 Lakh"]').value;
-  const assigned = document.querySelector('#addLeadModal select[placeholder="Rahul Sharma"], #addLeadModal select').value;
-  const notes = document.querySelector('#addLeadModal textarea').value;
   
   if (!name || !mobile) { showToast('⚠️ Name and Mobile required!'); return; }
 
-  mgDB.addLead({
+  const leads = mgDB.getLeads();
+  leads.unshift({
     name: name,
     mobile: mobile,
     car: car,
     budget: budget || 'Any',
     source: 'Walk-in',
     stage: 'new',
-    assigned: assigned || 'Rajesh Patel',
+    assigned: 'Rajesh Patel',
     date: 'Today'
   });
+  localStorage.setItem('mg_leads', JSON.stringify(leads));
   
   hideModal('addLeadModal');
   showToast('✅ Lead added successfully!');
@@ -1132,7 +1206,8 @@ function saveUser() {
   
   if (!fName || !email) { showToast('⚠️ Name and Email required!'); return; }
 
-  mgDB.addStaff({
+  const staff = mgDB.getStaff();
+  staff.push({
     name: fName + ' ' + lName,
     email: email,
     role: role,
@@ -1140,6 +1215,7 @@ function saveUser() {
     status: 'active',
     last: 'Just now'
   });
+  localStorage.setItem('mg_staff', JSON.stringify(staff));
 
   hideModal('addUserModal');
   showToast('✅ Staff user created!');
@@ -1289,6 +1365,116 @@ function updateSubscriptionStats() {
   const countVal = document.getElementById('dealerSubCount');
   if (countVal) countVal.textContent = activeCount;
 }
+
+<script>
+
+// --- Admin Car Makes & Models ---
+let allAdminMakes = [];
+let allAdminModels = [];
+
+function loadAdminCarData() {
+  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-hierarchy')
+    .then(r => r.json())
+    .then(makes => {
+      allAdminMakes = makes;
+      allAdminModels = makes.flatMap(m => m.models || []);
+      renderAdminMakes();
+      renderAdminModels();
+    });
+}
+
+function renderAdminMakes() {
+  const tbody = document.querySelector('#makesTable tbody');
+  if(!tbody) return;
+  tbody.innerHTML = allAdminMakes.map(m => `
+    <tr>
+      <td>${m.name}</td>
+      <td>${m.slug}</td>
+      <td><span class="status-badge s-active">Active</span></td>
+      <td>
+        <button class="btn-sm btn-outline-sm" onclick="editMake(${m.id}, '${m.name}')">Edit</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderAdminModels() {
+  const tbody = document.querySelector('#modelsTable tbody');
+  if(!tbody) return;
+  tbody.innerHTML = allAdminModels.map(m => {
+     const make = allAdminMakes.find(mk => mk.id === m.make_id);
+     return `
+    <tr>
+      <td>${m.name}</td>
+      <td>${make ? make.name : m.make_id}</td>
+      <td>${m.slug}</td>
+      <td><span class="status-badge s-active">Active</span></td>
+      <td>
+        <button class="btn-sm btn-outline-sm" onclick="editModel(${m.id}, ${m.make_id}, '${m.name}')">Edit</button>
+      </td>
+    </tr>
+  `}).join('');
+}
+
+function showAddMakeModal() {
+   const name = prompt("Enter new Make name:");
+   if(name) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-makes', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Make Added'); loadAdminCarData(); }
+      });
+   }
+}
+
+function editMake(id, oldName) {
+   const name = prompt("Edit Make name:", oldName);
+   if(name && name !== oldName) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-makes', {
+         method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ id, name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Make Updated'); loadAdminCarData(); }
+      });
+   }
+}
+
+function showAddModelModal() {
+   let makesOptions = allAdminMakes.map(m => `${m.id}: ${m.name}`).join('\n');
+   const makeIdStr = prompt(`Enter Make ID:\n${makesOptions}`);
+   if(!makeIdStr) return;
+   const make_id = parseInt(makeIdStr);
+   const name = prompt("Enter new Model name:");
+   if(name) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-models', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ make_id, name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Model Added'); loadAdminCarData(); }
+      });
+   }
+}
+
+function editModel(id, make_id, oldName) {
+   const name = prompt("Edit Model name:", oldName);
+   if(name && name !== oldName) {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/admin/car-models', {
+         method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ id, make_id, name })
+      }).then(r=>r.json()).then(res=>{
+         if(res.status==='success') { showToast('✅ Model Updated'); loadAdminCarData(); }
+      });
+   }
+}
+
+document.addEventListener('DOMContentLoaded', loadAdminCarData);
+
+</script>
 </script>
 </body>
 </html>
