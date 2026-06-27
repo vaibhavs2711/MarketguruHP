@@ -4,1147 +4,325 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Car Details - Market Guru HP</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red: #FFCC00;
-    --red-dark: #E6B800;
-    --charcoal: #1A3D8F;
-    --navy: #0D2B6B;
-    --steel: #2A5CC7;
-    --silver: #F0F4F8;
+    --primary: #FFB300;
+    --primary-dark: #F59E0B;
+    --navy: #0F172A;
+    --navy-light: #1E293B;
+    --gray-bg: #F8FAFC;
     --white: #FFFFFF;
-    --text: #1A1A2E;
-    --muted: #6B7A99;
-    --border: #DDE3EE;
-    --success: #A3D1B1;
-    --blue-light: #E8F0FE;
+    --text: #334155;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --green: #22C55E;
+    --green-light: #dcfce7;
+    --blue: #3B82F6;
+    --blue-light: #dbeafe;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
-  a{text-decoration:none;color:inherit;}
-  .navbar {
-    background: var(--white);
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    border-bottom: 2px solid var(--border);
-  }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+  body { background: var(--gray-bg); color: var(--text); }
+  a { text-decoration:none; color:inherit; }
 
-  .nav-main {
-    max-width: 1280px; margin: 0 auto;
-    display: flex; align-items: center; gap: 0;
-    padding: 0 20px; height: 90px;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
-    height: 64px;
-    background: #10172A;
-    padding: 6px 16px;
-    border-radius: 8px;
-  }
-  .logo img {
-    height: 100%;
-    width: auto;
-    display: block;
-  }
-  .nav-links { display: flex; gap: 6px; flex: 1; }
-  .nav-links a {
-    color: var(--charcoal); font-size: 16px; font-weight: 700;
-    padding: 8px 16px; border-radius: 6px;
-    transition: all 0.2s;
-  }
-  .nav-links a:hover { color: var(--charcoal); background: rgba(26, 61, 143, 0.08); }
-  .nav-actions { display: flex; gap: 10px; align-items: center; }
-  .btn-outline-white {
-    border: 2px solid var(--charcoal); color: var(--charcoal);
-    padding: 10px 22px; border-radius: 8px; font-size: 15px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; background: transparent;
-  }
-  .btn-outline-white:hover { 
-    background: var(--blue-light); 
-  }
-  .btn-red {
-    background: var(--red); color: #1A1A2E;
-    padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 800;
-    cursor: pointer; border: none; transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
-  }
-  .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); color: #1A1A2E; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45); }
+  /* Minimal Navbar to match layout roughly */
+  .navbar { background: var(--white); border-bottom: 2px solid var(--primary); padding: 0 24px; position:sticky; top:0; z-index:100;}
+  .nav-main { max-width: 1280px; margin: 0 auto; height: 80px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-left { display:flex; align-items:center; gap: 40px; }
+  .logo { height: 50px; }
+  .logo img { height: 100%; }
+  .nav-links { display:flex; gap:24px; font-weight: 600; color: var(--navy); font-size:15px; }
+  .nav-links a.active { color: var(--primary-dark); }
+  
+  .breadcrumb { max-width:1280px; margin:20px auto 16px; padding:0 24px; font-size:13px; color:var(--blue); font-weight:600; display:flex; gap:8px; align-items:center;}
+  .breadcrumb span { color:var(--muted); font-weight:400; }
 
-  .breadcrumb{background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;font-size:13px;color:var(--muted);}
-  .breadcrumb a{color:var(--red);}
-  .breadcrumb-inner{max-width:1280px;margin:0 auto;}
+  .layout { max-width: 1280px; margin: 0 auto 40px; padding: 0 24px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; }
 
-  .page-wrap{max-width:1280px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:1fr 340px;gap:24px;}
+  /* LEFT COLUMN */
+  .left-col { display: flex; flex-direction: column; gap: 24px; }
+  
+  .gallery { background:var(--white); border-radius:16px; padding:12px; box-shadow:0 4px 12px rgba(0,0,0,0.03); }
+  .main-img-box { position:relative; height:450px; background:linear-gradient(to bottom, #F1F5F9, #E2E8F0); border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .main-img-box img { width:100%; height:100%; object-fit:contain; mix-blend-mode: multiply; }
+  .badge-hot { position:absolute; top:16px; left:16px; background:var(--primary); color:var(--navy); padding:6px 12px; border-radius:8px; font-size:13px; font-weight:700; display:flex; align-items:center; gap:6px; z-index:10;}
+  .img-count { position:absolute; bottom:16px; right:16px; background:rgba(15,23,42,0.8); color:var(--white); padding:6px 12px; border-radius:8px; font-size:13px; font-weight:600; z-index:10;}
+  .nav-arrow { position:absolute; top:50%; transform:translateY(-50%); width:40px; height:40px; background:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.1); font-weight:bold; color:var(--navy); z-index:10; }
+  .nav-arrow.left { left: 16px; }
+  .nav-arrow.right { right: 16px; }
 
-  /* GALLERY */
-  .main-gallery{background:var(--white);border-radius:12px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:20px;}
-  .main-img{min-height:250px;background:linear-gradient(135deg,#e8eef5,#ccd4e0);display:flex;align-items:center;justify-content:center;font-size:120px;position:relative;}
-  .img-badges{position:absolute;top:16px;left:16px;display:flex;gap:8px;z-index:5;}
-  .img-badge{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:700;color:#fff;}
-  .badge-v{background:var(--success);}
-  .badge-hot{background:var(--red);}
-  .thumb-row{display:flex;gap:12px;padding:12px;overflow-x:auto;scrollbar-width:none;} .thumb-row::-webkit-scrollbar { display: none; } .thumb{flex-shrink:0;}
-  .thumb{width:80px;height:60px;border-radius:6px;background:linear-gradient(135deg,#e0e8f0,#c8d4e0);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;}
-  .thumb.active{border-color:var(--red);}
-  .thumb:hover{border-color:var(--muted);}
+  .thumbs { display:flex; gap:12px; margin-top:12px; overflow-x:auto; padding-bottom:4px; }
+  .thumb { width:100px; height:70px; border-radius:8px; cursor:pointer; background:#F1F5F9; border:2px solid transparent; overflow:hidden; flex-shrink:0; position:relative; }
+  .thumb.active { border-color:var(--primary); }
+  .thumb img { width:100%; height:100%; object-fit:cover; mix-blend-mode: multiply;}
+  .thumb-more { display:flex; align-items:center; justify-content:center; background:#E2E8F0; color:var(--navy); font-weight:700; font-size:15px; }
 
-  /* CAR HEADER */
-  .car-header{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:24px;margin-bottom:20px;}
-  .car-title-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
-  .car-main-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.5px;}
-  .car-main-variant{font-size:15px;color:var(--muted);margin-top:4px;}
-  .price-block{text-align:right;}
-  .price-main{font-size:36px;font-weight:800;color:var(--red);}
-  .price-emi{font-size:13px;color:var(--muted);margin-top:4px;}
-  .specs-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding-top:16px;border-top:1px solid var(--border);}
-  .spec-box{text-align:center;padding:12px 8px;background:var(--silver);border-radius:8px;}
-  .spec-val{font-size:15px;font-weight:700;margin-bottom:4px;}
-  .spec-key{font-size:11px;color:var(--muted);}
+  .car-header { display:flex; justify-content:space-between; align-items:center; }
+  .car-title { font-size:32px; font-weight:800; color:var(--navy); }
+  .car-actions { display:flex; gap:12px; }
+  .btn-outline { display:flex; align-items:center; gap:8px; padding:10px 16px; border:1.5px solid var(--border); border-radius:8px; background:var(--white); color:var(--navy); font-weight:600; font-size:14px; cursor:pointer; }
+  
+  .tabs { display:flex; gap:32px; border-bottom:2px solid var(--border); margin-top:16px; }
+  .tab { padding-bottom:12px; font-size:15px; font-weight:600; color:var(--muted); cursor:pointer; position:relative; border-bottom:3px solid transparent; margin-bottom:-2px;}
+  .tab.active { color:var(--navy); border-bottom-color:var(--navy); }
 
-  /* INSPECTION */
-  .card{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:24px;margin-bottom:20px;}
-  .card-title{font-size:17px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-  .inspection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  .inspect-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;}
-  .inspect-item.pass{background:#f0fdf4;}
-  .inspect-item.warn{background:#fffbeb;}
-  .inspect-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-  .pass .inspect-dot{background:var(--success);}
-  .warn .inspect-dot{background:#F59E0B;}
-  .inspect-text{font-size:12px;font-weight:500;}
+  .overview-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:8px; }
+  .ov-item { background:var(--white); border:1.5px solid var(--border); border-radius:12px; padding:16px; display:flex; gap:16px; align-items:center; }
+  .ov-icon { width:40px; height:40px; border-radius:50%; background:var(--gray-bg); display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .ov-info { display:flex; flex-direction:column; gap:4px; }
+  .ov-label { font-size:12px; color:var(--muted); font-weight:500; }
+  .ov-val { font-size:15px; font-weight:700; color:var(--navy); }
 
-  /* FEATURES */
-  .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  .feat-item{display:flex;align-items:center;gap:8px;font-size:13px;padding:10px;background:var(--silver);border-radius:8px;}
-  .feat-check{color:var(--success);font-weight:700;}
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+  
+  .features-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:8px; }
+  .feat-item { background:var(--white); border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; font-size:14px; font-weight:500; color:var(--navy); display:flex; align-items:center; gap:8px; }
 
-  /* SELLER INFO */
-  .seller-box{background:var(--charcoal);border-radius:12px;padding:24px;color:#fff;margin-bottom:16px;}
-  .seller-row{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
-  .seller-avatar{width:56px;height:56px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:24px;}
-  .seller-name{font-size:17px;font-weight:700;}
-  .seller-type{font-size:12px;color:#99aacc;margin-top:2px;}
-  .seller-stats{display:flex;gap:24px;margin-bottom:16px;}
-  .s-stat-num{font-size:20px;font-weight:800;}
-  .s-stat-label{font-size:11px;color:#99aacc;}
-  .btn-call-now{width:100%;padding:14px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px;}
-  .btn-whatsapp{width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;}
-  .btn-test-drive{width:100%;padding:13px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;}
+  /* RIGHT COLUMN */
+  .right-col { display: flex; flex-direction: column; gap: 24px; }
+  
+  .price-card { background:var(--white); border-radius:16px; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.03); }
+  .pc-title { font-size:14px; color:var(--navy); font-weight:700; margin-bottom:8px; }
+  .pc-price { font-size:42px; font-weight:800; color:var(--primary); margin-bottom:8px; }
+  .pc-link { color:var(--blue); font-size:13px; font-weight:600; margin-bottom:24px; display:flex; align-items:center; gap:4px; }
+  
+  .pc-specs { display:flex; gap:16px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px 0; margin-bottom:16px; font-size:13px; font-weight:600; color:var(--navy); flex-wrap:wrap;}
+  .pc-spec { display:flex; align-items:center; gap:6px; }
+  
+  .pc-loc { font-size:13px; font-weight:600; color:var(--navy); margin-bottom:20px; display:flex; align-items:center; gap:6px;}
+  
+  .pc-details { font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:6px; margin-bottom:24px; font-weight:500;}
+  
+  .btn-call { width:100%; padding:14px; background:var(--primary); color:var(--navy); font-size:15px; font-weight:700; border:none; border-radius:8px; cursor:pointer; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:8px; }
+  .btn-whatsapp { width:100%; padding:14px; background:#22C55E; color:var(--white); font-size:15px; font-weight:700; border:none; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; }
 
-  /* EMI CALC */
-  .emi-box{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:20px;margin-bottom:16px;}
-  .emi-title{font-size:15px;font-weight:700;margin-bottom:14px;}
-  .emi-field label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:5px;margin-top:10px;}
-  .emi-field input,  .emi-field select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;}
-  .emi-result{background:var(--silver);border-radius:8px;padding:14px;margin-top:14px;text-align:center;}
-  .emi-amount{font-size:28px;font-weight:800;color:var(--red);}
-  .emi-label{font-size:12px;color:var(--muted);margin-top:4px;}
+  .dealer-card { background:var(--navy); border-radius:16px; padding:24px; color:var(--white); box-shadow:0 4px 12px rgba(0,0,0,0.03); }
+  .dc-header { display:flex; gap:16px; align-items:center; margin-bottom:24px; }
+  .dc-avatar { width:56px; height:56px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--navy); flex-shrink:0;}
+  .dc-name { font-size:16px; font-weight:700; margin-bottom:4px; }
+  .dc-rating { font-size:12px; color:var(--gray-bg); display:flex; align-items:center; gap:6px; font-weight:500;}
+  
+  .dc-stats { display:grid; grid-template-columns:1fr 1fr 1fr; margin-bottom:24px; }
+  .dc-stat { display:flex; flex-direction:column; gap:4px; }
+  .dc-stat-val { font-size:20px; font-weight:700; }
+  .dc-stat-lbl { font-size:11px; color:#94A3B8; }
+  
+  .dc-list { display:flex; flex-direction:column; gap:12px; font-size:13px; font-weight:500; color:#F1F5F9; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;}
+  .dc-item { display:flex; align-items:center; gap:10px; }
 
-  /* TOAST */
-  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
-  .toast.show{transform:translateY(0);}
+  .ql-card { background:var(--white); border-radius:16px; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.03); }
+  .ql-title { font-size:14px; color:var(--navy); font-weight:700; margin-bottom:16px; }
+  .ql-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .ql-btn { display:flex; align-items:center; gap:8px; padding:12px; border:1px solid var(--border); border-radius:8px; background:var(--white); font-size:12px; font-weight:600; color:var(--navy); cursor:pointer; }
+  .ql-btn:hover { background:var(--gray-bg); }
 
-  /* MODAL */
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;}
-  .modal-overlay.show{display:flex;}
-  .modal{background:#fff;border-radius:16px;padding:32px;max-width:440px;width:90%;}
-  .modal h3{font-size:20px;font-weight:700;margin-bottom:20px;}
-  .form-field{margin-bottom:14px;}
-  .form-field label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
-  .form-field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;}
-  .form-field input:focus{outline:none;border-color:var(--red);}
-  .modal-btns{display:flex;gap:12px;margin-top:20px;}
-  .btn-modal-submit{flex:2;padding:12px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;}
-  .btn-modal-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid var(--border);border-radius:8px;font-size:14px;cursor:pointer;}
+  /* Toast */
+  .toast { position:fixed; bottom:24px; right:24px; z-index:9999; background:var(--navy); color:#fff; padding:14px 20px; border-radius:10px; font-size:14px; font-weight:500; box-shadow:0 8px 24px rgba(0,0,0,0.3); transform:translateY(100px); transition:transform 0.3s ease; border-left:4px solid var(--primary); }
+  .toast.show { transform:translateY(0); }
 
-  /* GALLERY OVERLAY INSIGHTS */
-  .gallery-layout {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 12px;
+  @media(max-width:1024px) {
+    .layout { grid-template-columns:1fr; }
+    .main-img-box { height:350px; }
   }
-  
-  .gallery-insights {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 400px;
-    background: linear-gradient(to right, rgba(11, 17, 30, 0.95) 0%, rgba(11, 17, 30, 0.7) 50%, rgba(11, 17, 30, 0) 100%);
-    padding: 35px 28px;
-    padding-right: 60px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 22px;
-    z-index: 10;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-  }
-  
-  .insights-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .insight-label {
-    font-size: 12.5px;
-    color: #94a3b8;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  
-  .insight-value-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .insight-price-val {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--white);
-  }
-  
-  .insight-badge {
-    font-size: 11px;
-    background: rgba(255, 204, 0, 0.12);
-    color: var(--red);
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-weight: 700;
-    border: 1px solid rgba(255, 204, 0, 0.25);
-    white-space: nowrap;
-  }
-  
-  .insight-val {
-    font-size: 20px;
-    font-weight: 700;
-    color: #e2e8f0;
-  }
-  
-  .insights-link {
-    font-size: 13.5px;
-    color: var(--red);
-    text-decoration: underline;
-    font-weight: 700;
-    cursor: pointer;
-    transition: color 0.2s;
-    margin-top: 10px;
-    align-self: start;
-  }
-  .insights-link:hover {
-    color: var(--red-dark);
-  }
-  
-  @media (max-width: 800px) {
-    .gallery-insights {
-      width: 100%;
-      height: auto;
-      top: auto;
-      bottom: 0;
-      border-right: none;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding: 18px 20px;
-      gap: 12px;
-      background: rgba(11, 17, 30, 0.85);
-    }
-  }
-
-    /* GALLERY NAVIGATION BUTTONS */
-  .img-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 20;
-    transition: background 0.2s, transform 0.2s;
-    user-select: none;
-  }
-  .img-nav-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
-    transform: translateY(-50%) scale(1.1);
-  }
-  .img-nav-btn.prev {
-    left: 16px;
-  }
-  .img-nav-btn.next {
-    right: 16px; 
-  }
-
-  /* TABS SYSTEM */
-  .tabs-container {
-    background: var(--white);
-    border-radius: 12px;
-    border: 1.5px solid var(--border);
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  
-  .tabs-header {
-    display: flex;
-    background: #f8fafc;
-    border-bottom: 1.5px solid var(--border);
-  }
-  
-  .tab-btn {
-    padding: 16px 24px;
-    background: transparent;
-    border: none;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    border-bottom: 3px solid transparent;
-  }
-  
-  .tab-btn:hover {
-    color: var(--charcoal);
-    background: rgba(0,0,0,0.02);
-  }
-  
-  .tab-btn.active {
-    color: var(--charcoal);
-    border-bottom-color: #0d9488;
-  }
-  
-  .tab-content {
-    padding: 24px;
-  }
-  
-  .tab-panel {
-    display: none;
-  }
-  
-  .tab-panel.active {
-    display: block;
-  }
-  
-  .panel-title {
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 20px;
-    color: var(--charcoal);
-  }
-  
-  /* OVERVIEW GRID */
-  .overview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  
-  .overview-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px;
-    border-right: 1.5px solid var(--border);
-    border-bottom: 1.5px solid var(--border);
-    background: #ffffff;
-  }
-  
-  .overview-item:nth-child(3n) {
-    border-right: none;
-  }
-  
-  .overview-item:nth-child(n+10) {
-    border-bottom: none;
-  }
-  
-  .overview-icon {
-    font-size: 20px;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f5f9;
-    border-radius: 10px;
-    color: var(--charcoal);
-    flex-shrink: 0;
-  }
-  
-  .overview-details {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .overview-label {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 600;
-  }
-  
-  .overview-val {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--charcoal);
-  }
-  
-  @media (max-width: 900px) {
-    .overview-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    .overview-item:nth-child(3n) {
-      border-right: 1.5px solid var(--border);
-    }
-    .overview-item:nth-child(2n) {
-      border-right: none;
-    }
-    .overview-item:nth-child(n+11) {
-      border-bottom: none;
-    }
-  }
-  
-  @media (max-width: 550px) {
-    .overview-grid {
-      grid-template-columns: 1fr;
-    }
-    .overview-item {
-      border-right: none !important;
-    }
-    .overview-item:last-child {
-      border-bottom: none;
-    }
-  }
-
-  /* FOOTER */
-  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; }
-  .footer-inner { max-width: 1280px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
-  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 85px; }
-  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
-  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
-  
-  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
-  .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
-  .footer-col a:hover { color: var(--red); }
-  
-  .quick-links-split { display: flex; gap: 30px; }
-  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
-  .ql-col { display: flex; flex-direction: column; }
-
-  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
-  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
-  
-  .footer-bottom-bar { 
-    background: #333; 
-    border-radius: 40px; 
-    padding: 12px 24px; 
-    display: flex; justify-content: space-between; align-items: center;
-    color: #bbb; font-size: 13px; font-weight: 500;
-  }
-  .fbb-left { display: flex; align-items: center; gap: 16px; }
-  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
-  .fbb-socials { display: flex; gap: 12px; }
-  .fbb-socials a {
-    display: flex; align-items: center; justify-content: center;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: #fff; color: #111;
-    transition: all 0.3s ease;
-  }
-  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-  .fbb-socials svg { width: 16px !important; height: 16px !important; fill: currentColor; }
-  
-  .fbb-links { display: flex; gap: 8px; align-items: center; }
-  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
-  .fbb-links a:hover { color: var(--white); }
-  
-  @media(max-width: 800px) {
-    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
-    .fbb-left { flex-direction: column; gap: 10px; }
-  }
-
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 101;
-  }
-  .menu-toggle span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: var(--white);
-    transition: all 0.3s ease;
-    border-radius: 2px;
-  }
-
-  @media(max-width: 992px) {
-    .page-wrap {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-  }
-
-  @media(max-width: 768px) {
-    .nav-main {
-      justify-content: space-between;
-      height: 70px;
-      position: relative;
-    }
-    .logo {
-      margin-right: 0;
-      height: 55px;
-    }
-    .logo img {
-      transform: scale(1.1) translateX(0);
-    }
-    .menu-toggle {
-      display: flex;
-    }
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background: var(--charcoal);
-      padding: 20px;
-      gap: 12px;
-      box-shadow: none;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      z-index: 99;
-    }
-    .nav-links.active {
-      display: flex;
-    }
-    .nav-actions {
-      display: none;
-      width: 100%;
-      position: absolute;
-      top: 250px;
-      left: 0;
-      right: 0;
-      background: var(--charcoal);
-      padding: 10px 20px 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      z-index: 98;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      justify-content: center;
-    }
-    .nav-actions.active {
-      display: flex;
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 6px);
-    }
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -6px);
-    }
-
-    .specs-row {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .inspection-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .gallery-layout {
-      display: flex;
-      flex-direction: column;
-    }
-    .gallery-insights {
-      position: static;
-      width: 100%;
-      border-right: none;
-      border-top: 1.5px solid var(--border);
-      background: var(--charcoal);
-      padding: 20px;
-      gap: 16px;
-    }
-    .main-img {
-      height: 280px;
-    }
-
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    .quick-links-split {
-      flex-direction: column;
-      gap: 16px;
-    }
-    .ql-divider {
-      display: none;
-    }
-  }
-
-  @media(max-width: 550px) {
-    .specs-row {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .inspection-grid {
-      grid-template-columns: 1fr;
-    }
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
-    .car-title-row {
-      flex-direction: column;
-      gap: 12px;
-    }
-    .price-block {
-      text-align: left;
-    }
+  @media(max-width:640px) {
+    .overview-grid, .features-grid { grid-template-columns:1fr; }
+    .car-header { flex-direction:column; align-items:flex-start; gap:16px; }
+    .pc-specs { gap:12px; }
   }
 </style>
 </head>
 <body>
 
 <nav class="navbar">
-
   <div class="nav-main">
-    <a href="index.html" class="logo" id="brand-logo">
-      <img src="logo.png" alt="Market Guru HP Logo">
-    </a>
-    <div class="nav-links">
-      <a href="index.html">🏠 Home</a>
-      <a href="buy-cars.html">Buy Vehicle</a>
-      <a href="sell.html">Sell Vehicles</a>
-      <a href="about.html">About</a>
-      <a href="compare.html">⚖️ Compare</a>
+    <div class="nav-left">
+      <a href="index.html" class="logo"><img src="logo.png" alt="Logo" style="background:#0F172A; padding:4px 12px; border-radius:8px;"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="buy-cars.html" class="active">Buy Vehicle</a>
+        <a href="sell.html">Sell Vehicles</a>
+        <a href="about.html">About</a>
+        <a href="compare.html">Compare</a>
+      </div>
     </div>
-    <div class="nav-actions" id="nav-actions"></div>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <!-- Simple header right -->
+    <div style="display:flex; align-items:center; gap:16px;">
+        <div style="font-size:13px; font-weight:700; color:var(--navy); display:flex; align-items:center; gap:8px;">
+            <span style="background:var(--primary); border-radius:4px; padding:2px 4px;">HP</span> HP Bhai Ni Direct Guarantee!
+        </div>
+        <div style="width:40px; height:40px; border-radius:50%; background:var(--gray-bg); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:20px;">👤</div>
+    </div>
   </div>
 </nav>
 
+<div class="breadcrumb">
+  <a href="index.html">Home</a> <span>›</span> <a href="buy-cars.html">Buy Vehicles</a> <span>›</span> <span>Car Details</span>
+</div>
 
-
-<div class="page-wrap">
+<div class="layout">
+  
   <!-- LEFT COLUMN -->
-  <div style="min-width: 0;">
-    <!-- GALLERY -->
-    <div class="main-gallery">
-      <div class="gallery-layout">
-        <!-- Right Side: Main Image Slider -->
-        <div class="main-img" id="mainImg" style="width: 100%;">
-          <div class="img-nav-btn prev" id="imgPrevBtn" style="display:none;" onclick="prevImage(event)">❮</div>
-          <div class="img-nav-btn next" id="imgNextBtn" style="display:none;" onclick="nextImage(event)">❯</div>
-          <span class="gallery-car-emoji" id="galleryEmoji">🚗</span>
-          <div class="img-badges">
-            <span class="img-badge badge-hot">🔥 Hot Deal</span>
-          </div>
-        </div>
-
-        <!-- Left Side: Price Insights Card -->
-        <div class="gallery-insights" id="galleryInsights">
-          <div class="insights-group">
-            <div class="insight-label">Car Price</div>
-            <div class="insight-value-row">
-              <span class="insight-price-val" id="insPrice">Rs. 69.5 Lakh</span>
-              <span class="insight-badge" id="insDiscount">📉 16% below market</span>
-            </div>
-          </div>
-          
-          <div class="insights-group">
-            <div class="insight-label">Avg. Market Price</div>
-            <div class="insight-val" id="insAvgPrice">82.5 Lakh</div>
-          </div>
-          
-          <div class="insights-group">
-            <div class="insight-label">New Car On-Road Price</div>
-            <div class="insight-val" id="insNewPrice">Rs. 1.31 Crore</div>
-          </div>
-          
-          <a class="insights-link" onclick="switchTab(null, 'price')">More Price Insights</a>
-        </div>
+  <div class="left-col">
+    <div class="gallery">
+      <div class="main-img-box" id="mainImgBox">
+        <div class="badge-hot">🔥 Hot Deal</div>
+        <div class="nav-arrow left" onclick="prevImage()">❮</div>
+        <div class="nav-arrow right" onclick="nextImage()">❯</div>
+        <div class="img-count" id="imgCount">1 / 1</div>
+        <img id="mainImg" src="" alt="Car Image" style="display:none;">
+        <div id="mainEmoji" style="font-size:120px;">🚗</div>
       </div>
-      <div class="thumb-row" id="galleryThumbs">
-
+      <div class="thumbs" id="thumbsContainer">
+        <!-- populated by js -->
       </div>
     </div>
 
-    <!-- CAR HEADER INFO -->
     <div class="car-header">
-      <div class="car-title-row">
-        <div>
-          <div class="car-main-title">Maruti Swift VXi (O)</div>
-          <div class="car-main-variant">2021 · Petrol · Manual · 1st Owner · White</div>
-        </div>
-        <div class="price-block">
-          <div class="price-main">₹5.20 Lakh</div>
-        </div>
+      <div class="car-title" id="carTitle">Car Name</div>
+      <div class="car-actions">
+        <button class="btn-outline">⚖️ Compare</button>
+        <button class="btn-outline" onclick="shareCar()">🔗 Share</button>
       </div>
     </div>
 
-    <!-- TABBED SECTION -->
-    <div class="tabs-container">
-      <div class="tabs-header">
-        <button class="tab-btn active" onclick="switchTab(event, 'overview')">Car Overview</button>
-        <button class="tab-btn" onclick="switchTab(event, 'specs')">Specs & Features</button>
+    <div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('overview')">Overview</div>
+        <div class="tab" onclick="switchTab('features')">Specs & Features</div>
+        <div class="tab" style="pointer-events:none; opacity:0.5;">Variants</div>
+        <div class="tab" style="pointer-events:none; opacity:0.5;">Inspection Report</div>
+      </div>
+
+      <!-- Overview Tab -->
+      <div class="tab-content active" id="tab-overview">
+        <div class="overview-grid">
+          <div class="ov-item">
+            <div class="ov-icon">🪙</div>
+            <div class="ov-info"><span class="ov-label">Price</span><span class="ov-val" id="ovPrice">Lakh</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">⏱️</div>
+            <div class="ov-info"><span class="ov-label">Kilometer</span><span class="ov-val" id="ovKm">0 km</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">⛽</div>
+            <div class="ov-info"><span class="ov-label">Fuel Type</span><span class="ov-val" id="ovFuel">Petrol</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">📅</div>
+            <div class="ov-info"><span class="ov-label">Registration Year</span><span class="ov-val" id="ovRegYear">2020</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">👤</div>
+            <div class="ov-info"><span class="ov-label">No. of Owners</span><span class="ov-val" id="ovOwner">1st Owner</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">⚙️</div>
+            <div class="ov-info"><span class="ov-label">Transmission</span><span class="ov-val" id="ovTrans">Manual</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">🛡️</div>
+            <div class="ov-info"><span class="ov-label">Insurance</span><span class="ov-val" id="ovInsurance">Comprehensive</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">📍</div>
+            <div class="ov-info"><span class="ov-label">City</span><span class="ov-val" id="ovCity">Vadodara</span></div>
+          </div>
+          <div class="ov-item">
+            <div class="ov-icon">🚙</div>
+            <div class="ov-info"><span class="ov-label">Variant</span><span class="ov-val" id="ovVariant">Base</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Tab -->
+      <div class="tab-content" id="tab-features">
+        <div class="features-grid" id="featuresGrid">
+          <!-- Populated by js -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="right-col">
+    <!-- Asking Price Card -->
+    <div class="price-card">
+      <div class="pc-title">Asking Price</div>
+      <div class="pc-price" id="rightPrice">₹0 Lakh</div>
+      <div class="pc-link">View price breakup ⓘ</div>
+      
+      <div class="pc-specs">
+        <div class="pc-spec">📅 <span id="rYear">2020</span></div>
+        <div class="pc-spec">⛽ <span id="rFuel">Petrol</span></div>
+        <div class="pc-spec">⚙️ <span id="rTrans">Manual</span></div>
+        <div class="pc-spec">👤 <span id="rOwner">1st Owner</span></div>
       </div>
       
-      <div class="tab-content">
-        <!-- Panel 1: Car Overview -->
-        <div id="tab-overview" class="tab-panel active">
-          <h3 class="panel-title">Car Overview</h3>
-          <div class="overview-grid">
-            <div class="overview-item">
-              <div class="overview-icon">🪙</div>
-              <div class="overview-details">
-                <span class="overview-label">Price</span>
-                <strong class="overview-val" id="ovPrice">Rs. 69.5 Lakh</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">⏱️</div>
-              <div class="overview-details">
-                <span class="overview-label">Kilometer</span>
-                <strong class="overview-val" id="ovKm">38,500 km</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">⛽</div>
-              <div class="overview-details">
-                <span class="overview-label">Fuel type</span>
-                <strong class="overview-val" id="ovFuel">Diesel</strong>
-              </div>
-            </div>
-            
-            <div class="overview-item">
-              <div class="overview-icon">📅</div>
-              <div class="overview-details">
-                <span class="overview-label">Registration year</span>
-                <strong class="overview-val" id="ovRegYear">Not Available</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">👤</div>
-              <div class="overview-details">
-                <span class="overview-label">No. of owners</span>
-                <strong class="overview-val" id="ovOwner">First</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">⚙️</div>
-              <div class="overview-details">
-                <span class="overview-label">Transmission</span>
-                <strong class="overview-val" id="ovTrans">Automatic (TC)</strong>
-              </div>
-            </div>
-            
-            <div class="overview-item">
-              <div class="overview-icon">🛡️</div>
-              <div class="overview-details">
-                <span class="overview-label">Insurance</span>
-                <strong class="overview-val" id="ovInsurance">Comprehensive</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">📍</div>
-              <div class="overview-details">
-                <span class="overview-label">City</span>
-                <strong class="overview-val" id="ovCity">Vadodara</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">🚙</div>
-              <div class="overview-details">
-                <span class="overview-label">Variant</span>
-                <strong class="overview-val" id="ovVariant">LXi</strong>
-              </div>
-            </div>
-          </div>
+      <div class="pc-loc">📍 <span id="rCity">Vadodara</span></div>
+      
+      <div class="pc-details">
+        <div>Reg. No. GJ01AB1234 • Insurance: <span id="rIns">Comprehensive</span></div>
+        <div>RTO: <span id="rRto">Vadodara (GJ06)</span></div>
+      </div>
+      
+      <button class="btn-call" id="btnCall">📞 Call Now: +91 98258 XXXXX</button>
+      <button class="btn-whatsapp" id="btnWa">💬 WhatsApp: +91 98258 XXXXX</button>
+    </div>
+
+    <!-- Dealer Card -->
+    <div class="dealer-card">
+      <div class="dc-header">
+        <div class="dc-avatar">👨‍💼</div>
+        <div>
+          <div class="dc-name">Market Guru HP Vadodara</div>
+          <div class="dc-rating">⭐ 4.9 (87 Reviews) | ✓ Certified Dealer</div>
         </div>
-        
-        <!-- Panel 2: Specs & Features -->
-        <div id="tab-specs" class="tab-panel">
-          <h3 class="panel-title">Features & Specifications</h3>
-          <div class="features-grid" id="featuresTabGrid">
-            <!-- Loaded dynamically in JS -->
-          </div>
-        </div>
+      </div>
+      
+      <div class="dc-stats">
+        <div class="dc-stat"><span class="dc-stat-val">247</span><span class="dc-stat-lbl">Cars Sold</span></div>
+        <div class="dc-stat"><span class="dc-stat-val">4.9</span><span class="dc-stat-lbl">Rating</span></div>
+        <div class="dc-stat"><span class="dc-stat-val">8yr</span><span class="dc-stat-lbl">Experience</span></div>
+      </div>
+      
+      <div class="dc-list">
+        <div class="dc-item">✓ 100% Verified Dealer</div>
+        <div class="dc-item">🕒 24/7 Customer Support</div>
+        <div class="dc-item">💬 Transparent & Hassle Free Process</div>
+      </div>
+    </div>
+
+    <!-- Quick Links Card -->
+    <div class="ql-card">
+      <div class="ql-title">Quick Links</div>
+      <div class="ql-grid">
+        <div class="ql-btn" onclick="toggleWishlistDetail()">❤️ Save to Wishlist</div>
+        <div class="ql-btn" onclick="shareCar()">🔗 Share this Car</div>
+        <div class="ql-btn" onclick="showToast('Downloading brochure...')">📥 Download Brochure</div>
+        <div class="ql-btn" onclick="showToast('Fetching insurance quote...')">🛡️ Get Insurance Quote</div>
+        <div class="ql-btn" onclick="showToast('Opening calendar...')">📅 Book Inspection</div>
+        <div class="ql-btn" onclick="showToast('Listing reported.')">🚩 Report this Listing</div>
       </div>
     </div>
   </div>
 
-  <!-- RIGHT SIDEBAR -->
-  <aside>
-    <!-- SELLER -->
-    <div class="seller-box">
-      <div class="seller-row">
-        <div class="seller-avatar">👨‍💼</div>
-        <div>
-          <div class="seller-name">Market Guru HP Vadodara</div>
-          <div class="seller-type">⭐⭐⭐⭐⭐ Certified Dealer</div>
-        </div>
-      </div>
-      <div class="seller-stats">
-        <div>
-          <div class="s-stat-num">247</div>
-          <div class="s-stat-label">Cars Sold</div>
-        </div>
-        <div>
-          <div class="s-stat-num">4.9</div>
-          <div class="s-stat-label">Rating</div>
-        </div>
-        <div>
-          <div class="s-stat-num">8yr</div>
-          <div class="s-stat-label">Experience</div>
-        </div>
-      </div>
-      <button class="btn-call-now">📞 Call Now: +91 98765 XXXXX</button>
-      <button class="btn-whatsapp">💬 WhatsApp: +91 98765 XXXXX</button>
-    </div>
-
-    <!-- QUICK ACTIONS -->
-    <div style="background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:20px;">
-      <div style="font-size:14px;font-weight:700;margin-bottom:14px;">Quick Actions</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <button onclick="showToast('❤️ Added to wishlist!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">❤️ Save to Wishlist</button>
-        <button onclick="showToast('🔗 Link copied!')" style="padding:10px;border:1.5px solid var(--border);background:transparent;border-radius:8px;font-size:13px;cursor:pointer;text-align:left;">🔗 Share this Car</button>
-      </div>
-    </div>
-  </aside>
 </div>
-
-<!-- CONTACT VERIFICATION MODAL (OTP FLOW) -->
-<div class="modal-overlay" id="contactModal">
-  <div class="modal" id="modal-step-phone" style="max-width:400px;">
-    <h3>🔓 Unlock Dealer Contact</h3>
-    <p style="font-size:13px; color:var(--muted); margin: 8px 0 20px; line-height:1.4;">Verify your mobile number to instantly reveal the dealer's call & WhatsApp numbers and connect directly.</p>
-    <div class="form-field">
-      <label>Mobile Number</label>
-      <input type="tel" id="verifyPhone" placeholder="Enter 10-digit number" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:8px;">
-    </div>
-    <div class="modal-btns" style="margin-top:24px;">
-      <button class="btn-modal-cancel" onclick="hideContactModal()" style="padding:12px; border:1.5px solid var(--border); background:transparent; border-radius:8px; cursor:pointer;">Cancel</button>
-      <button class="btn-modal-submit" onclick="sendOTP()" style="padding:12px; background:var(--red); border:none; border-radius:8px; font-weight:700; cursor:pointer; color:#1A1A2E;">Send Code</button>
-    </div>
-  </div>
-  
-  <div class="modal" id="modal-step-otp" style="max-width:400px; display:none;">
-    <h3>💬 Verify Mobile Number</h3>
-    <p style="font-size:13px; color:var(--muted); margin: 8px 0 20px; line-height:1.4;">We've sent a 4-digit mock verification code to your number.<br><strong style="color:var(--red);">Testing code: 1234</strong></p>
-    <div class="form-field">
-      <label>Verification OTP</label>
-      <input type="text" id="verifyOTP" placeholder="Enter 1234" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:8px; text-align:center; font-size:18px; letter-spacing:4px; font-weight:700;">
-    </div>
-    <div class="modal-btns" style="margin-top:24px;">
-      <button class="btn-modal-cancel" onclick="showPhoneStep()" style="padding:12px; border:1.5px solid var(--border); background:transparent; border-radius:8px; cursor:pointer;">Back</button>
-      <button class="btn-modal-submit" onclick="verifyOTPCode()" style="padding:12px; background:var(--red); border:none; border-radius:8px; font-weight:700; cursor:pointer; color:#1A1A2E;">Verify & Reveal</button>
-    </div>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-col-brand">
-        <a href="index.html" class="logo" id="footer-brand-logo">
-          <img src="logo.png" alt="Market Guru HP Logo">
-        </a>
-        <div class="footer-copyright">
-          © 2006 - 2026 Market Guru HP.<br>
-          All rights reserved in favour of Market Guru HP.
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick guide links</h4>
-        <div class="quick-links-split">
-          <div class="ql-col">
-            <a href="buy-cars.html">Buy Vehicle</a>
-            <a href="sell.html">Sell Vehicles</a>
-          </div>
-          <div class="ql-divider"></div>
-          <div class="ql-col">
-            <a href="about.html">About us</a>
-            <a href="login.html">Account</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-col footer-contact">
-        <h4>Contact Us</h4>
-        <div class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
-        </div>
-        <div class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <a href="tel:08600004513">08600004513</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom-bar">
-      <div class="fbb-left">
-        <div class="fbb-connect-text">Connect with us :</div>
-        <div class="fbb-socials">
-          <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-          <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.79 9.79 0 0 0-6.979-2.88c-5.439 0-9.865 4.37-9.87 9.8-.001 1.774.475 3.503 1.378 5.027L1.993 21.5l5.59-1.464c-.305-.186-.612-.372-.936-.882zM17.15 14.54c-.28-.14-1.65-.81-1.902-.9-.253-.09-.438-.14-.623.14-.184.28-.714.9-.876 1.09-.162.19-.323.21-.603.07-1.125-.56-1.96-1.03-2.67-2.24-.26-.45-.06-.7.14-.9.18-.18.4-.47.6-.7.2-.23.27-.38.4-.64.13-.26.07-.49-.03-.7-.1-.21-.87-2.1-1.2-2.88-.31-.77-.64-.67-.88-.68-.22-.01-.48-.01-.73-.01-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22s1.38 3.73 1.58 3.99c.2.26 2.72 4.15 6.59 5.82.92.4 1.64.64 2.2.82.93.3 1.77.26 2.44.16.74-.11 2.28-.93 2.6-1.83.32-.9.32-1.67.22-1.83-.09-.16-.35-.26-.63-.4z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="fbb-links">
-        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
-      </div>
-    </div>
-  </div>
-</footer>
 
 <div class="toast" id="toast"></div>
 
 <script src="cars-data.js"></script>
 <script>
-// Responsive Navbar Toggle
-document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const navActions = document.querySelector('.nav-actions');
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      if (navLinks) navLinks.classList.toggle('active');
-      if (navActions) navActions.classList.toggle('active');
-    });
-  }
-});
-
 let currentCar = null;
+let currentImageIndex = 0;
+let galleryImages = [];
 
-function calcEMI() {
-  // Stub function to prevent ReferenceError
-}
-
-function initPage() {
-  const params = new URLSearchParams(window.location.search);
-  let id = parseInt(params.get('id')) || 1; // Default to Maruti Swift
-  
-  currentCar = mgDB.getCarById(id);
-  if (!currentCar) {
-    showToast('⚠️ Car listing not found. Loading swift...');
-    currentCar = mgDB.getCarById(1);
-  }
-
-  renderCarDetails();
-  calcEMI();
-}
-
-function switchTab(e, tabId) {
-  if (e) {
-    e.preventDefault();
-  }
-  // Set active tab button
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  
-  // Find button corresponding to tabId
-  const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
-    btn.getAttribute('onclick').includes(tabId)
-  );
-  if (targetBtn) targetBtn.classList.add('active');
-  
-  // Set active tab panel
-  document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-  document.getElementById('tab-' + tabId).classList.add('active');
-}
-
-function renderCarDetails() {
-  if (!currentCar) return;
-
-  const carPrice = parseFloat(currentCar.price);
-  const avgMarketPrice = carPrice * 1.18; // 18% above listing price
-  const newCarPrice = carPrice * 1.8; // 80% above listing price
-  const discountPct = 15; // mock percentage
-
-  // Gallery Insights Sidebar
-  document.getElementById('insPrice').textContent = `Rs. ${currentCar.price} Lakh`;
-  document.getElementById('insDiscount').textContent = `📉 ${discountPct}% below market`;
-  document.getElementById('insAvgPrice').textContent = `${avgMarketPrice.toFixed(1)} Lakh`;
-  if (newCarPrice >= 100) {
-    document.getElementById('insNewPrice').textContent = `Rs. ${(newCarPrice / 100).toFixed(2)} Crore`;
-  } else {
-    document.getElementById('insNewPrice').textContent = `Rs. ${newCarPrice.toFixed(1)} Lakh`;
-  }
-
-  // Removed Price Guide processing
-
-  // Title & Variant
-  document.querySelector('.car-main-title').textContent = currentCar.name;
-  document.querySelector('.car-main-variant').textContent = `${currentCar.year} · ${currentCar.fuel} · ${currentCar.trans} · ${currentCar.owner || '1st'} Owner · ${currentCar.city || 'Vadodara'}`;
-
-  // Price
-  document.querySelector('.price-main').textContent = `₹${currentCar.price} Lakh`;
-
-
-
-  // Gallery Image / Emoji handling
-  const mainImg = document.getElementById('mainImg');
-  const emojiEl = document.getElementById('galleryEmoji');
-  const thumbsContainer = document.getElementById('galleryThumbs');
-  
-  // Gather images
-  window.galleryImages = [];
-  window.currentImageIndex = 0;
-  if (currentCar.images && Array.isArray(currentCar.images) && currentCar.images.length > 0) {
-      window.galleryImages = currentCar.images;
-  } else if (currentCar.image) {
-      window.galleryImages = [currentCar.image];
-  }
-  let imagesToDisplay = window.galleryImages;
-  
-  // Show/hide navigation buttons
-  const prevBtn = document.getElementById('imgPrevBtn');
-  const nextBtn = document.getElementById('imgNextBtn');
-  if (imagesToDisplay.length > 1) {
-      if(prevBtn) prevBtn.style.display = 'flex';
-      if(nextBtn) nextBtn.style.display = 'flex';
-  } else {
-      if(prevBtn) prevBtn.style.display = 'none';
-      if(nextBtn) nextBtn.style.display = 'none';
-  }
-
-  // Generate Thumbnails
-  thumbsContainer.innerHTML = '';
-  if (imagesToDisplay.length > 0) {
-      imagesToDisplay.forEach((imgSrc, idx) => {
-          const thumb = document.createElement('div');
-          thumb.className = idx === 0 ? 'thumb active' : 'thumb';
-          thumb.innerHTML = `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:contain;border-radius:4px;" />`;
-          thumb.onclick = () => selectThumb(thumb, null, imgSrc, idx);
-          thumbsContainer.appendChild(thumb);
-      });
-  } else {
-      // Fallback emojis
-      const emojis = [currentCar.emoji || '🚗', '🪟', '🛞', '🪑', '⚙️', '📋'];
-      emojis.forEach((em, idx) => {
-          const thumb = document.createElement('div');
-          thumb.className = idx === 0 ? 'thumb active' : 'thumb';
-          thumb.textContent = em;
-          thumb.onclick = () => selectThumb(thumb, em, null, idx);
-          thumbsContainer.appendChild(thumb);
-      });
-  }
-  
-  // Set main image initially
-  if (imagesToDisplay.length > 0) {
-      setMainImage(imagesToDisplay[0]);
-      if (emojiEl) emojiEl.style.display = 'none';
-  } else {
-      setMainImage(null);
-      if (emojiEl) {
-          emojiEl.style.display = 'block';
-          emojiEl.textContent = currentCar.emoji || '🚗';
-      }
-  }
-  
-  // Initial overlay visibility
-  const overlay = document.querySelector('.gallery-insights');
-  if (overlay) {
-      if (window.galleryImages && window.galleryImages.length > 1 && window.currentImageIndex === window.galleryImages.length - 2) {
-          overlay.style.opacity = '1';
-          overlay.style.visibility = 'visible';
-      } else {
-          overlay.style.opacity = '0';
-          overlay.style.visibility = 'hidden';
-      }
-  }
-
-  // Overview Tab Fields
-  document.getElementById('ovPrice').textContent = `₹${currentCar.price} Lakh`;
-  document.getElementById('ovKm').textContent = `${currentCar.km || '32,000'} km`;
-  document.getElementById('ovFuel').textContent = currentCar.fuel;
-  document.getElementById('ovRegYear').textContent = currentCar.year;
-  
-  const ownerVal = currentCar.owner || 'First';
-  document.getElementById('ovOwner').textContent = ownerVal;
-  document.getElementById('ovTrans').textContent = currentCar.trans;
-  
-  document.getElementById('ovInsurance').textContent = currentCar.insurance || 'Comprehensive';
-  document.getElementById('ovCity').textContent = currentCar.city || 'Vadodara';
-
-  let variant = 'Standard';
-  if (currentCar.name) {
-     const parts = currentCar.name.split(' ');
-     if (parts.length > 2) {
-         variant = parts.slice(2).join(' ');
-     }
-  }
-  document.getElementById('ovVariant').textContent = variant;
-
-  // Features
-  const features = currentCar.features || ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry'];
-  const featuresTabGrid = document.getElementById('featuresTabGrid');
-  if (featuresTabGrid) {
-    featuresTabGrid.innerHTML = features.map(f => `
-      <div class="feat-item"><span class="feat-check">✓</span>${f}</div>
-    `).join('');
-  }
-
-  // Verify Badge
-  const badgeContainer = document.querySelector('.img-badges');
-  badgeContainer.innerHTML = `
-    <span class="img-badge badge-hot">🔥 Hot Deal</span>
-  `;
-
-  // Wishlist Button UI
-  updateWishlistBtnUI();
-}
-
-function updateWishlistBtnUI() {
-  const btn = document.querySelector('button[onclick*="wishlist"]');
-  if (btn && currentCar) {
-    const isSaved = mgDB.isWishlisted(currentCar.id);
-    btn.textContent = isSaved ? '❤️ Saved to Wishlist' : '❤️ Save to Wishlist';
-  }
-}
-
-function toggleWishlistDetail() {
-  if (!currentCar) return;
-  const added = mgDB.toggleWishlist(currentCar.id);
-  showToast(added ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
-  updateWishlistBtnUI();
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
 }
 
 function shareCar() {
@@ -1155,260 +333,160 @@ function shareCar() {
   });
 }
 
-function setMainImage(imgSrc) {
-  const mainImg = document.getElementById('mainImg');
-  const existingImg = mainImg.querySelector('img.uploaded-car-image');
-  if (existingImg) {
-      if (imgSrc) {
-          existingImg.src = imgSrc;
-          existingImg.style.display = 'block';
-      } else {
-          existingImg.remove();
-      }
-  } else if (imgSrc) {
-      const imgEl = document.createElement('img');
-      imgEl.src = imgSrc;
-      imgEl.className = 'uploaded-car-image';
-      imgEl.style.width = '100%';
-      imgEl.style.height = 'auto';
-      imgEl.style.maxHeight = '550px';
-      imgEl.style.objectFit = 'contain';
-      imgEl.style.display = 'block';
-      imgEl.style.zIndex = '1';
-      mainImg.insertBefore(imgEl, mainImg.firstChild);
-  }
+function switchTab(tabId) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  
+  event.target.classList.add('active');
+  document.getElementById('tab-' + tabId).classList.add('active');
 }
 
-function selectThumb(el, emoji, imgSrc, idx) {
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  if (el) el.classList.add('active');
+function initPage() {
+  const params = new URLSearchParams(window.location.search);
+  let id = parseInt(params.get('id')) || 1;
   
-  const emojiEl = document.getElementById('galleryEmoji');
-  window.currentImageIndex = idx || 0;
+  currentCar = mgDB.getCarById(id);
+  if (!currentCar) {
+    showToast('⚠️ Car listing not found. Loading default...');
+    currentCar = mgDB.getCarById(1);
+  }
+
+  renderCarDetails();
+  setupGallery();
+  checkContactVerification();
+}
+
+function renderCarDetails() {
+  if (!currentCar) return;
+
+  const priceStr = `₹${currentCar.price} Lakh`;
   
-  if (imgSrc) {
-      setMainImage(imgSrc);
-      if (emojiEl) emojiEl.style.display = 'none';
+  // Header
+  document.getElementById('carTitle').textContent = currentCar.name;
+  
+  // Right Card
+  document.getElementById('rightPrice').textContent = priceStr;
+  document.getElementById('rYear').textContent = currentCar.year;
+  document.getElementById('rFuel').textContent = currentCar.fuel;
+  document.getElementById('rTrans').textContent = currentCar.trans;
+  document.getElementById('rOwner').textContent = currentCar.owner || '1st Owner';
+  document.getElementById('rCity').textContent = currentCar.city || 'Vadodara';
+  const ins = currentCar.insurance || 'Comprehensive';
+  document.getElementById('rIns').textContent = ins;
+  document.getElementById('rRto').textContent = (currentCar.city || 'Vadodara') + ' (GJ)';
+
+  // Overview Tab
+  document.getElementById('ovPrice').textContent = priceStr;
+  document.getElementById('ovKm').textContent = `${currentCar.km || '32,000'} km`;
+  document.getElementById('ovFuel').textContent = currentCar.fuel;
+  document.getElementById('ovRegYear').textContent = currentCar.year;
+  document.getElementById('ovOwner').textContent = currentCar.owner || '1st Owner';
+  document.getElementById('ovTrans').textContent = currentCar.trans;
+  document.getElementById('ovInsurance').textContent = ins;
+  document.getElementById('ovCity').textContent = currentCar.city || 'Vadodara';
+  
+  let variant = 'Standard';
+  if (currentCar.name) {
+     const parts = currentCar.name.split(' ');
+     if (parts.length > 2) variant = parts.slice(2).join(' ');
+  }
+  document.getElementById('ovVariant').textContent = variant;
+
+  // Features
+  const features = currentCar.features || ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry'];
+  document.getElementById('featuresGrid').innerHTML = features.map(f => `
+    <div class="feat-item"><span style="color:var(--green)">✓</span> ${f}</div>
+  `).join('');
+}
+
+function setupGallery() {
+  if (currentCar.images && Array.isArray(currentCar.images) && currentCar.images.length > 0) {
+      galleryImages = currentCar.images;
+  } else if (currentCar.image) {
+      galleryImages = [currentCar.image];
+  }
+
+  const tc = document.getElementById('thumbsContainer');
+  tc.innerHTML = '';
+  
+  if (galleryImages.length > 0) {
+    galleryImages.forEach((src, idx) => {
+      tc.innerHTML += `<div class="thumb ${idx===0?'active':''}" onclick="setMainImg(${idx})"><img src="${src}"></div>`;
+    });
+    setMainImg(0);
   } else {
-      setMainImage(null);
-      if (emojiEl) {
-          emojiEl.style.display = 'block';
-          emojiEl.textContent = emoji || '🚗';
-      }
-  }
-
-  // Handle overlay visibility
-  const overlay = document.querySelector('.gallery-insights');
-  if (overlay) {
-      if (window.galleryImages && window.galleryImages.length > 1 && window.currentImageIndex === window.galleryImages.length - 2) {
-          overlay.style.opacity = '1';
-          overlay.style.visibility = 'visible';
-      } else {
-          overlay.style.opacity = '0';
-          overlay.style.visibility = 'hidden';
-      }
+    // emoji fallback
+    document.getElementById('mainImg').style.display = 'none';
+    document.getElementById('mainEmoji').style.display = 'block';
+    document.getElementById('mainEmoji').textContent = currentCar.emoji || '🚗';
+    document.getElementById('imgCount').textContent = '1 / 1';
   }
 }
 
-function nextImage(e) {
-    if(e) e.stopPropagation();
-    if (!window.galleryImages || window.galleryImages.length <= 1) return;
-    window.currentImageIndex = (window.currentImageIndex + 1) % window.galleryImages.length;
-    const nextImgSrc = window.galleryImages[window.currentImageIndex];
-    const thumbEls = document.querySelectorAll('.thumb');
-    const targetThumb = thumbEls[window.currentImageIndex] || null;
-    selectThumb(targetThumb, null, nextImgSrc, window.currentImageIndex);
+function setMainImg(idx) {
+  if (galleryImages.length === 0) return;
+  currentImageIndex = idx;
+  
+  const imgEl = document.getElementById('mainImg');
+  const emojiEl = document.getElementById('mainEmoji');
+  
+  imgEl.src = galleryImages[idx];
+  imgEl.style.display = 'block';
+  emojiEl.style.display = 'none';
+  
+  document.getElementById('imgCount').textContent = `${idx + 1} / ${galleryImages.length}`;
+  
+  document.querySelectorAll('.thumb').forEach((t, i) => {
+    if(i === idx) t.classList.add('active');
+    else t.classList.remove('active');
+  });
 }
 
-function prevImage(e) {
-    if(e) e.stopPropagation();
-    if (!window.galleryImages || window.galleryImages.length <= 1) return;
-    window.currentImageIndex = (window.currentImageIndex - 1 + window.galleryImages.length) % window.galleryImages.length;
-    const prevImgSrc = window.galleryImages[window.currentImageIndex];
-    const thumbEls = document.querySelectorAll('.thumb');
-    const targetThumb = thumbEls[window.currentImageIndex] || null;
-    selectThumb(targetThumb, null, prevImgSrc, window.currentImageIndex);
+function prevImage() {
+  if(galleryImages.length <= 1) return;
+  const newIdx = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  setMainImg(newIdx);
 }
 
-let verificationTrigger = 'call';
+function nextImage() {
+  if(galleryImages.length <= 1) return;
+  const newIdx = (currentImageIndex + 1) % galleryImages.length;
+  setMainImg(newIdx);
+}
 
 function checkContactVerification() {
   const isVerified = localStorage.getItem('mg_current_user') && localStorage.getItem('mg_current_user') !== 'Guest User';
-  const callBtn = document.querySelector('.btn-call-now');
-  const waBtn = document.querySelector('.btn-whatsapp');
+  const callBtn = document.getElementById('btnCall');
+  const waBtn = document.getElementById('btnWa');
   
-  // Get seller number from currentCar
-  let rawPhone = (currentCar && (currentCar.listed_by || currentCar.mobile || currentCar.phone)) || '9876543210';
+  let rawPhone = (currentCar && (currentCar.listed_by || currentCar.mobile || currentCar.phone)) || '9825822550';
   let cleanPhone = String(rawPhone).replace(/[\s\-\+]/g, '').replace(/^91/, '');
-  if (cleanPhone.length < 10) cleanPhone = '9876543210';
+  if (cleanPhone.length < 10) cleanPhone = '9825822550';
   
   const displayPhoneFull = `+91 ${cleanPhone.substring(0, 5)} ${cleanPhone.substring(5)}`;
   const displayPhoneMasked = `+91 ${cleanPhone.substring(0, 5)} XXXXX`;
   
   if (isVerified) {
-    if (callBtn) {
-      callBtn.innerHTML = `📞 Call Now: ${displayPhoneFull}`;
-      callBtn.setAttribute('onclick', `window.location.href='tel:+91${cleanPhone}'`);
-    }
-    if (waBtn) {
-      waBtn.innerHTML = `💬 WhatsApp: ${displayPhoneFull}`;
-      waBtn.setAttribute('onclick', `window.open('https://wa.me/91${cleanPhone}', '_blank')`);
-    }
+    callBtn.innerHTML = `📞 Call Now: ${displayPhoneFull}`;
+    callBtn.setAttribute('onclick', `window.location.href='tel:+91${cleanPhone}'`);
+    waBtn.innerHTML = `💬 WhatsApp: ${displayPhoneFull}`;
+    waBtn.setAttribute('onclick', `window.open('https://wa.me/91${cleanPhone}', '_blank')`);
   } else {
     const loginRedirectUrl = `login.html?redirect=${encodeURIComponent(window.location.href)}`;
-    if (callBtn) {
-      callBtn.innerHTML = `📞 Call Now: ${displayPhoneMasked}`;
-      callBtn.setAttribute('onclick', `window.location.href='${loginRedirectUrl}'`);
-    }
-    if (waBtn) {
-      waBtn.innerHTML = `💬 WhatsApp: ${displayPhoneMasked}`;
-      waBtn.setAttribute('onclick', `window.location.href='${loginRedirectUrl}'`);
-    }
+    callBtn.innerHTML = `📞 Call Now: ${displayPhoneMasked}`;
+    callBtn.setAttribute('onclick', `window.location.href='${loginRedirectUrl}'`);
+    waBtn.innerHTML = `💬 WhatsApp: ${displayPhoneMasked}`;
+    waBtn.setAttribute('onclick', `window.location.href='${loginRedirectUrl}'`);
   }
 }
 
-function triggerVerification(type) {
-  verificationTrigger = type;
-  document.getElementById('contactModal').classList.add('show');
-  showPhoneStep();
+function toggleWishlistDetail() {
+  if (!currentCar) return;
+  const added = mgDB.toggleWishlist(currentCar.id);
+  showToast(added ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
 }
 
-function hideContactModal() {
-  document.getElementById('contactModal').classList.remove('show');
-}
-
-// Keep helper functions in case they are referenced, but override behavior
-function showPhoneStep() {
-  document.getElementById('modal-step-phone').style.display = 'block';
-  document.getElementById('modal-step-otp').style.display = 'none';
-}
-
-function sendOTP() {
-  const phone = document.getElementById('verifyPhone').value.trim();
-  if (!phone || phone.length < 10) {
-    showToast('⚠️ Please enter a valid 10-digit mobile number');
-    return;
-  }
-  document.getElementById('modal-step-phone').style.display = 'none';
-  document.getElementById('modal-step-otp').style.display = 'block';
-  showToast('💬 Verification code sent! Enter any code to verify.');
-}
-
-function verifyOTPCode() {
-  const otp = document.getElementById('verifyOTP').value.trim();
-  if (!otp) {
-    showToast('❌ Please enter the verification code.');
-    return;
-  }
-  
-  localStorage.setItem('mg_dealer_verified', 'true');
-  const buyerMobile = document.getElementById('verifyPhone').value.trim();
-  localStorage.setItem('mg_verified_buyer_mobile', buyerMobile);
-  
-  // Add lead to CRM
-  mgDB.addLead({
-    name: 'Verified Buyer (' + buyerMobile.slice(-4) + ')',
-    mobile: buyerMobile,
-    car: currentCar ? currentCar.name : 'Unknown Car',
-    budget: currentCar ? currentCar.price + 'L' : 'Any',
-    source: 'Influencer Lead',
-    stage: 'new',
-    assigned: 'Rahul Sharma',
-    date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
-  });
-  
-  hideContactModal();
-  showToast('✅ Mobile verified successfully!');
-  checkContactVerification();
-  
-  setTimeout(() => {
-    let rawPhone = (currentCar && (currentCar.listed_by || currentCar.mobile || currentCar.phone)) || '9876543210';
-    let cleanPhone = String(rawPhone).replace(/[\s\-\+]/g, '').replace(/^91/, '');
-    if (cleanPhone.length < 10) cleanPhone = '9876543210';
-    
-    if (verificationTrigger === 'call') {
-      window.location.href = `tel:+91${cleanPhone}`;
-    } else {
-      window.open(`https://wa.me/91${cleanPhone}`, '_blank');
-    }
-  }, 1000);
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-// Bind wishlist button action dynamically
-const wishBtn = document.querySelector('button[onclick*="wishlist"]');
-if (wishBtn) {
-  wishBtn.setAttribute('onclick', 'toggleWishlistDetail()');
-}
-
-// Bind share button action dynamically
-const shareBtn = document.querySelector('button[onclick*="copied"]');
-if (shareBtn) {
-  shareBtn.setAttribute('onclick', 'shareCar()');
-}
-
-window.onload = function() {
-  initPage();
-  checkLoginState();
-  checkContactVerification();
-};
-
-// Dynamic login state update
-function checkLoginState() {
-  const currentUser = localStorage.getItem('mg_current_user');
-  const navActions = document.getElementById('nav-actions');
-  
-  if (navActions) {
-    if (currentUser) {
-      let initials = '👤';
-      try {
-        const userObj = JSON.parse(currentUser);
-        const name = userObj.name || '';
-        if (name) {
-          const parts = name.split(' ');
-          if (parts.length > 1) {
-            initials = (parts[0][0] + parts[1][0]).toUpperCase();
-          } else {
-            initials = name.substring(0, 2).toUpperCase();
-          }
-        }
-      } catch(e) {}
-      navActions.innerHTML = `
-        <a href="customer-dashboard.html" title="My Profile" style="text-decoration:none; display:block;">
-          <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 204, 0, 0.15); border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--red); text-transform: uppercase; transition: all 0.2s;">
-            ${initials}
-          </div>
-        </a>
-      `;
-    } else {
-      navActions.innerHTML = `
-        <a href="login.html" style="text-decoration:none;"><button class="btn-outline-white">Login</button></a>
-      `;
-    }
-  }
-
-  if (currentUser) {
-    const loginLinks = document.querySelectorAll('a[href="login.html"]');
-    loginLinks.forEach(link => {
-      link.href = 'customer-dashboard.html';
-      const btn = link.querySelector('button');
-      if (btn) {
-        if (btn.textContent.trim().toLowerCase() === 'login') {
-          btn.textContent = 'Dashboard';
-        }
-      } else {
-        if (link.textContent.includes('Login / Register')) {
-          link.textContent = 'My Dashboard';
-        }
-      }
-    });
-  }
-}
+window.onload = initPage;
 </script>
 </body>
 </html>
