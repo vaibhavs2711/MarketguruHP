@@ -1,1151 +1,2283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buy Cars for Sale - Market Guru HP</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --red: #FFCC00;
-    --red-dark: #E6B800;
-    --charcoal: #1A3D8F;
-    --navy: #0D2B6B;
-    --steel: #2A5CC7;
-    --silver: #F0F4F8;
-    --white: #FFFFFF;
-    --text: #1A1A2E;
-    --muted: #6B7A99;
-    --border: #DDE3EE;
-    --success: #A3D1B1;
-    --blue-light: #E8F0FE;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
-  a{text-decoration:none;color:inherit;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Cars for Sale - Market Guru HP</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --red: #FFCC00;
+      --red-dark: #E6B800;
+      --charcoal: #1A3D8F;
+      --navy: #0D2B6B;
+      --steel: #2A5CC7;
+      --silver: #F0F4F8;
+      --white: #FFFFFF;
+      --text: #1A1A2E;
+      --muted: #6B7A99;
+      --border: #DDE3EE;
+      --success: #A3D1B1;
+      --blue-light: #E8F0FE;
+    }
 
-  .navbar {
-      background: var(--gray-bg);
-    position: sticky; top: 0; z-index: 9999;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .nav-main {
-    max-width: 1280px; margin: 0 auto;
-    display: flex; align-items: center; gap: 0;
-    padding: 0 20px; height: auto; padding: 0 20px;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
-    height: 110px;
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--silver);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     
-  }
-  .logo img {
-    height: 100%;
-    width: auto;
-    display: block;
-  }
-  .nav-links { display: flex; gap: 6px; flex: 1; }
-  .nav-links a {
-    color: var(--charcoal); font-size: 16px; font-weight: 700;
-    padding: 8px 16px; border-radius: 6px;
-    transition: all 0.2s;
-  }
-  .nav-links a:hover { color: var(--charcoal); background: rgba(26, 61, 143, 0.08); }
-  .nav-links a.active { color: var(--charcoal); background: rgba(255,204,0,0.2); }
-  .btn-red {
-    background: var(--red); color: #1A1A2E;
-    padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 800;
-    cursor: pointer; border: none; transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
-  }
-  .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); color: #1A1A2E; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45); }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .btn-red {
+      background: var(--red);
+      color: #1A1A2E;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
+    }
+
+    .btn-red:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+      color: #1A1A2E;
+      box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45);
+    }
 
     /* CARD NAVIGATION BUTTONS */
-  .card-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.2s, transform 0.2s;
-    user-select: none;
-    opacity: 0;
-  }
-  .car-card:hover .card-nav-btn {
-    opacity: 1;
-  }
-  .card-nav-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-    transform: translateY(-50%) scale(1.1);
-  }
-  .card-nav-btn.prev {
-    left: 8px;
-  }
-  .card-nav-btn.next {
-    right: 8px;
-  }
-
-  /* BREADCRUMB */
-  .breadcrumb{background:var(--white);border-bottom:1px solid var(--border);padding: 0 20px;font-size:13px;color:var(--muted);}
-  .breadcrumb a{color:var(--red);}
-  .breadcrumb-inner{max-width:1280px;margin:0 auto;}
-
-  /* LAYOUT */
-  .page-layout{max-width:1280px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:280px 1fr;gap:24px;}
-
-  /* FILTERS SIDEBAR */
-  .sidebar{}
-  .filter-box{background:var(--white);border-radius:12px;border:1.5px solid var(--border);padding:20px;margin-bottom:16px;}
-  .filter-title{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;text-transform:uppercase;letter-spacing:0.5px;color:var(--charcoal);}
-  .filter-clear{font-size:12px;color:var(--red-dark);cursor:pointer;font-weight:700;transition:color 0.2s;}
-  .filter-clear:hover{color:var(--charcoal);}
-  .filter-group{margin-bottom:18px;}
-  .filter-group h5{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
-  
-  .filter-select {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--charcoal);
-    background-color: var(--white);
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .filter-select:focus {
-    outline: none;
-    border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
-  }
-  .filter-select:hover {
-    border-color: #cbd5e1;
-  }
-
-  /* LISTING AREA */
-  .listing-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-  .result-count{font-size:14px;color:var(--muted);}
-  .result-count strong{color:var(--text);}
-  .sort-select{padding:8px 12px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);}
-
-  /* ACTIVE FILTERS */
-  .active-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
-  .filter-tag{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px;}
-  .filter-tag button{background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;}
-
-  /* CAR LIST */
-  .car-list-item{background:var(--white);border-radius:12px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:16px;display:grid;grid-template-columns:260px 1fr auto;transition:all 0.25s;cursor:pointer;}
-  .car-list-item:hover{border-color:transparent;box-shadow:0 8px 32px rgba(0,0,0,0.1);transform:translateY(-2px);}
-  .car-list-img{height:200px;background:linear-gradient(135deg,#e8eef5,#ccd4e0);display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;}
-  .car-list-img .badge-verified{position:absolute;top:10px;left:10px;background:var(--success);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;}
-  .car-list-info{padding:20px;}
-  .car-list-name{font-size:18px;font-weight:700;margin-bottom:4px;}
-  .car-list-sub{font-size:13px;color:var(--muted);margin-bottom:12px;}
-  .car-specs{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
-  .spec-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);}
-  .spec-icon{font-size:14px;}
-  .car-features{display:flex;gap:8px;flex-wrap:wrap;}
-  .feature-tag{font-size:11px;background:var(--silver);padding:3px 10px;border-radius:4px;color:var(--muted);}
-  .car-list-action{padding:20px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;min-width:180px;}
-  .car-price-big{font-size:26px;font-weight:800;color:var(--red);}
-  .car-emi{font-size:12px;color:var(--muted);margin-top:2px;}
-  .btn-details{background:var(--red);color:#1A1A2E;border:none;padding: 0 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px;}
-  .btn-call{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;width:100%;}
-  .btn-call:hover{border-color:var(--text);}
-  .compare-check{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px;cursor:pointer;}
-
-  /* PAGINATION */
-  .pagination{display:flex;justify-content:center;gap:8px;margin:32px 0;}
-  .page-btn{width:36px;height:36px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
-  .page-btn.active{background:var(--red);color:#1A1A2E;border-color:var(--red);}
-  .page-btn:hover:not(.active){border-color:var(--red);color:var(--red);}
-
-  /* TOAST */
-  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
-  .toast.show{transform:translateY(0);}
-
-  /* FOOTER */
-  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; }
-  .footer-inner { max-width: 1280px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
-  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 110px; }
-  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
-  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
-  
-  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
-  .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
-  .footer-col a:hover { color: var(--red); }
-  
-  .quick-links-split { display: flex; gap: 30px; }
-  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
-  .ql-col { display: flex; flex-direction: column; }
-
-  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
-  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
-  
-  .footer-bottom-bar { 
-    background: #333; 
-    border-radius: 40px; 
-    padding: 12px 24px; 
-    display: flex; justify-content: space-between; align-items: center;
-    color: #bbb; font-size: 13px; font-weight: 500;
-  }
-  .fbb-left { display: flex; align-items: center; gap: 16px; }
-  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
-  .fbb-socials { display: flex; gap: 12px; }
-  .fbb-socials a {
-    display: flex; align-items: center; justify-content: center;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: #fff; color: #111;
-    transition: all 0.3s ease;
-  }
-  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-  .fbb-socials svg { width: 16px !important; height: 16px !important; fill: currentColor; }
-  
-  .fbb-links { display: flex; gap: 8px; align-items: center; }
-  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
-  .fbb-links a:hover { color: var(--white); }
-  
-  @media(max-width: 800px) {
-    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
-    .fbb-left { flex-direction: column; gap: 10px; }
-  }
-
-  .nav-actions { display: flex; gap: 10px; align-items: center; }
-  .btn-outline-white {
-    border: none; color: #1A1A2E;
-    padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; background: var(--red);
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
-  }
-  .btn-outline-white:hover { 
-    background: var(--red-dark); 
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(255, 204, 0, 0.4); 
-  }
-
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 101;
-  }
-  .menu-toggle span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: var(--charcoal);
-    transition: all 0.3s ease;
-    border-radius: 2px;
-  }
-
-  @media(max-width: 768px) {
-    .nav-main {
-      justify-content: space-between;
-      height: auto; padding: 0 20px;
-      position: relative;
-    }
-    .logo {
-      margin-right: 0;
-      height: 80px;
-    }
-    .logo img {
-      transform: scale(1.1) translateX(0);
-    }
-    .menu-toggle {
-      display: flex;
-    }
-    .nav-links {
-      display: none;
-      flex-direction: column;
+    .card-nav-btn {
       position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background: var(--white);
-      padding: 20px;
-      gap: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-      border-top: 1px solid var(--border);
-      z-index: 99;
-    }
-    .nav-links.active {
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      width: 28px;
+      height: 28px;
       display: flex;
-    }
-    .nav-actions {
-      display: none;
-      width: 100%;
-      position: absolute;
-      top: 250px;
-      left: 0;
-      right: 0;
-      background: var(--white);
-      padding: 10px 20px 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-      z-index: 98;
-      border-top: 1px solid var(--border);
+      align-items: center;
       justify-content: center;
-    }
-    .nav-actions.active {
-      display: flex;
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 6px);
-    }
-    .menu-toggle.active span:nth-child(2) {
+      font-size: 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s, transform 0.2s;
+      user-select: none;
       opacity: 0;
     }
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -6px);
+
+    .car-card:hover .card-nav-btn {
+      opacity: 1;
     }
 
+    .card-nav-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .card-nav-btn.prev {
+      left: 8px;
+    }
+
+    .card-nav-btn.next {
+      right: 8px;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .breadcrumb a {
+      color: var(--red);
+    }
+
+    .breadcrumb-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* LAYOUT */
     .page-layout {
-      grid-template-columns: 1fr;
-      gap: 20px;
+      max-width: 1280px;
+      margin: 24px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
     }
 
+    /* FILTERS SIDEBAR */
+    .sidebar {}
+
+    .filter-box {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .filter-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--charcoal);
+    }
+
+    .filter-clear {
+      font-size: 12px;
+      color: var(--red-dark);
+      cursor: pointer;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .filter-clear:hover {
+      color: var(--charcoal);
+    }
+
+    .filter-group {
+      margin-bottom: 18px;
+    }
+
+    .filter-group h5 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .filter-select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--charcoal);
+      background-color: var(--white);
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+    }
+
+    .filter-select:hover {
+      border-color: #cbd5e1;
+    }
+
+    /* LISTING AREA */
+    .listing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .result-count {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .result-count strong {
+      color: var(--text);
+    }
+
+    .sort-select {
+      padding: 8px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+    }
+
+    /* ACTIVE FILTERS */
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .filter-tag {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-tag button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    /* CAR LIST */
     .car-list-item {
-      grid-template-columns: 1fr;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: 260px 1fr auto;
+      transition: all 0.25s;
+      cursor: pointer;
     }
+
+    .car-list-item:hover {
+      border-color: transparent;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
     .car-list-img {
-      height: 180px;
+      height: 200px;
+      background: linear-gradient(135deg, #e8eef5, #ccd4e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
     }
+
+    .car-list-img .badge-verified {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--success);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .car-list-info {
+      padding: 20px;
+    }
+
+    .car-list-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .car-list-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .car-specs {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .spec-icon {
+      font-size: 14px;
+    }
+
+    .car-features {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .feature-tag {
+      font-size: 11px;
+      background: var(--silver);
+      padding: 3px 10px;
+      border-radius: 4px;
+      color: var(--muted);
+    }
+
     .car-list-action {
-      align-items: stretch;
-      flex-direction: row;
-      gap: 10px;
-      border-top: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      min-width: 180px;
     }
-    .btn-details, .btn-call {
+
+    .car-price-big {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .car-emi {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .btn-details {
+      background: var(--red);
+      color: #1A1A2E;
+      border: none;
+      padding: 0 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .btn-call {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-call:hover {
+      border-color: var(--text);
+    }
+
+    .compare-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 32px 0;
+    }
+
+    .page-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .page-btn.active {
+      background: var(--red);
+      color: #1A1A2E;
+      border-color: var(--red);
+    }
+
+    .page-btn:hover:not(.active) {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: var(--charcoal);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transform: translateY(100px);
+      transition: transform 0.3s ease;
+      border-left: 4px solid var(--red);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    
+    
+
+    
+
+    
+
+    .footer-col-brand 
+
+    .footer-col-brand 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    @media(max-width: 800px) {
+      
+
+      
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    @media(max-width: 768px) {
+      
+
+      
+
+      
+
+      
+
+      
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      
+
+      .nav-actions.active {
+        display: flex;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+      }
+
+      .page-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .car-list-item {
+        grid-template-columns: 1fr;
+      }
+
+      .car-list-img {
+        height: 180px;
+      }
+
+      .car-list-action {
+        align-items: stretch;
+        flex-direction: row;
+        gap: 10px;
+        border-top: 1px solid var(--border);
+      }
+
+      .btn-details,
+      .btn-call {
+        flex: 1;
+        margin-bottom: 0;
+      }
+
+      
+
+      
+
+      
+    }
+
+    @media(max-width: 480px) {
+      .car-list-action {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-details,
+      .btn-call {
+        width: 100%;
+      }
+    }
+
+    .custom-dropdown {
+      position: relative;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .dropdown-header {
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--charcoal);
+      background-color: var(--white);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-header:hover {
+      border-color: #cbd5e1;
+    }
+
+    .dropdown-header.open {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .dropdown-arrow {
+      font-size: 10px;
+      color: #6B7A99;
+      transition: transform 0.2s;
+    }
+
+    .dropdown-header.open .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-body {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-top: none;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+
+    .custom-dropdown.open .dropdown-body {
+      display: block;
+    }
+
+    .brand-search {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .brand-search:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+    }
+
+    .brand-tree {
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .brand-tree::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .brand-tree::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .tree-make {
+      margin-bottom: 8px;
+    }
+
+    .tree-make-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--charcoal);
+      cursor: pointer;
+    }
+
+    .tree-make-header label {
       flex: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .tree-make-header input {
+      margin-left: auto;
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+      accent-color: var(--charcoal);
+    }
+
+    .tree-toggle {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--muted);
+      background: var(--silver);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: monospace;
+    }
+
+    .tree-toggle:hover {
+      background: #e0e5eb;
+      color: var(--charcoal);
+    }
+
+    .tree-models {
+      margin-left: 26px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+      border-left: 1px solid #eee;
+      padding-left: 8px;
+    }
+
+    .tree-models.open {
+      display: flex;
+    }
+
+    .tree-model-item {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 2px 0;
+    }
+
+    .tree-model-item label {
+      flex: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .tree-model-item input {
+      margin-left: auto;
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+      accent-color: var(--charcoal);
+    }
+
+
+    .filter-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .filter-group-header h5 {
       margin-bottom: 0;
     }
 
+    .checkbox-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .checkbox-item input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      accent-color: #00897B;
+    }
+
+    .checkbox-item label {
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .dual-slider-container {
+      position: relative;
+      width: 100%;
+      height: 24px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-track {
+      position: absolute;
+      height: 4px;
+      background: #00897B;
+      width: 100%;
+      z-index: 1;
+      border-radius: 2px;
+    }
+
+    .dual-slider-container input[type="range"] {
+      position: absolute;
+      width: 100%;
+      pointer-events: none;
+      -webkit-appearance: none;
+      background: transparent;
+      z-index: 2;
+      margin: 0;
+      outline: none;
+    }
+
+    .dual-slider-container input[type="range"]::-webkit-slider-thumb {
+      pointer-events: all;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #00897B;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .slider-inputs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    .slider-inputs input {
+      width: 45%;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .slider-inputs span {
+      color: #555;
+      font-weight: 500;
+    }
+
+
+    .filter-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .filter-group-header h5 {
+      margin-bottom: 0;
+    }
+
+    .filter-dropdown-body {
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      max-height: 500px;
+    }
+
+    .filter-dropdown-body.collapsed {
+      max-height: 0;
+    }
+
+    .filter-group-header .dropdown-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .filter-group-header.collapsed .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+
+    .sidebar {
+      background: #fff;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      margin-bottom: 24px;
+      padding: 0;
+      overflow: hidden;
+      align-self: start;
+      position: sticky;
+      top: 24px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+    }
+
+    .filter-box {
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .filter-title {
+      padding: 16px;
+      border-bottom: 1.5px solid var(--border);
+      margin-bottom: 0;
+      background: #fafafa;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    .accordion-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #111;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: #f8f9fa;
+    }
+
+    .accordion-arrow {
+      transition: transform 0.3s ease;
+      color: #666;
+      width: 16px;
+      height: 16px;
+    }
+
+    .accordion-header.active .accordion-arrow {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #fff;
+    }
+
+    .accordion-body.open {
+      max-height: 5000px;
+      overflow: visible;
+    }
+
+    /* visible to allow dropdowns like select to overflow if needed */
+    .accordion-content {
+      padding: 0 16px 16px 16px;
+    }
+
+    .accordion-content select {
+      margin-top: 4px;
+    }
+
+
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .car-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .car-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .car-img-wrap {
+      position: relative;
+      height: 200px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .car-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .car-badge-featured {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #f59e0b;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .car-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .car-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .car-specs-text {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .car-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .car-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .car-emi {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .car-emi strong {
+      color: #111827;
+    }
+
+    .car-offer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .make-offer {
+      color: #0284c7;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .btn-seller {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-seller:hover {
+      background: #b91c1c;
+    }
+
+    .car-footer {
+      border-top: 1px dashed #e5e7eb;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #4b5563;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+
+    .scrollable-list {
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .scrollable-list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .scrollable-list::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+
+    .tree-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tree-node {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+
+    .tree-node:last-child {
+      border-bottom: none;
+    }
+
+    .tree-parent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+
+    .tree-parent-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .tree-parent-left input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      accent-color: #00897B;
+    }
+
+    .tree-parent-left label {
+      cursor: pointer;
+      flex: 1;
+      margin: 0;
+    }
+
+    .tree-toggle {
+      font-size: 16px;
+      color: #888;
+      width: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .tree-children {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tree-children.open {
+      max-height: 3000px;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .tree-node.active>.tree-parent>.tree-toggle {
+      transform: rotate(45deg);
+    }
+
+
+    .car-action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn-save {
+      flex: 1;
+      background: #fff;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      color: #4b5563;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 10px 0;
+    }
+
+    .btn-save:hover {
+      background: #f3f4f6;
+    }
+
+    .btn-view {
+      flex: 1;
+      background: #171721;
+      border: 1.5px solid #171721;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-view:hover {
+      background: #232332;
+      border-color: #232332;
+    }
+
+
+    .car-img-wrap {
+      position: relative;
+      /* overflow: hidden; */
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 48px;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .car-img-wrap:hover .carousel-btn {
+      opacity: 1;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-prev {
+      left: 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .btn-next {
+      right: 0;
+      border-radius: 6px 0 0 6px;
+    }
+
+    .car-card img {
+      transition: opacity 0.3s ease;
+    }
+  
+    /* NAVBAR */
+    .navbar {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      border-bottom: 1.5px solid rgba(26, 61, 143, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+    }
+
+    .nav-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 40px;
+      height: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--charcoal);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      background: rgba(26, 61, 143, 0.06);
+    }
+
+    .nav-links a.active {
+      color: #FFFFFF !important;
+      background: var(--charcoal);
+      box-shadow: 0 4px 12px rgba(26, 61, 143, 0.2);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-outline-white {
+      border: 2px solid var(--charcoal);
+      color: var(--charcoal);
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .btn-outline-white:hover {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(26, 61, 143, 0.2);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 101;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--charcoal);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    @media(max-width: 800px) {
+      .nav-main {
+        justify-content: space-between;
+        height: 70px;
+      }
+      .logo {
+        margin-right: 0;
+        height: 50px;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        padding: 20px;
+        gap: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-top: 1px solid var(--border);
+        z-index: 9999;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-actions {
+        display: none;
+        position: absolute;
+        top: 310px;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        padding: 10px 20px 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        z-index: 9998;
+        border-top: 1px solid var(--border);
+        justify-content: center;
+      }
+      .nav-actions.active {
+        display: flex;
+      }
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0B0F19;
+      color: #94A3B8;
+      padding: 60px 20px 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
     .footer-grid {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col-brand .logo {
+      display: block;
+      margin-bottom: 24px;
+      height: 60px;
+    }
+
+    .footer-col-brand .logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    .footer-copyright {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #64748B;
+      font-weight: 500;
+      margin-top: 16px;
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 15px;
+      color: #94A3B8;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .footer-col a:hover {
+      color: var(--red);
+      transform: translateX(4px);
+    }
+
+    .quick-links-split {
+      display: flex;
       gap: 30px;
     }
-    .quick-links-split {
-      flex-direction: column;
-      gap: 16px;
-    }
+
     .ql-divider {
-      display: none;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.1);
     }
-  }
 
-  @media(max-width: 480px) {
-    .car-list-action {
+    .ql-col {
+      display: flex;
       flex-direction: column;
-      align-items: stretch;
     }
-    .btn-details, .btn-call {
-      width: 100%;
+
+    .footer-contact .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
     }
-  }
 
-  .custom-dropdown { position: relative; width: 100%; font-family: 'Inter', sans-serif; }
-  .dropdown-header { padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13.5px; font-weight: 600; color: var(--charcoal); background-color: var(--white); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease; }
-  .dropdown-header:hover { border-color: #cbd5e1; }
-  .dropdown-header.open { border-color: var(--red); box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-  .dropdown-arrow { font-size: 10px; color: #6B7A99; transition: transform 0.2s; }
-  .dropdown-header.open .dropdown-arrow { transform: rotate(180deg); }
-  .dropdown-body { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1.5px solid var(--border); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; z-index: 100; box-shadow: 0 10px 25px rgba(0,0,0,0.1); padding: 10px; }
-  .custom-dropdown.open .dropdown-body { display: block; }
-  .brand-search { width: 100%; padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13px; margin-bottom: 12px; }
-  .brand-search:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15); }
-  .brand-tree { max-height: 280px; overflow-y: auto; padding-right: 5px; }
-  .brand-tree::-webkit-scrollbar { width: 4px; }
-  .brand-tree::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-  .tree-make { margin-bottom: 8px; }
-  .tree-make-header { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 500; color: var(--charcoal); cursor: pointer; }
-  .tree-make-header label { flex: 1; cursor: pointer; display: flex; align-items: center; }
-  .tree-make-header input { margin-left: auto; cursor: pointer; width: 15px; height: 15px; accent-color: var(--charcoal); }
-  .tree-toggle { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--muted); background: var(--silver); border-radius: 4px; cursor: pointer; transition: all 0.2s; font-family: monospace; }
-  .tree-toggle:hover { background: #e0e5eb; color: var(--charcoal); }
-  .tree-models { margin-left: 26px; display: none; flex-direction: column; gap: 8px; margin-top: 8px; border-left: 1px solid #eee; padding-left: 8px; }
-  .tree-models.open { display: flex; }
-  .tree-model-item { display: flex; align-items: center; font-size: 13px; color: var(--muted); padding: 2px 0; }
-  .tree-model-item label { flex: 1; cursor: pointer; display: flex; align-items: center; }
-  .tree-model-item input { margin-left: auto; cursor: pointer; width: 14px; height: 14px; accent-color: var(--charcoal); }
+    .footer-contact .contact-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--red);
+      flex-shrink: 0;
+    }
 
+    .footer-contact .contact-item a {
+      margin-bottom: 0;
+      font-size: 15px;
+      color: #FFFFFF;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
-  .filter-group-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 12px; }
-  .filter-group-header h5 { margin-bottom: 0; }
-  .checkbox-list { display: flex; flex-direction: column; gap: 8px; }
-  .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text); }
-  .checkbox-item input { width: 16px; height: 16px; cursor: pointer; border-radius: 4px; accent-color: #00897B; }
-  .checkbox-item label { cursor: pointer; flex: 1; }
-  
-  .dual-slider-container { position: relative; width: 100%; height: 24px; margin-top: 10px; display: flex; align-items: center; }
-  .slider-track { position: absolute; height: 4px; background: #00897B; width: 100%; z-index: 1; border-radius: 2px; }
-  .dual-slider-container input[type="range"] { position: absolute; width: 100%; pointer-events: none; -webkit-appearance: none; background: transparent; z-index: 2; margin: 0; outline: none; }
-  .dual-slider-container input[type="range"]::-webkit-slider-thumb { pointer-events: all; -webkit-appearance: none; width: 18px; height: 18px; background: #00897B; border-radius: 50%; cursor: pointer; }
-  
-  .slider-labels { display: flex; justify-content: space-between; font-size: 11px; color: #555; margin-bottom: 12px; }
-  .slider-inputs { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
-  .slider-inputs input { width: 45%; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: 'Inter', sans-serif; }
-  .slider-inputs span { color: #555; font-weight: 500; }
+    .footer-bottom-bar {
+      background: #111827;
+      border-radius: 20px;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #64748B;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
+    .fbb-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-  .filter-group-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 12px; }
-  .filter-group-header h5 { margin-bottom: 0; }
-  .filter-dropdown-body { overflow: hidden; transition: max-height 0.3s ease; max-height: 500px; }
-  .filter-dropdown-body.collapsed { max-height: 0; }
-  .filter-group-header .dropdown-arrow { transition: transform 0.3s ease; }
-  .filter-group-header.collapsed .dropdown-arrow { transform: rotate(180deg); }
+    .fbb-connect-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.5px;
+    }
 
+    .fbb-socials {
+      display: flex;
+      gap: 12px;
+    }
 
-  .sidebar { background: #fff; border-radius: 12px; border: 1.5px solid var(--border); margin-bottom: 24px; padding: 0; overflow: hidden; align-self: start; position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow-y: auto; }
-  .filter-box { padding: 0; border: none; background: transparent; }
-  .filter-title { padding: 16px; border-bottom: 1.5px solid var(--border); margin-bottom: 0; background: #fafafa; }
-  .accordion-item { border-bottom: 1px solid var(--border); }
-  .accordion-item:last-child { border-bottom: none; }
-  .accordion-header { padding: 16px; display: flex; justify-content: space-between; align-items: center; font-size: 14.5px; font-weight: 600; color: #111; cursor: pointer; transition: background 0.2s; }
-  .accordion-header:hover { background: #f8f9fa; }
-  .accordion-arrow { transition: transform 0.3s ease; color: #666; width: 16px; height: 16px; }
-  .accordion-header.active .accordion-arrow { transform: rotate(180deg); }
-  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #fff; }
-  .accordion-body.open { max-height: 5000px; overflow: visible; } /* visible to allow dropdowns like select to overflow if needed */
-  .accordion-content { padding: 0 16px 16px 16px; }
-  .accordion-content select { margin-top: 4px; }
+    .fbb-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      transition: all 0.3s ease;
+    }
 
+    .fbb-socials a:hover {
+      background: var(--red);
+      color: #0B0F19;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(255, 204, 0, 0.3);
+    }
 
-  .cars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 24px;
-  }
-  .car-card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .car-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-  }
-  .car-img-wrap {
-    position: relative;
-    height: 200px;
-    background: #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .car-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  .car-badge-featured {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #f59e0b;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-  .car-body {
-    padding: 16px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .car-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .car-specs-text {
-    font-size: 13px;
-    color: #6b7280;
-    margin-bottom: 12px;
-  }
-  .car-price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 12px;
-  }
-  .car-price {
-    font-size: 18px;
-    font-weight: 800;
-    color: #111827;
-  }
-  .car-emi {
-    font-size: 12px;
-    color: #6b7280;
-  }
-  .car-emi strong {
-    color: #111827;
-  }
-  .car-offer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  .make-offer {
-    color: #0284c7;
-    font-size: 13px;
-    font-weight: 500;
-  }
-  .btn-seller {
-    background: #dc2626;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    width: 100%;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .btn-seller:hover {
-    background: #b91c1c;
-  }
-  .car-footer {
-    border-top: 1px dashed #e5e7eb;
-    padding: 12px 16px;
-    font-size: 12px;
-    color: #4b5563;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+    .fbb-socials svg {
+      width: 18px !important;
+      height: 18px !important;
+      fill: currentColor;
+    }
 
+    .fbb-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
 
-  .scrollable-list {
-    max-height: 250px;
-    overflow-y: auto;
-    padding-right: 5px;
-  }
-  .scrollable-list::-webkit-scrollbar {
-    width: 4px;
-  }
-  .scrollable-list::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
-  }
+    .fbb-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-
-  .tree-list { display: flex; flex-direction: column; gap: 4px; }
-  .tree-node { display: flex; flex-direction: column; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; margin-bottom: 4px; }
-  .tree-node:last-child { border-bottom: none; }
-  .tree-parent { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 4px 0; }
-  .tree-parent-left { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text); }
-  .tree-parent-left input { width: 16px; height: 16px; cursor: pointer; border-radius: 4px; accent-color: #00897B; }
-  .tree-parent-left label { cursor: pointer; flex: 1; margin: 0; }
-  .tree-toggle { font-size: 16px; color: #888; width: 20px; text-align: center; transition: transform 0.2s; }
-  .tree-children { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 24px; display: flex; flex-direction: column; gap: 6px; }
-  .tree-children.open { max-height: 3000px; margin-top: 6px; margin-bottom: 4px; }
-  .tree-node.active > .tree-parent > .tree-toggle { transform: rotate(45deg); }
-
-
-  .car-action-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 16px;
-  }
-  .btn-save {
-    flex: 1;
-    background: #fff;
-    border: 1.5px solid #d1d5db;
-    border-radius: 8px;
-    color: #4b5563;
-    font-weight: 600;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-    padding: 10px 0;
-  }
-  .btn-save:hover {
-    background: #f3f4f6;
-  }
-  .btn-view {
-    flex: 1;
-    background: #171721;
-    border: 1.5px solid #171721;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-    padding: 10px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .btn-view:hover {
-    background: #232332;
-    border-color: #232332;
-  }
-
-
-  .car-img-wrap {
-    position: relative;
-    /* overflow: hidden; */
-  }
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28px;
-    height: 48px;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.2s;
-    opacity: 0;
-    z-index: 10;
-  }
-  .car-img-wrap:hover .carousel-btn {
-    opacity: 1;
-  }
-  .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
-  }
-  .btn-prev {
-    left: 0;
-    border-radius: 0 6px 6px 0;
-  }
-  .btn-next {
-    right: 0;
-    border-radius: 6px 0 0 6px;
-  }
-  .car-card img {
-    transition: opacity 0.3s ease;
-  }
-
+    .fbb-links a:hover {
+      color: #FFFFFF;
+    }
 </style>
 </head>
+
 <body>
 
-<nav class="navbar">
-
-  <div class="nav-main">
-    <a href="index.html" class="logo" id="brand-logo">
-      <img src="logo.png" alt="Market Guru HP Logo">
-    </a>
-    <div class="nav-links">
-      <a href="index.html">🏠 Home</a>
-      <a href="buy-cars.html" class="active">Buy Vehicle</a>
-      <a href="sell.html">Sell Vehicles</a>
-      <a href="about.html">About</a>
-      <a href="compare.html">⚖️ Compare</a>
+    <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-main">
+      <a href="index.html" class="logo" id="brand-logo">
+        <img src="logo.png" alt="Market Guru HP Logo">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link-home ">🏠 Home</a>
+        <a href="buy-cars.html" class="nav-link-buy active">Buy Vehicle</a>
+        <a href="sell.html" class="nav-link-sell ">Sell Vehicles</a>
+        <a href="about.html" class="nav-link-about ">About</a>
+        <a href="compare.html" class="nav-link-compare ">⚖️ Compare</a>
+      </div>
+      <div class="nav-actions" id="nav-actions">
+        <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-    <div class="nav-actions" id="nav-actions"></div>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  </nav>
+
+
+
+  <div class="page-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="filter-box">
+        <div class="filter-title">
+          Filters
+          <span class="filter-clear" onclick="clearAll()">Clear All</span>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Brand / Model</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="tree-list scrollable-list">
+                <div id="dynamic-tree-list" style="padding: 10px; font-size: 13px; color: #888;">Loading...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Budget</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list">
+
+                <div class="checkbox-item"><input type="checkbox" class="budget-cb" value="1-2"
+                    onchange="applyFilters()"><label>1 to 2 Lakh</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="budget-cb" value="2-3"
+                    onchange="applyFilters()"><label>2 to 3 Lakh</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="budget-cb" value="3-5"
+                    onchange="applyFilters()"><label>3 to 5 Lakh</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="budget-cb" value="5-7"
+                    onchange="applyFilters()"><label>5 to 7 Lakh</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="budget-cb" value="7+"
+                    onchange="applyFilters()"><label>7+ Lakh</label></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>City</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list scrollable-list">
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Ahmedabad"
+                    onchange="applyFilters()"><label>Ahmedabad</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Amreli"
+                    onchange="applyFilters()"><label>Amreli</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Anand"
+                    onchange="applyFilters()"><label>Anand</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Anjar"
+                    onchange="applyFilters()"><label>Anjar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Bharuch"
+                    onchange="applyFilters()"><label>Bharuch</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Bhavnagar"
+                    onchange="applyFilters()"><label>Bhavnagar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Bhuj"
+                    onchange="applyFilters()"><label>Bhuj</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Botad"
+                    onchange="applyFilters()"><label>Botad</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Dahod"
+                    onchange="applyFilters()"><label>Dahod</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Deesa"
+                    onchange="applyFilters()"><label>Deesa</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Dholka"
+                    onchange="applyFilters()"><label>Dholka</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Dwarka"
+                    onchange="applyFilters()"><label>Dwarka</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Gandhidham"
+                    onchange="applyFilters()"><label>Gandhidham</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Gandhinagar"
+                    onchange="applyFilters()"><label>Gandhinagar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Godhra"
+                    onchange="applyFilters()"><label>Godhra</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Jamnagar"
+                    onchange="applyFilters()"><label>Jamnagar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Jetpur"
+                    onchange="applyFilters()"><label>Jetpur</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Junagadh"
+                    onchange="applyFilters()"><label>Junagadh</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Kalol"
+                    onchange="applyFilters()"><label>Kalol</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Lunawada"
+                    onchange="applyFilters()"><label>Lunawada</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Mehsana"
+                    onchange="applyFilters()"><label>Mehsana</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Modasa"
+                    onchange="applyFilters()"><label>Modasa</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Morbi"
+                    onchange="applyFilters()"><label>Morbi</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Mundra"
+                    onchange="applyFilters()"><label>Mundra</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Nadiad"
+                    onchange="applyFilters()"><label>Nadiad</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Navsari"
+                    onchange="applyFilters()"><label>Navsari</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Palanpur"
+                    onchange="applyFilters()"><label>Palanpur</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Patan"
+                    onchange="applyFilters()"><label>Patan</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Porbandar"
+                    onchange="applyFilters()"><label>Porbandar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Rajkot"
+                    onchange="applyFilters()"><label>Rajkot</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Somnath"
+                    onchange="applyFilters()"><label>Somnath</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Surat"
+                    onchange="applyFilters()"><label>Surat</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Surendranagar"
+                    onchange="applyFilters()"><label>Surendranagar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Vadodara"
+                    onchange="applyFilters()"><label>Vadodara</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Valsad"
+                    onchange="applyFilters()"><label>Valsad</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Vapi"
+                    onchange="applyFilters()"><label>Vapi</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Veraval"
+                    onchange="applyFilters()"><label>Veraval</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Visnagar"
+                    onchange="applyFilters()"><label>Visnagar</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Vyara"
+                    onchange="applyFilters()"><label>Vyara</label></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Fuel</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list">
+                <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="petrol"
+                    onchange="applyFilters()"><label>Petrol</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="diesel"
+                    onchange="applyFilters()"><label>Diesel</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="cng"
+                    onchange="applyFilters()"><label>CNG</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="electric"
+                    onchange="applyFilters()"><label>Electric</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Transmission</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list">
+                <div class="checkbox-item"><input type="checkbox" class="trans-cb" value="manual"
+                    onchange="applyFilters()"><label>Manual</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="trans-cb" value="automatic"
+                    onchange="applyFilters()"><label>Automatic</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Body Type</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list">
+                <div class="checkbox-item"><input type="checkbox" class="body-cb" value="hatchback"
+                    onchange="applyFilters()"><label>Hatchback</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="body-cb" value="sedan"
+                    onchange="applyFilters()"><label>Sedan</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="body-cb" value="suv"
+                    onchange="applyFilters()"><label>SUV</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="body-cb" value="muv"
+                    onchange="applyFilters()"><label>MUV</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="body-cb" value="minivan"
+                    onchange="applyFilters()"><label>Minivan</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Owners</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list">
+                <div class="checkbox-item"><input type="checkbox" class="owner-cb" value="1st"
+                    onchange="applyFilters()"><label>1st Owner</label></div>
+                <div class="checkbox-item"><input type="checkbox" class="owner-cb" value="2nd"
+                    onchange="applyFilters()"><label>2nd Owner</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Seller Type</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="checkbox-list">
+                <div class="checkbox-item"><input type="checkbox" id="sellerDealer" class="seller-cb" value="Dealer"
+                    onchange="applyFilters()"><label for="sellerDealer">Dealer Partners</label></div>
+                <div class="checkbox-item"><input type="checkbox" id="sellerOwner" class="seller-cb" value="Owner"
+                    onchange="applyFilters()"><label for="sellerOwner">Direct Owner</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Car Age (Years)</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="dual-slider-container">
+                <div class="slider-track"></div>
+                <input type="range" id="ageMinRange" min="0" max="15" value="0" oninput="updateAgeSlider()">
+                <input type="range" id="ageMaxRange" min="0" max="15" value="15" oninput="updateAgeSlider()">
+              </div>
+              <div class="slider-labels">
+                <span>0 Year</span>
+                <span>15 + Year</span>
+              </div>
+              <div class="slider-inputs">
+                <input type="number" id="ageMinInput" value="0" min="0" max="15" onchange="syncAgeInputs()">
+                <span>-</span>
+                <input type="number" id="ageMaxInput" value="15" min="0" max="15" onchange="syncAgeInputs()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Kilometer (Kms)</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <div class="dual-slider-container">
+                <div class="slider-track"></div>
+                <input type="range" id="kmMinRange" min="0" max="80000" step="1000" value="0"
+                  oninput="updateKmSlider()">
+                <input type="range" id="kmMaxRange" min="0" max="80000" step="1000" value="80000"
+                  oninput="updateKmSlider()">
+              </div>
+              <div class="slider-labels">
+                <span>0 Kms</span>
+                <span>80,000 + Kms</span>
+              </div>
+              <div class="slider-inputs">
+                <input type="text" id="kmMinInput" value="0 K" onchange="syncKmInputs()">
+                <span>-</span>
+                <input type="text" id="kmMaxInput" value="80 K" onchange="syncKmInputs()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- LISTING -->
+    <main>
+      <div class="listing-header">
+        <div class="result-count"><strong id="count">2,400+</strong> Buy Vehicle in Vadodara</div>
+        <select class="sort-select" onchange="sortCars(this)">
+          <option>Relevance</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest First</option>
+          <option>Lowest KM</option>
+        </select>
+      </div>
+
+      <div class="active-filters" id="activeFilters"></div>
+
+      <div id="carList"></div>
+
+      <div class="pagination">
+        <button class="page-btn">‹</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">...</button>
+        <button class="page-btn">24</button>
+        <button class="page-btn">›</button>
+      </div>
+    </main>
   </div>
-</nav>
 
-
-
-<div class="page-layout">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="filter-box">
-      <div class="filter-title">
-        Filters
-        <span class="filter-clear" onclick="clearAll()">Clear All</span>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Brand / Model</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="tree-list scrollable-list">
-              <div id="dynamic-tree-list" style="padding: 10px; font-size: 13px; color: #888;">Loading...</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Budget</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list">
-              
-<div class="checkbox-item"><input type="checkbox" class="budget-cb" value="1-2" onchange="applyFilters()"><label>1 to 2 Lakh</label></div>
-<div class="checkbox-item"><input type="checkbox" class="budget-cb" value="2-3" onchange="applyFilters()"><label>2 to 3 Lakh</label></div>
-<div class="checkbox-item"><input type="checkbox" class="budget-cb" value="3-5" onchange="applyFilters()"><label>3 to 5 Lakh</label></div>
-<div class="checkbox-item"><input type="checkbox" class="budget-cb" value="5-7" onchange="applyFilters()"><label>5 to 7 Lakh</label></div>
-<div class="checkbox-item"><input type="checkbox" class="budget-cb" value="7+" onchange="applyFilters()"><label>7+ Lakh</label></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>City</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list scrollable-list">
-              <div class="checkbox-item"><input type="checkbox" class="city-cb" value="Ahmedabad" onchange="applyFilters()"><label>Ahmedabad</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Amreli" onchange="applyFilters()"><label>Amreli</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Anand" onchange="applyFilters()"><label>Anand</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Anjar" onchange="applyFilters()"><label>Anjar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Bharuch" onchange="applyFilters()"><label>Bharuch</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Bhavnagar" onchange="applyFilters()"><label>Bhavnagar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Bhuj" onchange="applyFilters()"><label>Bhuj</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Botad" onchange="applyFilters()"><label>Botad</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Dahod" onchange="applyFilters()"><label>Dahod</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Deesa" onchange="applyFilters()"><label>Deesa</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Dholka" onchange="applyFilters()"><label>Dholka</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Dwarka" onchange="applyFilters()"><label>Dwarka</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Gandhidham" onchange="applyFilters()"><label>Gandhidham</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Gandhinagar" onchange="applyFilters()"><label>Gandhinagar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Godhra" onchange="applyFilters()"><label>Godhra</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Jamnagar" onchange="applyFilters()"><label>Jamnagar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Jetpur" onchange="applyFilters()"><label>Jetpur</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Junagadh" onchange="applyFilters()"><label>Junagadh</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Kalol" onchange="applyFilters()"><label>Kalol</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Lunawada" onchange="applyFilters()"><label>Lunawada</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Mehsana" onchange="applyFilters()"><label>Mehsana</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Modasa" onchange="applyFilters()"><label>Modasa</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Morbi" onchange="applyFilters()"><label>Morbi</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Mundra" onchange="applyFilters()"><label>Mundra</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Nadiad" onchange="applyFilters()"><label>Nadiad</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Navsari" onchange="applyFilters()"><label>Navsari</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Palanpur" onchange="applyFilters()"><label>Palanpur</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Patan" onchange="applyFilters()"><label>Patan</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Porbandar" onchange="applyFilters()"><label>Porbandar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Rajkot" onchange="applyFilters()"><label>Rajkot</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Somnath" onchange="applyFilters()"><label>Somnath</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Surat" onchange="applyFilters()"><label>Surat</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Surendranagar" onchange="applyFilters()"><label>Surendranagar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Vadodara" onchange="applyFilters()"><label>Vadodara</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Valsad" onchange="applyFilters()"><label>Valsad</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Vapi" onchange="applyFilters()"><label>Vapi</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Veraval" onchange="applyFilters()"><label>Veraval</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Visnagar" onchange="applyFilters()"><label>Visnagar</label></div>
-<div class="checkbox-item"><input type="checkbox" class="city-cb" value="Vyara" onchange="applyFilters()"><label>Vyara</label></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Fuel</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list">
-              <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="petrol" onchange="applyFilters()"><label>Petrol</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="diesel" onchange="applyFilters()"><label>Diesel</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="cng" onchange="applyFilters()"><label>CNG</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="fuel-cb" value="electric" onchange="applyFilters()"><label>Electric</label></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Transmission</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list">
-              <div class="checkbox-item"><input type="checkbox" class="trans-cb" value="manual" onchange="applyFilters()"><label>Manual</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="trans-cb" value="automatic" onchange="applyFilters()"><label>Automatic</label></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Body Type</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list">
-              <div class="checkbox-item"><input type="checkbox" class="body-cb" value="hatchback" onchange="applyFilters()"><label>Hatchback</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="body-cb" value="sedan" onchange="applyFilters()"><label>Sedan</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="body-cb" value="suv" onchange="applyFilters()"><label>SUV</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="body-cb" value="muv" onchange="applyFilters()"><label>MUV</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="body-cb" value="minivan" onchange="applyFilters()"><label>Minivan</label></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Owners</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list">
-              <div class="checkbox-item"><input type="checkbox" class="owner-cb" value="1st" onchange="applyFilters()"><label>1st Owner</label></div>
-              <div class="checkbox-item"><input type="checkbox" class="owner-cb" value="2nd" onchange="applyFilters()"><label>2nd Owner</label></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Seller Type</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="checkbox-list">
-              <div class="checkbox-item"><input type="checkbox" id="sellerDealer" class="seller-cb" value="Dealer" onchange="applyFilters()"><label for="sellerDealer">Dealer Partners</label></div>
-              <div class="checkbox-item"><input type="checkbox" id="sellerOwner" class="seller-cb" value="Owner" onchange="applyFilters()"><label for="sellerOwner">Direct Owner</label></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Car Age (Years)</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="dual-slider-container">
-              <div class="slider-track"></div>
-              <input type="range" id="ageMinRange" min="0" max="15" value="0" oninput="updateAgeSlider()">
-              <input type="range" id="ageMaxRange" min="0" max="15" value="15" oninput="updateAgeSlider()">
-            </div>
-            <div class="slider-labels">
-              <span>0 Year</span>
-              <span>15 + Year</span>
-            </div>
-            <div class="slider-inputs">
-              <input type="number" id="ageMinInput" value="0" min="0" max="15" onchange="syncAgeInputs()">
-              <span>-</span>
-              <input type="number" id="ageMaxInput" value="15" min="0" max="15" onchange="syncAgeInputs()">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>Kilometer (Kms)</span>
-          <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            <div class="dual-slider-container">
-              <div class="slider-track"></div>
-              <input type="range" id="kmMinRange" min="0" max="80000" step="1000" value="0" oninput="updateKmSlider()">
-              <input type="range" id="kmMaxRange" min="0" max="80000" step="1000" value="80000" oninput="updateKmSlider()">
-            </div>
-            <div class="slider-labels">
-              <span>0 Kms</span>
-              <span>80,000 + Kms</span>
-            </div>
-            <div class="slider-inputs">
-              <input type="text" id="kmMinInput" value="0 K" onchange="syncKmInputs()">
-              <span>-</span>
-              <input type="text" id="kmMaxInput" value="80 K" onchange="syncKmInputs()">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </aside>
-
-  <!-- LISTING -->
-  <main>
-    <div class="listing-header">
-      <div class="result-count"><strong id="count">2,400+</strong> Buy Vehicle in Vadodara</div>
-      <select class="sort-select" onchange="sortCars(this)">
-        <option>Relevance</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
-        <option>Newest First</option>
-        <option>Lowest KM</option>
-      </select>
-    </div>
-
-    <div class="active-filters" id="activeFilters"></div>
-
-    <div id="carList"></div>
-
-    <div class="pagination">
-      <button class="page-btn">‹</button>
-      <button class="page-btn active">1</button>
-      <button class="page-btn">2</button>
-      <button class="page-btn">3</button>
-      <button class="page-btn">...</button>
-      <button class="page-btn">24</button>
-      <button class="page-btn">›</button>
-    </div>
-  </main>
-</div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-col-brand">
-        <a href="index.html" class="logo" id="footer-brand-logo">
-          <img src="logo.png" alt="Market Guru HP Logo">
-        </a>
-        <div class="footer-copyright">
-          © 2006 - 2026 Market Guru HP.<br>
-          All rights reserved in favour of Market Guru HP.
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick guide links</h4>
-        <div class="quick-links-split">
-          <div class="ql-col">
-            <a href="buy-cars.html">Buy Vehicle</a>
-            <a href="sell.html">Sell Vehicles</a>
-          </div>
-          <div class="ql-divider"></div>
-          <div class="ql-col">
-            <a href="about.html">About us</a>
-            <a href="login.html">Account</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-col footer-contact">
-        <h4>Contact Us</h4>
-        <div class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
-        </div>
-        <div class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <a href="tel:08600004513">08600004513</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom-bar">
-      <div class="fbb-left">
-        <div class="fbb-connect-text">Connect with us :</div>
-        <div class="fbb-socials">
-          <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="index.html" class="logo" id="footer-brand-logo">
+            <img src="logo.png" alt="Market Guru HP Logo">
           </a>
-          <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-          <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.79 9.79 0 0 0-6.979-2.88c-5.439 0-9.865 4.37-9.87 9.8-.001 1.774.475 3.503 1.378 5.027L1.993 21.5l5.59-1.464c-.305-.186-.612-.372-.936-.882zM17.15 14.54c-.28-.14-1.65-.81-1.902-.9-.253-.09-.438-.14-.623.14-.184.28-.714.9-.876 1.09-.162.19-.323.21-.603.07-1.125-.56-1.96-1.03-2.67-2.24-.26-.45-.06-.7.14-.9.18-.18.4-.47.6-.7.2-.23.27-.38.4-.64.13-.26.07-.49-.03-.7-.1-.21-.87-2.1-1.2-2.88-.31-.77-.64-.67-.88-.68-.22-.01-.48-.01-.73-.01-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22s1.38 3.73 1.58 3.99c.2.26 2.72 4.15 6.59 5.82.92.4 1.64.64 2.2.82.93.3 1.77.26 2.44.16.74-.11 2.28-.93 2.6-1.83.32-.9.32-1.67.22-1.83-.09-.16-.35-.26-.63-.4z"/></svg>
-          </a>
+          <div class="footer-copyright">
+            &copy; 2026 Market Guru HP. All rights reserved.<br>
+            Gujarat's Most Trusted Certified Used Vehicles Portal.
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="quick-links-split">
+            <div class="ql-col">
+              <a href="index.html">Home</a>
+              <a href="buy-cars.html">Buy Vehicle</a>
+              <a href="sell.html">Sell Vehicle</a>
+            </div>
+            <div class="ql-divider"></div>
+            <div class="ql-col">
+              <a href="about.html">About Us</a>
+              <a href="compare.html">Compare Cars</a>
+              <a href="login.html" class="footer-login-link">Seller Login</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Connect With Us</h4>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <a href="tel:+919825822550">+91 98258 22550</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <a href="mailto:info@marketguruhp.com">info@marketguruhp.com</a>
+          </div>
         </div>
       </div>
-      <div class="fbb-links">
-        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
+      <div class="footer-bottom-bar">
+        <div class="fbb-left">
+          <span class="fbb-connect-text">Follow Us:</span>
+          <div class="fbb-socials">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4.000 4.000 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.483 20.455 12 20.455 12 20.455s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="fbb-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span style="opacity:0.3;">|</span>
+          <a href="terms-of-service.html">Terms of Service</a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<div id="compare-bar" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:#fff;padding:14px 28px;border-radius:30px;box-shadow:0 8px 30px rgba(0,0,0,0.25);z-index:999;display:none;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.1);">
-  <span id="compare-bar-text" style="font-weight:700;font-size:14px;"></span>
-  <a href="compare.html" style="background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:20px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Compare Now &rarr;</a>
-  <button onclick="clearCompareBar()" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;padding:0 5px;">×</button>
-</div>
 
-<div class="toast" id="toast"></div>
 
-<script src="cars-data.js"></script>
-<script>
+  <div class="toast" id="toast"></div>
 
-// Responsive Navbar Toggle
-document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const navActions = document.querySelector('.nav-actions');
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      if (navLinks) navLinks.classList.toggle('active');
-      if (navActions) navActions.classList.toggle('active');
+  <script src="cars-data.js"></script>
+  <script>
+
+    // Responsive Navbar Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      const navActions = document.querySelector('.nav-actions');
+      if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+          menuToggle.classList.toggle('active');
+          if (navLinks) navLinks.classList.toggle('active');
+          if (navActions) navActions.classList.toggle('active');
+        });
+      }
     });
-  }
-  updateCompareBar();
-});
 
-let allCars = [];
-let filteredCars = [];
-let currentPage = 1;
-const carsPerPage = 9;
+    let allCars = [];
+    let filteredCars = [];
+    let currentPage = 1;
+    const carsPerPage = 9;
 
-function initPage() {
-  allCars = mgDB.getUsedCars();
-  parseQueryParams();
-  applyFilters();
-}
-
-function parseQueryParams() {
-  const params = new URLSearchParams(window.location.search);
-  
-  // Brand
-  const brand = params.get('brand');
-  if (brand) {
-    const brandLower = brand.toLowerCase();
-    const makeCb = Array.from(document.querySelectorAll('.make-cb')).find(cb => cb.value.toLowerCase() === brandLower || cb.value.toLowerCase().includes(brandLower));
-    if (makeCb) makeCb.checked = true;
-  }
-  
-  // Model
-  const model = params.get('model');
-  if (model) {
-    const modelLower = model.toLowerCase();
-    const modelCb = Array.from(document.querySelectorAll('.model-cb')).find(cb => cb.value.toLowerCase() === modelLower);
-    if (modelCb) modelCb.checked = true;
-  }
-
-  // Budget
-  const budget = params.get('budget');
-  if (budget) {
-    let targetBudget = '';
-    if (budget.includes('1-2') || budget.includes('1 to 2') || budget.includes('1to2')) targetBudget = '1-2';
-    else if (budget.includes('2-3') || budget.includes('2 to 3') || budget.includes('2to3')) targetBudget = '2-3';
-    else if (budget.includes('3-5') || budget.includes('3 to 5') || budget.includes('3to5')) targetBudget = '3-5';
-    else if (budget.includes('5-7') || budget.includes('5 to 7') || budget.includes('5to7')) targetBudget = '5-7';
-    else if (budget.includes('7+') || budget.includes('7 plus')) targetBudget = '7+';
-
-    if (targetBudget) {
-      const budgetCb = document.querySelector(`.budget-cb[value="${targetBudget}"]`);
-      if (budgetCb) budgetCb.checked = true;
+    function initPage() {
+      allCars = mgDB.getUsedCars();
+      parseQueryParams();
+      applyFilters();
     }
-  }
-  
-  applyFilters();
-}
 
-function nextCardImg(e, cardId, direction, imgStr) {
-  if (e) e.stopPropagation();
-  try {
-    const imgs = JSON.parse(imgStr);
-    if (!imgs || imgs.length <= 1) return;
-    
-    const imgEl = document.getElementById('card-img-' + cardId);
-    if (!imgEl) return;
-    
-    let currentIndex = parseInt(imgEl.getAttribute('data-index') || '0');
-    currentIndex = (currentIndex + direction + imgs.length) % imgs.length;
-    
-    imgEl.src = imgs[currentIndex];
-    imgEl.setAttribute('data-index', currentIndex);
-  } catch (err) {
-    console.error('Error changing card image:', err);
-  }
-}
+    function parseQueryParams() {
+      const params = new URLSearchParams(window.location.search);
 
-function renderCars() {
-  const list = document.getElementById('carList');
-  if(!list) return;
-  // Make sure it uses cars-grid class
-  list.className = 'cars-grid';
-  
-  const countEl = document.getElementById('count');
-  if (countEl) countEl.textContent = filteredCars.length;
+      // Brand
+      const brand = params.get('brand');
+      if (brand) {
+        const brandLower = brand.toLowerCase();
+        const makeCb = Array.from(document.querySelectorAll('.make-cb')).find(cb => cb.value.toLowerCase() === brandLower || cb.value.toLowerCase().includes(brandLower));
+        if (makeCb) makeCb.checked = true;
+      }
 
-  if (filteredCars.length === 0) {
-    list.className = '';
-    list.innerHTML = `
+      // Model
+      const model = params.get('model');
+      if (model) {
+        const modelLower = model.toLowerCase();
+        const modelCb = Array.from(document.querySelectorAll('.model-cb')).find(cb => cb.value.toLowerCase() === modelLower);
+        if (modelCb) modelCb.checked = true;
+      }
+
+      // Budget
+      const budget = params.get('budget');
+      if (budget) {
+        let targetBudget = '';
+        if (budget.includes('1-2') || budget.includes('1 to 2') || budget.includes('1to2')) targetBudget = '1-2';
+        else if (budget.includes('2-3') || budget.includes('2 to 3') || budget.includes('2to3')) targetBudget = '2-3';
+        else if (budget.includes('3-5') || budget.includes('3 to 5') || budget.includes('3to5')) targetBudget = '3-5';
+        else if (budget.includes('5-7') || budget.includes('5 to 7') || budget.includes('5to7')) targetBudget = '5-7';
+        else if (budget.includes('7+') || budget.includes('7 plus')) targetBudget = '7+';
+
+        if (targetBudget) {
+          const budgetCb = document.querySelector(`.budget-cb[value="${targetBudget}"]`);
+          if (budgetCb) budgetCb.checked = true;
+        }
+      }
+
+      applyFilters();
+    }
+
+    function nextCardImg(e, cardId, direction, imgStr) {
+      if (e) e.stopPropagation();
+      try {
+        const imgs = JSON.parse(imgStr);
+        if (!imgs || imgs.length <= 1) return;
+
+        const imgEl = document.getElementById('card-img-' + cardId);
+        if (!imgEl) return;
+
+        let currentIndex = parseInt(imgEl.getAttribute('data-index') || '0');
+        currentIndex = (currentIndex + direction + imgs.length) % imgs.length;
+
+        imgEl.src = imgs[currentIndex];
+        imgEl.setAttribute('data-index', currentIndex);
+      } catch (err) {
+        console.error('Error changing card image:', err);
+      }
+    }
+
+    function renderCars() {
+      const list = document.getElementById('carList');
+      if (!list) return;
+      // Make sure it uses cars-grid class
+      list.className = 'cars-grid';
+
+      const countEl = document.getElementById('count');
+      if (countEl) countEl.textContent = filteredCars.length;
+
+      if (filteredCars.length === 0) {
+        list.className = '';
+        list.innerHTML = `
       <div style="padding:40px; text-align:center; background:#fff; border-radius:12px; border:1.5px solid var(--border)">
         <h3>No cars match your criteria</h3>
         <p style="color:var(--muted); margin-top:8px">Try clearing filters or search query to find more options.</p>
       </div>`;
-    renderPagination(0);
-    return;
-  }
+        renderPagination(0);
+        return;
+      }
 
-  // Pagination slice
-  const startIndex = (currentPage - 1) * carsPerPage;
-  const endIndex = startIndex + carsPerPage;
-  const visibleCars = filteredCars.slice(startIndex, endIndex);
+      // Pagination slice
+      const startIndex = (currentPage - 1) * carsPerPage;
+      const endIndex = startIndex + carsPerPage;
+      const visibleCars = filteredCars.slice(startIndex, endIndex);
 
-  list.innerHTML = visibleCars.map(c => {
-    let imgs = [];
-    if (c.images && Array.isArray(c.images) && c.images.length > 0) imgs = c.images;
-    else if (c.image) imgs = [c.image];
-    
-    let imgStr = JSON.stringify(imgs).replace(/"/g, '&quot;');
-    let hasImgs = imgs.length > 0;
-    
-    return `
+      list.innerHTML = visibleCars.map(c => {
+        let imgs = [];
+        if (c.images && Array.isArray(c.images) && c.images.length > 0) imgs = c.images;
+        else if (c.image) imgs = [c.image];
+
+        let imgStr = JSON.stringify(imgs).replace(/"/g, '&quot;');
+        let hasImgs = imgs.length > 0;
+
+        return `
     <div class="car-card" onclick="window.location='car-detail.html?id=${c.id}'">
       <div class="car-img-wrap" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
         <img src="${hasImgs ? imgs[0] : ''}" style="${hasImgs ? '' : 'display:none;'}" id="card-img-${c.id}" data-index="0" />
@@ -1179,513 +2311,513 @@ function renderCars() {
       </div>
     </div>
   `;
-  }).join('');
+      }).join('');
 
-  renderPagination(filteredCars.length);
-}
-
-
-function changeImage(id, dir) {
-  const imgEl = document.getElementById(`img-${id}`);
-  if (!imgEl) return;
-  const images = JSON.parse(imgEl.getAttribute('data-images') || '[]');
-  if (images.length <= 1) return;
-  
-  let idx = parseInt(imgEl.getAttribute('data-index') || '0');
-  idx += dir;
-  if (idx < 0) idx = images.length - 1;
-  if (idx >= images.length) idx = 0;
-  
-  imgEl.style.opacity = 0.5;
-  setTimeout(() => {
-    imgEl.src = images[idx];
-    imgEl.setAttribute('data-index', idx);
-    imgEl.style.opacity = 1;
-  }, 150);
-}
-
-function renderPagination(totalCount) {
-  const totalPages = Math.ceil(totalCount / carsPerPage);
-  const container = document.querySelector('.pagination');
-  if(!container) return;
-  if (totalPages <= 1) {
-    container.innerHTML = '';
-    return;
-  }
-
-  let html = `<button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled style="opacity:0.5; cursor:default"' : ''}>‹</button>`;
-  
-  for (let i = 1; i <= totalPages; i++) {
-    html += `<button class="page-btn ${currentPage === i ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
-  }
-  
-  html += `<button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled style="opacity:0.5; cursor:default"' : ''}>›</button>`;
-  
-  container.innerHTML = html;
-}
-
-function changePage(p) {
-  const totalPages = Math.ceil(filteredCars.length / carsPerPage);
-  if (p < 1 || p > totalPages) return;
-  currentPage = p;
-  renderCars();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+      renderPagination(filteredCars.length);
+    }
 
 
-function applyFilters() {
-  let list = [...allCars];
+    function changeImage(id, dir) {
+      const imgEl = document.getElementById(`img-${id}`);
+      if (!imgEl) return;
+      const images = JSON.parse(imgEl.getAttribute('data-images') || '[]');
+      if (images.length <= 1) return;
 
-  // Budget
-  const checkedBudgets = Array.from(document.querySelectorAll('.budget-cb:checked')).map(cb => cb.value);
-  if (checkedBudgets.length > 0) {
-    list = list.filter(c => {
-      const p = parseFloat(c.price);
-      return checkedBudgets.some(b => {
-        if (b === '1-2') return p >= 1.0 && p <= 2.0;
-        if (b === '2-3') return p >= 2.0 && p <= 3.0;
-        if (b === '3-5') return p >= 3.0 && p <= 5.0;
-        if (b === '5-7') return p >= 5.0 && p <= 7.0;
-        if (b === '7+') return p >= 7.0;
-        return false;
-      });
-    });
-  }
+      let idx = parseInt(imgEl.getAttribute('data-index') || '0');
+      idx += dir;
+      if (idx < 0) idx = images.length - 1;
+      if (idx >= images.length) idx = 0;
 
-  // Brand / Model / Variant
-  const checkedMakes = Array.from(document.querySelectorAll('.make-cb:checked')).map(cb => cb.value.toLowerCase());
-  const checkedModels = Array.from(document.querySelectorAll('.model-cb:checked')).map(cb => cb.value.toLowerCase());
-  const checkedVariants = Array.from(document.querySelectorAll('.variant-cb:checked')).map(cb => cb.value.toLowerCase());
-  
-  if (checkedMakes.length > 0 || checkedModels.length > 0 || checkedVariants.length > 0) {
-    list = list.filter(c => {
-      let cname = (c.name || '').toLowerCase();
-      let matchMake = false;
-      let matchModel = false;
-      let matchVariant = false;
-      
-      if (checkedMakes.length > 0) {
-        matchMake = checkedMakes.some(make => {
-          let sm = make === 'maruti suzuki' ? 'maruti' : make;
-          const safeMake = sm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          return new RegExp('\\b' + safeMake + '\\b', 'i').test(cname);
-        });
+      imgEl.style.opacity = 0.5;
+      setTimeout(() => {
+        imgEl.src = images[idx];
+        imgEl.setAttribute('data-index', idx);
+        imgEl.style.opacity = 1;
+      }, 150);
+    }
+
+    function renderPagination(totalCount) {
+      const totalPages = Math.ceil(totalCount / carsPerPage);
+      const container = document.querySelector('.pagination');
+      if (!container) return;
+      if (totalPages <= 1) {
+        container.innerHTML = '';
+        return;
       }
-      
-      if (checkedModels.length > 0) {
-        matchModel = checkedModels.some(model => {
-          const safeModel = model.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          return new RegExp('\\b' + safeModel + '\\b').test(cname);
+
+      let html = `<button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled style="opacity:0.5; cursor:default"' : ''}>‹</button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn ${currentPage === i ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+      }
+
+      html += `<button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled style="opacity:0.5; cursor:default"' : ''}>›</button>`;
+
+      container.innerHTML = html;
+    }
+
+    function changePage(p) {
+      const totalPages = Math.ceil(filteredCars.length / carsPerPage);
+      if (p < 1 || p > totalPages) return;
+      currentPage = p;
+      renderCars();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+
+    function applyFilters() {
+      let list = [...allCars];
+
+      // Budget
+      const checkedBudgets = Array.from(document.querySelectorAll('.budget-cb:checked')).map(cb => cb.value);
+      if (checkedBudgets.length > 0) {
+        list = list.filter(c => {
+          const p = parseFloat(c.price);
+          return checkedBudgets.some(b => {
+            if (b === '1-2') return p >= 1.0 && p <= 2.0;
+            if (b === '2-3') return p >= 2.0 && p <= 3.0;
+            if (b === '3-5') return p >= 3.0 && p <= 5.0;
+            if (b === '5-7') return p >= 5.0 && p <= 7.0;
+            if (b === '7+') return p >= 7.0;
+            return false;
+          });
         });
       }
 
-      if (checkedVariants.length > 0) {
-        matchVariant = checkedVariants.some(variant => {
-          const safeVariant = variant.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          // Add a check to match if it's a separate word or at the end of the string
-          return new RegExp('\\b' + safeVariant + '(?:\\b|$)', 'i').test(cname);
+      // Brand / Model / Variant
+      const checkedMakes = Array.from(document.querySelectorAll('.make-cb:checked')).map(cb => cb.value.toLowerCase());
+      const checkedModels = Array.from(document.querySelectorAll('.model-cb:checked')).map(cb => cb.value.toLowerCase());
+      const checkedVariants = Array.from(document.querySelectorAll('.variant-cb:checked')).map(cb => cb.value.toLowerCase());
+
+      if (checkedMakes.length > 0 || checkedModels.length > 0 || checkedVariants.length > 0) {
+        list = list.filter(c => {
+          let cname = (c.name || '').toLowerCase();
+          let matchMake = false;
+          let matchModel = false;
+          let matchVariant = false;
+
+          if (checkedMakes.length > 0) {
+            matchMake = checkedMakes.some(make => {
+              let sm = make === 'maruti suzuki' ? 'maruti' : make;
+              const safeMake = sm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              return new RegExp('\\b' + safeMake + '\\b', 'i').test(cname);
+            });
+          }
+
+          if (checkedModels.length > 0) {
+            matchModel = checkedModels.some(model => {
+              const safeModel = model.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              return new RegExp('\\b' + safeModel + '\\b').test(cname);
+            });
+          }
+
+          if (checkedVariants.length > 0) {
+            matchVariant = checkedVariants.some(variant => {
+              const safeVariant = variant.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              // Add a check to match if it's a separate word or at the end of the string
+              return new RegExp('\\b' + safeVariant + '(?:\\b|$)', 'i').test(cname);
+            });
+          }
+
+          if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length === 0) return matchMake;
+          if (checkedMakes.length === 0 && checkedModels.length > 0 && checkedVariants.length === 0) return matchModel;
+          if (checkedMakes.length === 0 && checkedModels.length === 0 && checkedVariants.length > 0) return matchVariant;
+
+          if (checkedMakes.length > 0 && checkedModels.length > 0 && checkedVariants.length === 0) return matchMake || matchModel;
+          if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length > 0) return matchMake || matchVariant;
+          if (checkedMakes.length === 0 && checkedModels.length > 0 && checkedVariants.length > 0) return matchModel || matchVariant;
+
+          return matchMake || matchModel || matchVariant;
         });
       }
-      
-      if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length === 0) return matchMake;
-      if (checkedMakes.length === 0 && checkedModels.length > 0 && checkedVariants.length === 0) return matchModel;
-      if (checkedMakes.length === 0 && checkedModels.length === 0 && checkedVariants.length > 0) return matchVariant;
 
-      if (checkedMakes.length > 0 && checkedModels.length > 0 && checkedVariants.length === 0) return matchMake || matchModel;
-      if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length > 0) return matchMake || matchVariant;
-      if (checkedMakes.length === 0 && checkedModels.length > 0 && checkedVariants.length > 0) return matchModel || matchVariant;
-      
-      return matchMake || matchModel || matchVariant;
-    });
-  }
 
-  
 
-  // Fuel Filter
-  const checkedFuels = Array.from(document.querySelectorAll('.fuel-cb:checked')).map(cb => cb.value);
-  if (checkedFuels.length > 0) {
-    list = list.filter(c => checkedFuels.includes((c.fuel || '').toLowerCase()));
-  }
+      // Fuel Filter
+      const checkedFuels = Array.from(document.querySelectorAll('.fuel-cb:checked')).map(cb => cb.value);
+      if (checkedFuels.length > 0) {
+        list = list.filter(c => checkedFuels.includes((c.fuel || '').toLowerCase()));
+      }
 
-  // Transmission Filter
-  const checkedTrans = Array.from(document.querySelectorAll('.trans-cb:checked')).map(cb => cb.value);
-  if (checkedTrans.length > 0) {
-    list = list.filter(c => checkedTrans.includes((c.trans || '').toLowerCase()));
-  }
+      // Transmission Filter
+      const checkedTrans = Array.from(document.querySelectorAll('.trans-cb:checked')).map(cb => cb.value);
+      if (checkedTrans.length > 0) {
+        list = list.filter(c => checkedTrans.includes((c.trans || '').toLowerCase()));
+      }
 
-  // Body Type Filter
-  const checkedBody = Array.from(document.querySelectorAll('.body-cb:checked')).map(cb => cb.value);
-  if (checkedBody.length > 0) {
-    list = list.filter(c => {
-        let text = ((c.name || '') + " " + (c.desc || '')).toLowerCase();
-        return checkedBody.some(b => text.includes(b));
-    });
-  }
+      // Body Type Filter
+      const checkedBody = Array.from(document.querySelectorAll('.body-cb:checked')).map(cb => cb.value);
+      if (checkedBody.length > 0) {
+        list = list.filter(c => {
+          let text = ((c.name || '') + " " + (c.desc || '')).toLowerCase();
+          return checkedBody.some(b => text.includes(b));
+        });
+      }
 
-  // Owners Filter
-  const checkedOwners = Array.from(document.querySelectorAll('.owner-cb:checked')).map(cb => cb.value);
-  if (checkedOwners.length > 0) {
-    list = list.filter(c => {
-        return checkedOwners.some(o => (c.owner || '').toLowerCase().includes(o));
-    });
-  }
+      // Owners Filter
+      const checkedOwners = Array.from(document.querySelectorAll('.owner-cb:checked')).map(cb => cb.value);
+      if (checkedOwners.length > 0) {
+        list = list.filter(c => {
+          return checkedOwners.some(o => (c.owner || '').toLowerCase().includes(o));
+        });
+      }
 
-  // City Filter
-  const checkedCities = Array.from(document.querySelectorAll('.city-cb:checked')).map(cb => cb.value.toLowerCase());
-  if (checkedCities.length > 0) {
-    list = list.filter(c => checkedCities.includes((c.city || '').toLowerCase()));
-  }
+      // City Filter
+      const checkedCities = Array.from(document.querySelectorAll('.city-cb:checked')).map(cb => cb.value.toLowerCase());
+      if (checkedCities.length > 0) {
+        list = list.filter(c => checkedCities.includes((c.city || '').toLowerCase()));
+      }
 
-  // Car Age Filter
-  const ageMinEl = document.getElementById('ageMinRange');
-  const ageMaxEl = document.getElementById('ageMaxRange');
-  const ageMin = ageMinEl ? parseInt(ageMinEl.value) || 0 : 0;
-  const ageMax = ageMaxEl ? parseInt(ageMaxEl.value) || 15 : 15;
-  const currentYear = new Date().getFullYear();
-  if (ageMin > 0 || ageMax < 15) {
-    list = list.filter(c => {
-      const age = currentYear - (c.year || currentYear);
-      if (ageMax === 15) return age >= ageMin; 
-      return age >= ageMin && age <= ageMax;
-    });
-  }
+      // Car Age Filter
+      const ageMinEl = document.getElementById('ageMinRange');
+      const ageMaxEl = document.getElementById('ageMaxRange');
+      const ageMin = ageMinEl ? parseInt(ageMinEl.value) || 0 : 0;
+      const ageMax = ageMaxEl ? parseInt(ageMaxEl.value) || 15 : 15;
+      const currentYear = new Date().getFullYear();
+      if (ageMin > 0 || ageMax < 15) {
+        list = list.filter(c => {
+          const age = currentYear - (c.year || currentYear);
+          if (ageMax === 15) return age >= ageMin;
+          return age >= ageMin && age <= ageMax;
+        });
+      }
 
-  // Kilometer Filter
-  const kmMinEl = document.getElementById('kmMinRange');
-  const kmMaxEl = document.getElementById('kmMaxRange');
-  const kmMin = kmMinEl ? parseInt(kmMinEl.value) || 0 : 0;
-  const kmMax = kmMaxEl ? parseInt(kmMaxEl.value) || 80000 : 80000;
-  if (kmMin > 0 || kmMax < 80000) {
-    list = list.filter(c => {
-      const km = parseInt(String(c.km || '0').replace(/[^0-9]/g, '')) || 0;
-      if (kmMax === 80000) return km >= kmMin; 
-      return km >= kmMin && km <= kmMax;
-    });
-  }
+      // Kilometer Filter
+      const kmMinEl = document.getElementById('kmMinRange');
+      const kmMaxEl = document.getElementById('kmMaxRange');
+      const kmMin = kmMinEl ? parseInt(kmMinEl.value) || 0 : 0;
+      const kmMax = kmMaxEl ? parseInt(kmMaxEl.value) || 80000 : 80000;
+      if (kmMin > 0 || kmMax < 80000) {
+        list = list.filter(c => {
+          const km = parseInt(String(c.km || '0').replace(/[^0-9]/g, '')) || 0;
+          if (kmMax === 80000) return km >= kmMin;
+          return km >= kmMin && km <= kmMax;
+        });
+      }
 
-  // Seller Type
-  const checkedSellers = Array.from(document.querySelectorAll('.seller-cb:checked')).map(cb => cb.value);
-  if (checkedSellers.length > 0) {
-    list = list.filter(c => {
-      if (checkedSellers.includes('Dealer') && checkedSellers.includes('Owner')) return true;
-      if (checkedSellers.includes('Dealer')) return c.verified === true;
-      if (checkedSellers.includes('Owner')) return c.verified === false;
-      return true;
-    });
-  }
+      // Seller Type
+      const checkedSellers = Array.from(document.querySelectorAll('.seller-cb:checked')).map(cb => cb.value);
+      if (checkedSellers.length > 0) {
+        list = list.filter(c => {
+          if (checkedSellers.includes('Dealer') && checkedSellers.includes('Owner')) return true;
+          if (checkedSellers.includes('Dealer')) return c.verified === true;
+          if (checkedSellers.includes('Owner')) return c.verified === false;
+          return true;
+        });
+      }
 
-  filteredCars = list;
-  currentPage = 1;
-  renderActiveFilters();
-  renderCars();
-}
+      filteredCars = list;
+      currentPage = 1;
+      renderActiveFilters();
+      renderCars();
+    }
 
-function renderActiveFilters() {
-  const container = document.getElementById('activeFilters');
-  if(!container) return;
-  const items = [];
+    function renderActiveFilters() {
+      const container = document.getElementById('activeFilters');
+      if (!container) return;
+      const items = [];
 
-  const checkedBudgets = Array.from(document.querySelectorAll('.budget-cb:checked')).map(cb => cb.value);
-  if (checkedBudgets.length > 0) items.push(`Budget: ${checkedBudgets.join(', ')} Lakh`);
+      const checkedBudgets = Array.from(document.querySelectorAll('.budget-cb:checked')).map(cb => cb.value);
+      if (checkedBudgets.length > 0) items.push(`Budget: ${checkedBudgets.join(', ')} Lakh`);
 
-  const checkedMakes = Array.from(document.querySelectorAll('.make-cb:checked')).map(cb => cb.value);
-  if (checkedMakes.length > 0) items.push(`Brand: ${checkedMakes.join(', ')}`);
-  
-  const checkedModels = Array.from(document.querySelectorAll('.model-cb:checked')).map(cb => cb.value);
-  if (checkedModels.length > 0) items.push(`Model: ${checkedModels.join(', ')}`);
+      const checkedMakes = Array.from(document.querySelectorAll('.make-cb:checked')).map(cb => cb.value);
+      if (checkedMakes.length > 0) items.push(`Brand: ${checkedMakes.join(', ')}`);
 
-  const checkedVariants = Array.from(document.querySelectorAll('.variant-cb:checked')).map(cb => cb.value);
-  if (checkedVariants.length > 0) items.push(`Variant: ${checkedVariants.join(', ')}`);
+      const checkedModels = Array.from(document.querySelectorAll('.model-cb:checked')).map(cb => cb.value);
+      if (checkedModels.length > 0) items.push(`Model: ${checkedModels.join(', ')}`);
 
-  const checkedFuels = Array.from(document.querySelectorAll('.fuel-cb:checked')).map(cb => cb.value);
-  if (checkedFuels.length > 0) items.push(`Fuel: ${checkedFuels.join(', ')}`);
+      const checkedVariants = Array.from(document.querySelectorAll('.variant-cb:checked')).map(cb => cb.value);
+      if (checkedVariants.length > 0) items.push(`Variant: ${checkedVariants.join(', ')}`);
 
-  const checkedTrans = Array.from(document.querySelectorAll('.trans-cb:checked')).map(cb => cb.value);
-  if (checkedTrans.length > 0) items.push(`Trans: ${checkedTrans.join(', ')}`);
+      const checkedFuels = Array.from(document.querySelectorAll('.fuel-cb:checked')).map(cb => cb.value);
+      if (checkedFuels.length > 0) items.push(`Fuel: ${checkedFuels.join(', ')}`);
 
-  const checkedCities = Array.from(document.querySelectorAll('.city-cb:checked')).map(cb => cb.value);
-  if (checkedCities.length > 0) items.push(`City: ${checkedCities.join(', ')}`);
+      const checkedTrans = Array.from(document.querySelectorAll('.trans-cb:checked')).map(cb => cb.value);
+      if (checkedTrans.length > 0) items.push(`Trans: ${checkedTrans.join(', ')}`);
 
-  const checkedSellers = Array.from(document.querySelectorAll('.seller-cb:checked')).map(cb => cb.value);
-  if (checkedSellers.length > 0) items.push(`Seller: ${checkedSellers.join(', ')}`);
+      const checkedCities = Array.from(document.querySelectorAll('.city-cb:checked')).map(cb => cb.value);
+      if (checkedCities.length > 0) items.push(`City: ${checkedCities.join(', ')}`);
 
-  const ageMinEl = document.getElementById('ageMinRange');
-  const ageMaxEl = document.getElementById('ageMaxRange');
-  const ageMin = ageMinEl ? parseInt(ageMinEl.value) || 0 : 0;
-  const ageMax = ageMaxEl ? parseInt(ageMaxEl.value) || 15 : 15;
-  if (ageMin > 0 || ageMax < 15) {
-    items.push(`Age: ${ageMin} - ${ageMax === 15 ? '15+' : ageMax} Years`);
-  }
+      const checkedSellers = Array.from(document.querySelectorAll('.seller-cb:checked')).map(cb => cb.value);
+      if (checkedSellers.length > 0) items.push(`Seller: ${checkedSellers.join(', ')}`);
 
-  const kmMinEl = document.getElementById('kmMinRange');
-  const kmMaxEl = document.getElementById('kmMaxRange');
-  const kmMin = kmMinEl ? parseInt(kmMinEl.value) || 0 : 0;
-  const kmMax = kmMaxEl ? parseInt(kmMaxEl.value) || 80000 : 80000;
-  if (kmMin > 0 || kmMax < 80000) {
-    items.push(`Kms: ${kmMin/1000}K - ${kmMax === 80000 ? '80K+' : kmMax/1000 + 'K'}`);
-  }
+      const ageMinEl = document.getElementById('ageMinRange');
+      const ageMaxEl = document.getElementById('ageMaxRange');
+      const ageMin = ageMinEl ? parseInt(ageMinEl.value) || 0 : 0;
+      const ageMax = ageMaxEl ? parseInt(ageMaxEl.value) || 15 : 15;
+      if (ageMin > 0 || ageMax < 15) {
+        items.push(`Age: ${ageMin} - ${ageMax === 15 ? '15+' : ageMax} Years`);
+      }
 
-  container.innerHTML = items.map(f => `
+      const kmMinEl = document.getElementById('kmMinRange');
+      const kmMaxEl = document.getElementById('kmMaxRange');
+      const kmMin = kmMinEl ? parseInt(kmMinEl.value) || 0 : 0;
+      const kmMax = kmMaxEl ? parseInt(kmMaxEl.value) || 80000 : 80000;
+      if (kmMin > 0 || kmMax < 80000) {
+        items.push(`Kms: ${kmMin / 1000}K - ${kmMax === 80000 ? '80K+' : kmMax / 1000 + 'K'}`);
+      }
+
+      container.innerHTML = items.map(f => `
     <div class="filter-tag">
       ${f}
     </div>
   `).join('');
-}
-
-function clearAll() {
-  const ageMinEl = document.getElementById('ageMinRange');
-  const ageMaxEl = document.getElementById('ageMaxRange');
-  if(ageMinEl) ageMinEl.value = '0';
-  if(ageMaxEl) ageMaxEl.value = '15';
-  updateAgeSlider();
-
-  const kmMinEl = document.getElementById('kmMinRange');
-  const kmMaxEl = document.getElementById('kmMaxRange');
-  if(kmMinEl) kmMinEl.value = '0';
-  if(kmMaxEl) kmMaxEl.value = '80000';
-  updateKmSlider();
-
-  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-
-  applyFilters();
-  showToast('✅ All filters cleared');
-}
-
-function sortCars(sel) {
-  const val = sel.value;
-  if (val === 'Price: Low to High') {
-    filteredCars.sort((a,b) => parseFloat(a.price) - parseFloat(b.price));
-  } else if (val === 'Price: High to Low') {
-    filteredCars.sort((a,b) => parseFloat(b.price) - parseFloat(a.price));
-  } else if (val === 'Newest First') {
-    filteredCars.sort((a,b) => b.year - a.year);
-  } else if (val === 'Lowest KM') {
-    filteredCars.sort((a,b) => parseInt(String(a.km).replace(/[^\d]/g,'')) - parseInt(String(b.km).replace(/[^\d]/g,'')));
-  } else {
-    // Relevance (default load order)
-    applyFilters();
-    return;
-  }
-  currentPage = 1;
-  renderCars();
-  showToast('↕️ Sorted cars list');
-}
-
-function updateAgeSlider() {
-  let minR = document.getElementById('ageMinRange');
-  let maxR = document.getElementById('ageMaxRange');
-  if(!minR || !maxR) return;
-  if (parseInt(minR.value) > parseInt(maxR.value)) { let tmp = minR.value; minR.value = maxR.value; maxR.value = tmp; }
-  document.getElementById('ageMinInput').value = minR.value;
-  document.getElementById('ageMaxInput').value = maxR.value;
-  applyFilters();
-}
-
-function syncAgeInputs() {
-  let minI = document.getElementById('ageMinInput');
-  let maxI = document.getElementById('ageMaxInput');
-  document.getElementById('ageMinRange').value = minI.value;
-  document.getElementById('ageMaxRange').value = maxI.value;
-  updateAgeSlider();
-}
-
-function updateKmSlider() {
-  let minR = document.getElementById('kmMinRange');
-  let maxR = document.getElementById('kmMaxRange');
-  if(!minR || !maxR) return;
-  if (parseInt(minR.value) > parseInt(maxR.value)) { let tmp = minR.value; minR.value = maxR.value; maxR.value = tmp; }
-  document.getElementById('kmMinInput').value = (minR.value / 1000) + ' K';
-  document.getElementById('kmMaxInput').value = (maxR.value / 1000) + ' K';
-  applyFilters();
-}
-
-function syncKmInputs() {
-  let minI = document.getElementById('kmMinInput').value.replace(/[^0-9]/g, '');
-  let maxI = document.getElementById('kmMaxInput').value.replace(/[^0-9]/g, '');
-  if(!minI) minI = 0; if(!maxI) maxI = 80;
-  document.getElementById('kmMinRange').value = minI * 1000;
-  document.getElementById('kmMaxRange').value = maxI * 1000;
-  updateKmSlider();
-}
-
-
-function toggleTree(el) {
-  const node = el.closest('.tree-node');
-  node.classList.toggle('active');
-  const children = Array.from(node.children).find(c => c.classList.contains('tree-children'));
-  if (children) {
-    if (children.classList.contains('open')) {
-      children.classList.remove('open');
-    } else {
-      children.classList.add('open');
     }
-  }
-}
 
-function toggleAccordion(el) {
-  el.classList.toggle('active');
-  const body = el.nextElementSibling;
-  if (body.classList.contains('open')) {
-    body.style.maxHeight = '0';
-    body.style.overflow = 'hidden';
-    body.classList.remove('open');
-  } else {
-    body.classList.add('open');
-    body.style.maxHeight = '5000px';
-    setTimeout(() => { if(body.classList.contains('open')) body.style.overflow = 'visible'; }, 300);
-  }
-}
+    function clearAll() {
+      const ageMinEl = document.getElementById('ageMinRange');
+      const ageMaxEl = document.getElementById('ageMaxRange');
+      if (ageMinEl) ageMinEl.value = '0';
+      if (ageMaxEl) ageMaxEl.value = '15';
+      updateAgeSlider();
 
-function contactSeller(id) {
-  showToast('📞 Redirecting to contact seller details...');
-  setTimeout(() => window.location = 'login.html', 1200);
-}
+      const kmMinEl = document.getElementById('kmMinRange');
+      const kmMaxEl = document.getElementById('kmMaxRange');
+      if (kmMinEl) kmMinEl.value = '0';
+      if (kmMaxEl) kmMaxEl.value = '80000';
+      updateKmSlider();
+
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+
+      applyFilters();
+      showToast('✅ All filters cleared');
+    }
+
+    function sortCars(sel) {
+      const val = sel.value;
+      if (val === 'Price: Low to High') {
+        filteredCars.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      } else if (val === 'Price: High to Low') {
+        filteredCars.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      } else if (val === 'Newest First') {
+        filteredCars.sort((a, b) => b.year - a.year);
+      } else if (val === 'Lowest KM') {
+        filteredCars.sort((a, b) => parseInt(String(a.km).replace(/[^\d]/g, '')) - parseInt(String(b.km).replace(/[^\d]/g, '')));
+      } else {
+        // Relevance (default load order)
+        applyFilters();
+        return;
+      }
+      currentPage = 1;
+      renderCars();
+      showToast('↕️ Sorted cars list');
+    }
+
+    function updateAgeSlider() {
+      let minR = document.getElementById('ageMinRange');
+      let maxR = document.getElementById('ageMaxRange');
+      if (!minR || !maxR) return;
+      if (parseInt(minR.value) > parseInt(maxR.value)) { let tmp = minR.value; minR.value = maxR.value; maxR.value = tmp; }
+      document.getElementById('ageMinInput').value = minR.value;
+      document.getElementById('ageMaxInput').value = maxR.value;
+      applyFilters();
+    }
+
+    function syncAgeInputs() {
+      let minI = document.getElementById('ageMinInput');
+      let maxI = document.getElementById('ageMaxInput');
+      document.getElementById('ageMinRange').value = minI.value;
+      document.getElementById('ageMaxRange').value = maxI.value;
+      updateAgeSlider();
+    }
+
+    function updateKmSlider() {
+      let minR = document.getElementById('kmMinRange');
+      let maxR = document.getElementById('kmMaxRange');
+      if (!minR || !maxR) return;
+      if (parseInt(minR.value) > parseInt(maxR.value)) { let tmp = minR.value; minR.value = maxR.value; maxR.value = tmp; }
+      document.getElementById('kmMinInput').value = (minR.value / 1000) + ' K';
+      document.getElementById('kmMaxInput').value = (maxR.value / 1000) + ' K';
+      applyFilters();
+    }
+
+    function syncKmInputs() {
+      let minI = document.getElementById('kmMinInput').value.replace(/[^0-9]/g, '');
+      let maxI = document.getElementById('kmMaxInput').value.replace(/[^0-9]/g, '');
+      if (!minI) minI = 0; if (!maxI) maxI = 80;
+      document.getElementById('kmMinRange').value = minI * 1000;
+      document.getElementById('kmMaxRange').value = maxI * 1000;
+      updateKmSlider();
+    }
 
 
-function toggleSave(id, btn) {
-  const isSaved = btn.textContent.includes('Saved');
-  if (isSaved) {
-    btn.innerHTML = '<span>🤍</span> Save';
-    showToast('Removed from favorites');
-  } else {
-    btn.innerHTML = '<span>🤍</span> Save';
-    showToast('Added to favorites');
-  }
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  if (!t) return;
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2000);
-}
-
-window.onload = function() {
-  initPage();
-  checkLoginState();
-};
-
-function checkLoginState() {
-  const currentUser = localStorage.getItem('mg_current_user');
-  const navActions = document.getElementById('nav-actions');
-  
-  if (navActions) {
-    if (currentUser) {
-      let initials = '👤';
-      try {
-        const userObj = JSON.parse(currentUser);
-        const name = userObj.name || '';
-        if (name) {
-          const parts = name.split(' ');
-          if (parts.length > 1) {
-            initials = (parts[0][0] + parts[1][0]).toUpperCase();
-          } else {
-            initials = name.substring(0, 2).toUpperCase();
-          }
+    function toggleTree(el) {
+      const node = el.closest('.tree-node');
+      node.classList.toggle('active');
+      const children = Array.from(node.children).find(c => c.classList.contains('tree-children'));
+      if (children) {
+        if (children.classList.contains('open')) {
+          children.classList.remove('open');
+        } else {
+          children.classList.add('open');
         }
-      } catch(e) {}
-      navActions.innerHTML = `
+      }
+    }
+
+    function toggleAccordion(el) {
+      el.classList.toggle('active');
+      const body = el.nextElementSibling;
+      if (body.classList.contains('open')) {
+        body.style.maxHeight = '0';
+        body.style.overflow = 'hidden';
+        body.classList.remove('open');
+      } else {
+        body.classList.add('open');
+        body.style.maxHeight = '5000px';
+        setTimeout(() => { if (body.classList.contains('open')) body.style.overflow = 'visible'; }, 300);
+      }
+    }
+
+    function contactSeller(id) {
+      showToast('📞 Redirecting to contact seller details...');
+      setTimeout(() => window.location = 'login.html', 1200);
+    }
+
+
+    function toggleSave(id, btn) {
+      const isSaved = btn.textContent.includes('Saved');
+      if (isSaved) {
+        btn.innerHTML = '<span>🤍</span> Save';
+        showToast('Removed from favorites');
+      } else {
+        btn.innerHTML = '<span>🤍</span> Save';
+        showToast('Added to favorites');
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    window.onload = function () {
+      initPage();
+      checkLoginState();
+    };
+
+    function checkLoginState() {
+      const currentUser = localStorage.getItem('mg_current_user');
+      const navActions = document.getElementById('nav-actions');
+
+      if (navActions) {
+        if (currentUser) {
+          let initials = '👤';
+          try {
+            const userObj = JSON.parse(currentUser);
+            const name = userObj.name || '';
+            if (name) {
+              const parts = name.split(' ');
+              if (parts.length > 1) {
+                initials = (parts[0][0] + parts[1][0]).toUpperCase();
+              } else {
+                initials = name.substring(0, 2).toUpperCase();
+              }
+            }
+          } catch (e) { }
+          navActions.innerHTML = `
         <a href="customer-dashboard.html" title="My Profile" style="text-decoration:none; display:block;">
           <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 204, 0, 0.15); border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--red); text-transform: uppercase; transition: all 0.2s;">
             ${initials}
           </div>
         </a>
       `;
-    } else {
-      navActions.innerHTML = `
+        } else {
+          navActions.innerHTML = `
         <a href="login.html" class="nav-login" id="nav-login-link">
           <button class="btn-login" id="nav-login-btn">
             Login / Register
           </button>
         </a>
       `;
-    }
-  }
-
-  if (currentUser) {
-    const loginLinks = document.querySelectorAll('a[href="login.html"]');
-    loginLinks.forEach(link => {
-      link.href = 'customer-dashboard.html';
-      const btn = link.querySelector('button');
-      if (btn) {
-        if (btn.textContent.trim().toLowerCase() === 'login') {
-          btn.textContent = 'Dashboard';
-        }
-      } else {
-        if (link.textContent.includes('Login / Register')) {
-          link.textContent = 'My Dashboard';
         }
       }
-    });
-  }
-}
+
+      if (currentUser) {
+        const loginLinks = document.querySelectorAll('a[href="login.html"]');
+        loginLinks.forEach(link => {
+          link.href = 'customer-dashboard.html';
+          const btn = link.querySelector('button');
+          if (btn) {
+            if (btn.textContent.trim().toLowerCase() === 'login') {
+              btn.textContent = 'Dashboard';
+            }
+          } else {
+            if (link.textContent.includes('Login / Register')) {
+              link.textContent = 'My Dashboard';
+            }
+          }
+        });
+      }
+    }
 
 
 
-// Dynamic Automotive Tree Rendering
-document.addEventListener('DOMContentLoaded', () => {
-  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-hierarchy')
-    .then(r => r.json())
-    .then(makes => {
-      const treeContainer = document.getElementById('dynamic-tree-list');
-      if (!treeContainer) return;
-      treeContainer.innerHTML = '';
-      
-      makes.forEach(make => {
-        if (!make.models || make.models.length === 0) return; // Skip empty makes
-        
-        const node = document.createElement('div');
-        node.className = 'tree-node';
-        
-        const fileMap = {
-          'marutisuzuki': 'marutisuzuki.png',
-          'hyundai': 'hyundai.png',
-          'tata': 'tata.png',
-          'mahindra': 'mahindra.webp',
-          'honda': 'honda.png',
-          'toyota': 'toyota.png',
-          'kia': 'Kia.png',
-          'mg': 'MG.png',
-          'renault': 'renault.png',
-          'skoda': 'skoda.png',
-          'volkswagen': 'volkswagon.png',
-          'ford': 'fird.png',
-          'nissan': 'Nissan.png',
-          'jeep': 'Jeep.png',
-          'citroen': 'citroen.png',
-          'byd': 'BYD.png',
-          'forcemotors': 'forcemotors.jpg',
-          'bmw': 'bmw.png',
-          'mercedesbenz': 'mercedes-benz.png',
-          'audi': 'audi.png',
-          'volvo': 'volvo.png',
-          'jaguar': 'jaguar.png',
-          'landrover': 'Landrover.png',
-          'lexus': 'lexus.png',
-          'mini': 'minicooper.png',
-          'porsche': 'Porsche.png',
-          'astonmartin': 'astonmartin.png',
-          'ferrari': 'ferrari.png',
-          'lamborghini': 'lamborghini.png',
-          'bentley': 'bentley.png',
-          'rollsroyce': 'rolls-royce.png',
-          'maserati': 'maserati.png',
-          'mclaren': 'maclaren.png',
-          'chevrolet': 'chevrolet.png',
-          'fiat': 'fiat.png',
-          'datsun': 'datsun.png',
-          'mitsubishi': 'Mitsubishi.png',
-          'hindustanmotors': 'hindustanmotors.webp',
-          'isuzu': 'isuzu.png'
-        };
+    // Dynamic Automotive Tree Rendering
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-hierarchy')
+        .then(r => r.json())
+        .then(makes => {
+          const treeContainer = document.getElementById('dynamic-tree-list');
+          if (!treeContainer) return;
+          treeContainer.innerHTML = '';
 
-        const brandStr = make.name.toLowerCase().replace(/[\s-]/g, '');
-        const fileName = fileMap[brandStr];
-        let imgHtml = `<span style="font-size:16px; margin-right:6px;">🚙</span>`;
-        if (fileName) {
-          imgHtml = `<img src="logo_images/${fileName}" alt="${make.name}" style="width:20px;height:20px;object-fit:contain;margin-right:6px;" onerror="this.outerHTML='<span style=\\'font-size:16px; margin-right:6px;\\'>🚙</span>'">`;
-        }
-        const parentHtml = `
+          makes.forEach(make => {
+            if (!make.models || make.models.length === 0) return; // Skip empty makes
+
+            const node = document.createElement('div');
+            node.className = 'tree-node';
+
+            const fileMap = {
+              'marutisuzuki': 'marutisuzuki.png',
+              'hyundai': 'hyundai.png',
+              'tata': 'tata.png',
+              'mahindra': 'mahindra.webp',
+              'honda': 'honda.png',
+              'toyota': 'toyota.png',
+              'kia': 'Kia.png',
+              'mg': 'MG.png',
+              'renault': 'renault.png',
+              'skoda': 'skoda.png',
+              'volkswagen': 'volkswagon.png',
+              'ford': 'fird.png',
+              'nissan': 'Nissan.png',
+              'jeep': 'Jeep.png',
+              'citroen': 'citroen.png',
+              'byd': 'BYD.png',
+              'forcemotors': 'forcemotors.jpg',
+              'bmw': 'bmw.png',
+              'mercedesbenz': 'mercedes-benz.png',
+              'audi': 'audi.png',
+              'volvo': 'volvo.png',
+              'jaguar': 'jaguar.png',
+              'landrover': 'Landrover.png',
+              'lexus': 'lexus.png',
+              'mini': 'minicooper.png',
+              'porsche': 'Porsche.png',
+              'astonmartin': 'astonmartin.png',
+              'ferrari': 'ferrari.png',
+              'lamborghini': 'lamborghini.png',
+              'bentley': 'bentley.png',
+              'rollsroyce': 'rolls-royce.png',
+              'maserati': 'maserati.png',
+              'mclaren': 'maclaren.png',
+              'chevrolet': 'chevrolet.png',
+              'fiat': 'fiat.png',
+              'datsun': 'datsun.png',
+              'mitsubishi': 'Mitsubishi.png',
+              'hindustanmotors': 'hindustanmotors.webp',
+              'isuzu': 'isuzu.png'
+            };
+
+            const brandStr = make.name.toLowerCase().replace(/[\s-]/g, '');
+            const fileName = fileMap[brandStr];
+            let imgHtml = `<span style="font-size:16px; margin-right:6px;">🚙</span>`;
+            if (fileName) {
+              imgHtml = `<img src="logo_images/${fileName}" alt="${make.name}" style="width:20px;height:20px;object-fit:contain;margin-right:6px;" onerror="this.outerHTML='<span style=\\'font-size:16px; margin-right:6px;\\'>🚙</span>'">`;
+            }
+            const parentHtml = `
           <div class="tree-parent" onclick="toggleTree(this)">
             <div class="tree-parent-left">
               <input type="checkbox" class="make-cb" value="${make.name}" onchange="applyFilters()" onclick="event.stopPropagation()">
@@ -1695,11 +2827,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="tree-toggle">+</span>
           </div>
         `;
-        
-        let childrenHtml = '<div class="tree-children">';
-        make.models.forEach(model => {
-          if (model.variants_list && model.variants_list.length > 0) {
-            childrenHtml += `
+
+            let childrenHtml = '<div class="tree-children">';
+            make.models.forEach(model => {
+              if (model.variants_list && model.variants_list.length > 0) {
+                childrenHtml += `
               <div class="tree-node" style="margin-left: 24px; margin-top: 4px;">
                 <div class="tree-parent" onclick="toggleTree(this)" style="padding-left: 0;">
                   <div class="tree-parent-left">
@@ -1718,100 +2850,94 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
             `;
-          } else {
-            childrenHtml += `
+              } else {
+                childrenHtml += `
               <div class="checkbox-item" style="margin-left: 24px;">
                 <input type="checkbox" class="model-cb" value="${model.name}" onchange="applyFilters()">
                 <label style="font-size: 13px;">${model.name}</label>
               </div>
             `;
+              }
+            });
+            childrenHtml += '</div>';
+
+            node.innerHTML = parentHtml + childrenHtml;
+            treeContainer.appendChild(node);
+          });
+
+          // Call setFiltersFromUrl to apply URL parameters to newly created DOM elements
+          if (typeof setFiltersFromUrl === 'function') {
+            setTimeout(setFiltersFromUrl, 50);
           }
+        })
+        .catch(e => {
+          console.error("Error loading hierarchy:", e);
+          const tc = document.getElementById('dynamic-tree-list');
+          if (tc) tc.innerHTML = 'Error loading filters.';
         });
-        childrenHtml += '</div>';
-        
-        node.innerHTML = parentHtml + childrenHtml;
-        treeContainer.appendChild(node);
-      });
-      
-      // Call setFiltersFromUrl to apply URL parameters to newly created DOM elements
-      if (typeof setFiltersFromUrl === 'function') {
-         setTimeout(setFiltersFromUrl, 50);
-      }
-    })
-    .catch(e => {
-      console.error("Error loading hierarchy:", e);
-      const tc = document.getElementById('dynamic-tree-list');
-      if(tc) tc.innerHTML = 'Error loading filters.';
     });
-});
 
-function toggleCompare(id, e) {
-  if (e) e.stopPropagation();
-  let list = [];
-  try {
-    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
-  } catch (err) {
-    list = [];
-  }
-  
-  if (list.includes(id)) {
-    list = list.filter(x => x !== id);
-    showToast('⚖️ Removed from comparison list');
-  } else {
-    if (list.length >= 3) {
-      showToast('⚠️ You can compare up to 3 vehicles at a time');
-      return;
+    function toggleCompare(id, e) {
+      if (e) e.stopPropagation();
+      let list = [];
+      try {
+        list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+      } catch (err) {
+        list = [];
+      }
+
+      if (list.includes(id)) {
+        list = list.filter(x => x !== id);
+        showToast('⚖️ Removed from comparison list');
+      } else {
+        if (list.length >= 3) {
+          showToast('⚠️ You can compare up to 3 vehicles at a time');
+          return;
+        }
+        list.push(id);
+        showToast('⚖️ Added to comparison list');
+      }
+      localStorage.setItem('mg_compare_list', JSON.stringify(list));
+      updateCompareBar();
+      renderCars();
     }
-    list.push(id);
-    showToast('⚖️ Added to comparison list');
-  }
-  localStorage.setItem('mg_compare_list', JSON.stringify(list));
-  updateCompareBar();
-  renderCars();
-}
 
-function isCompared(id) {
-  try {
-    const list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
-    return list.includes(id);
-  } catch (err) {
-    return false;
-  }
-}
+    function isCompared(id) {
+      try {
+        const list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+        return list.includes(id);
+      } catch (err) {
+        return false;
+      }
+    }
 
-function updateCompareBar() {
-  const bar = document.getElementById('compare-bar');
-  const text = document.getElementById('compare-bar-text');
-  if (!bar) return;
-  
-  let list = [];
-  try {
-    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
-  } catch (err) {
-    list = [];
-  }
-  
-  if (list.length > 0) {
-    bar.style.display = 'flex';
-    text.textContent = `⚖️ ${list.length} vehicle${list.length > 1 ? 's' : ''} selected for comparison`;
-  } else {
-    bar.style.display = 'none';
-  }
-}
+    function updateCompareBar() {
+      const bar = document.getElementById('compare-bar');
+      const text = document.getElementById('compare-bar-text');
+      if (!bar) return;
 
-function clearCompareBar() {
-  localStorage.setItem('mg_compare_list', JSON.stringify([]));
-  updateCompareBar();
-  renderCars();
-}
+      let list = [];
+      try {
+        list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+      } catch (err) {
+        list = [];
+      }
 
-</script>
+      if (list.length > 0) {
+        bar.style.display = 'flex';
+        text.textContent = `⚖️ ${list.length} vehicle${list.length > 1 ? 's' : ''} selected for comparison`;
+      } else {
+        bar.style.display = 'none';
+      }
+    }
+
+    function clearCompareBar() {
+      localStorage.setItem('mg_compare_list', JSON.stringify([]));
+      updateCompareBar();
+      renderCars();
+    }
+
+  </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
