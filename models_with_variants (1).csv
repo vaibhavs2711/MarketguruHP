@@ -1,0 +1,476 @@
+id,make_id,name,slug,body_type,launched_year,discontinued_year,is_active,created_at,updated_at,variants
+1,1,800,maruti-suzuki-800,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"STD, DX, AC, Deluxe"
+2,1,Alto,maruti-suzuki-alto,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LX, LXi, VXi, VXi (O)"
+3,1,Alto 800,maruti-suzuki-alto-800,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Std, LXi, LXi (O), VXi, VXi (O), LXi CNG, LXi (O) CNG, VXi CNG"
+4,1,Alto K10,maruti-suzuki-alto-k10,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Std, LXi, LXi (O), VXi, VXi (O), VXi AGS, VXi (O) AGS, LXi CNG, VXi CNG"
+5,1,A Star,maruti-suzuki-a-star,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Lxi, Vxi, Zxi, Zxi AT"
+6,1,Baleno,maruti-suzuki-baleno,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sigma, Delta, Delta MT, Delta AT, Zeta, Zeta AT, Alpha, Alpha AT, Alpha Dual Tone"
+7,1,Brezza,maruti-suzuki-brezza,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi, ZXi, ZXi Plus, ZXi Dual Tone, ZXi Plus Dual Tone, ZXi AT, ZXi Plus AT, ZXi AT Dual Tone, ZXi Plus AT Dual Tone"
+8,1,Celerio,maruti-suzuki-celerio,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi, VXi Optional, ZXi, ZXi Optional, ZXi Plus, ZXi Plus Optional, VXi AMT, ZXi AMT, ZXi Plus AMT, LXi CNG, VXi CNG"
+9,1,Celerio X,maruti-suzuki-celerio-x,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"VXi, ZXi, ZXi Optional"
+10,1,Ciaz,maruti-suzuki-ciaz,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sigma, Delta, Zeta, Alpha, Delta Diesel, Zeta Diesel, Alpha Diesel, Delta AT, Zeta AT, Alpha AT"
+11,1,Dzire,maruti-suzuki-dzire,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi, ZXi, ZXi Plus, LXi CNG, VXi CNG, ZXi AMT, ZXi Plus AMT"
+12,1,Eeco,maruti-suzuki-eeco,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"5 Seater, 5 Seater AC, 7 Seater, 7 Seater AC, CNG 5 Seater, CNG 5 Seater AC"
+13,1,Ertiga,maruti-suzuki-ertiga,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi, ZXi, ZXi Plus, VXi CNG, ZXi CNG, ZXi Plus CNG, VXi AT, ZXi AT, ZXi Plus AT"
+14,1,Esteem,maruti-suzuki-esteem,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LX, VX, AX, AX (ABS)"
+15,1,Fronx,maruti-suzuki-fronx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sigma, Delta, Delta Plus, Zeta, Alpha, Alpha Dual Tone, Zeta AT, Alpha AT, Alpha AT Dual Tone, Zeta Turbo, Alpha Turbo, Alpha Turbo AT"
+16,1,Grand Vitara,maruti-suzuki-grand-vitara,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sigma, Delta, Zeta, Zeta Plus, Alpha, Alpha Plus, Alpha Dual Tone, Zeta AT, Alpha AT, Zeta Intelligent Hybrid, Alpha Intelligent Hybrid, Alpha Plus Intelligent Hybrid, Alpha Intelligent Hybrid Dual Tone"
+17,1,Ignis,maruti-suzuki-ignis,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sigma, Delta, Zeta, Alpha, Delta AMT, Zeta AMT, Alpha AMT"
+18,1,Invicto,maruti-suzuki-invicto,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Zeta Plus, Alpha Plus, Alpha Plus Dual Tone"
+19,1,Jimny,maruti-suzuki-jimny,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Zeta, Alpha, Alpha Dual Tone"
+20,1,Kizashi,maruti-suzuki-kizashi,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"CVT, MT AWD"
+21,1,Omni,maruti-suzuki-omni,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, Cargo, LPG"
+22,1,Ritz,maruti-suzuki-ritz,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Lxi, Vxi, Zxi, Zxi (ABS)"
+23,1,S-Cross,maruti-suzuki-s-cross,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sigma, Delta, Zeta, Alpha"
+24,1,S-Presso,maruti-suzuki-s-presso,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Std, LXi, VXi, VXi (O), VXi Plus, VXi Plus (O), VXi AMT, VXi (O) AMT, VXi Plus AMT, VXi Plus (O) AMT, VXi CNG, VXi (O) CNG"
+25,1,Swift,maruti-suzuki-swift,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, LDi, VXi, VDi, ZXi, ZDi, ZXi Plus, ZDi Plus, ZXi Plus Dual Tone, VXi AMT, ZXi AMT, ZXi Plus AMT"
+26,1,Swift Dzire,maruti-suzuki-swift-dzire,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, LDi, VXi, VDi, ZXi, ZDi, ZXi (O), VXi AT, ZXi AT"
+27,1,SX4,maruti-suzuki-sx4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Vxi, Zxi, Zxi (leather)"
+28,1,Vitara Brezza,maruti-suzuki-vitara-brezza,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LDi, VDi, VDi (O), ZDi, ZDi Plus, ZDi Dual Tone, ZDi Plus Dual Tone"
+29,1,Wagon R,maruti-suzuki-wagon-r,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, LXi (O), VXi, VXi (O), ZXi, ZXi (O), VXi Plus, VXi Plus (O), LXi CNG, VXi CNG, VXi AMT, ZXi AMT"
+30,1,Wagon R 1.0,maruti-suzuki-wagon-r-1-0,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, LXi (O), VXi, VXi (O)"
+31,1,Wagon R Duo,maruti-suzuki-wagon-r-duo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi"
+32,1,Wagon R Stingray,maruti-suzuki-wagon-r-stingray,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi"
+33,1,XL6,maruti-suzuki-xl6,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Zeta, Alpha, Zeta AT, Alpha AT, Zeta CNG, Alpha CNG"
+34,1,Zen,maruti-suzuki-zen,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LX, VX, DX"
+35,1,Zen Estilo,maruti-suzuki-zen-estilo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LXi, VXi, LXi (BSIV), VXi (BSIV)"
+36,1,Gypsy,maruti-suzuki-gypsy,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, MG413W, King Hard Top, King Soft Top"
+37,1,Versa,maruti-suzuki-versa,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"DX2, DX4, AC, AC (CNG)"
+38,1,Grand Vitara XL7,maruti-suzuki-grand-vitara-xl7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"AT, MT"
+39,1,Baleno RS,maruti-suzuki-baleno-rs,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Alpha, Alpha AT"
+40,2,Accent,hyundai-accent,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE, GLX, CRDi"
+41,2,Alcazar,hyundai-alcazar,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Platinum, Platinum (O), Prestige, Prestige (O), Signature, Signature (O), Platinum 6-Seater, Prestige (O) 6-Seater, Signature (O) 6-Seater, Platinum AT, Prestige (O) AT, Signature (O) AT"
+42,2,Aura,hyundai-aura,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, S, S MT CNG, S AMT CNG, SX, SX Plus, SX AMT, SX Plus AMT"
+43,2,Creta,hyundai-creta,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, EX, S, S Plus, SX, SX Tech, SX (O), S AT, SX AT, SX (O) AT, SX Tech AT, SX (O) Tech AT, SX Executive, S Petrol"
+44,2,Creta N Line,hyundai-creta-n-line,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"N6 iMT, N8 iMT, N8 DCT, N10 DCT"
+45,2,Creta Electric,hyundai-creta-electric,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Executive, Smart, Smart Plus, Premium, Excellence"
+46,2,Elite i20,hyundai-elite-i20,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Era, Magna, Sportz, Asta, Sportz Plus, Asta (O)"
+47,2,Elantra,hyundai-elantra,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, SX, SX (O), S Diesel, SX Diesel, SX (O) AT"
+48,2,Eon,hyundai-eon,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D-Lite, D-Lite Plus, Era, Era Plus, Magna, Magna Plus, Sportz"
+49,2,Exter,hyundai-exter,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"EX, S, S AMT, S Plus, S Plus AMT, SX, SX AMT, SX (O), SX (O) AMT, SX Connect AMT, SX (O) Connect AMT, Knight Edition SX, Knight Edition SX (O)"
+50,2,Getz,hyundai-getz,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE, GLS"
+51,2,Getz Prime,hyundai-getz-prime,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE, GLS, GVS"
+52,2,Grand i10,hyundai-grand-i10,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Era, Magna, Sportz, Asta"
+53,2,Grand i10 Nios,hyundai-grand-i10-nios,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Era, Magna, Sportz, Asta, Sportz AMT, Asta AMT, Sportz CNG, Magna CNG, Turbo Sportz iMT, Turbo Asta iMT"
+54,2,Grand i10 Prime,hyundai-grand-i10-prime,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Magna, Sportz, Asta"
+55,2,i10,hyundai-i10,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Era, Magna, Sportz, Asta"
+56,2,i20,hyundai-i20,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Era, Magna, Sportz, Asta, Asta (O), Sportz Plus, Asta Dual Tone, Asta (O) Dual Tone, Sportz iMT, Asta iMT, Asta (O) iMT, Sportz IVT, Asta IVT, Asta (O) IVT"
+57,2,i20 Active,hyundai-i20-active,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, SX"
+58,2,i20 N Line,hyundai-i20-n-line,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"N6 iMT, N8 iMT, N8 DCT, N8 Dual Tone DCT"
+59,2,Ioniq 5,hyundai-ioniq-5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"RWD Standard Range, RWD Long Range, AWD Long Range"
+60,2,Kona Electric,hyundai-kona-electric,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Premium, Premium Dual Tone"
+61,2,New Elantra,hyundai-new-elantra,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, SX, SX (O)"
+62,2,New i20,hyundai-new-i20,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Era, Magna, Sportz MT, Sportz iMT, Asta MT, Asta iMT, Asta (O) MT, Asta (O) iMT, Sportz CVT, Asta CVT, Asta (O) CVT"
+63,2,New Santro,hyundai-new-santro,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D-Lite, Era, Era Executive, Magna, Sportz, Asta, Sportz AMT, Asta AMT, Sportz CNG"
+64,2,Santa Fe,hyundai-santa-fe,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2WD MT, 2WD AT, 4WD AT"
+65,2,Santro,hyundai-santro,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LE, GLE, GLS"
+66,2,Santro Xing,hyundai-santro-xing,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GL, GLE, GLS, AT"
+67,2,Sonata,hyundai-sonata,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLS, Gold"
+68,2,Sonata Embera,hyundai-sonata-embera,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.0 MT, 2.4 AT"
+69,2,Sonata Transform,hyundai-sonata-transform,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLS AT, Gold AT"
+70,2,Terracan,hyundai-terracan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,2.9 CRDi 4WD
+71,2,Tucson,hyundai-tucson,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GL, GLS 2WD, GLS 4WD, Signature 2WD MT, Signature 2WD AT, Signature 4WD AT, Platinum 2WD AT, Platinum 4WD AT"
+72,2,Venue,hyundai-venue,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, S, S Plus, SX, SX Plus, SX (O), SX Turbo, SX Plus Turbo, SX (O) Turbo, SX iMT, SX Plus iMT, SX (O) iMT, SX DCT, SX Plus DCT, SX (O) DCT"
+73,2,Venue N Line,hyundai-venue-n-line,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"N6 iMT, N8 iMT, N8 DCT"
+74,2,Verna,hyundai-verna,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, EX, S, S Plus, SX, SX (O), SX Tech, S AT, SX AT, SX (O) AT, SX Tech AT, SX (O) Tech AT"
+75,2,Verna Transform,hyundai-verna-transform,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Base, Xi, SXi, SXi AT"
+76,2,Xcent,hyundai-xcent,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, S, SX, SX (O)"
+77,2,Xcent Prime,hyundai-xcent-prime,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, S"
+78,3,Altroz,tata-altroz,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XM Plus, XT, XT Plus, XZ, XZ Plus, XZ Plus Lux, XZ Plus Dark Edition, XZ Plus i-CNG, XZ i-CNG, XT i-CNG, XM i-CNG, XZ Plus Turbo, XZ Turbo, iTurbo XM, iTurbo XT, iTurbo XZ, iTurbo XZ Plus, iTurbo XZ Plus Lux"
+79,3,Aria,tata-aria,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Pure LX 4x2 MT, Pure LX 4x4 MT, Pleasure LS 4x2 AT, Prestige LT 4x2 MT, Pride LX 4x4 AT"
+80,3,Bolt,tata-bolt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XM Plus, XT, XT Plus, XZ, XZ Plus"
+81,3,Curvv,tata-curvv,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Creative Plus, Accomplished, Accomplished Plus, Empowered, Empowered Plus, Accomplished Plus S, Empowered Plus S"
+82,3,Curvv EV,tata-curvv-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Creative Plus, Accomplished, Accomplished Plus, Empowered, Empowered Plus"
+83,3,Harrier,tata-harrier,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XMA, XT, XTA, XT Plus, XT Plus A, XZ, XZA, XZ Plus, XZ Plus A, XZ Plus Dark Edition, XZ Plus Dark Edition A"
+84,3,Harrier EV,tata-harrier-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LE, ME, ME Plus, TE, TE Plus"
+85,3,Hexa,tata-hexa,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XMS, XT, XTA, XTS, XTAS"
+86,3,Indica,tata-indica,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"DLE, DLS, LE, LS, LSI, LX, LXI, LXI A/C"
+87,3,Indica Vista,tata-indica-vista,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Safire LS, Safire LX, Aqua LS, Aqua LX, Aqua VX, Quadrajet LS, Quadrajet LX"
+88,3,Indica V2,tata-indica-v2,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"DLE, DLS, LE, LS, LXI, LXI A/C"
+89,3,Indigo,tata-indigo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE, GLS, GLX"
+90,3,Indigo CS,tata-indigo-cs,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE, GLS, GLX, GLX (ABS)"
+91,3,Indigo ECS,tata-indigo-ecs,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LX, LXI"
+92,3,Indigo Marina,tata-indigo-marina,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE, GLS, GLX"
+93,3,Manza,tata-manza,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Safire Aura, Safire Aura Plus, Safire Elan, Quadrajet Aura, Quadrajet Aura Plus, Quadrajet Elan"
+94,3,Nano,tata-nano,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Std, CX, LX, XM, XMA, XE"
+95,3,Nexon,tata-nexon,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XM Plus, XM Plus S, XT, XZ Plus, XZ Plus Dark, XZ Plus Lux, XZ Plus Lux Dark, Creative, Fearless, Fearless Plus"
+96,3,Nexon EV,tata-nexon-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Creative Plus, Fearless Plus, Empowered Plus, Creative Plus S, Fearless Plus S, Empowered Plus S, Creative Plus Dark, Fearless Plus Dark, Empowered Plus Dark"
+97,3,Punch,tata-punch,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Pure, Adventure, Adventure Rhythm, Adventure Dazzle, Adventure Jet Edition, Accomplished, Accomplished Dazzle, Accomplished Jet Edition, Creative, Creative Dazzle, Creative Jet Edition"
+98,3,Punch EV,tata-punch-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Smart, Smart Plus, Adventure, Empowered Plus, Empowered Plus S"
+99,3,Safari,tata-safari,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XMA, XT, XTA, XT Plus, XT Plus A, XZ, XZA, XZ Plus, XZ Plus A, Adventure Persona, Gold Edition, Dark Edition"
+100,3,Safari Storme,tata-safari-storme,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"EX, LX, LX 4x4, VX, VX 4x4"
+101,3,Safari Dicor,tata-safari-dicor,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"EX, LX, VX, VX 4x4 SAFi"
+102,3,Sumo,tata-sumo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"DI, EDI, DX, EX"
+103,3,Sumo Gold,tata-sumo-gold,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"CX, EX"
+104,3,Sumo Grande,tata-sumo-grande,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GX, MX"
+105,3,Tiago,tata-tiago,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XT, XZ, XZ Plus, XZ Plus Dual Tone, XT CNG, XZ CNG, XZ Plus CNG, XZ AMT, XZ Plus AMT"
+106,3,Tiago JTP,tata-tiago-jtp,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Std
+107,3,Tiago NRG,tata-tiago-nrg,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XT, XZ, XZ AMT"
+108,3,Tiago EV,tata-tiago-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XT, XZ, XZ Plus, Long Range XZ Plus"
+109,3,Tigor,tata-tigor,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XT, XZ, XZ Plus, XM CNG, XT CNG"
+110,3,Tigor EV,tata-tigor-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XT, XZ Plus"
+111,3,Zest,tata-zest,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE, XM, XT, XZ"
+112,3,Sierra,tata-sierra,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Smart, Pure, Adventure"
+113,3,Estate,tata-estate,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Std
+114,4,Alturas G4,mahindra-alturas-g4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2WD AT, 4WD AT"
+115,4,Armada,mahindra-armada,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Grand, Std"
+116,4,Bolero,mahindra-bolero,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SLX, ZLX, SLE, B4, B6, B6 (O), Power Plus SLE, Power Plus ZLX"
+117,4,Bolero Neo,mahindra-bolero-neo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"N4, N8, N10, N10 (O)"
+118,4,Bolero Neo Plus,mahindra-bolero-neo-plus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"N4, N8, N10"
+119,4,Bolero Power Plus,mahindra-bolero-power-plus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SLE, ZLX, SLX"
+120,4,E2O,mahindra-e2o,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"T2, T4, T6, T8"
+121,4,E2O Plus,mahindra-e2o-plus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"P4, P6, P8"
+122,4,E Verito,mahindra-e-verito,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D2, D4, D6"
+123,4,KUV100,mahindra-kuv100,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"K2, K4, K6, K6 Plus, K8"
+124,4,KUV100 NXT,mahindra-kuv100-nxt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"K2 Plus, K4 Plus, K6 Plus, K8"
+125,4,Marazzo,mahindra-marazzo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"M2, M4, M6, M8"
+126,4,Marshal,mahindra-marshal,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Std, Deluxe"
+127,4,Maxx,mahindra-maxx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"FB, Pikup, Pikup AC"
+128,4,NuvoSport,mahindra-nuvosport,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"N4, N6, N8"
+129,4,Quanto,mahindra-quanto,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"C2, C4, C6, C8"
+130,4,Scorpio,mahindra-scorpio,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S3, S5, S6, S6 Plus, S7, S8, S10, S11"
+131,4,Scorpio-N,mahindra-scorpio-n,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Z2, Z4, Z6, Z8, Z8 L, Z4 AT, Z6 AT, Z8 AT, Z8 L AT"
+132,4,Scorpio Classic,mahindra-scorpio-classic,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, S11"
+133,4,Thar,mahindra-thar,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"AX Std, AX (O), LX Hard Top Diesel MT, LX Hard Top Diesel AT, LX Hard Top Petrol MT, LX Hard Top Petrol AT, LX Soft Top Diesel MT, LX Convertible Top Diesel MT, LX Convertible Top Diesel AT, Rock Racer"
+134,4,Thar Roxx,mahindra-thar-roxx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"MX1, MX3, MX5, AX3 L, AX5 L, AX7 L, AX5 L AT, AX7 L AT"
+135,4,TUV300,mahindra-tuv300,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"T4, T6, T8, T8 Plus, T10"
+136,4,TUV300 Plus,mahindra-tuv300-plus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"P4, P8, P10"
+137,4,Verito,mahindra-verito,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D2, D4, D6"
+138,4,Verito Vibe,mahindra-verito-vibe,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D2, D4, D6"
+139,4,XUV300,mahindra-xuv300,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"W2, W4, W6, W8, W8 (O), W4 AMT, W6 AMT, W8 AMT, W8 (O) AMT"
+140,4,XUV3XO,mahindra-xuv3xo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"MX1, MX2, MX2 Pro, MX3, MX3 Pro, AX1, AX2, AX3, AX5, AX7, AX7 L, AX5 AT, AX7 AT, AX7 L AT"
+141,4,XUV400,mahindra-xuv400,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"EC Pro, EL, EL Pro"
+142,4,XUV500,mahindra-xuv500,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"W2, W4, W6, W8, W8 FWD, W10, W10 FWD, W10 AT FWD, W10 AWD AT"
+143,4,XUV700,mahindra-xuv700,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"MX, MX Diesel, AX3, AX3 Diesel, AX5, AX5 Diesel, AX7, AX7 Diesel, AX7 L, AX7 L Diesel, AX7 AT, AX7 L AT, AX7 AT AWD, AX7 L AT AWD"
+144,4,Xylo,mahindra-xylo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E2, E4, E6, E8, H4, H8, H9"
+145,5,Accord,honda-accord,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.0 S, 2.0 VX MT, 2.0 VX AT, 3.5 V6 AT, Hybrid"
+146,5,Amaze,honda-amaze,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E MT, S MT, S CVT, V MT, V CVT, VX MT, VX CVT, E Diesel, S Diesel, V Diesel, VX Diesel"
+147,5,BR-V,honda-br-v,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S MT, S CVT, V MT, V CVT"
+148,5,Brio,honda-brio,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E MT, S MT, V MT, V AT"
+149,5,City,honda-city,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V MT, V CVT, VX MT, VX CVT, ZX MT, ZX CVT, e:HEV ZX CVT, S MT, S Diesel MT, V Diesel MT, VX Diesel MT"
+150,5,Civic,honda-civic,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V CVT, VX CVT, ZX CVT, V Diesel MT, VX Diesel MT"
+151,5,CR-V,honda-cr-v,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2WD AT, 4WD AT, Diesel 2WD AT"
+152,5,Elevate,honda-elevate,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SV, V MT, V CVT, ZX CVT, ZX MT"
+153,5,Jazz,honda-jazz,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S MT, V MT, V CVT, VX MT, VX CVT"
+154,5,Mobilio,honda-mobilio,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S MT, V MT, V AT, RS V MT, RS V AT"
+155,5,WR-V,honda-wr-v,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S MT, V MT, VX MT"
+156,6,Camry,toyota-camry,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Hybrid, 2.5H"
+157,6,Corolla,toyota-corolla,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"J, H, G, G AT"
+158,6,Corolla Altis,toyota-corolla-altis,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"J, G, G AT, VX CVT, 1.8 J, 1.8 G MT, 1.8 G AT, 2.0 G AT, 2.0 V AT"
+159,6,Etios,toyota-etios,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"J, JD, GD, G, VD, V, VX"
+160,6,Etios Cross,toyota-etios-cross,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"G, GD, V, VD"
+161,6,Etios Liva,toyota-etios-liva,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"J, JD, GD, G, VD, V"
+162,6,Fortuner,toyota-fortuner,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.7 4x2 MT, 2.7 4x2 AT, 2.8 4x2 MT, 2.8 4x2 AT, 2.8 4x4 MT, 2.8 4x4 AT, 2.8 4x4 AT Matte"
+163,6,Fortuner Legender,toyota-fortuner-legender,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.8 4x2 AT, 2.8 4x4 AT"
+164,6,Glanza,toyota-glanza,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, S, G, V"
+165,6,Hilux,toyota-hilux,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, High"
+166,6,Innova,toyota-innova,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, G, G (MT), GX"
+167,6,Innova Crysta,toyota-innova-crysta,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"G 2.4 MT, G 2.4 AT, GX 2.4 MT, GX 2.4 AT, VX 2.4 MT, VX 2.4 AT, ZX 2.4 AT, G 2.8 MT, GX 2.8 MT, VX 2.8 MT, VX 2.8 AT, ZX 2.8 AT"
+168,6,Innova Hycross,toyota-innova-hycross,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"G MT, G HEV CVT, GX MT, GX HEV CVT, VX MT, VX HEV CVT, ZX HEV CVT"
+169,6,Land Cruiser,toyota-land-cruiser,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LC300 VX, LC300 ZX"
+170,6,Land Cruiser Prado,toyota-land-cruiser-prado,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"TX, VX MT, VX AT"
+171,6,Prius,toyota-prius,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Z, Z CVT"
+172,6,Qualis,toyota-qualis,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"HTE, HTK, HTK Plus, HTX, HTX Plus, HTX AT, HTX Plus AT"
+173,6,Rumion,toyota-rumion,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"HTE, HTK, HTK Plus, HTX, HTX Plus, HTX AT, HTX Plus AT, GT Line MT, GT Line AT"
+174,6,Urban Cruiser,toyota-urban-cruiser,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"HTE, HTK, HTK Plus, HTX, HTX Plus, HTX Plus AT, GT Line, GT Line AT"
+175,6,Urban Cruiser Hyryder,toyota-urban-cruiser-hyryder,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,GT Line
+176,6,Vellfire,toyota-vellfire,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"EX, EX Plus"
+177,6,Yaris,toyota-yaris,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"MX, GX, GX Plus, GT Line"
+178,7,Carens,kia-carens,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GT1, GT2"
+179,7,Carnival,kia-carnival,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XV Premium, XV Premium Diesel"
+180,7,EV6,kia-ev6,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XL, XE, XV, XV Premium"
+181,7,EV9,kia-ev9,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"XE MT, XL MT, XV MT, XV Premium MT, XV Premium CVT, XV Premium Turbo CVT"
+182,7,Seltos,kia-seltos,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"EL, T, EL Plus"
+183,7,Sonet,kia-sonet,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E, S, SV, SV Premium"
+184,8,Astor,mg-astor,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"RxE, RxL, RxZ, RxZ Dual Tone"
+185,8,Cloud EV,mg-cloud-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"RxE, RxL, RxZ, RxZ Dual Tone, Climber"
+186,8,Comet EV,mg-comet-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"RxE, RxL, RxZ, RxZ AT"
+187,8,Gloster,mg-gloster,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"RxE, RxL MT, RxL CVT, RxZ MT, RxZ CVT"
+188,8,Hector,mg-hector,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Trendline MT, Highline MT, Highline Plus MT, Highline Plus DSG, GT Line DSG"
+189,8,Hector Plus,mg-hector-plus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Comfortline MT, Highline MT, Highline Plus MT, Highline Plus DSG"
+190,8,Windsor EV,mg-windsor-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Comfortline MT, Highline AT, Highline Plus AT"
+191,8,ZS EV,mg-zs-ev,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Trendline MT, Comfortline MT, Highline AT, Highline Plus AT, GT AT"
+192,9,Enyaq,skoda-enyaq,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Life MT, Style AT, Style Plus AT, GT AT"
+193,9,Fabia,skoda-fabia,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GT MT, GT DSG"
+194,9,Kodiaq,skoda-kodiaq,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Comfortline, Highline"
+195,9,Kushaq,skoda-kushaq,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Base
+196,9,Laura,skoda-laura,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Turbo
+197,9,Octavia,skoda-octavia,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active, Ambition, Style, Monte Carlo"
+198,9,Octavia Combi,skoda-octavia-combi,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active, Ambition, Style"
+199,9,Rapid,skoda-rapid,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Elegance, Laurin & Klement"
+200,9,Slavia,skoda-slavia,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Style, Sportline, Monte Carlo"
+201,9,Superb,skoda-superb,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active MT, Ambition AT, Style AT"
+202,9,Yeti,skoda-yeti,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active, Ambition, Style, Monte Carlo"
+203,10,Ameo,volkswagen-ameo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Classic, Active, Ambition, Style, Prestige"
+204,10,Beetle,volkswagen-beetle,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Ambition, Style"
+205,10,Cross Polo,volkswagen-cross-polo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Ambiente MT, Trend MT, Trend AT, Titanium MT, Titanium AT, Titanium Plus AT"
+206,10,Jetta,volkswagen-jetta,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Ambiente MT, Trend MT, Titanium MT, Titanium Plus MT"
+207,10,Passat,volkswagen-passat,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Trend MT, Titanium MT, Titanium Plus MT"
+208,10,Phaeton,volkswagen-phaeton,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Trend MT, Titanium MT, Titanium Plus MT, Titanium Plus AT"
+209,10,Polo,volkswagen-polo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Trend MT, Titanium Plus AT, Titanium Plus AT 4x4"
+210,10,Taigun,volkswagen-taigun,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Titanium AT
+211,10,Tiguan,volkswagen-tiguan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Ambiente MT, Trend MT, Titanium MT"
+212,10,Tiguan Allspace,volkswagen-tiguan-allspace,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Excite, Savvy, Sharp, Sharp Pro"
+213,10,Touareg,volkswagen-touareg,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Super, Smart, Shine Pro, Select Pro, Sharp, Savvy"
+214,10,Vento,volkswagen-vento,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Style, Super, Smart, Shine, Sharp"
+215,10,Virtus,volkswagen-virtus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Storm, Sprint, Shine, Select, Savvy"
+216,11,Classic,ford-classic,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Excite EV, Excite EV Pro, Essence EV"
+217,11,EcoSport,ford-ecosport,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Select, Smart, Savvy"
+218,11,Endeavour,ford-endeavour,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Smart Pro, Select Pro"
+219,11,Escort,ford-escort,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Sport, Luxury, M Sport"
+220,11,Fiesta,ford-fiesta,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Luxury Line, M Sport, Gran Limousine"
+221,11,Fiesta Classic,ford-fiesta-classic,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Luxury Line, M Sport, Gran Turismo"
+222,11,Figo,ford-figo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Luxury Line, M Sport, Individual"
+223,11,Figo Aspire,ford-figo-aspire,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"xLine, M Sport, M Sport Pro"
+224,11,Freestyle,ford-freestyle,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"xLine, M Sport, M Sport Pro"
+225,11,Fusion,ford-fusion,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"xLine, M Sport, M Sport Pro"
+226,11,Ikon,ford-ikon,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"xDrive40i, M60i"
+227,11,Mustang,ford-mustang,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"sDrive28i, xDrive28i"
+228,12,Captur,renault-captur,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"M3 Competition, M3 CS"
+229,12,Duster,renault-duster,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,M5 Competition
+230,12,Fluence,renault-fluence,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"xDrive40i, xDrive50e"
+231,12,Kiger,renault-kiger,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"40, xDrive40"
+232,12,Kwid,renault-kwid,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"eDrive40, xDrive40"
+233,12,Lodgy,renault-lodgy,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Base
+234,12,Pulse,renault-pulse,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+235,12,Scala,renault-scala,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+236,12,Triber,renault-triber,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+237,13,370Z,nissan-370z,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+238,13,Evalia,nissan-evalia,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+239,13,GT-R,nissan-gt-r,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+240,13,Kicks,nissan-kicks,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+241,13,Magnite,nissan-magnite,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+242,13,Micra,nissan-micra,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+243,13,Micra Active,nissan-micra-active,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+244,13,Sunny,nissan-sunny,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+245,13,Teana,nissan-teana,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+246,13,Terrano,nissan-terrano,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+247,13,X-Trail,nissan-x-trail,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+248,14,Cherokee,jeep-cherokee,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+249,14,Compass,jeep-compass,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+250,14,Grand Cherokee,jeep-grand-cherokee,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+251,14,Meridian,jeep-meridian,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+252,14,Wrangler,jeep-wrangler,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+253,15,1 Series,bmw-1-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+254,15,2 Series,bmw-2-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+255,15,3 Series,bmw-3-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+256,15,3 Series Gran Limousine,bmw-3-series-gran-limousine,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+257,15,3 Series GT,bmw-3-series-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+258,15,4 Series,bmw-4-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+259,15,5 Series,bmw-5-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+260,15,5 Series GT,bmw-5-series-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+261,15,6 Series,bmw-6-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+262,15,6 Series GT,bmw-6-series-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+263,15,7 Series,bmw-7-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+264,15,8 Series,bmw-8-series,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+265,15,i3,bmw-i3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+266,15,i4,bmw-i4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+267,15,i7,bmw-i7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+268,15,iX,bmw-ix,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+269,15,iX1,bmw-ix1,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+270,15,M2,bmw-m2,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+271,15,M3,bmw-m3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+272,15,M4,bmw-m4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+273,15,M5,bmw-m5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+274,15,M6,bmw-m6,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+275,15,M8,bmw-m8,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+276,15,X1,bmw-x1,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+277,15,X2,bmw-x2,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+278,15,X3,bmw-x3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+279,15,X3 M,bmw-x3-m,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+280,15,X4,bmw-x4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+281,15,X4 M,bmw-x4-m,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+282,15,X5,bmw-x5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+283,15,X5 M,bmw-x5-m,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+284,15,X6,bmw-x6,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+285,15,X6 M,bmw-x6-m,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+286,15,X7,bmw-x7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+287,15,Z3,bmw-z3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+288,15,Z4,bmw-z4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+289,16,A-Class,mercedes-benz-a-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"A 180d, A 200, A 200d"
+290,16,B-Class,mercedes-benz-b-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"C 200, C 220d, C 300d"
+291,16,C-Class,mercedes-benz-c-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"E 220d, E 350d"
+292,16,CLA,mercedes-benz-cla,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S 450, S 450L, S 580L, Maybach"
+293,16,CLE,mercedes-benz-cle,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLA 200, GLA 200d"
+294,16,CLK,mercedes-benz-clk,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLB 200, GLB 220d"
+295,16,CLS,mercedes-benz-cls,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLC 200, GLC 220d, GLC 300d"
+296,16,E-Class,mercedes-benz-e-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLE 300d, GLE 400d"
+297,16,EQA,mercedes-benz-eqa,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GLS 400d, GLS 450"
+298,16,EQB,mercedes-benz-eqb,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+299,16,EQC,mercedes-benz-eqc,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+300,16,EQE,mercedes-benz-eqe,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+301,16,EQS,mercedes-benz-eqs,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+302,16,G-Class,mercedes-benz-g-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+303,16,GLA,mercedes-benz-gla,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+304,16,GLB,mercedes-benz-glb,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+305,16,GLC,mercedes-benz-glc,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+306,16,GLE,mercedes-benz-gle,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+307,16,GLK,mercedes-benz-glk,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+308,16,GLS,mercedes-benz-gls,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+309,16,M-Class,mercedes-benz-m-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+310,16,Maybach S-Class,mercedes-benz-maybach-s-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+311,16,Maybach GLS,mercedes-benz-maybach-gls,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+312,16,R-Class,mercedes-benz-r-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+313,16,S-Class,mercedes-benz-s-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+314,16,SL,mercedes-benz-sl,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+315,16,SLC,mercedes-benz-slc,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+316,16,SLK,mercedes-benz-slk,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+317,16,V-Class,mercedes-benz-v-class,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+318,16,AMG GT,mercedes-benz-amg-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+319,16,SLS AMG,mercedes-benz-sls-amg,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,
+320,17,A3,audi-a3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"30 TFSI, 35 TFSI, 40 TFSI S-Tronic"
+321,17,A4,audi-a4,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"40 TFSI Premium, 40 TFSI Technology, 35 TDI Premium Plus, 35 TDI Technology"
+322,17,A5,audi-a5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"40 TFSI Coupe, 40 TDI Coupe"
+323,17,A6,audi-a6,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"45 TFSI Technology, 35 TDI Premium Plus, 35 TDI Technology"
+324,17,A7,audi-a7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,3.0 TFSI quattro
+325,17,A8,audi-a8,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"55 TFSI quattro Technology, 60 TFSI quattro"
+326,17,A8 L,audi-a8-l,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"55 TFSI quattro Technology, 60 TFSI quattro"
+327,17,e-tron,audi-e-tron,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"50 quattro, 55 S-Line"
+328,17,e-tron GT,audi-e-tron-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,RS quattro
+329,17,Q2,audi-q2,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,30 TFSI Premium
+330,17,Q3,audi-q3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"40 TFSI Premium Plus, 40 TFSI Technology, 35 TDI Premium Plus, 35 TDI Technology"
+331,17,Q5,audi-q5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"40 TFSI Premium Plus, 45 TFSI quattro Premium Plus, 40 TDI Premium Plus, 40 TDI Technology"
+332,17,Q7,audi-q7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"45 TFSI Premium Plus, 45 TFSI Technology"
+333,17,Q8,audi-q8,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"55 TFSI S-Line, 60 TFSI quattro"
+334,17,Q8 e-tron,audi-q8-e-tron,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,50 e-tron quattro
+335,17,R8,audi-r8,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,V10 Plus
+336,17,RS5,audi-rs5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,3.0 TFSI Competition
+337,17,RS7,audi-rs7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Sportback
+338,17,S5,audi-s5,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,3.0 TFSI
+339,17,TT,audi-tt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"45 TFSI Coupe, 45 TFSI Roadster"
+340,18,C40 Recharge,volvo-c40-recharge,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Recharge
+341,18,S60,volvo-s60,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D4 Inscription, T4 Inscription"
+342,18,S60 Cross Country,volvo-s60-cross-country,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,D4 Cross Country
+343,18,S80,volvo-s80,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,D4 Inscription
+344,18,S90,volvo-s90,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,B6 Inscription
+345,18,V40,volvo-v40,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D3 Kinetic, D3 Dynamic, T4 Kinetic"
+346,18,V40 Cross Country,volvo-v40-cross-country,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,D3 Cross Country
+347,18,V90 Cross Country,volvo-v90-cross-country,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,D5 Cross Country
+348,18,XC40,volvo-xc40,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"B3 Essential, B5 Core, B5 Plus, Recharge"
+349,18,XC40 Recharge,volvo-xc40-recharge,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Recharge
+350,18,XC60,volvo-xc60,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"B5 Core, B5 Plus, B6 Ultimate"
+351,18,XC90,volvo-xc90,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"B5 Core, B5 Plus, B6 Excellence, Recharge Ultimate"
+352,19,F-Pace,jaguar-f-pace,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Prestige, Portfolio, R-Sport"
+353,19,F-Type,jaguar-f-type,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Coupe, Convertible, R Dynamic, SVR"
+354,19,I-Pace,jaguar-i-pace,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SE, HSE"
+355,19,XE,jaguar-xe,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Prestige, Portfolio, R-Sport"
+356,19,XF,jaguar-xf,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Prestige, Portfolio, R-Sport"
+357,19,XJ,jaguar-xj,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"3.0 Diesel, 3.0 Portfolio"
+358,19,XK,jaguar-xk,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Portfolio Coupe
+359,20,Defender,land-rover-defender,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"90 S, 110 S, 90 X-Dynamic SE, 110 X-Dynamic SE, 110 X, 110 Carpathian Edition"
+360,20,Discovery,land-rover-discovery,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, SE, HSE, HSE Luxury"
+361,20,Discovery Sport,land-rover-discovery-sport,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, SE, HSE, HSE Dynamic, R-Dynamic SE, R-Dynamic HSE"
+362,20,Freelander,land-rover-freelander,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SE, HSE"
+363,20,Range Rover,land-rover-range-rover,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Vogue, SE, Autobiography, Autobiography Long"
+364,20,Range Rover Evoque,land-rover-range-rover-evoque,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, SE, HSE, R-Dynamic SE, R-Dynamic HSE"
+365,20,Range Rover Sport,land-rover-range-rover-sport,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SE, HSE, Autobiography, Dynamic SE"
+366,20,Range Rover Velar,land-rover-range-rover-velar,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"SE, HSE, SE R-Dynamic, HSE R-Dynamic"
+367,21,718,porsche-718,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Boxster, Cayman S, GTS Boxster, GTS Cayman"
+368,21,911,porsche-911,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Carrera, Carrera S, Carrera 4S, Turbo, Turbo S, GT3, GT3 RS"
+369,21,Boxster,porsche-boxster,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, GTS"
+370,21,Cayenne,porsche-cayenne,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, GTS, Turbo, Turbo S E-Hybrid"
+371,21,Cayenne Coupe,porsche-cayenne-coupe,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, GTS, Turbo, Turbo GT, Turbo S E-Hybrid"
+372,21,Cayman,porsche-cayman,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,S
+373,21,Macan,porsche-macan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"4 Electric, T, S, GTS, Turbo"
+374,21,Panamera,porsche-panamera,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"4S, GTS, Turbo S, Turbo S Executive"
+375,21,Taycan,porsche-taycan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"4, 4S, GTS, Turbo, Turbo S Cross Turismo"
+376,22,ES,lexus-es,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"300h, 500h F Sport"
+377,22,GS,lexus-gs,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,300h
+378,22,LC,lexus-lc,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,500h
+379,22,LM,lexus-lm,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"300h, 350h"
+380,22,LS,lexus-ls,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,500h
+381,22,LX,lexus-lx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,570
+382,22,NX,lexus-nx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"300h, 350h, 450h+"
+383,22,RX,lexus-rx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"350h, 450h+, 500h"
+384,23,Clubman,mini-clubman,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Cooper, Cooper S, John Cooper Works"
+385,23,Cooper,mini-cooper,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Cooper, Cooper S, John Cooper Works, Electric"
+386,23,Countryman,mini-countryman,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Cooper, Cooper S, John Cooper Works, SE Electric"
+387,23,Convertible,mini-convertible,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Cooper Convertible, Cooper S Convertible"
+388,24,500,fiat-500,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Pop, Lounge"
+389,24,Abarth Punto,fiat-abarth-punto,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Competizione
+390,24,Avventura,fiat-avventura,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Outdoor, Outdoor LE"
+391,24,Linea,fiat-linea,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active, Dynamic, Emotion, Elegante"
+392,24,Linea Classic,fiat-linea-classic,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Classic, LE"
+393,24,Palio,fiat-palio,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"ELX, EL"
+394,24,Palio Stile,fiat-palio-stile,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"1.4 Active, 1.4 Dynamic"
+395,24,Punto,fiat-punto,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active, Dynamic, Emotion, Sportline"
+396,24,Punto Evo,fiat-punto-evo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Active, Dynamic, Emotion"
+397,24,Punto Pure,fiat-punto-pure,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Active
+398,24,Uno,fiat-uno,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Fire
+399,25,Aveo,chevrolet-aveo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT, LTZ"
+400,25,Aveo U-VA,chevrolet-aveo-u-va,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT"
+401,25,Beat,chevrolet-beat,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT, LTZ, LTZ Option"
+402,25,Captiva,chevrolet-captiva,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LT, LTZ AT"
+403,25,Cruze,chevrolet-cruze,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT MT, LTZ MT, LTZ AT"
+404,25,Enjoy,chevrolet-enjoy,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT"
+405,25,Optra,chevrolet-optra,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT, LTZ AT"
+406,25,Optra Magnum,chevrolet-optra-magnum,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LT MT, LTZ AT"
+407,25,Sail,chevrolet-sail,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT, LTZ"
+408,25,Sail U-VA,chevrolet-sail-u-va,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT"
+409,25,Spark,chevrolet-spark,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT, LTZ"
+410,25,Tavera,chevrolet-tavera,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LS, LT 7-Seater, LT 8-Seater, LTZ"
+411,25,Trailblazer,chevrolet-trailblazer,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,LTZ AT
+412,26,GO,datsun-go,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D, A, T"
+414,26,redi-GO,datsun-redi-go,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"D, A, S, T, GO Plus T"
+415,27,Cedia,mitsubishi-cedia,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"CK1, CK2, Sports"
+416,27,Lancer,mitsubishi-lancer,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GL, GLX, CK"
+417,27,Montero,mitsubishi-montero,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,3.5L AT
+418,27,Outlander,mitsubishi-outlander,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.4 MIVEC 2WD, 3.0 MIVEC 4WD"
+419,27,Pajero,mitsubishi-pajero,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.5 CRDi 4WD MT, SFX"
+420,27,Pajero Sport,mitsubishi-pajero-sport,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"2.5 CRDi 4WD MT, 2.5 CRDi 4WD AT"
+421,28,Basalt,citroen-basalt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Feel, Shine, Shine Pro"
+422,28,C3,citroen-c3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Feel, Shine, Shine Plus"
+423,28,C3 Aircross,citroen-c3-aircross,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Feel, Shine, Max AT"
+424,28,C5 Aircross,citroen-c5-aircross,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Shine AT, Shine Plus AT"
+425,28,eC3,citroen-ec3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Feel, Shine"
+426,29,Atto 3,byd-atto-3,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, Premium"
+427,29,e6,byd-e6,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Comfort
+428,29,Seal,byd-seal,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Excellence
+429,30,DB11,aston-martin-db11,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8 Coupe, V12 Coupe, V8 Volante, V12 Volante"
+430,30,DB12,aston-martin-db12,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8 Coupe, V12 Coupe, V12 Volante"
+431,30,DBX,aston-martin-dbx,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8, V8 707"
+432,30,Rapide,aston-martin-rapide,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,S V8
+433,30,Vantage,aston-martin-vantage,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8 Coupe, V8 Roadster, F1 Edition"
+434,30,Vanquish,aston-martin-vanquish,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,V12 Coupe
+435,31,296 GTB,ferrari-296-gtb,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GTB, GTS"
+436,31,488,ferrari-488,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GTB, Spider, Pista, Pista Spider"
+437,31,812,ferrari-812,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GTS, Superfast, Spider"
+438,31,California,ferrari-california,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"T, T Handling Speciale"
+439,31,F8 Tributo,ferrari-f8-tributo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Tributo, Spider"
+440,31,Portofino,ferrari-portofino,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,M
+441,31,Purosangue,ferrari-purosangue,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,SUV
+442,31,Roma,ferrari-roma,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Coupe, Spider"
+443,31,SF90 Stradale,ferrari-sf90-stradale,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Stradale, Spider"
+444,32,Aventador,lamborghini-aventador,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LP 700-4, LP 750-4 SV, LP 780-4 Ultimae"
+445,32,Huracan,lamborghini-huracan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"LP 580-2, LP 610-4, LP 610-4 Evo, STO"
+446,32,Revuelto,lamborghini-revuelto,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Standard
+447,32,Urus,lamborghini-urus,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, Performante, Pearl Capsule"
+448,33,Ghibli,maserati-ghibli,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Diesel, GranSport Diesel, GranLusso, GranSport"
+449,33,GranTurismo,maserati-granturismo,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"MC Standard, Trofeo"
+450,33,Levante,maserati-levante,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Diesel, GranSport Diesel, GranLusso, Trofeo"
+451,33,MC20,maserati-mc20,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, Cielo"
+452,33,Quattroporte,maserati-quattroporte,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Diesel, GranSport Diesel, GranLusso"
+453,33,Grecale,maserati-grecale,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"GT, Modena, Trofeo"
+454,34,Cullinan,rolls-royce-cullinan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, Black Badge, Series II"
+455,34,Dawn,rolls-royce-dawn,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Standard
+456,34,Ghost,rolls-royce-ghost,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, Black Badge, Extended Wheelbase"
+457,34,Phantom,rolls-royce-phantom,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, Extended Wheelbase, Series II"
+458,34,Wraith,rolls-royce-wraith,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Standard, Black Badge"
+459,35,Bentayga,bentley-bentayga,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8, V8 S, W12, Hybrid, S"
+460,35,Continental GT,bentley-continental-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8, W12, GT3-R"
+461,35,Flying Spur,bentley-flying-spur,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"V8, W12, S W12"
+462,35,Mulsanne,bentley-mulsanne,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,6.75 MWB
+463,36,720S,mclaren-720s,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Coupe, Spider"
+464,36,750S,mclaren-750s,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Coupe, Spider"
+465,36,Artura,mclaren-artura,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Standard
+466,36,GT,mclaren-gt,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,GT
+467,37,D-Max,isuzu-d-max,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"S, V-Cross, Z Prestige"
+468,37,MU-7,isuzu-mu-7,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Base
+469,37,MU-X,isuzu-mu-x,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Base, 4x4"
+470,37,V-Cross,isuzu-v-cross,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Hi-Side, Z Prestige"
+471,38,Gurkha,force-motors-gurkha,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Xpedition, 5-Door Hard Top, 3-Door Hard Top"
+472,38,Trax Cruiser,force-motors-trax-cruiser,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Base
+473,38,Trax Toofan,force-motors-trax-toofan,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Base
+474,38,One,force-motors-one,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,Base
+475,39,Ambassador,hindustan-motors-ambassador,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"Classic, Grand, Gold"
+476,39,Contessa,hindustan-motors-contessa,NULL,NULL,NULL,1,2026-06-25 11:55:30,2026-06-25 11:55:30,"DX, LX"
