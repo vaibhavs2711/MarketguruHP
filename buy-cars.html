@@ -433,7 +433,7 @@
   .accordion-arrow { transition: transform 0.3s ease; color: #666; width: 16px; height: 16px; }
   .accordion-header.active .accordion-arrow { transform: rotate(180deg); }
   .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #fff; }
-  .accordion-body.open { max-height: 1000px; overflow: visible; } /* visible to allow dropdowns like select to overflow if needed */
+  .accordion-body.open { max-height: 5000px; overflow: visible; } /* visible to allow dropdowns like select to overflow if needed */
   .accordion-content { padding: 0 16px 16px 16px; }
   .accordion-content select { margin-top: 4px; }
 
@@ -580,7 +580,7 @@
   .tree-parent-left label { cursor: pointer; flex: 1; margin: 0; }
   .tree-toggle { font-size: 16px; color: #888; width: 20px; text-align: center; transition: transform 0.2s; }
   .tree-children { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 24px; display: flex; flex-direction: column; gap: 6px; }
-  .tree-children.open { max-height: 500px; margin-top: 6px; margin-bottom: 4px; }
+  .tree-children.open { max-height: 3000px; margin-top: 6px; margin-bottom: 4px; }
   .tree-node.active .tree-toggle { transform: rotate(45deg); }
 
 
@@ -1530,7 +1530,7 @@ function toggleAccordion(el) {
     body.classList.remove('open');
   } else {
     body.classList.add('open');
-    body.style.maxHeight = '1000px';
+    body.style.maxHeight = '5000px';
     setTimeout(() => { if(body.classList.contains('open')) body.style.overflow = 'visible'; }, 300);
   }
 }
