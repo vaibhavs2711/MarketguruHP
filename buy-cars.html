@@ -7,18 +7,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;
-    --steel:#2A3A5C;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;
-    --muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;
+    --red: #FFCC00;
+    --red-dark: #E6B800;
+    --charcoal: #1A3D8F;
+    --navy: #0D2B6B;
+    --steel: #2A5CC7;
+    --silver: #F0F4F8;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #6B7A99;
+    --border: #DDE3EE;
+    --success: #A3D1B1;
+    --blue-light: #E8F0FE;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
   a{text-decoration:none;color:inherit;}
 
   .navbar {
-    background: var(--charcoal);
+    background: var(--white);
     position: sticky; top: 0; z-index: 9999;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-bottom: 2px solid var(--border);
   }
 
   .nav-main {
@@ -41,12 +51,12 @@
   }
   .nav-links { display: flex; gap: 6px; flex: 1; }
   .nav-links a {
-    color: #eee; font-size: 16px; font-weight: 700;
+    color: var(--charcoal); font-size: 16px; font-weight: 700;
     padding: 8px 16px; border-radius: 6px;
     transition: all 0.2s;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.12); }
-  .nav-links a.active { background: rgba(255,204,0,0.25); }
+  .nav-links a:hover { color: var(--charcoal); background: rgba(26, 61, 143, 0.08); }
+  .nav-links a.active { color: var(--charcoal); background: rgba(255,204,0,0.2); }
   .btn-red {
     background: var(--red); color: #1A1A2E;
     padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 800;
@@ -54,6 +64,40 @@
     box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
   }
   .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); color: #1A1A2E; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45); }
+
+    /* CARD NAVIGATION BUTTONS */
+  .card-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s, transform 0.2s;
+    user-select: none;
+    opacity: 0;
+  }
+  .car-card:hover .card-nav-btn {
+    opacity: 1;
+  }
+  .card-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+  }
+  .card-nav-btn.prev {
+    left: 8px;
+  }
+  .card-nav-btn.next {
+    right: 8px;
+  }
 
   /* BREADCRUMB */
   .breadcrumb{background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;font-size:13px;color:var(--muted);}
@@ -215,7 +259,7 @@
     display: block;
     width: 25px;
     height: 3px;
-    background: var(--white);
+    background: var(--charcoal);
     transition: all 0.3s ease;
     border-radius: 2px;
   }
@@ -243,11 +287,11 @@
       top: 70px;
       left: 0;
       right: 0;
-      background: var(--charcoal);
+      background: var(--white);
       padding: 20px;
       gap: 12px;
-      box-shadow: none;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border-top: 1px solid var(--border);
       z-index: 99;
     }
     .nav-links.active {
@@ -260,11 +304,11 @@
       top: 250px;
       left: 0;
       right: 0;
-      background: var(--charcoal);
+      background: var(--white);
       padding: 10px 20px 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       z-index: 98;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid var(--border);
       justify-content: center;
     }
     .nav-actions.active {
@@ -641,6 +685,7 @@
       <a href="buy-cars.html" class="active">Buy Vehicle</a>
       <a href="sell.html">Sell Vehicles</a>
       <a href="about.html">About</a>
+      <a href="compare.html">⚖️ Compare</a>
     </div>
     <div class="nav-actions" id="nav-actions"></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
@@ -671,1539 +716,7 @@
         <div class="accordion-body">
           <div class="accordion-content">
             <div class="tree-list scrollable-list">
-              
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Aston Martin" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Aston Martin</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Db 11" onchange="applyFilters()">
-                  <label>Db 11</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rapide" onchange="applyFilters()">
-                  <label>Rapide</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Vantage" onchange="applyFilters()">
-                  <label>Vantage</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Audi" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Audi</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A3" onchange="applyFilters()">
-                  <label>A3</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A3 Cabriolet" onchange="applyFilters()">
-                  <label>A3 Cabriolet</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A4" onchange="applyFilters()">
-                  <label>A4</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A5" onchange="applyFilters()">
-                  <label>A5</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A5 Cabriolet" onchange="applyFilters()">
-                  <label>A5 Cabriolet</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A6" onchange="applyFilters()">
-                  <label>A6</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="A8 L" onchange="applyFilters()">
-                  <label>A8 L</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Q3" onchange="applyFilters()">
-                  <label>Q3</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Q5" onchange="applyFilters()">
-                  <label>Q5</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Q7" onchange="applyFilters()">
-                  <label>Q7</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Q8" onchange="applyFilters()">
-                  <label>Q8</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="R8" onchange="applyFilters()">
-                  <label>R8</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rs5" onchange="applyFilters()">
-                  <label>Rs5</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rs7" onchange="applyFilters()">
-                  <label>Rs7</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="S5" onchange="applyFilters()">
-                  <label>S5</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Bajaj" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Bajaj</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Qute (Re60)" onchange="applyFilters()">
-                  <label>Qute (Re60)</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Bentley" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Bentley</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Bentayga" onchange="applyFilters()">
-                  <label>Bentayga</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Continental Gt" onchange="applyFilters()">
-                  <label>Continental Gt</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Flying Spur" onchange="applyFilters()">
-                  <label>Flying Spur</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mulsanne" onchange="applyFilters()">
-                  <label>Mulsanne</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Bmw" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Bmw</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="3-Series" onchange="applyFilters()">
-                  <label>3-Series</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="5-Series" onchange="applyFilters()">
-                  <label>5-Series</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="6-Series" onchange="applyFilters()">
-                  <label>6-Series</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="7-Series" onchange="applyFilters()">
-                  <label>7-Series</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="M2 Competition" onchange="applyFilters()">
-                  <label>M2 Competition</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="M4" onchange="applyFilters()">
-                  <label>M4</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="M5" onchange="applyFilters()">
-                  <label>M5</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="X1" onchange="applyFilters()">
-                  <label>X1</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="X3" onchange="applyFilters()">
-                  <label>X3</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="X4" onchange="applyFilters()">
-                  <label>X4</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="X5" onchange="applyFilters()">
-                  <label>X5</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="X7" onchange="applyFilters()">
-                  <label>X7</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Z4 Roadster" onchange="applyFilters()">
-                  <label>Z4 Roadster</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Bugatti" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Bugatti</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Chiron" onchange="applyFilters()">
-                  <label>Chiron</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Datsun" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Datsun</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Go" onchange="applyFilters()">
-                  <label>Go</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Redi-Go" onchange="applyFilters()">
-                  <label>Redi-Go</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Dc" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Dc</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Avanti" onchange="applyFilters()">
-                  <label>Avanti</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Ferrari" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Ferrari</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="458 Speciale" onchange="applyFilters()">
-                  <label>458 Speciale</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="458 Spider" onchange="applyFilters()">
-                  <label>458 Spider</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="488 Gtb" onchange="applyFilters()">
-                  <label>488 Gtb</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="812 Superfast" onchange="applyFilters()">
-                  <label>812 Superfast</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Gtc4 Lusso" onchange="applyFilters()">
-                  <label>Gtc4 Lusso</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Portofino" onchange="applyFilters()">
-                  <label>Portofino</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Fiat" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Fiat</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Abarth Avventura" onchange="applyFilters()">
-                  <label>Abarth Avventura</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Abarth Punto" onchange="applyFilters()">
-                  <label>Abarth Punto</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Avventura" onchange="applyFilters()">
-                  <label>Avventura</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Linea" onchange="applyFilters()">
-                  <label>Linea</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Linea Classic" onchange="applyFilters()">
-                  <label>Linea Classic</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Punto Evo" onchange="applyFilters()">
-                  <label>Punto Evo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Punto Evo Pure" onchange="applyFilters()">
-                  <label>Punto Evo Pure</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Urban Cross" onchange="applyFilters()">
-                  <label>Urban Cross</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Force" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Force</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Gurkha" onchange="applyFilters()">
-                  <label>Gurkha</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Ford" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Ford</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Aspire" onchange="applyFilters()">
-                  <label>Aspire</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ecosport" onchange="applyFilters()">
-                  <label>Ecosport</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Endeavour" onchange="applyFilters()">
-                  <label>Endeavour</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Figo" onchange="applyFilters()">
-                  <label>Figo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Freestyle" onchange="applyFilters()">
-                  <label>Freestyle</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mustang" onchange="applyFilters()">
-                  <label>Mustang</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Honda" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Honda</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Accord Hybrid" onchange="applyFilters()">
-                  <label>Accord Hybrid</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Amaze" onchange="applyFilters()">
-                  <label>Amaze</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Brv" onchange="applyFilters()">
-                  <label>Brv</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="City" onchange="applyFilters()">
-                  <label>City</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Civic" onchange="applyFilters()">
-                  <label>Civic</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Cr-V" onchange="applyFilters()">
-                  <label>Cr-V</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Jazz" onchange="applyFilters()">
-                  <label>Jazz</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Wr-V" onchange="applyFilters()">
-                  <label>Wr-V</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Hyundai" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Hyundai</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Aura" onchange="applyFilters()">
-                  <label>Aura</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Creta" onchange="applyFilters()">
-                  <label>Creta</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Elantra" onchange="applyFilters()">
-                  <label>Elantra</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Elite I20" onchange="applyFilters()">
-                  <label>Elite I20</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Grand I10" onchange="applyFilters()">
-                  <label>Grand I10</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Grand I10 Nios" onchange="applyFilters()">
-                  <label>Grand I10 Nios</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Grand I10 Prime" onchange="applyFilters()">
-                  <label>Grand I10 Prime</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="I20 Active" onchange="applyFilters()">
-                  <label>I20 Active</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Kona Electric" onchange="applyFilters()">
-                  <label>Kona Electric</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Santro" onchange="applyFilters()">
-                  <label>Santro</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tucson" onchange="applyFilters()">
-                  <label>Tucson</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Venue" onchange="applyFilters()">
-                  <label>Venue</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Verna" onchange="applyFilters()">
-                  <label>Verna</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xcent" onchange="applyFilters()">
-                  <label>Xcent</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xcent Prime" onchange="applyFilters()">
-                  <label>Xcent Prime</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Icml" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Icml</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Extreme" onchange="applyFilters()">
-                  <label>Extreme</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Isuzu" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Isuzu</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Dmax V-Cross" onchange="applyFilters()">
-                  <label>Dmax V-Cross</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mu-X" onchange="applyFilters()">
-                  <label>Mu-X</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Jaguar" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Jaguar</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="F-Pace" onchange="applyFilters()">
-                  <label>F-Pace</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="F-Type" onchange="applyFilters()">
-                  <label>F-Type</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xe" onchange="applyFilters()">
-                  <label>Xe</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xf" onchange="applyFilters()">
-                  <label>Xf</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xj" onchange="applyFilters()">
-                  <label>Xj</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Jeep" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Jeep</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Compass" onchange="applyFilters()">
-                  <label>Compass</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Compass Trailhawk" onchange="applyFilters()">
-                  <label>Compass Trailhawk</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Grand Cherokee" onchange="applyFilters()">
-                  <label>Grand Cherokee</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Wrangler" onchange="applyFilters()">
-                  <label>Wrangler</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Kia" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Kia</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Carnival" onchange="applyFilters()">
-                  <label>Carnival</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Seltos" onchange="applyFilters()">
-                  <label>Seltos</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Lamborghini" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Lamborghini</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Aventador" onchange="applyFilters()">
-                  <label>Aventador</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Huracan" onchange="applyFilters()">
-                  <label>Huracan</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Urus" onchange="applyFilters()">
-                  <label>Urus</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Land Rover" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Land Rover</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Discovery" onchange="applyFilters()">
-                  <label>Discovery</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Discovery Sport" onchange="applyFilters()">
-                  <label>Discovery Sport</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Land Rover Rover" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Land Rover Rover</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Range" onchange="applyFilters()">
-                  <label>Range</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Range Evoque" onchange="applyFilters()">
-                  <label>Range Evoque</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Range Evoque Convertible" onchange="applyFilters()">
-                  <label>Range Evoque Convertible</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Range Sport" onchange="applyFilters()">
-                  <label>Range Sport</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Range Velar" onchange="applyFilters()">
-                  <label>Range Velar</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Lexus" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Lexus</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Es" onchange="applyFilters()">
-                  <label>Es</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Lc 500H" onchange="applyFilters()">
-                  <label>Lc 500H</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ls 500H" onchange="applyFilters()">
-                  <label>Ls 500H</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Lx 450D" onchange="applyFilters()">
-                  <label>Lx 450D</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Lx 570" onchange="applyFilters()">
-                  <label>Lx 570</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Nx 300H" onchange="applyFilters()">
-                  <label>Nx 300H</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rx 450H" onchange="applyFilters()">
-                  <label>Rx 450H</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Mahindra" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Mahindra</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Alturas G4" onchange="applyFilters()">
-                  <label>Alturas G4</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Bolero" onchange="applyFilters()">
-                  <label>Bolero</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Bolero Power Plus" onchange="applyFilters()">
-                  <label>Bolero Power Plus</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="E Verito" onchange="applyFilters()">
-                  <label>E Verito</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="E2O Plus" onchange="applyFilters()">
-                  <label>E2O Plus</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Kuv100 Nxt" onchange="applyFilters()">
-                  <label>Kuv100 Nxt</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Marazzo" onchange="applyFilters()">
-                  <label>Marazzo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Nuvosport" onchange="applyFilters()">
-                  <label>Nuvosport</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Scorpio" onchange="applyFilters()">
-                  <label>Scorpio</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Thar" onchange="applyFilters()">
-                  <label>Thar</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tuv300" onchange="applyFilters()">
-                  <label>Tuv300</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tuv300 Plus" onchange="applyFilters()">
-                  <label>Tuv300 Plus</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Verito" onchange="applyFilters()">
-                  <label>Verito</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Verito Vibe" onchange="applyFilters()">
-                  <label>Verito Vibe</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xuv300" onchange="applyFilters()">
-                  <label>Xuv300</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xuv500" onchange="applyFilters()">
-                  <label>Xuv500</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xylo" onchange="applyFilters()">
-                  <label>Xylo</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Maruti Suzuki" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Maruti Suzuki</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Alto" onchange="applyFilters()">
-                  <label>Alto</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Alto 800 Tour" onchange="applyFilters()">
-                  <label>Alto 800 Tour</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Alto K10" onchange="applyFilters()">
-                  <label>Alto K10</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Baleno" onchange="applyFilters()">
-                  <label>Baleno</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Baleno Rs" onchange="applyFilters()">
-                  <label>Baleno Rs</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Celerio" onchange="applyFilters()">
-                  <label>Celerio</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Celerio Tour" onchange="applyFilters()">
-                  <label>Celerio Tour</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Celerio X" onchange="applyFilters()">
-                  <label>Celerio X</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ciaz" onchange="applyFilters()">
-                  <label>Ciaz</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Dzire" onchange="applyFilters()">
-                  <label>Dzire</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Dzire Tour" onchange="applyFilters()">
-                  <label>Dzire Tour</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Eeco" onchange="applyFilters()">
-                  <label>Eeco</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ertiga" onchange="applyFilters()">
-                  <label>Ertiga</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Gypsy" onchange="applyFilters()">
-                  <label>Gypsy</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ignis" onchange="applyFilters()">
-                  <label>Ignis</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Omni" onchange="applyFilters()">
-                  <label>Omni</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="S-Cross" onchange="applyFilters()">
-                  <label>S-Cross</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="S-Presso" onchange="applyFilters()">
-                  <label>S-Presso</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Swift" onchange="applyFilters()">
-                  <label>Swift</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Vitara Brezza" onchange="applyFilters()">
-                  <label>Vitara Brezza</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xl6" onchange="applyFilters()">
-                  <label>Xl6</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Maruti Suzuki R" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Maruti Suzuki R</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Wagon" onchange="applyFilters()">
-                  <label>Wagon</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Maserati" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Maserati</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ghibli" onchange="applyFilters()">
-                  <label>Ghibli</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Grancabrio" onchange="applyFilters()">
-                  <label>Grancabrio</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Granturismo" onchange="applyFilters()">
-                  <label>Granturismo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Levante" onchange="applyFilters()">
-                  <label>Levante</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Quattroporte" onchange="applyFilters()">
-                  <label>Quattroporte</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Mercedes-Benz" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Mercedes-Benz</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Go+" onchange="applyFilters()">
-                  <label>Go+</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz A-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz A-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Amg Gt 4-Door Coupe" onchange="applyFilters()">
-                  <label>Mercedes-Benz Amg Gt 4-Door Coupe</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Amg-Gt" onchange="applyFilters()">
-                  <label>Mercedes-Benz Amg-Gt</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz B-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz B-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz C-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz C-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz C-Class Cabriolet" onchange="applyFilters()">
-                  <label>Mercedes-Benz C-Class Cabriolet</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Cla-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz Cla-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Cls" onchange="applyFilters()">
-                  <label>Mercedes-Benz Cls</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz E-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz E-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz E-Class All Terrain" onchange="applyFilters()">
-                  <label>Mercedes-Benz E-Class All Terrain</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz E-Class Cabriolet" onchange="applyFilters()">
-                  <label>Mercedes-Benz E-Class Cabriolet</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz G-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz G-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Gla-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz Gla-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Glc" onchange="applyFilters()">
-                  <label>Mercedes-Benz Glc</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Gle" onchange="applyFilters()">
-                  <label>Mercedes-Benz Gle</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Gls" onchange="applyFilters()">
-                  <label>Mercedes-Benz Gls</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz Maybach" onchange="applyFilters()">
-                  <label>Mercedes-Benz Maybach</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz S-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz S-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz S-Class Cabriolet" onchange="applyFilters()">
-                  <label>Mercedes-Benz S-Class Cabriolet</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Mercedes-Benz V-Class" onchange="applyFilters()">
-                  <label>Mercedes-Benz V-Class</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Cullinan" onchange="applyFilters()">
-                  <label>Rolls-Royce Cullinan</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Dawn" onchange="applyFilters()">
-                  <label>Rolls-Royce Dawn</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Drophead Coupe" onchange="applyFilters()">
-                  <label>Rolls-Royce Drophead Coupe</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Ghost Series Ii" onchange="applyFilters()">
-                  <label>Rolls-Royce Ghost Series Ii</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Phantom" onchange="applyFilters()">
-                  <label>Rolls-Royce Phantom</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Phantom Coupe" onchange="applyFilters()">
-                  <label>Rolls-Royce Phantom Coupe</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rolls-Royce Wraith" onchange="applyFilters()">
-                  <label>Rolls-Royce Wraith</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Mg" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Mg</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Hector" onchange="applyFilters()">
-                  <label>Hector</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Zs Ev" onchange="applyFilters()">
-                  <label>Zs Ev</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Mini" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Mini</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Clubman" onchange="applyFilters()">
-                  <label>Clubman</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Convertible" onchange="applyFilters()">
-                  <label>Convertible</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Cooper 3 Door" onchange="applyFilters()">
-                  <label>Cooper 3 Door</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Cooper 5 Door" onchange="applyFilters()">
-                  <label>Cooper 5 Door</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Countryman" onchange="applyFilters()">
-                  <label>Countryman</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="John Cooper Works" onchange="applyFilters()">
-                  <label>John Cooper Works</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Mitsubishi" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Mitsubishi</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Montero" onchange="applyFilters()">
-                  <label>Montero</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Outlander" onchange="applyFilters()">
-                  <label>Outlander</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Pajero Sport" onchange="applyFilters()">
-                  <label>Pajero Sport</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Nissan" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Nissan</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Gtr" onchange="applyFilters()">
-                  <label>Gtr</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Kicks" onchange="applyFilters()">
-                  <label>Kicks</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Micra" onchange="applyFilters()">
-                  <label>Micra</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Micra Active" onchange="applyFilters()">
-                  <label>Micra Active</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Sunny" onchange="applyFilters()">
-                  <label>Sunny</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Terrano" onchange="applyFilters()">
-                  <label>Terrano</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Porsche" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Porsche</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="718" onchange="applyFilters()">
-                  <label>718</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="911" onchange="applyFilters()">
-                  <label>911</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Cayenne" onchange="applyFilters()">
-                  <label>Cayenne</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Cayenne Coupe" onchange="applyFilters()">
-                  <label>Cayenne Coupe</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Macan" onchange="applyFilters()">
-                  <label>Macan</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Panamera" onchange="applyFilters()">
-                  <label>Panamera</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Premier" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Premier</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rio" onchange="applyFilters()">
-                  <label>Rio</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Renault" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Renault</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Captur" onchange="applyFilters()">
-                  <label>Captur</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Duster" onchange="applyFilters()">
-                  <label>Duster</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Kwid" onchange="applyFilters()">
-                  <label>Kwid</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Lodgy" onchange="applyFilters()">
-                  <label>Lodgy</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Triber" onchange="applyFilters()">
-                  <label>Triber</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Skoda" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Skoda</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Kodiaq" onchange="applyFilters()">
-                  <label>Kodiaq</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Kodiaq Scout" onchange="applyFilters()">
-                  <label>Kodiaq Scout</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Monte Carlo" onchange="applyFilters()">
-                  <label>Monte Carlo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Octavia" onchange="applyFilters()">
-                  <label>Octavia</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Rapid" onchange="applyFilters()">
-                  <label>Rapid</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Superb" onchange="applyFilters()">
-                  <label>Superb</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Superb Sportline" onchange="applyFilters()">
-                  <label>Superb Sportline</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Tata" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Tata</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Altroz" onchange="applyFilters()">
-                  <label>Altroz</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Bolt" onchange="applyFilters()">
-                  <label>Bolt</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Harrier" onchange="applyFilters()">
-                  <label>Harrier</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Hexa" onchange="applyFilters()">
-                  <label>Hexa</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Nano Genx" onchange="applyFilters()">
-                  <label>Nano Genx</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Nexon" onchange="applyFilters()">
-                  <label>Nexon</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Nexon Ev" onchange="applyFilters()">
-                  <label>Nexon Ev</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Safari Storme" onchange="applyFilters()">
-                  <label>Safari Storme</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tiago" onchange="applyFilters()">
-                  <label>Tiago</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tiago Nrg" onchange="applyFilters()">
-                  <label>Tiago Nrg</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tigor" onchange="applyFilters()">
-                  <label>Tigor</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tigor Ev" onchange="applyFilters()">
-                  <label>Tigor Ev</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Winger" onchange="applyFilters()">
-                  <label>Winger</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Zest" onchange="applyFilters()">
-                  <label>Zest</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Toyota" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Toyota</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Camry" onchange="applyFilters()">
-                  <label>Camry</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Corolla Altis" onchange="applyFilters()">
-                  <label>Corolla Altis</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Etios Cross" onchange="applyFilters()">
-                  <label>Etios Cross</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Etios Liva" onchange="applyFilters()">
-                  <label>Etios Liva</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Fortuner" onchange="applyFilters()">
-                  <label>Fortuner</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Glanza" onchange="applyFilters()">
-                  <label>Glanza</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Innova Crysta" onchange="applyFilters()">
-                  <label>Innova Crysta</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Land Cruiser" onchange="applyFilters()">
-                  <label>Land Cruiser</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Land Cruiser Prado" onchange="applyFilters()">
-                  <label>Land Cruiser Prado</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Platinum Etios" onchange="applyFilters()">
-                  <label>Platinum Etios</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Prius" onchange="applyFilters()">
-                  <label>Prius</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Yaris" onchange="applyFilters()">
-                  <label>Yaris</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Volkswagen" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Volkswagen</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Ameo" onchange="applyFilters()">
-                  <label>Ameo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Passat" onchange="applyFilters()">
-                  <label>Passat</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Polo" onchange="applyFilters()">
-                  <label>Polo</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Tiguan" onchange="applyFilters()">
-                  <label>Tiguan</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Vento" onchange="applyFilters()">
-                  <label>Vento</label>
-                </div>
-                </div>
-              </div>
-              <div class="tree-node">
-                <div class="tree-parent" onclick="toggleTree(this)">
-                  <div class="tree-parent-left">
-                    <input type="checkbox" class="make-cb" value="Volvo" onchange="applyFilters()" onclick="event.stopPropagation()">
-                    <label>Volvo</label>
-                  </div>
-                  <span class="tree-toggle">+</span>
-                </div>
-                <div class="tree-children">
-                  
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="S60" onchange="applyFilters()">
-                  <label>S60</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="S60 Cross Country" onchange="applyFilters()">
-                  <label>S60 Cross Country</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="S90" onchange="applyFilters()">
-                  <label>S90</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="V40" onchange="applyFilters()">
-                  <label>V40</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="V40 Cross Country" onchange="applyFilters()">
-                  <label>V40 Cross Country</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="V90 Cross Country" onchange="applyFilters()">
-                  <label>V90 Cross Country</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xc40" onchange="applyFilters()">
-                  <label>Xc40</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xc60" onchange="applyFilters()">
-                  <label>Xc60</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" class="model-cb" value="Xc90" onchange="applyFilters()">
-                  <label>Xc90</label>
-                </div>
-                </div>
-              </div>
+              <div id="dynamic-tree-list" style="padding: 10px; font-size: 13px; color: #888;">Loading...</div>
             </div>
           </div>
         </div>
@@ -2508,6 +1021,12 @@
   </div>
 </footer>
 
+<div id="compare-bar" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:#fff;padding:14px 28px;border-radius:30px;box-shadow:0 8px 30px rgba(0,0,0,0.25);z-index:999;display:none;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.1);">
+  <span id="compare-bar-text" style="font-weight:700;font-size:14px;"></span>
+  <a href="compare.html" style="background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:20px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Compare Now &rarr;</a>
+  <button onclick="clearCompareBar()" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;padding:0 5px;">×</button>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="cars-data.js"></script>
@@ -2525,6 +1044,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navActions) navActions.classList.toggle('active');
     });
   }
+  updateCompareBar();
 });
 
 let allCars = [];
@@ -2545,19 +1065,16 @@ function parseQueryParams() {
   const brand = params.get('brand');
   if (brand) {
     const brandLower = brand.toLowerCase();
-    let targetMake = '';
-    if (brandLower.includes('maruti')) targetMake = 'maruti suzuki';
-    else if (brandLower.includes('hyundai')) targetMake = 'hyundai';
-    else if (brandLower.includes('honda')) targetMake = 'honda';
-    else if (brandLower.includes('toyota')) targetMake = 'toyota';
-    else if (brandLower.includes('tata')) targetMake = 'tata';
-    else if (brandLower.includes('mahindra')) targetMake = 'mahindra';
-    else if (brandLower.includes('kia')) targetMake = 'kia';
-
-    if (targetMake) {
-      const makeCb = document.querySelector(`.make-cb[value="${targetMake}"]`);
-      if (makeCb) makeCb.checked = true;
-    }
+    const makeCb = Array.from(document.querySelectorAll('.make-cb')).find(cb => cb.value.toLowerCase() === brandLower || cb.value.toLowerCase().includes(brandLower));
+    if (makeCb) makeCb.checked = true;
+  }
+  
+  // Model
+  const model = params.get('model');
+  if (model) {
+    const modelLower = model.toLowerCase();
+    const modelCb = Array.from(document.querySelectorAll('.model-cb')).find(cb => cb.value.toLowerCase() === modelLower);
+    if (modelCb) modelCb.checked = true;
   }
 
   // Budget
@@ -2574,6 +1091,27 @@ function parseQueryParams() {
       const budgetCb = document.querySelector(`.budget-cb[value="${targetBudget}"]`);
       if (budgetCb) budgetCb.checked = true;
     }
+  }
+  
+  applyFilters();
+}
+
+function nextCardImg(e, cardId, direction, imgStr) {
+  if (e) e.stopPropagation();
+  try {
+    const imgs = JSON.parse(imgStr);
+    if (!imgs || imgs.length <= 1) return;
+    
+    const imgEl = document.getElementById('card-img-' + cardId);
+    if (!imgEl) return;
+    
+    let currentIndex = parseInt(imgEl.getAttribute('data-index') || '0');
+    currentIndex = (currentIndex + direction + imgs.length) % imgs.length;
+    
+    imgEl.src = imgs[currentIndex];
+    imgEl.setAttribute('data-index', currentIndex);
+  } catch (err) {
+    console.error('Error changing card image:', err);
   }
 }
 
@@ -2602,11 +1140,25 @@ function renderCars() {
   const endIndex = startIndex + carsPerPage;
   const visibleCars = filteredCars.slice(startIndex, endIndex);
 
-  list.innerHTML = visibleCars.map(c => `
+  list.innerHTML = visibleCars.map(c => {
+    let imgs = [];
+    if (c.images && Array.isArray(c.images) && c.images.length > 0) imgs = c.images;
+    else if (c.image) imgs = [c.image];
+    
+    let imgStr = JSON.stringify(imgs).replace(/"/g, '&quot;');
+    let hasImgs = imgs.length > 0;
+    
+    return `
     <div class="car-card" onclick="window.location='car-detail.html?id=${c.id}'">
       <div class="car-img-wrap" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
-        ${c.image ? `<img src="${c.image}" />` : `<span style="font-size:80px">${c.emoji || '🚗'}</span>`}
+        <img src="${hasImgs ? imgs[0] : ''}" style="${hasImgs ? '' : 'display:none;'}" id="card-img-${c.id}" data-index="0" />
+        <span style="font-size:80px; ${hasImgs ? 'display:none;' : ''}" id="card-emoji-${c.id}">${c.emoji || '🚗'}</span>
         ${c.verified ? '<div class="car-badge-featured">Featured</div>' : ''}
+        
+        ${imgs.length > 1 ? `
+          <div class="card-nav-btn prev" onclick="event.stopPropagation(); nextCardImg(event, ${c.id}, -1, '${imgStr}')">❮</div>
+          <div class="card-nav-btn next" onclick="event.stopPropagation(); nextCardImg(event, ${c.id}, 1, '${imgStr}')">❯</div>
+        ` : ''}
       </div>
       <div class="car-body">
         <div class="car-title">${c.year} ${c.name}</div>
@@ -2620,6 +1172,9 @@ function renderCars() {
           <button class="btn-save" onclick="event.stopPropagation(); toggleSave(${c.id}, this)">
             <span>🤍</span> Save
           </button>
+          <button class="btn-save" onclick="event.stopPropagation(); toggleCompare(${c.id}, event)" style="border-color:${isCompared(c.id) ? 'var(--charcoal)' : '#d1d5db'}; background:${isCompared(c.id) ? 'rgba(26,61,143,0.1)' : '#fff'}; color:${isCompared(c.id) ? 'var(--charcoal)' : '#4b5563'};">
+            ⚖️ ${isCompared(c.id) ? 'Added' : 'Compare'}
+          </button>
           <button class="btn-view" onclick="event.stopPropagation(); window.location='car-detail.html?id=${c.id}'">
             <span>👁️</span> VIEW
           </button>
@@ -2629,7 +1184,8 @@ function renderCars() {
         ✨ ${(c.features && c.features.length > 0) ? c.features[0] : 'Premium Variant'}
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   renderPagination(filteredCars.length);
 }
@@ -3045,6 +1601,118 @@ function checkLoginState() {
   }
 }
 
+
+
+// Dynamic Automotive Tree Rendering
+document.addEventListener('DOMContentLoaded', () => {
+  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-hierarchy')
+    .then(r => r.json())
+    .then(makes => {
+      const treeContainer = document.getElementById('dynamic-tree-list');
+      if (!treeContainer) return;
+      treeContainer.innerHTML = '';
+      
+      makes.forEach(make => {
+        if (!make.models || make.models.length === 0) return; // Skip empty makes
+        
+        const node = document.createElement('div');
+        node.className = 'tree-node';
+        
+        const parentHtml = `
+          <div class="tree-parent" onclick="toggleTree(this)">
+            <div class="tree-parent-left">
+              <input type="checkbox" class="make-cb" value="${make.name}" onchange="applyFilters()" onclick="event.stopPropagation()">
+              <label>${make.name}</label>
+            </div>
+            <span class="tree-toggle">+</span>
+          </div>
+        `;
+        
+        let childrenHtml = '<div class="tree-children">';
+        make.models.forEach(model => {
+          childrenHtml += `
+            <div class="checkbox-item">
+              <input type="checkbox" class="model-cb" value="${model.name}" onchange="applyFilters()">
+              <label>${model.name}</label>
+            </div>
+          `;
+        });
+        childrenHtml += '</div>';
+        
+        node.innerHTML = parentHtml + childrenHtml;
+        treeContainer.appendChild(node);
+      });
+      
+      // Call setFiltersFromUrl to apply URL parameters to newly created DOM elements
+      if (typeof setFiltersFromUrl === 'function') {
+         setTimeout(setFiltersFromUrl, 50);
+      }
+    })
+    .catch(e => {
+      console.error("Error loading hierarchy:", e);
+      const tc = document.getElementById('dynamic-tree-list');
+      if(tc) tc.innerHTML = 'Error loading filters.';
+    });
+});
+function toggleCompare(id, e) {
+  if (e) e.stopPropagation();
+  let list = [];
+  try {
+    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+  } catch (err) {
+    list = [];
+  }
+  
+  if (list.includes(id)) {
+    list = list.filter(x => x !== id);
+    showToast('⚖️ Removed from comparison list');
+  } else {
+    if (list.length >= 3) {
+      showToast('⚠️ You can compare up to 3 vehicles at a time');
+      return;
+    }
+    list.push(id);
+    showToast('⚖️ Added to comparison list');
+  }
+  localStorage.setItem('mg_compare_list', JSON.stringify(list));
+  updateCompareBar();
+  renderCars();
+}
+
+function isCompared(id) {
+  try {
+    const list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+    return list.includes(id);
+  } catch (err) {
+    return false;
+  }
+}
+
+function updateCompareBar() {
+  const bar = document.getElementById('compare-bar');
+  const text = document.getElementById('compare-bar-text');
+  if (!bar) return;
+  
+  let list = [];
+  try {
+    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+  } catch (err) {
+    list = [];
+  }
+  
+  if (list.length > 0) {
+    bar.style.display = 'flex';
+    text.textContent = `⚖️ ${list.length} vehicle${list.length > 1 ? 's' : ''} selected for comparison`;
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function clearCompareBar() {
+  localStorage.setItem('mg_compare_list', JSON.stringify([]));
+  updateCompareBar();
+  renderCars();
+}
 </script>
 </body>
 </html>
