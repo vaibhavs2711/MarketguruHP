@@ -847,12 +847,21 @@ def get_car_hierarchy():
     try:
         makes = query_db("SELECT id, name, slug FROM car_makes WHERE is_active = 1")
         makes = sort_makes_list(makes)
-        models = query_db("SELECT id, make_id, name, slug FROM car_models WHERE is_active = 1 ORDER BY name ASC")
+        models = query_db("SELECT id, make_id, name, slug, variants FROM car_models WHERE is_active = 1 ORDER BY name ASC")
         
         hierarchy = []
         for make in makes:
             make_dict = dict(make)
-            make_dict['models'] = [m for m in models if m['make_id'] == make['id']]
+            make_models = []
+            for m in models:
+                if m['make_id'] == make['id']:
+                    model_dict = dict(m)
+                    if model_dict.get('variants'):
+                        model_dict['variants_list'] = [v.strip() for v in model_dict['variants'].split(',') if v.strip()]
+                    else:
+                        model_dict['variants_list'] = []
+                    make_models.append(model_dict)
+            make_dict['models'] = make_models
             hierarchy.append(make_dict)
             
         return jsonify(hierarchy)

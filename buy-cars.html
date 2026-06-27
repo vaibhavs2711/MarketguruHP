@@ -1259,15 +1259,17 @@ function applyFilters() {
     });
   }
 
-  // Brand / Model
+  // Brand / Model / Variant
   const checkedMakes = Array.from(document.querySelectorAll('.make-cb:checked')).map(cb => cb.value.toLowerCase());
   const checkedModels = Array.from(document.querySelectorAll('.model-cb:checked')).map(cb => cb.value.toLowerCase());
+  const checkedVariants = Array.from(document.querySelectorAll('.variant-cb:checked')).map(cb => cb.value.toLowerCase());
   
-  if (checkedMakes.length > 0 || checkedModels.length > 0) {
+  if (checkedMakes.length > 0 || checkedModels.length > 0 || checkedVariants.length > 0) {
     list = list.filter(c => {
       let cname = (c.name || '').toLowerCase();
       let matchMake = false;
       let matchModel = false;
+      let matchVariant = false;
       
       if (checkedMakes.length > 0) {
         matchMake = checkedMakes.some(make => {
@@ -1279,10 +1281,20 @@ function applyFilters() {
       if (checkedModels.length > 0) {
         matchModel = checkedModels.some(model => cname.includes(model));
       }
+
+      if (checkedVariants.length > 0) {
+        matchVariant = checkedVariants.some(variant => cname.includes(variant));
+      }
       
-      if (checkedMakes.length > 0 && checkedModels.length === 0) return matchMake;
-      if (checkedMakes.length === 0 && checkedModels.length > 0) return matchModel;
-      return matchMake || matchModel;
+      if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length === 0) return matchMake;
+      if (checkedMakes.length === 0 && checkedModels.length > 0 && checkedVariants.length === 0) return matchModel;
+      if (checkedMakes.length === 0 && checkedModels.length === 0 && checkedVariants.length > 0) return matchVariant;
+
+      if (checkedMakes.length > 0 && checkedModels.length > 0 && checkedVariants.length === 0) return matchMake || matchModel;
+      if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length > 0) return matchMake || matchVariant;
+      if (checkedMakes.length === 0 && checkedModels.length > 0 && checkedVariants.length > 0) return matchModel || matchVariant;
+      
+      return matchMake || matchModel || matchVariant;
     });
   }
 
@@ -1380,6 +1392,9 @@ function renderActiveFilters() {
   
   const checkedModels = Array.from(document.querySelectorAll('.model-cb:checked')).map(cb => cb.value);
   if (checkedModels.length > 0) items.push(`Model: ${checkedModels.join(', ')}`);
+
+  const checkedVariants = Array.from(document.querySelectorAll('.variant-cb:checked')).map(cb => cb.value);
+  if (checkedVariants.length > 0) items.push(`Variant: ${checkedVariants.join(', ')}`);
 
   const checkedFuels = Array.from(document.querySelectorAll('.fuel-cb:checked')).map(cb => cb.value);
   if (checkedFuels.length > 0) items.push(`Fuel: ${checkedFuels.join(', ')}`);
@@ -1496,11 +1511,13 @@ function syncKmInputs() {
 function toggleTree(el) {
   const node = el.closest('.tree-node');
   node.classList.toggle('active');
-  const children = node.querySelector('.tree-children');
-  if (children.classList.contains('open')) {
-    children.classList.remove('open');
-  } else {
-    children.classList.add('open');
+  const children = Array.from(node.children).find(c => c.classList.contains('tree-children'));
+  if (children) {
+    if (children.classList.contains('open')) {
+      children.classList.remove('open');
+    } else {
+      children.classList.add('open');
+    }
   }
 }
 
@@ -1680,12 +1697,34 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let childrenHtml = '<div class="tree-children">';
         make.models.forEach(model => {
-          childrenHtml += `
-            <div class="checkbox-item">
-              <input type="checkbox" class="model-cb" value="${model.name}" onchange="applyFilters()">
-              <label>${model.name}</label>
-            </div>
-          `;
+          if (model.variants_list && model.variants_list.length > 0) {
+            childrenHtml += `
+              <div class="tree-node" style="margin-left: 24px; margin-top: 4px;">
+                <div class="tree-parent" onclick="toggleTree(this)" style="padding-left: 0;">
+                  <div class="tree-parent-left">
+                    <input type="checkbox" class="model-cb" value="${model.name}" onchange="applyFilters()" onclick="event.stopPropagation()">
+                    <label style="font-size: 13px;">${model.name}</label>
+                  </div>
+                  <span class="tree-toggle" style="font-size: 14px; margin-right: 8px;">+</span>
+                </div>
+                <div class="tree-children">
+                  ${model.variants_list.map(v => `
+                    <div class="checkbox-item" style="padding-left: 24px; margin-top: 2px;">
+                      <input type="checkbox" class="variant-cb" value="${v}" onchange="applyFilters()">
+                      <label style="font-size: 12px; color: #666;">${v}</label>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          } else {
+            childrenHtml += `
+              <div class="checkbox-item" style="margin-left: 24px;">
+                <input type="checkbox" class="model-cb" value="${model.name}" onchange="applyFilters()">
+                <label style="font-size: 13px;">${model.name}</label>
+              </div>
+            `;
+          }
         });
         childrenHtml += '</div>';
         
