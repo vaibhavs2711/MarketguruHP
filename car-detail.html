@@ -715,7 +715,6 @@
       <div class="tabs-header">
         <button class="tab-btn active" onclick="switchTab(event, 'overview')">Car Overview</button>
         <button class="tab-btn" onclick="switchTab(event, 'specs')">Specs & Features</button>
-        <button class="tab-btn" onclick="switchTab(event, 'price')">Price Guide</button>
       </div>
       
       <div class="tab-content">
@@ -753,39 +752,17 @@
               </div>
             </div>
             <div class="overview-item">
-              <div class="overview-icon">🗓️</div>
-              <div class="overview-details">
-                <span class="overview-label">Manufacturing Year</span>
-                <strong class="overview-val" id="ovMfgYear">Jun 2021</strong>
-              </div>
-            </div>
-            <div class="overview-item">
               <div class="overview-icon">👤</div>
               <div class="overview-details">
                 <span class="overview-label">No. of owners</span>
                 <strong class="overview-val" id="ovOwner">First</strong>
               </div>
             </div>
-            
             <div class="overview-item">
               <div class="overview-icon">⚙️</div>
               <div class="overview-details">
                 <span class="overview-label">Transmission</span>
                 <strong class="overview-val" id="ovTrans">Automatic (TC)</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">🎨</div>
-              <div class="overview-details">
-                <span class="overview-label">Color</span>
-                <strong class="overview-val" id="ovColor">Black</strong>
-              </div>
-            </div>
-            <div class="overview-item">
-              <div class="overview-icon">📍</div>
-              <div class="overview-details">
-                <span class="overview-label">Car Available at</span>
-                <strong class="overview-val" id="ovCity">Subhanpura, Vadodara</strong>
               </div>
             </div>
             
@@ -797,17 +774,17 @@
               </div>
             </div>
             <div class="overview-item">
-              <div class="overview-icon">📝</div>
+              <div class="overview-icon">📍</div>
               <div class="overview-details">
-                <span class="overview-label">Registration Type</span>
-                <strong class="overview-val">Individual</strong>
+                <span class="overview-label">City</span>
+                <strong class="overview-val" id="ovCity">Vadodara</strong>
               </div>
             </div>
             <div class="overview-item">
-              <div class="overview-icon">🕒</div>
+              <div class="overview-icon">🚙</div>
               <div class="overview-details">
-                <span class="overview-label">Last Updated</span>
-                <strong class="overview-val">20 day(s) ago</strong>
+                <span class="overview-label">Variant</span>
+                <strong class="overview-val" id="ovVariant">LXi</strong>
               </div>
             </div>
           </div>
@@ -815,42 +792,9 @@
         
         <!-- Panel 2: Specs & Features -->
         <div id="tab-specs" class="tab-panel">
-          <h3 class="panel-title">Inspection Report</h3>
-          <div class="inspection-grid" style="margin-bottom: 30px;">
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Engine & Transmission</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Brakes & Suspension</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">AC & Electricals</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Tyres & Wheels</div></div>
-            <div class="inspect-item warn"><div class="inspect-dot"></div><div class="inspect-text">Minor Scratch (Rear)</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Interior Condition</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">RC & Documents</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Insurance Valid</div></div>
-            <div class="inspect-item pass"><div class="inspect-dot"></div><div class="inspect-text">Odometer Verified</div></div>
-          </div>
-          
           <h3 class="panel-title">Features & Specifications</h3>
           <div class="features-grid" id="featuresTabGrid">
             <!-- Loaded dynamically in JS -->
-          </div>
-        </div>
-        
-        <!-- Panel 3: Price Guide -->
-        <div id="tab-price" class="tab-panel">
-          <h3 class="panel-title">Price Guide & Depreciation Insights</h3>
-          <div style="background:var(--silver); padding:24px; border-radius:12px; border:1.5px solid var(--border); line-height:1.6;">
-            <p style="margin-bottom:12px; font-weight:600; color:var(--charcoal);">HP Bhai's Pricing Evaluation:</p>
-            <p style="font-size:14px; color:var(--muted); margin-bottom:16px;">This vehicle is currently priced at <strong style="color:var(--red-dark); font-size:16px;" id="pgPrice">₹5.20 Lakh</strong>. Given the current used auto market indexing in Vadodara, this represents an excellent deal with verified documentation.</p>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
-              <div style="background:#fff; padding:16px; border-radius:8px; border:1.5px solid var(--border);">
-                <div style="font-size:11px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:4px;">Average Dealer Listing</div>
-                <strong style="font-size:18px; color:var(--charcoal);" id="pgAvg">₹6.12 Lakh</strong>
-              </div>
-              <div style="background:#fff; padding:16px; border-radius:8px; border:1.5px solid var(--border);">
-                <div style="font-size:11px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:4px;">Estimated Savings</div>
-                <strong style="font-size:18px; color:#10B981;" id="pgSavings">₹92,000</strong>
-              </div>
-            </div>
-            <p style="font-size:13px; color:var(--muted);">✓ No middlemen commission | ✓ Direct-to-Buyer rates | ✓ HPI certified history</p>
           </div>
         </div>
       </div>
@@ -1064,11 +1008,7 @@ function renderCarDetails() {
     document.getElementById('insNewPrice').textContent = `Rs. ${newCarPrice.toFixed(1)} Lakh`;
   }
 
-  // Price Guide Tab Populating
-  document.getElementById('pgPrice').textContent = `₹${currentCar.price} Lakh`;
-  document.getElementById('pgAvg').textContent = `₹${avgMarketPrice.toFixed(2)} Lakh`;
-  const savingsRupees = Math.round((avgMarketPrice - carPrice) * 100000);
-  document.getElementById('pgSavings').textContent = `₹${savingsRupees.toLocaleString('en-IN')}`;
+  // Removed Price Guide processing
 
   // Title & Variant
   document.querySelector('.car-main-title').textContent = currentCar.name;
@@ -1152,28 +1092,26 @@ function renderCarDetails() {
   }
 
   // Overview Tab Fields
-  document.getElementById('ovPrice').textContent = `Rs. ${currentCar.price} Lakh`;
+  document.getElementById('ovPrice').textContent = `₹${currentCar.price} Lakh`;
   document.getElementById('ovKm').textContent = `${currentCar.km || '32,000'} km`;
   document.getElementById('ovFuel').textContent = currentCar.fuel;
   document.getElementById('ovRegYear').textContent = currentCar.year;
-  document.getElementById('ovMfgYear').textContent = `Jun ${currentCar.year}`;
   
-  const ownerVal = currentCar.owner ? (currentCar.owner.toLowerCase().includes('1') ? 'First' : currentCar.owner.toLowerCase().includes('2') ? 'Second' : 'Third') : 'First';
+  const ownerVal = currentCar.owner || 'First';
   document.getElementById('ovOwner').textContent = ownerVal;
   document.getElementById('ovTrans').textContent = currentCar.trans;
   
-  const colorNames = {
-    '#e8eef5': 'Arctic White',
-    '#eef0f5': 'Sleek Silver',
-    '#f0eef5': 'Graphite Grey',
-    '#eef5f0': 'Emerald Green',
-    '#f5eef0': 'Crimson Red',
-    '#eff5ee': 'Champagne Gold',
-    '#f5f0ee': 'Pearl White',
-    '#eef2f5': 'Shadow Black'
-  };
-  document.getElementById('ovColor').textContent = colorNames[currentCar.color] || 'Premium Black';
-  document.getElementById('ovCity').textContent = `Subhanpura, ${currentCar.city || 'Vadodara'}`;
+  document.getElementById('ovInsurance').textContent = currentCar.insurance || 'Comprehensive';
+  document.getElementById('ovCity').textContent = currentCar.city || 'Vadodara';
+
+  let variant = 'Standard';
+  if (currentCar.name) {
+     const parts = currentCar.name.split(' ');
+     if (parts.length > 2) {
+         variant = parts.slice(2).join(' ');
+     }
+  }
+  document.getElementById('ovVariant').textContent = variant;
 
   // Features
   const features = currentCar.features || ['Power Windows', 'Airbags', 'ABS', 'Keyless Entry'];
