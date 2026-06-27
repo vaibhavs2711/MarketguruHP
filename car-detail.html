@@ -649,6 +649,7 @@ function initPage() {
   renderCarDetails();
   setupGallery();
   checkContactVerification();
+  checkLoginState();
   
   // Navbar toggle
   const menuToggle = document.getElementById('menu-toggle');
@@ -848,6 +849,38 @@ function toggleWishlistDetail() {
   if (!currentCar) return;
   const added = mgDB.toggleWishlist(currentCar.id);
   showToast(added ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
+}
+
+function checkLoginState() {
+  const currentUser = localStorage.getItem('mg_current_user');
+  const loginLink = document.getElementById('nav-login-link');
+  
+  if (currentUser && loginLink) {
+    let initials = '👤';
+    try {
+      const name = currentUser.trim();
+      const parts = name.split(' ');
+      if (parts.length > 1) {
+        initials = (parts[0][0] + parts[1][0]).toUpperCase();
+      } else {
+        initials = name.substring(0, 2).toUpperCase();
+      }
+    } catch(e) {}
+    
+    loginLink.href = 'customer-dashboard.html';
+    loginLink.innerHTML = `
+      <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 204, 0, 0.15); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--navy); text-transform: uppercase; transition: all 0.2s; margin-left: 12px;">
+        ${initials}
+      </div>
+    `;
+    
+    document.querySelectorAll('a[href="login.html"]').forEach(link => {
+      if (link.textContent.includes('Login')) {
+        link.href = 'customer-dashboard.html';
+        link.textContent = 'Dashboard';
+      }
+    });
+  }
 }
 
 window.onload = initPage;
