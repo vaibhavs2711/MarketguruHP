@@ -1711,27 +1711,14 @@
       <div style="border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: #fff; margin-bottom: 16px; text-align: left;">
         <div style="font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px;">Choose a vehicle feature (optional)</div>
         <div id="feature-tags-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;"></div>
-        <select id="feature-dropdown" onchange="addFeatureTag(this)" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; outline: none; background: #f8fafc; cursor: pointer; color: #666;">
-          <option value="" disabled selected>+ Select a feature...</option>
-          <option value="New Tyres">New Tyres</option>
-          <option value="360 Degree Camera">360 Degree Camera</option>
-          <option value="Ventilated Seat">Ventilated Seat</option>
-          <option value="Rear ac vents">Rear ac vents</option>
-          <option value="Spare wheel non used">Spare wheel non used</option>
-          <option value="Non accident chassis">Non accident chassis</option>
-          <option value="Under company warranty">Under company warranty</option>
-          <option value="Cruise Control">Cruise Control</option>
-          <option value="Adas feature">Adas feature</option>
-          <option value="Rear parking sensor">Rear parking sensor</option>
-          <option value="Company Tyre">Company Tyre</option>
-          <option value="Double keys">Double keys</option>
-          <option value="Company paint">Company paint</option>
-          <option value="Guaranteed kilometer">Guaranteed kilometer</option>
-          <option value="Alloy wheels">Alloy wheels</option>
-          <option value="Sequential cng">Sequential cng</option>
-          <option value="Push start">Push start</option>
-          <option value="Rear parking camera">Rear parking camera</option>
-        </select>
+        <div style="position: relative;">
+          <div id="feature-custom-select" onclick="toggleFeatureDropdown(event)" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; background: #f8fafc; cursor: pointer; color: #666; display: flex; justify-content: space-between; align-items: center;">
+            <span>+ Select a feature...</span>
+            <span style="font-size: 10px;">▼</span>
+          </div>
+          <div id="feature-dropdown-list" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 4px; z-index: 100; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 4px;">
+          </div>
+        </div>
       </div>
 
       <input type="tel" id="inp-mob" class="input-field" placeholder="Your Mobile Number" required>
@@ -1752,19 +1739,63 @@
     }
 
     window.selectedFeatures = [];
+    window.availableFeatures = [
+      "New Tyres", "360 Degree Camera", "Ventilated Seat", "Rear ac vents", 
+      "Spare wheel non used", "Non accident chassis", "Under company warranty", 
+      "Cruise Control", "Adas feature", "Rear parking sensor", "Company Tyre", 
+      "Double keys", "Company paint", "Guaranteed kilometer", "Alloy wheels", 
+      "Sequential cng", "Push start", "Rear parking camera"
+    ];
 
-    function addFeatureTag(selectEl) {
-      const val = selectEl.value;
+    function toggleFeatureDropdown(e) {
+      if (e) e.stopPropagation();
+      const list = document.getElementById('feature-dropdown-list');
+      if (!list) return;
+      if (list.style.display === 'none') {
+        list.style.display = 'block';
+        renderFeatureDropdownList();
+      } else {
+        list.style.display = 'none';
+      }
+    }
+
+    function renderFeatureDropdownList() {
+      const list = document.getElementById('feature-dropdown-list');
+      if (!list) return;
+      list.innerHTML = window.availableFeatures.map(f => {
+        const isSelected = window.selectedFeatures.includes(f);
+        return `<div onclick="addFeatureTagCustom('${f}', event)" style="padding: 10px 12px; font-size: 14px; cursor: pointer; border-bottom: 1px solid #f1f5f9; color: ${isSelected ? '#94a3b8' : '#334155'}; background: ${isSelected ? '#f8fafc' : '#fff'}; display: flex; justify-content: space-between; align-items: center;" onmouseover="if(!${isSelected}) this.style.background='#f1f5f9'" onmouseout="if(!${isSelected}) this.style.background='#fff'">
+          ${f} ${isSelected ? '<span style="color:#10b981;font-weight:bold;">✓</span>' : ''}
+        </div>`;
+      }).join('');
+    }
+
+    function addFeatureTagCustom(val, e) {
+      if (e) e.stopPropagation();
       if (val && !window.selectedFeatures.includes(val)) {
         window.selectedFeatures.push(val);
         renderFeatureTags();
+        renderFeatureDropdownList();
       }
-      selectEl.value = "";
     }
+
+    document.addEventListener('click', function(e) {
+      const list = document.getElementById('feature-dropdown-list');
+      const selectBox = document.getElementById('feature-custom-select');
+      if (list && list.style.display === 'block') {
+        if (!list.contains(e.target) && (!selectBox || !selectBox.contains(e.target))) {
+          list.style.display = 'none';
+        }
+      }
+    });
 
     function removeFeatureTag(val) {
       window.selectedFeatures = window.selectedFeatures.filter(f => f !== val);
       renderFeatureTags();
+      const list = document.getElementById('feature-dropdown-list');
+      if (list && list.style.display === 'block') {
+        renderFeatureDropdownList();
+      }
     }
 
     function renderFeatureTags() {
