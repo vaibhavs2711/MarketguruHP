@@ -9,19 +9,21 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap"
     rel="stylesheet">
   <style>
-    :root {
-      --red: #FFCC00;
-      --red-dark: #E6B800;
-      --charcoal: #1A3D8F;
-      --navy: #FFFFFF;
-      --steel: #F8FAFC;
-      --silver: #F0F4F8;
+            :root {
+      --primary: #F97316;
+      --primary-hover: #EA580C;
+      --secondary: #FF7A00;
+      --navy: #0F2B6E;
+      --charcoal: #1E293B;
+      --text: #1E293B;
+      --bg: #F8FAFC;
       --white: #FFFFFF;
-      --text: #1A1A2E;
-      --muted: #6B7A99;
-      --border: #DDE3EE;
+      --border: #E2E8F0;
+      --muted: #64748B;
       --success: #10B981;
-      --blue-light: #E8F0FE;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --blue-light: #F1F5F9;
     }
 
     * {
@@ -33,7 +35,7 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: var(--silver);
+      background: var(--bg);
       min-height: 100vh;
     }
 
@@ -90,7 +92,7 @@ padding: 0;
 
     /* BUTTONS */
     .btn-back-site {
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       padding: 10px 22px;
       border-radius: 8px;
@@ -99,7 +101,7 @@ padding: 0;
       cursor: pointer;
       border: none;
       transition: all 0.2s;
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -107,8 +109,8 @@ padding: 0;
     }
 
     .btn-back-site:hover {
-      background: var(--red-dark);
-      box-shadow: 0 0 25px rgba(255, 204, 0, 0.85);
+      background: var(--primary-hover);
+      box-shadow: 0 0 25px rgba(249, 115, 22, 0.85);
       transform: translateY(-2px);
     }
 
@@ -116,21 +118,21 @@ padding: 0;
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      background: rgba(255, 204, 0, 0.15);
-      border: 2px solid var(--red);
+      background: rgba(249, 115, 22, 0.15);
+      border: 2px solid var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       font-weight: 700;
-      color: var(--red);
+      color: var(--primary);
       cursor: pointer;
       transition: all 0.2s;
       text-transform: uppercase;
     }
 
     .profile-btn:hover {
-      background: rgba(255, 204, 0, 0.3);
+      background: rgba(249, 115, 22, 0.3);
       transform: scale(1.1);
     }
 
@@ -213,8 +215,8 @@ padding: 0;
       width: 60px;
       height: 110px;
       border-radius: 12px;
-      background: rgba(255, 204, 0, 0.08);
-      border: 1.5px solid rgba(255, 204, 0, 0.2);
+      background: rgba(249, 115, 22, 0.08);
+      border: 1.5px solid rgba(249, 115, 22, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -251,7 +253,7 @@ padding: 0;
 
     .car-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 204, 0, 0.3);
+      border-color: rgba(249, 115, 22, 0.3);
     }
 
     .car-img {
@@ -287,7 +289,7 @@ padding: 0;
     .car-price {
       font-size: 18px;
       font-weight: 800;
-      color: var(--red);
+      color: var(--primary);
       font-family: 'Barlow Condensed', sans-serif;
     }
 
@@ -334,7 +336,7 @@ padding: 0;
       letter-spacing: 0.5px;
       padding: 16px;
       border-bottom: 1px solid var(--border);
-      background: var(--steel);
+      background: var(--secondary);
     }
 
     td {
@@ -462,13 +464,13 @@ padding: 0;
       border-radius: 8px;
       font-size: 14px;
       font-family: 'Inter', sans-serif;
-      background: var(--steel);
+      background: var(--secondary);
       color: var(--text);
     }
 
     .modal-field input:focus {
       outline: none;
-      border-color: var(--red);
+      border-color: var(--primary);
     }
 
     .modal-actions {
@@ -480,7 +482,7 @@ padding: 0;
     .btn-modal-primary {
       flex: 1;
       padding: 12px;
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       border: none;
       border-radius: 8px;
@@ -492,7 +494,7 @@ padding: 0;
     }
 
     .btn-modal-primary:hover {
-      background: var(--red-dark);
+      background: var(--primary-hover);
     }
 
     .btn-modal-secondary {
@@ -547,7 +549,7 @@ padding: 0;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       transform: translateY(100px);
       transition: transform 0.3s ease;
-      border-left: 4px solid var(--red);
+      border-left: 4px solid var(--primary);
     }
 
     .toast.show {
@@ -637,12 +639,12 @@ padding: 0;
       style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
       <div>
         <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--text);">Welcome
-          Back, <span id="welcomeName" style="color: var(--red-dark);">Raj Shah</span>!</h2>
+          Back, <span id="welcomeName" style="color: var(--primary-hover);">Raj Shah</span>!</h2>
         <p style="color: var(--muted); font-size: 14px; margin-top: 4px;">Manage your inventory, active listings, and
           saved cars from one place.</p>
       </div>
       <div id="userBadge"
-        style="padding: 6px 16px; border-radius: 30px; background: rgba(255, 204, 0, 0.1); border: 1.5px solid var(--red); color: var(--red); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+        style="padding: 6px 16px; border-radius: 30px; background: rgba(249, 115, 22, 0.1); border: 1.5px solid var(--primary); color: var(--primary); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
         Member Client</div>
     </div>
 
@@ -674,7 +676,7 @@ padding: 0;
       <div class="card-header">
         <div class="card-title">🚗 My Cars Listed for Sale</div>
         <button onclick="checkSellPermissions()"
-          style="padding:10px 18px; background:var(--red); border:none; border-radius:8px; font-size:13px; font-weight:800; cursor:pointer; color:#1A1A2E; transition:all 0.2s; box-shadow:0 4px 12px rgba(255,204,0,0.25);">+
+          style="padding:10px 18px; background:var(--primary); border:none; border-radius:8px; font-size:13px; font-weight:800; cursor:pointer; color:#1A1A2E; transition:all 0.2s; box-shadow:0 4px 12px rgba(255,204,0,0.25);">+
           Sell Another Car</button>
       </div>
       <div class="table-wrapper">
@@ -729,7 +731,7 @@ padding: 0;
       <div class="modal-field">
         <label>Mobile Number (Read-Only)</label>
         <input type="text" id="editProfilePhone" disabled
-          style="background:var(--steel); color:var(--muted); border-color:var(--border); cursor:not-allowed;">
+          style="background:var(--secondary); color:var(--muted); border-color:var(--border); cursor:not-allowed;">
       </div>
 
       <div class="modal-actions">
@@ -906,7 +908,7 @@ padding: 0;
       const tbody = document.getElementById('listingsTable');
 
       if (userCars.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding:32px;">You haven't listed any cars for sale yet. <a href="sell.html" style="color:var(--red);font-weight:700;">List your first car →</a></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding:32px;">You haven't listed any cars for sale yet. <a href="sell.html" style="color:var(--primary);font-weight:700;">List your first car →</a></td></tr>`;
         return;
       }
 
@@ -914,7 +916,7 @@ padding: 0;
       <tr>
         <td><strong>${c.name || c.title || 'Unknown Car'}</strong></td>
         <td>${c.year}</td>
-        <td style="font-weight:700;color:var(--red)">₹${c.price}L</td>
+        <td style="font-weight:700;color:var(--primary)">₹${c.price}L</td>
         <td>${c.km || '—'} km</td>
         <td>${c.fuel || '—'}</td>
         <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>

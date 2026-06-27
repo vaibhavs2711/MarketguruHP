@@ -10,20 +10,21 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap"
     rel="stylesheet">
   <style>
-    :root {
-      --red: #FFCC00;
-      --red-dark: #E6B800;
-      --charcoal: #1A3D8F;
-      --navy: #0D2B6B;
-      --steel: #2A5CC7;
-      --silver: #F0F4F8;
+            :root {
+      --primary: #F97316;
+      --primary-hover: #EA580C;
+      --secondary: #FF7A00;
+      --navy: #0F2B6E;
+      --charcoal: #1E293B;
+      --text: #1E293B;
+      --bg: #F8FAFC;
       --white: #FFFFFF;
-      --text: #1A1A2E;
-      --muted: #6B7A99;
-      --border: #DDE3EE;
-      --success: #A3D1B1;
+      --border: #E2E8F0;
+      --muted: #64748B;
+      --success: #10B981;
       --warning: #F59E0B;
-      --blue-light: #E8F0FE;
+      --danger: #EF4444;
+      --blue-light: #F1F5F9;
     }
 
     * {
@@ -43,34 +44,88 @@
       color: inherit;
     }
 
-    
-    
+    /* NAVBAR */
+    .navbar {
+      background: #f8fbff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+}
 
-    
+    .nav-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 20px;
+      height: auto; padding: 0 20px;
+    }
 
-    
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 40px;
+      height: 110px;
+      
+    }
 
-    
+    .logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
 
-    
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+    }
 
-    
+    .nav-links a {
+      color: var(--charcoal);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
 
-    
+    .nav-links a:hover {
+      color: var(--charcoal);
+      background: rgba(15, 43, 110, 0.08);
+    }
 
-    
+    .nav-links a.active {
+      color: var(--charcoal);
+      background: rgba(249, 115, 22, 0.2);
+    }
 
-    
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
-    
+    .btn-outline-white {
+      border: 2px solid var(--charcoal);
+      color: var(--charcoal);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+    }
 
     /* PROFILE ICON (shown when logged in) */
     .profile-btn {
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      background: rgba(255, 204, 0, 0.15);
-      border: 2px solid var(--red);
+      background: rgba(249, 115, 22, 0.15);
+      border: 2px solid var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -81,12 +136,12 @@
     }
 
     .profile-btn:hover {
-      background: rgba(255, 204, 0, 0.3);
+      background: rgba(249, 115, 22, 0.3);
       transform: scale(1.1);
     }
 
     .btn-red {
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       padding: 10px 24px;
       border-radius: 8px;
@@ -95,14 +150,14 @@
       cursor: pointer;
       border: none;
       transition: all 0.2s;
-      box-shadow: 0 4px 10px rgba(255, 204, 0, 0.25);
+      box-shadow: 0 4px 10px rgba(249, 115, 22, 0.25);
     }
 
     .btn-red:hover {
-      background: var(--red-dark);
+      background: var(--primary-hover);
       transform: translateY(-2px);
       color: #1A1A2E;
-      box-shadow: 0 6px 15px rgba(255, 204, 0, 0.45);
+      box-shadow: 0 6px 15px rgba(249, 115, 22, 0.45);
     }
 
     /* HERO SECTION */
@@ -127,7 +182,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(26, 61, 143, 0.05) 0%, transparent 50%);
+      background: radial-gradient(circle at 80% 20%, rgba(15, 43, 110, 0.05) 0%, transparent 50%);
     }
 
     .hero-content {
@@ -148,8 +203,8 @@
 
     .hero-badge {
       display: inline-block;
-      background: var(--red);
-      border: 2.5px solid var(--red);
+      background: var(--primary);
+      border: 2.5px solid var(--primary);
       color: #1A1A2E;
       font-size: 13px;
       font-weight: 950;
@@ -158,7 +213,7 @@
       padding: 6px 16px;
       border-radius: 20px;
       margin-bottom: 12px;
-      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
     }
 
     .hero h1 {
@@ -172,7 +227,7 @@
     }
 
     .hero h1 em {
-      color: var(--red);
+      color: var(--primary);
       font-style: normal;
     }
 
@@ -204,7 +259,7 @@
     .stat-num {
       font-size: clamp(26px, 3.2vw, 38px);
       font-weight: 950;
-      color: var(--red);
+      color: var(--primary);
       font-family: 'Barlow Condensed', sans-serif;
     }
 
@@ -237,7 +292,7 @@
 
     .influencer-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(26, 61, 143, 0.12);
+      box-shadow: 0 20px 50px rgba(15, 43, 110, 0.12);
     }
 
     .influencer-img-wrapper {
@@ -266,7 +321,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(26, 26, 46, 0.95);
+      background: rgba(30, 41, 59, 0.95);
       z-index: 10;
       transition: opacity 0.4s ease, visibility 0.4s ease;
       color: var(--white);
@@ -281,8 +336,8 @@
     .loader-spinner {
       width: 40px;
       height: 40px;
-      border: 3.5px solid rgba(255, 204, 0, 0.15);
-      border-left-color: var(--red);
+      border: 3.5px solid rgba(249, 115, 22, 0.15);
+      border-left-color: var(--primary);
       border-radius: 50%;
       animation: loader-spin 0.8s linear infinite;
       margin-bottom: 12px;
@@ -365,7 +420,7 @@
       display: block;
       font-size: 11px;
       font-weight: 800;
-      color: var(--steel);
+      color: var(--secondary);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 7px;
@@ -381,7 +436,7 @@
       font-weight: 600;
       color: var(--text);
       font-family: 'Inter', sans-serif;
-      background: var(--silver);
+      background: var(--bg);
       cursor: pointer;
       transition: all 0.2s;
       appearance: auto;
@@ -390,13 +445,13 @@
     .search-field select:focus,
     .search-field input:focus {
       outline: none;
-      border-color: var(--red);
+      border-color: var(--primary);
       background: var(--white);
-      box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
     }
 
     .btn-search {
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       border: none;
       padding: 13px 26px;
@@ -407,16 +462,16 @@
       white-space: nowrap;
       transition: all 0.25s;
       font-family: 'Inter', sans-serif;
-      box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .btn-search:hover {
-      background: var(--red-dark);
+      background: var(--primary-hover);
       transform: translateY(-3px);
       color: #1A1A2E;
-      box-shadow: 0 10px 28px rgba(255, 204, 0, 0.55);
+      box-shadow: 0 10px 28px rgba(249, 115, 22, 0.55);
     }
 
     /* SECTION STYLES */
@@ -457,7 +512,7 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: var(--red);
+      background: var(--primary);
       border-radius: 2px;
     }
 
@@ -465,7 +520,7 @@
       font-size: 13px;
       font-weight: 700;
       color: var(--charcoal);
-      background: var(--silver);
+      background: var(--bg);
       border: 1.5px solid var(--border);
       padding: 8px 18px;
       border-radius: 20px;
@@ -473,9 +528,9 @@
     }
 
     .view-all:hover {
-      background: var(--red);
+      background: var(--primary);
       color: #1a1a2e;
-      border-color: var(--red);
+      border-color: var(--primary);
     }
 
     /* CAR CARDS — Premium, equal-height flex columns */
@@ -492,7 +547,7 @@
       border-radius: 20px;
       border: 1.5px solid var(--border);
       overflow: hidden;
-      box-shadow: 0 2px 12px rgba(26, 26, 46, 0.06);
+      box-shadow: 0 2px 12px rgba(30, 41, 59, 0.06);
       display: flex;
       flex-direction: column;
       opacity: 0;
@@ -507,8 +562,8 @@
 
     .car-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(26, 26, 46, 0.14);
-      border-color: rgba(255, 204, 0, 0.4);
+      box-shadow: 0 24px 48px rgba(30, 41, 59, 0.14);
+      border-color: rgba(249, 115, 22, 0.4);
     }
 
     .car-img {
@@ -537,7 +592,7 @@
       bottom: 10px;
       left: 10px;
       z-index: 2;
-      background: rgba(26, 26, 46, 0.85);
+      background: rgba(30, 41, 59, 0.85);
       backdrop-filter: blur(4px);
       color: #fff;
       font-size: 11px;
@@ -602,8 +657,8 @@
     .meta-tag {
       font-size: 11px;
       font-weight: 700;
-      color: var(--steel);
-      background: var(--silver);
+      color: var(--secondary);
+      background: var(--bg);
       padding: 4px 10px;
       border-radius: 20px;
       border: 1px solid var(--border);
@@ -631,9 +686,9 @@
     }
 
     .btn-wishlist:hover {
-      border-color: var(--red);
+      border-color: var(--primary);
       color: var(--charcoal);
-      background: rgba(255, 204, 0, 0.08);
+      background: rgba(249, 115, 22, 0.08);
     }
 
     .btn-contact {
@@ -652,14 +707,14 @@
     }
 
     .btn-contact:hover {
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       transform: translateY(-1px);
     }
 
     /* BRANDS */
     .brands-section {
-      background: var(--silver);
+      background: var(--bg);
     }
 
     .brands-grid {
@@ -679,9 +734,9 @@
     }
 
     .brand-card:hover {
-      border-color: var(--red);
+      border-color: var(--primary);
       transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(255, 204, 0, 0.15);
+      box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15);
     }
 
     .brand-icon {
@@ -704,7 +759,7 @@
     }
 
     .promo-card {
-      background: linear-gradient(135deg, var(--charcoal), var(--steel));
+      background: linear-gradient(135deg, var(--charcoal), var(--secondary));
       border-radius: 16px;
       padding: 40px;
       color: var(--white);
@@ -716,7 +771,7 @@
     }
 
     .promo-card.premium {
-      border-color: var(--red);
+      border-color: var(--primary);
       position: relative;
       overflow: hidden;
     }
@@ -726,7 +781,7 @@
       position: absolute;
       top: 20px;
       right: -30px;
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       font-size: 10px;
       font-weight: 800;
@@ -745,7 +800,7 @@
     .promo-price {
       font-size: 28px;
       font-weight: 800;
-      color: var(--red);
+      color: var(--primary);
       margin-bottom: 20px;
       font-family: 'Barlow Condensed', sans-serif;
     }
@@ -767,13 +822,13 @@
 
     .promo-features li::before {
       content: '✓';
-      color: var(--red);
+      color: var(--primary);
       font-weight: 700;
     }
 
     .btn-promo {
       width: 100%;
-      background: var(--red);
+      background: var(--primary);
       color: #1A1A2E;
       border: none;
       padding: 14px;
@@ -787,7 +842,7 @@
     }
 
     .btn-promo:hover {
-      background: var(--red-dark);
+      background: var(--primary-hover);
       transform: translateY(-2px);
     }
 
@@ -815,7 +870,7 @@
 
     /* ── TRUST 3D CAROUSEL ────────────────────────────────────────────────── */
     .trust-section {
-      background: var(--silver);
+      background: var(--bg);
       padding: 20px 20px 90px;
     }
 
@@ -838,7 +893,7 @@
     }
 
     .trust-section-label h2 span {
-      color: var(--red);
+      color: var(--primary);
     }
 
     .trust-section-label p {
@@ -930,8 +985,8 @@
       background: var(--white);
       border-color: var(--charcoal);
       box-shadow:
-        0 0 0 1px rgba(26, 61, 143, 0.1),
-        0 0 40px rgba(26, 61, 143, 0.08),
+        0 0 0 1px rgba(15, 43, 110, 0.1),
+        0 0 40px rgba(15, 43, 110, 0.08),
         0 16px 48px rgba(0, 0, 0, 0.1);
       filter: brightness(1);
     }
@@ -986,7 +1041,7 @@
       height: 72px;
       background: var(--blue-light);
       border-radius: 50%;
-      border: 2px solid rgba(26, 61, 143, 0.15);
+      border: 2px solid rgba(15, 43, 110, 0.15);
     }
 
     .trust-title {
@@ -1014,7 +1069,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(26, 61, 143, 0.2);
+      background: rgba(15, 43, 110, 0.2);
       cursor: pointer;
       transition: all 0.3s;
     }
@@ -1022,54 +1077,65 @@
     .tc-dot.active {
       width: 24px;
       border-radius: 4px;
-      background: var(--red);
+      background: var(--primary);
     }
 
-    
+    /* FOOTER */
+  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 0; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 110px; }
+  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
+  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
   
+  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+  .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
+  .footer-col a:hover { color: var(--primary); }
   
-  
-  .footer-col-brand 
-  .footer-col-brand 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  .quick-links-split { display: flex; gap: 30px; }
+  .ql-divider { width: 1px; background: var(--primary); opacity: 0.5; }
+  .ql-col { display: flex; flex-direction: column; }
 
+  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--primary); flex-shrink: 0; }
+  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
   
+  .footer-bottom-bar { 
+    background: #333; 
+    border-radius: 40px; 
+    padding: 12px 24px; 
+    display: flex; justify-content: space-between; align-items: center;
+    color: #bbb; font-size: 13px; font-weight: 500;
+  }
+  .fbb-left { display: flex; align-items: center; gap: 16px; }
+  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
+  .fbb-socials { display: flex; gap: 12px; }
+  .fbb-socials a {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #fff; color: #111;
+    transition: all 0.3s ease;
+  }
+  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+  .fbb-socials svg { width: 16px !important; height: 16px !important; fill: currentColor; }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  .fbb-links { display: flex; gap: 8px; align-items: center; }
+  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
+  .fbb-links a:hover { color: var(--white); }
   
   @media(max-width: 800px) {
-    
-    
+    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
+    .fbb-left { flex-direction: column; gap: 10px; }
   }
 
   /* TOAST */
-  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.15); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--red); }
+  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.15); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--primary); }
   .toast.show { transform: translateY(0); }
 
   /* STATIC SOCIAL BANNER */
   .social-banner-container {
     display: flex;
-    background: var(--silver);
+    background: var(--bg);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     width: 100%;
@@ -1088,7 +1154,7 @@
     content: '';
     position: absolute;
     top: 0; left: -50px; right: 0; bottom: 0;
-    background: linear-gradient(90deg, var(--blue-light) 0%, var(--silver) 100%);
+    background: linear-gradient(90deg, var(--blue-light) 0%, var(--bg) 100%);
     transform: skewX(-20deg);
     transform-origin: bottom right;
     border-right: 2px solid var(--charcoal);
@@ -1163,7 +1229,7 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: -50px; bottom: 0;
-    background: linear-gradient(90deg, var(--silver) 0%, var(--blue-light) 100%);
+    background: linear-gradient(90deg, var(--bg) 0%, var(--blue-light) 100%);
     transform: skewX(-20deg);
     transform-origin: bottom left;
     border-left: 2px solid var(--charcoal);
@@ -1174,8 +1240,24 @@
   .sb-right-text h4 { font-size: 13px; font-weight: 700; color: var(--text); margin: 0; line-height: 1.2; white-space: nowrap; }
   .sb-right-text h4.yellow { color: var(--charcoal); font-weight: 900; font-size: 16px; }
   
-  
-  
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 101;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--charcoal);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
 
     .hero-stats {
       display: flex;
@@ -1222,15 +1304,52 @@
   }
 
   @media(max-width: 768px) {
-    
-    
-    
-    
-    
+    .nav-main {
+      justify-content: space-between;
+      height: auto; padding: 0 20px;
+      position: relative;
+    }
+    .logo {
+      margin-right: 0;
+      height: 80px;
+    }
+    .logo img {
+      transform: scale(1.1) translateX(0);
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 20px;
+      gap: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border-top: 1px solid var(--border);
+      z-index: 99;
+    }
     .nav-links.active {
       display: flex;
     }
-    
+    .nav-actions {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: 250px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 10px 20px 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      z-index: 98;
+      border-top: 1px solid var(--border);
+      justify-content: center;
+    }
     .nav-actions.active {
       display: flex;
     }
@@ -1265,9 +1384,17 @@
       grid-template-columns: 1fr;
       gap: 20px;
     }
-    
-    
-    
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .quick-links-split {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ql-divider {
+      display: none;
+    }
 
     /* Hide background cards in 3D Carousel on mobile to prevent overflow */
     .trust-item[data-pos="-1"], 
@@ -1292,547 +1419,222 @@
     }
   }
 
-    /* NAVBAR */
-    .navbar {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      position: sticky;
-      top: 0;
-      z-index: 10000;
-      border-bottom: 1.5px solid rgba(26, 61, 143, 0.08);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-      transition: all 0.3s ease;
-    }
-
-    .nav-main {
-      max-width: 1280px;
-      margin: 0 auto;
+    /* OVERRIDE CAR CARD CSS */
+    .car-card {
+      background: var(--white);
+      border-radius: 12px !important;
+      border: 1px solid var(--border) !important;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
       display: flex;
-      align-items: center;
-      padding: 0 20px;
-      height: 104px;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      margin-right: 40px;
-      height: 78px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.02);
-    }
-
-    .logo img {
-      height: 100%;
-      width: auto;
-      display: block;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 6px;
-      flex: 1;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--charcoal);
-      font-size: 15px;
-      font-weight: 700;
-      padding: 10px 18px;
-      border-radius: 30px;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-links a:hover {
-      color: var(--navy);
-      background: rgba(26, 61, 143, 0.06);
-    }
-
-    .nav-links a.active {
-      color: #FFFFFF !important;
-      background: var(--charcoal);
-      box-shadow: 0 4px 12px rgba(26, 61, 143, 0.2);
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn-outline-white {
-      border: 2px solid var(--charcoal);
-      color: var(--charcoal);
-      padding: 10px 24px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: transparent;
-    }
-
-    .btn-outline-white:hover {
-      background: var(--charcoal);
-      color: #FFFFFF;
-      box-shadow: 0 4px 12px rgba(26, 61, 143, 0.2);
-    }
-
-    .menu-toggle {
-      display: none;
       flex-direction: column;
-      gap: 5px;
-      background: transparent;
-      border: none;
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: all 0.3s ease !important;
       cursor: pointer;
-      padding: 5px;
-      z-index: 101;
+      position: relative;
     }
-
-    .menu-toggle span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background: var(--charcoal);
-      transition: all 0.3s ease;
-      border-radius: 2px;
+    .car-card:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+      border-color: var(--primary) !important;
     }
-
-    @media(max-width: 800px) {
-      .nav-main {
-        justify-content: space-between;
-        height: 91px;
-      }
-      .logo {
-        margin-right: 0;
-        height: 65px;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 91px;
-        left: 0;
-        right: 0;
-        background: #FFFFFF;
-        padding: 20px;
-        gap: 12px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        border-top: 1px solid var(--border);
-        z-index: 9999;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .nav-actions {
-        display: none;
-        position: absolute;
-        top: 331px;
-        left: 0;
-        right: 0;
-        background: #FFFFFF;
-        padding: 10px 20px 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        z-index: 9998;
-        border-top: 1px solid var(--border);
-        justify-content: center;
-      }
-      .nav-actions.active {
-        display: flex;
-      }
-      .menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-      }
-      .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-      }
-      .menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
+    .car-img {
+      width: 100%;
+      height: 180px !important;
+      object-fit: cover;
+      position: relative;
     }
-
-    /* FOOTER */
-    .footer {
-      background: #0B0F19;
-      color: #94A3B8;
-      padding: 60px 20px 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-top: 60px;
-    }
-
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col-brand .logo {
-      display: block;
-      margin-bottom: 24px;
-      height: 78px;
-    }
-
-    .footer-col-brand .logo img {
-      height: 100%;
-      width: auto;
-      display: block;
-    }
-
-    .footer-copyright {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #64748B;
-      font-weight: 500;
-      margin-top: 16px;
-    }
-
-    .footer-col h4 {
-      font-size: 13px;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 24px;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.5px;
+    .car-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 4px;
       text-transform: uppercase;
+      z-index: 2;
     }
-
-    .footer-col a {
-      display: block;
-      font-size: 15px;
-      color: #94A3B8;
-      margin-bottom: 14px;
-      transition: all 0.2s ease;
-      font-weight: 500;
-    }
-
-    .footer-col a:hover {
-      color: var(--red);
-      transform: translateX(4px);
-    }
-
-    .quick-links-split {
-      display: flex;
-      gap: 30px;
-    }
-
-    .ql-divider {
-      width: 1px;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .ql-col {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .footer-contact .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .footer-contact .contact-icon {
-      width: 20px;
-      height: 20px;
-      stroke: var(--red);
-      flex-shrink: 0;
-    }
-
-    .footer-contact .contact-item a {
-      margin-bottom: 0;
-      font-size: 15px;
-      color: #FFFFFF;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .footer-bottom-bar {
-      background: #111827;
-      border-radius: 20px;
-      padding: 16px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #64748B;
-      font-size: 14px;
-      font-weight: 500;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .fbb-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .fbb-connect-text {
-      font-size: 14px;
-      font-weight: 600;
-      color: #FFFFFF;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.5px;
-    }
-
-    .fbb-socials {
-      display: flex;
-      gap: 12px;
-    }
-
-    .fbb-socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
+    .car-wishlist {
+      position: absolute;
+      top: 12px; right: 12px;
+      color: var(--muted);
+      background: var(--white);
+      width: 28px; height: 28px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: #FFFFFF;
-      transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .car-info {
+      padding: 16px !important;
+    }
+    .car-title {
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      color: var(--navy) !important;
+      margin-bottom: 6px !important;
+    }
+    .car-specs {
+      font-size: 13px !important;
+      color: var(--muted) !important;
+      margin-bottom: 12px !important;
+      font-weight: 600 !important;
+    }
+    .car-price {
+      font-size: 20px !important;
+      font-weight: 900 !important;
+      color: var(--primary) !important;
     }
 
-    .fbb-socials a:hover {
-      background: var(--red);
-      color: #0B0F19;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(255, 204, 0, 0.3);
-    }
-
-    .fbb-socials svg {
-      width: 18px !important;
-      height: 18px !important;
-      fill: currentColor;
-    }
-
-    .fbb-links {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .fbb-links a {
-      color: #94A3B8;
-      text-decoration: none;
-      transition: color 0.2s;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .fbb-links a:hover {
-      color: #FFFFFF;
-    }
-
-    #footer-brand-logo img {
-      filter: brightness(0) invert(1) opacity(0.8);
-    }
 </style>
 </head>
 
 <body>
 
+  
   <!-- NAVBAR -->
-    <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-main">
       <a href="index.html" class="logo" id="brand-logo">
         <img src="logo.png" alt="Market Guru HP Logo">
       </a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link-home active">🏠 Home</a>
-        <a href="buy-cars.html" class="nav-link-buy ">Buy Vehicle</a>
-        <a href="sell.html" class="nav-link-sell ">Sell Vehicles</a>
-        <a href="about.html" class="nav-link-about ">About</a>
-        <a href="compare.html" class="nav-link-compare ">⚖️ Compare</a>
+        <a href="index.html" class="active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Home
+        </a>
+        <a href="buy-cars.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          Buy Vehicle
+        </a>
+        <a href="sell.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          Sell Vehicles
+        </a>
+        <a href="about.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          About
+        </a>
+        <a href="compare.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"></path><rect x="3" y="11" width="6" height="10" rx="1"></rect><rect x="15" y="7" width="6" height="14" rx="1"></rect></svg>
+          Compare
+        </a>
       </div>
-      <div class="nav-actions" id="nav-actions">
-        <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
+      <div class="nav-actions">
+        <a href="login.html" class="nav-account-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          My Account
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </a>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-        <div class="hero-left">
-          <div class="hero-text">
-            <h1>Gujarat's Most Trusted<br>Certified <em>Used Vehicles</em></h1>
-            <p style="font-weight: 600;">✓ All Vehicle Information!
-              &nbsp;|&nbsp; ✓ Transparent Buying Experience!<br>Explore Market Guru HP's verified vehicle listings,
-              in-detail information and connect directly with sellers and dealers from all over Gujarat.</p>
-            <div class="hero-stats">
-              <div class="stat-item">
-                <div class="stat-num">566k+</div>
-                <div class="stat-label">Instagram Followers</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-num">300k+</div>
-                <div class="stat-label">Facebook Reach</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-num">70k+</div>
-                <div class="stat-label">YouTube Subscribers</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="search-hero">
-            <div class="search-row">
-              <div class="search-field">
-                <label>Brand</label>
-                <select id="brandSelect" onchange="filterModel(this)">
-                  <option value="">All Brands</option>
-                </select>
-              </div>
-              <div class="search-field">
-                <label>Model</label>
-                <select id="modelSelect">
-                  <option value="">All Models</option>
-                </select>
-              </div>
-              <div class="search-field">
-                <label>City</label>
-                <select>
-                  <option>Vadodara</option>
-                  <option>Ahmedabad</option>
-                  <option>Surat</option>
-                  <option>Rajkot</option>
-                  <option>Gandhinagar</option>
-                </select>
-              </div>
-              <button class="btn-search" onclick="window.location='buy-cars.html'">🔍 Search Cars</button>
-            </div>
-          </div>
+  <!-- HERO SECTION REFRESH -->
+  <section class="hero-new">
+    <div class="hero-bg-trails"></div>
+    <div class="hero-new-inner">
+      <div class="hero-grid">
+        <div class="hero-content-left">
+           <h1>Gujarat's Most Trusted<br><span class="highlight">Certified Used Vehicles</span></h1>
+           <div class="hero-checks">
+               <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> All Vehicle Information!</span>
+               <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Transparent Buying Experience!</span>
+           </div>
+           <p>Explore Market Guru HP's verified vehicle listings, in-detail information and connect directly with sellers and dealers from all over Gujarat.</p>
+           
+           <div class="hero-social-stats">
+               <div class="hs-card">
+                  <div class="hs-icon ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
+                  <div class="hs-info"><strong>566K+</strong><span>INSTAGRAM FOLLOWERS</span></div>
+               </div>
+               <div class="hs-card">
+                  <div class="hs-icon fb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></div>
+                  <div class="hs-info"><strong>300K+</strong><span>FACEBOOK REACH</span></div>
+               </div>
+               <div class="hs-card">
+                  <div class="hs-icon yt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></div>
+                  <div class="hs-info"><strong>70K+</strong><span>YOUTUBE SUBSCRIBERS</span></div>
+               </div>
+           </div>
         </div>
+        <div class="hero-content-right">
+           <img src="media/gujarat-map-dots.svg" onerror="this.src=''" class="hero-map">
+           <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20230222013824_Honda%20City%20facelift.jpg" onerror="this.src='media/hero-car.png'" alt="Car" class="hero-car">
+        </div>
+      </div>
+
+      <div class="hero-search-box">
+         <div class="h-search-field">
+           <label>BRAND</label>
+           <select id="brandSelect" onchange="filterModel(this)"><option value="">All Brands</option></select>
+         </div>
+         <div class="h-search-field">
+           <label>MODEL</label>
+           <select id="modelSelect"><option value="">All Models</option></select>
+         </div>
+         <div class="h-search-field">
+           <label>CITY</label>
+           <select><option value="">All Cities</option><option>Vadodara</option><option>Ahmedabad</option><option>Surat</option></select>
+         </div>
+         <button class="btn-search-primary" onclick="window.location='buy-cars.html'">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> SEARCH CARS
+         </button>
+      </div>
+
+      <div class="hero-features-bar">
+         <div class="hf-item"><div class="hf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg></div> <div><strong>5000+</strong><br>Verified Cars</div></div>
+         <div class="hf-item"><div class="hf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div> <div><strong>200+</strong><br>Trusted Dealers</div></div>
+         <div class="hf-item"><div class="hf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div> <div><strong>RC Verified</strong><br>Documents</div></div>
+         <div class="hf-item"><div class="hf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div> <div><strong>No Hidden</strong><br>Charges</div></div>
+         <div class="hf-item"><div class="hf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div> <div><strong>Inspection</strong><br>Report</div></div>
+         <div class="hf-item"><div class="hf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div> <div><strong>Direct Contact</strong><br>With Seller</div></div>
+      </div>
     </div>
   </section>
 
 
 
-
-
-
-  <!-- STATIC SOCIAL BANNER -->
-  <div class="social-banner-container">
-    <div class="sb-left-wrap">
-      <div class="sb-left-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-          <circle cx="9" cy="7" r="4"></circle>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-        </svg>
+  <!-- TRENDING TODAY -->
+  <section class="section" style="padding-bottom: 80px;">
+    <div class="section-inner" style="max-width: 1320px; margin: 0 auto; padding: 0 20px;">
+      <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <div class="section-title" style="font-size: 24px; font-family:'Inter', sans-serif; display:flex; align-items:center; gap:8px;">
+          <span style="font-size:28px;">🔥</span> <span style="color:var(--navy); font-weight:900;">Trending Today</span>
+        </div>
+        <a href="buy-cars.html" class="view-all" style="color:var(--primary); font-weight:700; font-size:14px;">View All →</a>
       </div>
-      <div class="sb-left-text">
-        <h4>STAY CONNECTED</h4>
-        <p>Follow us on social media</p>
+      
+      <div class="cars-grid" id="featuredCars" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <!-- Javascript will populate this -->
       </div>
-    </div>
-
-    <div class="sb-links">
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/marketguruhp" target="_blank" class="sb-link-block">
-        <div class="sb-logo">
-          <svg viewBox="0 0 24 24">
-            <defs>
-              <linearGradient id="ig-grad" x1="15%" y1="100%" x2="85%" y2="0%">
-                <stop offset="0%" stop-color="#fdf497" />
-                <stop offset="25%" stop-color="#fd5946" />
-                <stop offset="50%" stop-color="#d6249f" />
-                <stop offset="100%" stop-color="#285AEB" />
-              </linearGradient>
-            </defs>
-            <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#ig-grad)" />
-            <rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.5" />
-            <circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.5" />
-            <circle cx="16.5" cy="7.5" r="1" fill="#fff" />
-          </svg>
-        </div>
-        <div class="sb-info">
-          <h5>INSTAGRAM</h5>
-          <span>@marketguru.hp</span>
-        </div>
-        <div class="sb-btn">FOLLOW &rarr;</div>
-      </a>
-
-      <div class="sb-divider"></div>
-
-      <!-- YouTube -->
-      <a href="https://www.youtube.com/@marketguruhp" target="_blank" class="sb-link-block">
-        <div class="sb-logo">
-          <svg viewBox="0 0 24 24">
-            <path fill="#FF0000"
-              d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z" />
-            <path fill="#FFFFFF" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-          </svg>
-        </div>
-        <div class="sb-info">
-          <h5>YOUTUBE</h5>
-          <span>Market Guru HP</span>
-        </div>
-        <div class="sb-btn">SUBSCRIBE &rarr;</div>
-      </a>
-
-      <div class="sb-divider"></div>
-
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/marketguruhp" target="_blank" class="sb-link-block">
-        <div class="sb-logo">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="12" fill="#1877F2" />
-            <path fill="#FFFFFF"
-              d="M15.4 12H13v8h-3v-8H8v-2.8h2V7.4c0-2.2 1-3.4 3.6-3.4h2.4v2.8h-1.5c-1.1 0-1.2.4-1.2 1.3v1.1h2.9l-.2 2.8z" />
-          </svg>
-        </div>
-        <div class="sb-info">
-          <h5>FACEBOOK</h5>
-          <span>@marketguru.hp</span>
-        </div>
-        <div class="sb-btn">FOLLOW &rarr;</div>
-      </a>
-    </div>
-
-    <div class="sb-right-wrap">
-      <div class="sb-right-text">
-        <h4>✨ Join Our</h4>
-        <h4 class="yellow">Community!</h4>
+      
+      <!-- PROMO BANNER -->
+      <div class="promo-banner" style="background: var(--secondary); border-radius: 12px; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; margin-top: 40px; color: var(--white);">
+         <div style="display:flex; align-items:center; gap: 20px;">
+            <div style="font-size: 40px;">🚀</div>
+            <div>
+               <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 4px;">List Unlimited Cars & Grow Your Business</h3>
+               <p style="font-size: 14px; opacity: 0.9; font-weight: 500;">You can list 1 car for free. Upgrade your plan to list unlimited cars and get more visibility.</p>
+            </div>
+         </div>
+         <div style="display:flex; align-items:center; gap: 24px;">
+            <div style="text-align: right;">
+               <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Only</div>
+               <div style="font-size: 24px; font-weight: 900;">₹499/-</div>
+            </div>
+            <a href="login.html" style="background: var(--white); color: var(--secondary); font-weight: 800; padding: 12px 24px; border-radius: 50px; display:flex; align-items:center; gap:8px;">UPGRADE NOW →</a>
+         </div>
       </div>
-    </div>
-  </div>
-  <!-- FEATURED CARS -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-title">Featured <span>Used Cars</span></div>
-        <a href="buy-cars.html" class="view-all">View All Cars →</a>
-      </div>
-      <div class="cars-grid" id="featuredCars"></div>
     </div>
   </section>
-
 
 
   <!-- TRUST / WHY US — 3D Carousel -->
@@ -1887,7 +1689,6 @@
   </section>
 
   <!-- FOOTER -->
-    <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-grid">
@@ -1896,66 +1697,82 @@
             <img src="logo.png" alt="Market Guru HP Logo">
           </a>
           <div class="footer-copyright">
-            &copy; 2026 Market Guru HP. All rights reserved.<br>
-            Gujarat's Most Trusted Certified Used Vehicles Portal.
+            © 2006 - 2026 Market Guru HP.<br>
+            All rights reserved in favour of Market Guru HP.
           </div>
         </div>
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h4>Quick guide links</h4>
           <div class="quick-links-split">
             <div class="ql-col">
-              <a href="index.html">Home</a>
               <a href="buy-cars.html">Buy Vehicle</a>
-              <a href="sell.html">Sell Vehicle</a>
+              <a href="sell.html">Sell Vehicles</a>
             </div>
             <div class="ql-divider"></div>
             <div class="ql-col">
-              <a href="about.html">About Us</a>
-              <a href="compare.html">Compare Cars</a>
-              <a href="login.html" class="footer-login-link">Seller Login</a>
+              <a href="about.html">About us</a>
+              <a href="login.html">Account</a>
             </div>
           </div>
         </div>
         <div class="footer-col footer-contact">
-          <h4>Connect With Us</h4>
+          <h4>Contact Us</h4>
           <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            <a href="tel:+919825822550">+91 98258 22550</a>
-          </div>
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            <a href="mailto:info@marketguruhp.com">info@marketguruhp.com</a>
+            <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+            <a href="tel:08600004513">08600004513</a>
           </div>
         </div>
       </div>
+
       <div class="footer-bottom-bar">
         <div class="fbb-left">
-          <span class="fbb-connect-text">Follow Us:</span>
+          <div class="fbb-connect-text">Connect with us :</div>
           <div class="fbb-socials">
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4.000 4.000 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook"
+              aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
             </a>
-            <a href="#" aria-label="YouTube">
-              <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.483 20.455 12 20.455 12 20.455s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+            <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube"
+              aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp"
+              aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.79 9.79 0 0 0-6.979-2.88c-5.439 0-9.865 4.37-9.87 9.8-.001 1.774.475 3.503 1.378 5.027L1.993 21.5l5.59-1.464c-.305-.186-.612-.372-.936-.882zM17.15 14.54c-.28-.14-1.65-.81-1.902-.9-.253-.09-.438-.14-.623.14-.184.28-.714.9-.876 1.09-.162.19-.323.21-.603.07-1.125-.56-1.96-1.03-2.67-2.24-.26-.45-.06-.7.14-.9.18-.18.4-.47.6-.7.2-.23.27-.38.4-.64.13-.26.07-.49-.03-.7-.1-.21-.87-2.1-1.2-2.88-.31-.77-.64-.67-.88-.68-.22-.01-.48-.01-.73-.01-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22s1.38 3.73 1.58 3.99c.2.26 2.72 4.15 6.59 5.82.92.4 1.64.64 2.2.82.93.3 1.77.26 2.44.16.74-.11 2.28-.93 2.6-1.83.32-.9.32-1.67.22-1.83-.09-.16-.35-.26-.63-.4z" />
+              </svg>
             </a>
           </div>
         </div>
         <div class="fbb-links">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <span style="opacity:0.3;">|</span>
-          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -1963,7 +1780,7 @@
 
   <div id="compare-bar" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:#fff;padding:14px 28px;border-radius:30px;box-shadow:0 8px 30px rgba(0,0,0,0.25);z-index:999;display:none;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.1);">
     <span id="compare-bar-text" style="font-weight:700;font-size:14px;"></span>
-    <a href="compare.html" style="background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:20px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Compare Now &rarr;</a>
+    <a href="compare.html" style="background:var(--primary);color:#1A1A2E;padding:8px 20px;border-radius:20px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Compare Now &rarr;</a>
     <button onclick="clearCompareBar()" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;padding:0 5px;">×</button>
   </div>
 
@@ -1986,75 +1803,30 @@
       updateCompareBar();
     });
 
-    function renderCars() {
+        function renderCars() {
       const grid = document.getElementById('featuredCars');
-      const featured = mgDB.getUsedCars().slice(0, 8); // Grab up to 8 cars
+      if(!grid) return;
+      const featured = mgDB.getUsedCars().slice(0, 4);
 
       grid.innerHTML = featured.map(c => `
     <div class="car-card" onclick="window.location='car-detail.html?id=${c.id}'">
-      <div class="car-img" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
-        ${c.image ? `<img src="${c.image}" style="width:100%;height:100%;object-fit:contain;" />` : (c.emoji || '🚗')}
-        <div class="car-badge-emi">₹${c.emi}</div>
-        ${c.verified ? '<div class="car-badge-verified">✓ Verified</div>' : ''}
+      <div class="car-img" style="background:var(--bg);">
+        <div class="car-badge">🔥 Hot Deal</div>
+        <div class="car-wishlist" onclick="event.stopPropagation();wishlist(${c.id})">
+           <svg width="16" height="16" viewBox="0 0 24 24" fill="${mgDB.isWishlisted(c.id) ? 'var(--danger)' : 'none'}" stroke="${mgDB.isWishlisted(c.id) ? 'var(--danger)' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </div>
+        ${c.image ? `<img src="${c.image}" style="width:100%;height:100%;object-fit:cover;" />` : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:80px;">${c.emoji || '🚗'}</div>`}
       </div>
       <div class="car-info">
-        <div class="car-name">${c.name}</div>
-        <div class="car-variant">${c.year} · ${c.km} km</div>
+        <div class="car-title">${c.name}</div>
+        <div class="car-specs">${c.year} · ${c.fuel} · ${c.km} km</div>
         <div class="car-price">₹${c.price} Lakh</div>
-        <div class="car-meta">
-          <span class="meta-tag">⛽ ${c.fuel}</span>
-          <span class="meta-tag">⚙️ ${c.trans}</span>
-          <span class="meta-tag">📍 Vadodara</span>
-        </div>
-      </div>
-      <div class="car-actions">
-        <button class="btn-wishlist" onclick="event.stopPropagation();wishlist(${c.id})">
-          ${mgDB.isWishlisted(c.id) ? '❤️ Saved' : '♡ Save'}
-        </button>
-        <button class="btn-wishlist" onclick="event.stopPropagation();toggleCompare(${c.id}, event)" style="border-color:${isCompared(c.id) ? 'var(--charcoal)' : 'var(--border)'}; background:${isCompared(c.id) ? 'rgba(26,61,143,0.1)' : 'transparent'}; color:${isCompared(c.id) ? 'var(--charcoal)' : 'var(--muted)'};">
-          ${isCompared(c.id) ? '⚖️ Added' : '⚖️ Compare'}
-        </button>
-        <button class="btn-contact" onclick="event.stopPropagation();window.location='car-detail.html?id=${c.id}'">👁️ View</button>
       </div>
     </div>
-  `).join('');
+      `).join('');
     }
 
-    function toggleCompare(id, e) {
-      if (e) e.stopPropagation();
-      let list = [];
-      try {
-        list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
-      } catch (err) {
-        list = [];
-      }
-      
-      if (list.includes(id)) {
-        list = list.filter(x => x !== id);
-        showToast('⚖️ Removed from comparison list');
-      } else {
-        if (list.length >= 3) {
-          showToast('⚠️ You can compare up to 3 vehicles at a time');
-          return;
-        }
-        list.push(id);
-        showToast('⚖️ Added to comparison list');
-      }
-      localStorage.setItem('mg_compare_list', JSON.stringify(list));
-      updateCompareBar();
-      renderCars();
-    }
-
-    function isCompared(id) {
-      try {
-        const list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
-        return list.includes(id);
-      } catch (err) {
-        return false;
-      }
-    }
-
-    function updateCompareBar() {
+function updateCompareBar() {
       const bar = document.getElementById('compare-bar');
       const text = document.getElementById('compare-bar-text');
       if (!bar) return;

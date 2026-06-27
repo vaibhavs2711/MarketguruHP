@@ -11,9 +11,24 @@
 <title>Sell Your Car - Market Guru HP</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--red:#FFCC00;--red-dark:#CC9900;--charcoal:#1A1A2E;--navy:#16213E;--silver:#F0F4F8;--white:#FFFFFF;--text:#1A1A2E;--muted:#6B7A99;--border:#DDE3EE;--success:#A3D1B1;}
+      :root {
+      --primary: #F97316;
+      --primary-hover: #EA580C;
+      --secondary: #FF7A00;
+      --navy: #0F2B6E;
+      --charcoal: #1E293B;
+      --text: #1E293B;
+      --bg: #F8FAFC;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --muted: #64748B;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --blue-light: #F1F5F9;
+    }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--silver);}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);}
   a{text-decoration:none;color:inherit;}
   .navbar{background:var(--charcoal);position:sticky;top:0;z-index:100;}
   .nav-main{max-width:1280px;margin:0 auto;display:flex;align-items:center;padding:0 20px;height:80px;gap:0;}
@@ -23,13 +38,13 @@
   .nav-links a{color:#ccd;font-size:14px;font-weight:500;padding:8px 14px;border-radius:6px;}
   .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,0.08);}
   .nav-links a.active{background:rgba(255,204,0,0.15);}
-  .btn-red{background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;border:none;}
+  .btn-red{background:var(--primary);color:#1A1A2E;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;border:none;}
 
   /* HERO */
   .sell-hero{background:linear-gradient(135deg,var(--charcoal),var(--navy));padding:60px 20px;}
   .sell-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:60px;align-items:center;}
   .sell-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px;}
-  .sell-hero h1 em{color:var(--red);font-style:normal;}
+  .sell-hero h1 em{color:var(--primary);font-style:normal;}
   .sell-hero p{color:#99aacc;font-size:16px;margin-bottom:32px;}
   .why-sell{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .why-item{background:rgba(255,255,255,0.05);border-radius:10px;padding:16px;color:#fff;}
@@ -46,7 +61,7 @@
   .stepper{display:flex;align-items:center;margin-bottom:28px;}
   .step{display:flex;align-items:center;gap:8px;flex:1;}
   .step-circle{width:28px;height:28px;border-radius:50%;background:var(--border);color:var(--muted);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .step.active .step-circle{background:var(--red);color:#fff;}
+  .step.active .step-circle{background:var(--primary);color:#fff;}
   .step.done .step-circle{background:var(--success);color:#fff;}
   .step-label{font-size:11px;font-weight:600;color:var(--muted);}
   .step.active .step-label{color:var(--text);}
@@ -58,35 +73,35 @@
   .field{margin-bottom:14px;}
   .field label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
   .field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;transition:border-color 0.2s;}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary);}
   .field textarea{resize:vertical;min-height:80px;}
-  .btn-next{width:100%;padding:14px;background:var(--red);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Inter',sans-serif;}
-  .btn-next:hover{background:var(--red-dark);}
+  .btn-next{width:100%;padding:14px;background:var(--primary);color:#1A1A2E;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'Inter',sans-serif;}
+  .btn-next:hover{background:var(--primary-hover);}
 
   /* PHOTO UPLOAD */
   .upload-area{border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:14px;}
-  .upload-area:hover{border-color:var(--red);background:#fff5f5;}
+  .upload-area:hover{border-color:var(--primary);background:#fff5f5;}
   .upload-icon{font-size:40px;margin-bottom:10px;}
   .upload-text{font-size:14px;font-weight:600;margin-bottom:4px;}
   .upload-sub{font-size:12px;color:var(--muted);}
   .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
-  .photo-thumb{aspect-ratio:4/3;border-radius:8px;background:var(--silver);display:flex;align-items:center;justify-content:center;font-size:24px;border:1.5px solid var(--border);cursor:pointer;}
+  .photo-thumb{aspect-ratio:4/3;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:24px;border:1.5px solid var(--border);cursor:pointer;}
 
   /* VALUATION RESULT */
   .valuation-result{background:linear-gradient(135deg,var(--charcoal),var(--navy));border-radius:12px;padding:28px;color:#fff;text-align:center;margin-bottom:16px;display:none;}
   .valuation-result.show{display:block;}
-  .val-range{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:800;color:var(--red);margin:12px 0;}
+  .val-range{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:800;color:var(--primary);margin:12px 0;}
   .val-label{font-size:13px;color:#99aacc;}
 
   /* PAGE CONTENT */
   .page-content{max-width:1100px;margin:0 auto;padding:60px 20px;}
   .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;}
   .how-step{text-align:center;padding:24px;}
-  .how-num{width:48px;height:48px;border-radius:50%;background:var(--red);color:#1A1A2E;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+  .how-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#1A1A2E;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
   .how-title{font-size:15px;font-weight:700;margin-bottom:6px;}
   .how-desc{font-size:13px;color:var(--muted);}
 
-  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--red);}
+  .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--charcoal);color:#fff;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,0.3);transform:translateY(100px);transition:transform 0.3s ease;border-left:4px solid var(--primary);}
   .toast.show{transform:translateY(0);}
 
   /* FOOTER */
@@ -97,16 +112,16 @@
   .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
   .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
   
-  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
   .footer-col a { display: block; font-size: 16px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
-  .footer-col a:hover { color: var(--red); }
+  .footer-col a:hover { color: var(--primary); }
   
   .quick-links-split { display: flex; gap: 30px; }
-  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
+  .ql-divider { width: 1px; background: var(--primary); opacity: 0.5; }
   .ql-col { display: flex; flex-direction: column; }
 
   .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
+  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--primary); flex-shrink: 0; }
   .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
   
   .footer-bottom-bar { 
@@ -141,13 +156,13 @@
   .btn-outline-white {
     border: none; color: #1A1A2E;
     padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; background: var(--red);
-    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+    cursor: pointer; transition: all 0.2s; background: var(--primary);
+    box-shadow: 0 4px 10px rgba(249, 115, 22, 0.2);
   }
   .btn-outline-white:hover { 
-    background: var(--red-dark); 
+    background: var(--primary-hover); 
     transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(255, 204, 0, 0.4); 
+    box-shadow: 0 6px 12px rgba(249, 115, 22, 0.4); 
   }
 
   .menu-toggle {
@@ -528,7 +543,7 @@
 <!-- HOW IT WORKS -->
 <div class="page-content">
   <div style="text-align:center">
-    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800">How <span style="color:var(--red)">Selling</span> Works</h2>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800">How <span style="color:var(--primary)">Selling</span> Works</h2>
     <p style="color:var(--muted);margin-top:8px">Simple, transparent, and fast</p>
   </div>
   <div class="how-steps">
@@ -851,7 +866,7 @@ function checkLoginState() {
       } catch(e) {}
       navActions.innerHTML = `
         <a href="customer-dashboard.html" title="My Profile" style="text-decoration:none; display:block;">
-          <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 204, 0, 0.15); border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--red); text-transform: uppercase; transition: all 0.2s;">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(249, 115, 22, 0.15); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--primary); text-transform: uppercase; transition: all 0.2s;">
             ${initials}
           </div>
         </a>

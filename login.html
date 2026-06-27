@@ -6,18 +6,22 @@
 <title>Login - Market Guru HP</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <<style>
-  :root {
-    --red: #FFCC00;
-    --red-dark: #CC9900;
-    --charcoal: #0B0F19;
-    --navy: #16213E;
-    --steel: #2A3A5C;
-    --silver: #F0F4F8;
-    --white: #FFFFFF;
-    --text: #1A1A2E;
-    --muted: #6B7A99;
-    --border: #E2E8F0;
-  }
+          :root {
+      --primary: #F97316;
+      --primary-hover: #EA580C;
+      --secondary: #FF7A00;
+      --navy: #0F2B6E;
+      --charcoal: #1E293B;
+      --text: #1E293B;
+      --bg: #F8FAFC;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --muted: #64748B;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --blue-light: #F1F5F9;
+    }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
@@ -113,7 +117,7 @@
   }
 
   .login-left-section h2 span {
-    color: var(--red);
+    color: var(--primary);
   }
 
   .login-left-section p {
@@ -148,20 +152,20 @@
 
   .perk:hover {
     background: rgba(11, 15, 25, 0.85);
-    border-color: rgba(255, 204, 0, 0.3);
+    border-color: rgba(249, 115, 22, 0.3);
     transform: translateY(-2px);
   }
 
   .perk-icon {
     font-size: 20px;
-    color: var(--red);
+    color: var(--primary);
     margin-bottom: 8px;
   }
 
   .perk-label {
     font-size: 12px;
     font-weight: 700;
-    color: var(--red);
+    color: var(--primary);
     margin-bottom: 2px;
     line-height: 1.3;
   }
@@ -219,8 +223,8 @@
   }
 
   .tab.active {
-    color: var(--red-dark);
-    border-bottom-color: var(--red);
+    color: var(--primary-hover);
+    border-bottom-color: var(--primary);
   }
 
   .form-panel {
@@ -259,8 +263,8 @@
 
   .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
-    border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
   }
 
   /* MOBILE INPUT FIELD COMBINED */
@@ -274,8 +278,8 @@
   }
 
   .mobile-input-container:focus-within {
-    border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
   }
 
   .country-code {
@@ -323,11 +327,11 @@
 
   .remember input {
     width: auto;
-    accent-color: var(--red);
+    accent-color: var(--primary);
   }
 
   .forgot {
-    color: var(--red-dark);
+    color: var(--primary-hover);
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
@@ -341,7 +345,7 @@
   .btn-login {
     width: 100%;
     padding: 14px;
-    background: var(--red);
+    background: var(--primary);
     color: #1A1A2E;
     border: none;
     border-radius: 8px;
@@ -350,12 +354,12 @@
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
   }
 
   .btn-login:hover {
-    background: var(--red-dark);
-    box-shadow: 0 6px 16px rgba(255, 204, 0, 0.4);
+    background: var(--primary-hover);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
     transform: translateY(-1px);
   }
 
@@ -418,7 +422,7 @@
   }
 
   .switch-note a {
-    color: var(--red-dark);
+    color: var(--primary-hover);
     font-weight: 700;
     cursor: pointer;
     text-decoration: underline;
@@ -445,9 +449,9 @@
   }
 
   .role-pill.active {
-    border-color: var(--red);
+    border-color: var(--primary);
     color: #1e293b;
-    background: rgba(255, 204, 0, 0.08);
+    background: rgba(249, 115, 22, 0.08);
   }
 
   .toast {
@@ -464,7 +468,7 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     transform: translateY(100px);
     transition: transform 0.3s ease;
-    border-left: 4px solid var(--red);
+    border-left: 4px solid var(--primary);
   }
 
   .toast.show {
@@ -509,7 +513,7 @@
   .trust-badge svg {
     width: 16px;
     height: 16px;
-    stroke: var(--red);
+    stroke: var(--primary);
   }
 
   @media(max-width: 992px) {
@@ -590,7 +594,7 @@
     <div class="login-perks">
       <div class="perk">
         <div class="perk-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="5" y="10" width="14" height="6" rx="1"/>
             <path d="M7 10V7c0-1.5 1.5-2 5-2s5 .5 5 2v3"/>
             <circle cx="8" cy="13" r="1" fill="currentColor"/>
@@ -601,13 +605,13 @@
         <div class="perk-sub">verified cars</div>
       </div>
       <div class="perk">
-        <div class="perk-icon" style="font-family:'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; color: var(--red);">₹</div>
+        <div class="perk-icon" style="font-family:'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; color: var(--primary);">₹</div>
         <div class="perk-label">Get instant</div>
         <div class="perk-sub">car valuation</div>
       </div>
       <div class="perk">
         <div class="perk-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
             <rect x="8" y="2" width="8" height="4" rx="1" fill="rgba(255,204,0,0.15)"/>
             <path d="M9 12h6M9 16h6"/>
@@ -618,7 +622,7 @@
       </div>
       <div class="perk">
         <div class="perk-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
@@ -704,7 +708,7 @@
         </div>
         
         <p style="text-align:center; margin-top: 24px; font-size: 14px; color: #64748b;">
-          Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--red-dark);font-weight:600;text-decoration:underline;">Register free</a>
+          Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--primary-hover);font-weight:600;text-decoration:underline;">Register free</a>
         </p>
       </div>
 
