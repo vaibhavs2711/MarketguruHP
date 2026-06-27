@@ -1330,7 +1330,7 @@
       { id: 1, label: 'Brand', title: 'Select brand' },
       { id: 2, label: 'Model', title: 'Select model' },
       { id: 3, label: 'Variant', title: 'Select variant' },
-      { id: 4, label: 'Year', title: 'Select year' },
+      { id: 4, label: 'Year & Owner', title: 'Select year & owner' },
       { id: 5, label: 'Specs', title: 'Select trans & fuel' },
       { id: 6, label: 'State', title: 'Select city' },
       { id: 7, label: 'Photos', title: 'Upload photos' },
@@ -1338,7 +1338,7 @@
     ];
 
     let currentStep = 1;
-    let sellData = { brandId: null, brand: null, modelId: null, model: null, variant: null, year: null, fuel: null, trans: null, city: null, kms: null, ask: null, mobile: null };
+    let sellData = { brandId: null, brand: null, modelId: null, model: null, variant: null, year: null, owner: null, fuel: null, trans: null, city: null, kms: null, ask: null, mobile: null };
 
     let currentList = [];
     let uploadedPhotos = [];
@@ -1386,9 +1386,9 @@
       let bHTML = '';
       if (sellData.brand) bHTML += `<div class="bc-pill">${sellData.brand} <span onclick="goToStep(1)">×</span></div>`;
       if (sellData.model) bHTML += `<div class="bc-pill">${sellData.model} <span onclick="goToStep(2)">×</span></div>`;
-      if (sellData.variant) bHTML += `<div class="bc-pill">${sellData.variant} <span onclick="goToStep(3)">×</span></div>`;
-      if (sellData.year) bHTML += `<div class="bc-pill">${sellData.year} <span onclick="goToStep(4)">×</span></div>`;
-      if (sellData.fuel) bHTML += `<div class="bc-pill">${sellData.fuel} ${sellData.trans || ''} <span onclick="goToStep(5)">×</span></div>`;
+      if (sellData.variant) bHTML += `<div class="bc-pill">${sellData.variant} <span onclick="goToStep(3)">&times;</span></div>`;
+      if (sellData.year) bHTML += `<div class="bc-pill">${sellData.year} ${sellData.owner || ''} <span onclick="goToStep(4)">&times;</span></div>`;
+      if (sellData.fuel) bHTML += `<div class="bc-pill">${sellData.fuel} ${sellData.trans || ''} <span onclick="goToStep(5)">&times;</span></div>`;
       if (sellData.city) bHTML += `<div class="bc-pill">${sellData.city} <span onclick="goToStep(6)">×</span></div>`;
       bc.innerHTML = bHTML;
 
@@ -1513,13 +1513,58 @@
           });
       }
       else if (stepNum === 4) {
-        const grid = document.getElementById('grid-container');
-        grid.style.display = 'grid';
-        let yHTML = '';
-        for (let y = 2026; y >= 2010; y--) {
-          yHTML += `<div class="grid-opt" onclick="setSelection('year', '${y}', null, event)">${y}</div>`;
+        document.getElementById('grid-container').style.display = 'none';
+        const inp = document.getElementById('input-container');
+        inp.style.display = 'block';
+
+        let yOpts = '<option value="">Select Year</option>';
+        for(let y=2026; y>=2010; y--) {
+           yOpts += `<option value="${y}" ${sellData.year == y ? 'selected' : ''}>${y}</option>`;
         }
-        grid.innerHTML = yHTML;
+
+        let oOpts = '<option value="">Select No. of Owners</option>';
+        ['1st Owner', '2nd Owner', '3rd Owner', '4th Owner', '4+ Owner'].forEach(o => {
+           oOpts += `<option value="${o}" ${sellData.owner === o ? 'selected' : ''}>${o}</option>`;
+        });
+
+        inp.innerHTML = `
+          <style>
+            .custom-dropdown {
+              width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-weight: 600; color: var(--charcoal); appearance: none; background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 16px center/16px; background-color: var(--white); cursor: pointer; transition: all 0.2s;
+            }
+            .custom-dropdown:focus { outline: none; border-color: var(--primary); }
+          </style>
+          <div style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <label style="display:block; margin-bottom: 8px; font-weight: 600; color: var(--charcoal);">Registration Year</label>
+              <select id="year-select" class="custom-dropdown" onchange="window.checkStep4()">
+                ${yOpts}
+              </select>
+            </div>
+            <div>
+              <label style="display:block; margin-bottom: 8px; font-weight: 600; color: var(--charcoal);">Number of Owners</label>
+              <select id="owner-select" class="custom-dropdown" onchange="window.checkStep4()">
+                ${oOpts}
+              </select>
+            </div>
+          </div>
+        `;
+
+        window.checkStep4 = function() {
+          const y = document.getElementById('year-select').value;
+          const o = document.getElementById('owner-select').value;
+          const btn = document.getElementById('btn-continue');
+          if (y && o) {
+            sellData.year = y;
+            sellData.owner = o;
+            btn.disabled = false;
+            btn.style.display = 'block';
+          } else {
+            btn.disabled = true;
+          }
+        };
+
+        window.checkStep4();
       }
       else if (stepNum === 5) {
         document.getElementById('grid-container').style.display = 'none';
@@ -1952,7 +1997,7 @@
         km: parseInt(km).toLocaleString('en-IN'),
         fuel: sellData.fuel,
         trans: sellData.trans,
-        owner: '1st Owner',
+        owner: sellData.owner || '1st Owner',
         color: '#e8eef5',
         emoji: '🚗',
         image: '',
