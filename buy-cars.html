@@ -1274,16 +1274,24 @@ function applyFilters() {
       if (checkedMakes.length > 0) {
         matchMake = checkedMakes.some(make => {
           let sm = make === 'maruti suzuki' ? 'maruti' : make;
-          return cname.includes(sm);
+          const safeMake = sm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          return new RegExp('\\b' + safeMake + '\\b', 'i').test(cname);
         });
       }
       
       if (checkedModels.length > 0) {
-        matchModel = checkedModels.some(model => cname.includes(model));
+        matchModel = checkedModels.some(model => {
+          const safeModel = model.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          return new RegExp('\\b' + safeModel + '\\b').test(cname);
+        });
       }
 
       if (checkedVariants.length > 0) {
-        matchVariant = checkedVariants.some(variant => cname.includes(variant));
+        matchVariant = checkedVariants.some(variant => {
+          const safeVariant = variant.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          // Add a check to match if it's a separate word or at the end of the string
+          return new RegExp('\\b' + safeVariant + '(?:\\b|$)', 'i').test(cname);
+        });
       }
       
       if (checkedMakes.length > 0 && checkedModels.length === 0 && checkedVariants.length === 0) return matchMake;
