@@ -581,7 +581,7 @@
   .tree-toggle { font-size: 16px; color: #888; width: 20px; text-align: center; transition: transform 0.2s; }
   .tree-children { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 24px; display: flex; flex-direction: column; gap: 6px; }
   .tree-children.open { max-height: 3000px; margin-top: 6px; margin-bottom: 4px; }
-  .tree-node.active .tree-toggle { transform: rotate(45deg); }
+  .tree-node.active > .tree-parent > .tree-toggle { transform: rotate(45deg); }
 
 
   .car-action-buttons {
