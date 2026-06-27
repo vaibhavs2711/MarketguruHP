@@ -663,7 +663,8 @@ function renderCarDetails() {
   document.getElementById('rFuel').textContent = currentCar.fuel;
   document.getElementById('rCity').textContent = currentCar.city || 'Vadodara';
   const ins = currentCar.insurance || 'Comprehensive';
-  document.getElementById('rIns').textContent = ins;
+  const rInsEl = document.getElementById('rIns');
+  if (rInsEl) rInsEl.textContent = ins;
   const ownerEl = document.getElementById('rOwner');
   if(ownerEl) ownerEl.textContent = currentCar.owner || '1st Owner';
   const transEl = document.getElementById('rTrans');
@@ -872,6 +873,7 @@ window.onload = initPage;
 </script>
 </body>
 </html>
+
 
 
 
