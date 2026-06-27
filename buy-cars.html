@@ -1169,9 +1169,6 @@ function renderCars() {
           <button class="btn-save" onclick="event.stopPropagation(); toggleSave(${c.id}, this)">
             <span>🤍</span> Save
           </button>
-          <button class="btn-save" onclick="event.stopPropagation(); toggleCompare(${c.id}, event)" style="border-color:${isCompared(c.id) ? 'var(--charcoal)' : '#d1d5db'}; background:${isCompared(c.id) ? 'rgba(26,61,143,0.1)' : '#fff'}; color:${isCompared(c.id) ? 'var(--charcoal)' : '#4b5563'};">
-            ⚖️ ${isCompared(c.id) ? 'Added' : 'Compare'}
-          </button>
           <button class="btn-view" onclick="event.stopPropagation(); window.location='car-detail.html?id=${c.id}'">
             <span>👁️</span> VIEW
           </button>
