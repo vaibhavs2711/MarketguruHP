@@ -1698,7 +1698,7 @@
       <input type="number" id="inp-km" class="input-field" placeholder="KMs Driven (e.g. 45000)" required>
       <input type="number" step="0.1" id="inp-price" class="input-field" placeholder="Expected Price in Lakhs (e.g. 5.5)" required>
       
-      <input type="text" id="inp-reg" class="input-field" placeholder="Registration Number (e.g. GJ-01-XX-1234)" oninput="this.value = this.value.toUpperCase()">
+      <input type="text" id="inp-reg" class="input-field" placeholder="Registration Number (e.g. GJ-01-XX-1234)" oninput="this.value = this.value.toUpperCase().replace(/\\s/g, '')">
       
       <select id="inp-insurance" class="input-field" style="color: #666; font-size: 14px;">
         <option value="" disabled selected>Select Insurance Type</option>
