@@ -34,7 +34,7 @@
   .nav-main {
     max-width: 1280px; margin: 0 auto;
     display: flex; align-items: center; gap: 0;
-    padding: 0 20px; height: auto; padding: 10px 20px;
+    padding: 0 20px; height: auto; padding: 0 20px;
   }
   .logo {
     display: flex;
@@ -99,7 +99,7 @@
   }
 
   /* BREADCRUMB */
-  .breadcrumb{background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;font-size:13px;color:var(--muted);}
+  .breadcrumb{background:var(--white);border-bottom:1px solid var(--border);padding: 0 20px;font-size:13px;color:var(--muted);}
   .breadcrumb a{color:var(--red);}
   .breadcrumb-inner{max-width:1280px;margin:0 auto;}
 
@@ -168,7 +168,7 @@
   .car-list-action{padding:20px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;min-width:180px;}
   .car-price-big{font-size:26px;font-weight:800;color:var(--red);}
   .car-emi{font-size:12px;color:var(--muted);margin-top:2px;}
-  .btn-details{background:var(--red);color:#1A1A2E;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px;}
+  .btn-details{background:var(--red);color:#1A1A2E;border:none;padding: 0 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px;}
   .btn-call{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;width:100%;}
   .btn-call:hover{border-color:var(--text);}
   .compare-check{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px;cursor:pointer;}
@@ -266,7 +266,7 @@
   @media(max-width: 768px) {
     .nav-main {
       justify-content: space-between;
-      height: 90px;
+      height: auto; padding: 0 20px;
       position: relative;
     }
     .logo {
@@ -1813,6 +1813,8 @@ function clearCompareBar() {
 </script>
 </body>
 </html>
+
+
 
 
 
