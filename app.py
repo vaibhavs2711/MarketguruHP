@@ -794,6 +794,21 @@ def get_car_models():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@app.route('/api/car-variants', methods=['GET'])
+def get_car_variants():
+    model_id = request.args.get('modelId')
+    if not model_id:
+        return jsonify([])
+    try:
+        model = query_db("SELECT variants FROM car_models WHERE id = %s", (model_id,), one=True)
+        if model and model.get('variants'):
+            # variants is stored as comma separated string
+            variant_list = [v.strip() for v in model['variants'].split(',') if v.strip()]
+            return jsonify(variant_list)
+        return jsonify([])
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 @app.route('/api/admin/car-makes', methods=['POST', 'PUT'])
 def admin_car_makes():
     data = request.json

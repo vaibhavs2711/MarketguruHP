@@ -1329,15 +1329,16 @@
     const STEPS = [
       { id: 1, label: 'Brand', title: 'Select brand' },
       { id: 2, label: 'Model', title: 'Select model' },
-      { id: 3, label: 'Year', title: 'Select year' },
-      { id: 4, label: 'Variant', title: 'Select variant & fuel' },
-      { id: 5, label: 'State', title: 'Select city' },
-      { id: 6, label: 'Photos', title: 'Upload photos' },
-      { id: 7, label: 'Details', title: 'Final Details' }
+      { id: 3, label: 'Variant', title: 'Select variant' },
+      { id: 4, label: 'Year', title: 'Select year' },
+      { id: 5, label: 'Specs', title: 'Select trans & fuel' },
+      { id: 6, label: 'State', title: 'Select city' },
+      { id: 7, label: 'Photos', title: 'Upload photos' },
+      { id: 8, label: 'Details', title: 'Final Details' }
     ];
 
     let currentStep = 1;
-    let sellData = { brandId: null, brand: null, modelId: null, model: null, year: null, fuel: null, trans: null, city: null, kms: null, ask: null, mobile: null };
+    let sellData = { brandId: null, brand: null, modelId: null, model: null, variant: null, year: null, fuel: null, trans: null, city: null, kms: null, ask: null, mobile: null };
 
     let currentList = [];
     let uploadedPhotos = [];
@@ -1385,35 +1386,38 @@
       let bHTML = '';
       if (sellData.brand) bHTML += `<div class="bc-pill">${sellData.brand} <span onclick="goToStep(1)">×</span></div>`;
       if (sellData.model) bHTML += `<div class="bc-pill">${sellData.model} <span onclick="goToStep(2)">×</span></div>`;
-      if (sellData.year) bHTML += `<div class="bc-pill">${sellData.year} <span onclick="goToStep(3)">×</span></div>`;
-      if (sellData.fuel) bHTML += `<div class="bc-pill">${sellData.fuel} ${sellData.trans || ''} <span onclick="goToStep(4)">×</span></div>`;
-      if (sellData.city) bHTML += `<div class="bc-pill">${sellData.city} <span onclick="goToStep(5)">×</span></div>`;
+      if (sellData.variant) bHTML += `<div class="bc-pill">${sellData.variant} <span onclick="goToStep(3)">×</span></div>`;
+      if (sellData.year) bHTML += `<div class="bc-pill">${sellData.year} <span onclick="goToStep(4)">×</span></div>`;
+      if (sellData.fuel) bHTML += `<div class="bc-pill">${sellData.fuel} ${sellData.trans || ''} <span onclick="goToStep(5)">×</span></div>`;
+      if (sellData.city) bHTML += `<div class="bc-pill">${sellData.city} <span onclick="goToStep(6)">×</span></div>`;
       bc.innerHTML = bHTML;
 
       // Left Vertical Stepper Updates (visual sync)
       document.getElementById('v2').classList.toggle('pending', currentStep < 2);
-      document.getElementById('v3').classList.toggle('pending', currentStep < 4);
-      document.getElementById('v4').classList.toggle('pending', currentStep < 5);
-      document.getElementById('v5').classList.toggle('pending', currentStep < 7);
+      document.getElementById('v3').classList.toggle('pending', currentStep < 5);
+      document.getElementById('v4').classList.toggle('pending', currentStep < 6);
+      document.getElementById('v5').classList.toggle('pending', currentStep < 8);
     }
 
     function goToStep(num) {
       // Prevent jumping forward if previous steps are incomplete
       if (num > 1 && !sellData.brandId) return;
       if (num > 2 && !sellData.modelId) return;
-      if (num > 3 && !sellData.year) return;
-      if (num > 4 && !sellData.fuel) return;
-      if (num > 5 && !sellData.city) return;
-      if (num > 6 && !sellData.photosUploaded) return;
+      if (num > 3 && !sellData.variant) return;
+      if (num > 4 && !sellData.year) return;
+      if (num > 5 && !sellData.fuel) return;
+      if (num > 6 && !sellData.city) return;
+      if (num > 7 && !sellData.photosUploaded) return;
 
       currentStep = num;
       // Reset future data
       if (num <= 1) sellData.brand = sellData.brandId = null;
       if (num <= 2) sellData.model = sellData.modelId = null;
-      if (num <= 3) sellData.year = null;
-      if (num <= 4) sellData.fuel = sellData.trans = null;
-      if (num <= 5) sellData.city = null;
-      if (num <= 6) { sellData.photosUploaded = false; uploadedPhotos = []; }
+      if (num <= 3) sellData.variant = null;
+      if (num <= 4) sellData.year = null;
+      if (num <= 5) sellData.fuel = sellData.trans = null;
+      if (num <= 6) sellData.city = null;
+      if (num <= 7) { sellData.photosUploaded = false; uploadedPhotos = []; }
 
       renderStepper();
       loadStep(currentStep);
@@ -1494,7 +1498,21 @@
             renderList(data, 'modelId', 'model');
           });
       }
-      else if (stepNum === 3) {
+            else if (stepNum === 3) {
+        document.getElementById('search-box').style.display = 'block';
+        document.getElementById('search-input').placeholder = 'Search Variant...';
+        const list = document.getElementById('list-container');
+        list.style.display = 'block';
+        list.innerHTML = '<div style="padding:20px;text-align:center;color:#666;">Loading variants...</div>';
+
+        fetch(API_BASE + '/api/car-variants?modelId=' + sellData.modelId)
+          .then(r => r.json())
+          .then(data => {
+            currentList = data.map(v => ({ id: v, name: v }));
+            renderList(currentList, 'variant', 'variant');
+          });
+      }
+      else if (stepNum === 4) {
         const grid = document.getElementById('grid-container');
         grid.style.display = 'grid';
         let yHTML = '';
@@ -1503,7 +1521,7 @@
         }
         grid.innerHTML = yHTML;
       }
-      else if (stepNum === 4) {
+      else if (stepNum === 5) {
         document.getElementById('grid-container').style.display = 'none';
         const inp = document.getElementById('input-container');
         inp.style.display = 'block';
@@ -1567,7 +1585,7 @@
       </div>
     `;
       }
-      else if (stepNum === 5) {
+      else if (stepNum === 6) {
         document.getElementById('search-box').style.display = 'block';
         document.getElementById('search-input').placeholder = 'Search City...';
 
@@ -1615,7 +1633,7 @@
       <div class="grid-opt" onclick="setSelection('city', 'Vyara', null, event)">Vyara</div>
     `;
       }
-      else if (stepNum === 6) {
+      else if (stepNum === 7) {
         const inp = document.getElementById('input-container');
         inp.style.display = 'block';
 
@@ -1691,7 +1709,7 @@
           }
         }, 100);
       }
-      else if (stepNum === 7) {
+      else if (stepNum === 8) {
         const inp = document.getElementById('input-container');
         inp.style.display = 'block';
         inp.innerHTML = `
@@ -1867,7 +1885,7 @@
         }
 
         return `
-      <div class="list-item" data-name="${item.name}" onclick="setSelection('${key}', ${item.id}, '${textKey}', event)">
+      <div class="list-item" data-name="${item.name}" onclick="setSelection('${key}', '${item.id.toString().replace(\"'\", \"\\\\'\")}', '${textKey}', event)">
         ${imgHTML}
         <div class="item-name">${item.name}</div>
         <div class="item-arrow">›</div>
@@ -1879,7 +1897,7 @@
     function filterList() {
       const q = document.getElementById('search-input').value.toLowerCase();
 
-      if (currentStep === 5) {
+      if (currentStep === 6) {
         const opts = document.querySelectorAll('#grid-container .grid-opt');
         opts.forEach(opt => {
           if (opt.textContent.toLowerCase().includes(q)) {
@@ -1892,13 +1910,13 @@
       }
 
       const filtered = currentList.filter(i => i.name.toLowerCase().includes(q));
-      const key = currentStep === 1 ? 'brandId' : 'modelId';
-      const textKey = currentStep === 1 ? 'brand' : 'model';
+      const key = currentStep === 1 ? 'brandId' : (currentStep === 2 ? 'modelId' : 'variant');
+      const textKey = currentStep === 1 ? 'brand' : (currentStep === 2 ? 'model' : 'variant');
       renderList(filtered, key, textKey);
     }
 
     function nextStep() {
-      if (currentStep === 7) {
+      if (currentStep === 8) {
         submitListing();
         return;
       }
@@ -1926,7 +1944,7 @@
       } catch (e) { }
 
       const payload = {
-        name: sellData.brand + ' ' + sellData.model,
+        name: sellData.brand + ' ' + sellData.model + (sellData.variant ? ' ' + sellData.variant : ''),
         year: parseInt(sellData.year),
         price: parseFloat(price).toFixed(2),
         priceN: Math.round(parseFloat(price) * 100000),
