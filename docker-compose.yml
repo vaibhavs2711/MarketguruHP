@@ -26,5 +26,12 @@ services:
     depends_on:
       - db
 
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    depends_on:
+      - web
+
 volumes:
   db_data:
