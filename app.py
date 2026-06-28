@@ -868,6 +868,80 @@ def get_car_hierarchy():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@app.route('/api/cars/track-view', methods=['POST'])
+def track_car_view():
+    try:
+        data = request.get_json() or {}
+        car_id = data.get('car_id')
+        user_name = data.get('user_name', 'Guest')
+        user_mobile = data.get('user_mobile', 'N/A')
+        
+        if not car_id:
+            return jsonify({"status": "error", "message": "Missing car_id"}), 400
+            
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "INSERT INTO car_views (car_id, user_name, user_mobile) VALUES (%s, %s, %s)",
+            (car_id, user_name, user_mobile)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+        return jsonify({"status": "success", "message": "View tracked"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/api/cars/view-stats', methods=['POST'])
+def get_car_view_stats():
+    try:
+        data = request.get_json() or {}
+        user_mobile = data.get('user_mobile')
+        role = data.get('role', 'customer')
+        
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        
+        if role == 'admin':
+            cursor.execute("""
+                SELECT cv.car_id, cv.user_name, cv.user_mobile, cv.viewed_at, c.name as car_name
+                FROM car_views cv
+                JOIN cars c ON cv.car_id = c.id
+                ORDER BY cv.viewed_at DESC
+            """)
+            views = cursor.fetchall()
+        elif user_mobile:
+            mobile = str(user_mobile).strip()
+            mobile_bare = mobile.lstrip('+').replace(' ', '').replace('-', '')
+            if mobile_bare.startswith('91') and len(mobile_bare) == 12:
+                mobile_bare = mobile_bare[2:]
+            cursor.execute("""
+                SELECT cv.car_id, cv.user_name, cv.user_mobile, cv.viewed_at, c.name as car_name
+                FROM car_views cv
+                JOIN cars c ON cv.car_id = c.id
+                WHERE c.listed_by = %s OR c.listed_by = %s OR c.listed_by = %s
+                ORDER BY cv.viewed_at DESC
+            """, (mobile, '+91' + mobile_bare, mobile_bare))
+            views = cursor.fetchall()
+        else:
+            views = []
+            
+        cursor.close()
+        conn.close()
+        
+        # Convert timestamp to string format for JSON serialization
+        for v in views:
+            if v.get('viewed_at'):
+                v['viewed_at'] = v['viewed_at'].strftime('%Y-%m-%d %H:%M:%S')
+                
+        return jsonify({
+            "status": "success",
+            "views": views
+        })
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 # Serve static files for double-clicking logic
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path:path>')

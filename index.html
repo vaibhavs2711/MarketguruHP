@@ -1312,7 +1312,7 @@
       display: flex;
       align-items: center;
       padding: 0 20px;
-      height: 104px;
+      height: auto;
       justify-content: space-between;
     }
 
@@ -1320,7 +1320,7 @@
       display: flex;
       align-items: center;
       margin-right: 40px;
-      height: 78px;
+      height: 110px;
       transition: transform 0.3s ease;
     }
 
@@ -1747,16 +1747,16 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-main {
-      max-width: 1320px;
+      max-width: 1280px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
-      height: 85px;
+      height: auto;
     }
     .logo {
-      height: 60px;
+      height: 110px;
     }
     .logo img {
       height: 100%;
@@ -1833,7 +1833,6 @@
         <a href="buy-cars.html" class="nav-link-buy ">Buy Vehicle</a>
         <a href="sell.html" class="nav-link-sell ">Sell Vehicles</a>
         <a href="about.html" class="nav-link-about ">About</a>
-        <a href="compare.html" class="nav-link-compare ">⚖️ Compare</a>
       </div>
       <div class="nav-actions" id="nav-actions">
         <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
@@ -2075,7 +2074,6 @@
             <div class="ql-divider"></div>
             <div class="ql-col">
               <a href="about.html">About Us</a>
-              <a href="compare.html">Compare Cars</a>
               <a href="login.html" class="footer-login-link">Seller Login</a>
             </div>
           </div>
@@ -2125,12 +2123,6 @@
     </div>
   </footer>
 
-  <div id="compare-bar" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:#fff;padding:14px 28px;border-radius:30px;box-shadow:0 8px 30px rgba(0,0,0,0.25);z-index:999;display:none;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.1);">
-    <span id="compare-bar-text" style="font-weight:700;font-size:14px;"></span>
-    <a href="compare.html" style="background:var(--red);color:#1A1A2E;padding:8px 20px;border-radius:20px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Compare Now &rarr;</a>
-    <button onclick="clearCompareBar()" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;padding:0 5px;">×</button>
-  </div>
-
   <div class="toast" id="toast"></div>
 
   <script src="cars-data.js"></script>
@@ -2147,7 +2139,6 @@
           if (navActions) navActions.classList.toggle('active');
         });
       }
-      updateCompareBar();
     });
     function renderCars() {
       const grid = document.getElementById('featuredCars');
@@ -2174,9 +2165,6 @@
           <div class="car-actions">
             <button class="btn-wishlist" onclick="event.stopPropagation();wishlist(${c.id})">
               ${mgDB.isWishlisted(c.id) ? '❤️ Saved' : '♡ Save'}
-            </button>
-            <button class="btn-wishlist" onclick="event.stopPropagation();toggleCompare(${c.id}, event)" style="border-color:${isCompared(c.id) ? 'var(--charcoal)' : 'var(--border)'}; background:${isCompared(c.id) ? 'rgba(15, 43, 110, 0.1)' : 'transparent'}; color:${isCompared(c.id) ? 'var(--charcoal)' : 'var(--muted)'};">
-              ${isCompared(c.id) ? '⚖️ Added' : '⚖️ Compare'}
             </button>
             <button class="btn-contact" onclick="event.stopPropagation();window.location='car-detail.html?id=${c.id}'">👁️ View</button>
           </div>

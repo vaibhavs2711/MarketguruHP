@@ -170,6 +170,17 @@ def init_database():
         password VARCHAR(255)
     )
     """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS car_views (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        car_id INT,
+        user_name VARCHAR(100),
+        user_mobile VARCHAR(20),
+        viewed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
+    )
+    """)
     conn.commit()
 
     # 2. Seed data if tables are empty

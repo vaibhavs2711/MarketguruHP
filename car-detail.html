@@ -317,7 +317,6 @@
         <a href="buy-cars.html">Buy Vehicle</a>
         <a href="sell.html">Sell Vehicles</a>
         <a href="about.html">About</a>
-        <a href="compare.html">⚖️ Compare</a>
       </div>
       <div class="nav-actions">
         <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
@@ -365,21 +364,19 @@
       <div style="font-size:14px; color:var(--muted); margin-bottom:24px; font-weight:500; display:flex; gap:8px; align-items:center; justify-content:center;">
         <span id="rKm">25,000 km</span> | <span id="rFuel">Petrol</span> | <span id="rCity">Vadodara</span>
       </div>
-      
-      <div style="margin: auto 0; padding: 16px; background: rgba(249, 115, 22, 0.1); border-radius: 12px; border: 1px solid rgba(249, 115, 22, 0.3); text-align: left;">
-        <div style="font-weight: 800; color: var(--navy); margin-bottom: 8px; font-size: 14px; display:flex; align-items:center; gap:6px;">
-          <span style="font-size:18px;">🛡️</span> Market Guru HP Assured
-        </div>
-        <div style="font-size: 13px; color: var(--navy); display: flex; flex-direction: column; gap: 6px; font-weight: 500;">
-          <div>✓ 100% Verified Listing</div>
-          <div>✓ Transparent & Hassle Free Process</div>
+      <div class="ql-card" style="width: 100%; border: 1.5px solid var(--border); box-shadow: none; padding: 16px; margin-bottom: 20px; border-radius: 12px; background: rgba(15, 43, 110, 0.01); text-align: left;">
+        <div class="ql-title" style="margin-bottom: 12px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">Quick Links</div>
+        <div class="ql-grid">
+          <div class="ql-btn" onclick="showToast('Downloading brochure...')">📥 Download Brochure</div>
+          <div class="ql-btn" onclick="showToast('Fetching insurance quote...')">🛡️ Get Insurance Quote</div>
+          <div class="ql-btn" onclick="showToast('Opening calendar...')">📅 Book Inspection</div>
+          <div class="ql-btn" onclick="showToast('Listing reported.')">🚩 Report this Listing</div>
         </div>
       </div>
-      
-      <div style="margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 16px;">
+      <div style="margin-top: 0; width: 100%; display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; gap: 8px; justify-content: center;">
           <div class="ql-btn" style="flex:1; justify-content:center; padding:10px 8px;" onclick="toggleWishlistDetail()">❤️ Wishlist</div>
-          <div class="ql-btn" style="flex:1; justify-content:center; padding:10px 8px;" onclick="showToast('Comparing...')">⚖️ Compare</div>
+          <div class="ql-btn" style="flex:1; justify-content:center; padding:10px 8px;" onclick="toggleCompareDetail()">⚖️ Compare</div>
           <div class="ql-btn" style="flex:1; justify-content:center; padding:10px 8px;" onclick="shareCar()">🔗 Share</div>
         </div>
         
@@ -467,19 +464,7 @@
   </div>
 
   <!-- RIGHT COLUMN 2 -->
-  <div class="right-col">
-
-    <!-- Quick Links Card -->
-    <div class="ql-card">
-      <div class="ql-title">Quick Links</div>
-      <div class="ql-grid">
-        <div class="ql-btn" onclick="showToast('Downloading brochure...')">📥 Download Brochure</div>
-        <div class="ql-btn" onclick="showToast('Fetching insurance quote...')">🛡️ Get Insurance Quote</div>
-        <div class="ql-btn" onclick="showToast('Opening calendar...')">📅 Book Inspection</div>
-        <div class="ql-btn" onclick="showToast('Listing reported.')">🚩 Report this Listing</div>
-      </div>
-    </div>
-  </div>
+  <div class="right-col"></div>
 </div>
 
 <footer class="footer">
@@ -633,6 +618,9 @@ function initPage() {
   setupGallery();
   checkContactVerification();
   checkLoginState();
+  if (currentCar) {
+    trackView(currentCar.id);
+  }
   
   // Navbar toggle
   const menuToggle = document.getElementById('menu-toggle');
@@ -645,6 +633,39 @@ function initPage() {
       if (navActions) navActions.classList.toggle('active');
     });
   }
+}
+
+function trackView(carId) {
+  let userName = 'Guest';
+  let userMobile = 'N/A';
+  try {
+    const currentUser = localStorage.getItem('mg_current_user');
+    const mobile = localStorage.getItem('mg_current_user_mobile');
+    if (currentUser) {
+      userName = currentUser;
+    }
+    if (mobile) {
+      userMobile = mobile;
+    }
+  } catch(e) {}
+  
+  const apiBase = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:5000/api'
+    : '/api';
+    
+  fetch(`${apiBase}/cars/track-view`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      car_id: carId,
+      user_name: userName,
+      user_mobile: userMobile
+    })
+  }).then(r => r.json())
+    .then(data => console.log('View tracked:', data))
+    .catch(err => console.error('Error tracking view:', err));
 }
 
 function renderCarDetails() {
@@ -833,6 +854,29 @@ function toggleWishlistDetail() {
   if (!currentCar) return;
   const added = mgDB.toggleWishlist(currentCar.id);
   showToast(added ? '❤️ Added to wishlist!' : '💔 Removed from wishlist');
+}
+
+function toggleCompareDetail() {
+  if (!currentCar) return;
+  let list = [];
+  try {
+    list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
+  } catch (e) {
+    list = [];
+  }
+  if (!list.includes(currentCar.id)) {
+    if (list.length >= 3) {
+      list.shift();
+    }
+    list.push(currentCar.id);
+    localStorage.setItem('mg_compare_list', JSON.stringify(list));
+    showToast('⚖️ Added to comparison!');
+  } else {
+    showToast('⚖️ Already in comparison list!');
+  }
+  setTimeout(() => {
+    window.location.href = 'compare.html';
+  }, 800);
 }
 
 function checkLoginState() {

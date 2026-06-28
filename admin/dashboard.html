@@ -348,10 +348,10 @@
 
   <div class="nav-section">
     <div class="nav-section-title">Admin</div>
-    <div class="nav-item" onclick="showPage(\'makesmodels\',this)">
+    <div class="nav-item" onclick="showPage('makesmodels',this)">
       <span class="icon">🏷️</span> Makes & Models
     </div>
-    <div class="nav-item" onclick="showPage(\'users\',this)">
+    <div class="nav-item" onclick="showPage('users',this)">
       <span class="icon">👤</span> Staff Users
     </div>
     <div class="nav-item" onclick="showPage('rbac',this)">
@@ -918,11 +918,34 @@
       <button class="btn-save" onclick="saveUser()">Create User</button>
     </div>
   </div>
+<!-- VISITOR DETAILS MODAL -->
+<div class="modal-overlay" id="visitorModal">
+  <div class="modal" style="max-width: 600px; width: 90%;">
+    <h3 id="visitorModalTitle">👁️ Visitor Insights</h3>
+    <div id="visitorModalSub" style="font-size: 13px; color: var(--muted); margin-bottom: 16px;"></div>
+    <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--border); background: rgba(0,0,0,0.03); text-align: left;">
+            <th style="padding: 10px;">User Name</th>
+            <th style="padding: 10px;">Mobile</th>
+            <th style="padding: 10px;">Time Visited</th>
+          </tr>
+        </thead>
+        <tbody id="visitorTableBody">
+          <!-- populated by JS -->
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer" style="justify-content: flex-end;">
+      <button class="btn-cancel" onclick="hideModal('visitorModal')">Close</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<script src="cars-data.js"></script>
+<script src="../cars-data.js"></script>
 <script>
 // Sidebar Toggle handling
 document.addEventListener('DOMContentLoaded', () => {
@@ -1003,7 +1026,11 @@ function renderAllCars() {
       <td>${c.fuel}</td>
       <td>${c.owner} Owner</td>
       <td><span class="status-badge ${c.status==='active'?'s-active':c.status==='hot'?'s-hot':'s-inactive'}">${c.status}</span></td>
-      <td>${c.views}</td>
+      <td>
+        <a href="#" onclick="event.preventDefault(); showAdminVisitorDetails('${c.id}', '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="color: var(--blue); font-weight: bold; text-decoration: underline;">
+          ${c.views}
+        </a>
+      </td>
       <td>${c.leads}</td>
       <td style="display:flex;gap:4px">
         <button class="btn-sm btn-outline-sm" onclick="toggleVerifyCar('${c.id}')">${c.status==='active'?'Unverify':'Verify'}</button>
@@ -1011,6 +1038,28 @@ function renderAllCars() {
       </td>
     </tr>
   `).join('');
+}
+
+function showAdminVisitorDetails(carIdStr, carName) {
+  const rawId = parseInt(carIdStr.replace('AD', ''));
+  const carViews = adminViews.filter(v => v.car_id === rawId);
+  document.getElementById('visitorModalTitle').textContent = `👁️ Views: ${carName}`;
+  document.getElementById('visitorModalSub').textContent = `Total unique/repeat views: ${carViews.length}`;
+  
+  const vtbody = document.getElementById('visitorTableBody');
+  if (carViews.length === 0) {
+    vtbody.innerHTML = `<tr><td colspan="3" style="text-align: center; padding: 20px; color: var(--muted);">No views recorded yet.</td></tr>`;
+  } else {
+    vtbody.innerHTML = carViews.map(v => `
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px;">${v.user_name || 'Guest'}</td>
+        <td style="padding: 10px; font-family: monospace;">${v.user_mobile || 'N/A'}</td>
+        <td style="padding: 10px; color: var(--muted);">${v.viewed_at || '—'}</td>
+      </tr>
+    `).join('');
+  }
+  
+  showModal('visitorModal');
 }
 
 function renderLeads() {
@@ -1159,16 +1208,27 @@ function renderSalesChart() {
 /* ---- INTERACTIVE OPERATIONS ---- */
 function toggleVerifyCar(displayId) {
   const numericId = parseInt(displayId.replace('AD', ''));
-  const userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
-  
-  const idx = userCars.findIndex(c => c.id === numericId);
-  if (idx !== -1) {
-    userCars[idx].verified = !userCars[idx].verified;
-    localStorage.setItem('mg_user_cars', JSON.stringify(userCars));
-    showToast('✅ Verification updated successfully!');
-    setTimeout(() => location.reload(), 1000);
+  const car = mgDB.getCarById(numericId);
+  if (car) {
+    const nextVerifiedState = !car.verified;
+    const success = mgDB.toggleVerifyCar(numericId, nextVerifiedState);
+    if (success) {
+      showToast('✅ Verification updated successfully!');
+      setTimeout(() => location.reload(), 1000);
+    } else {
+      showToast('❌ Failed to update verification');
+    }
   } else {
-    showToast('⚠️ Default cars verification cannot be changed permanently');
+    const userCars = JSON.parse(localStorage.getItem('mg_user_cars') || '[]');
+    const idx = userCars.findIndex(c => c.id === numericId);
+    if (idx !== -1) {
+      userCars[idx].verified = !userCars[idx].verified;
+      localStorage.setItem('mg_user_cars', JSON.stringify(userCars));
+      showToast('✅ Verification updated successfully!');
+      setTimeout(() => location.reload(), 1000);
+    } else {
+      showToast('⚠️ Car listing not found');
+    }
   }
 }
 
@@ -1290,8 +1350,13 @@ function exportData() {
 
 /* ---- NAVIGATION ---- */
 function showPage(page, navEl) {
+  const targetPage = document.getElementById('pg-'+page);
+  if (!targetPage) {
+    showToast('⚠️ Page is under development / not implemented');
+    return;
+  }
   document.querySelectorAll('.page-section').forEach(p=>p.classList.remove('active'));
-  document.getElementById('pg-'+page).classList.add('active');
+  targetPage.classList.add('active');
   if(navEl) {
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
     navEl.classList.add('active');
@@ -1314,6 +1379,26 @@ function showToast(msg) {
 /* ---- INIT ---- */
 renderDashCars();
 renderAllCars();
+
+let adminViews = [];
+fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/cars/view-stats', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ role: 'admin' })
+})
+.then(r => r.json())
+.then(data => {
+  if (data.status === 'success') {
+    adminViews = data.views || [];
+    carsData.forEach(car => {
+      const rawId = parseInt(car.id.replace('AD', ''));
+      const views = adminViews.filter(v => v.car_id === rawId);
+      car.views = views.length;
+    });
+    renderAllCars();
+  }
+}).catch(err => console.error(err));
+
 renderLeads();
 renderEnquiries();
 renderCustomers();
@@ -1380,8 +1465,6 @@ function updateSubscriptionStats() {
   const countVal = document.getElementById('dealerSubCount');
   if (countVal) countVal.textContent = activeCount;
 }
-
-<script>
 
 // --- Admin Car Makes & Models ---
 let allAdminMakes = [];
@@ -1489,7 +1572,6 @@ function editModel(id, make_id, oldName) {
 
 document.addEventListener('DOMContentLoaded', loadAdminCarData);
 
-</script>
 </script>
 </body>
 </html>

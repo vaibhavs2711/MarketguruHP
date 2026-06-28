@@ -689,6 +689,7 @@ padding: 0;
               <th>KM</th>
               <th>Fuel</th>
               <th>Status</th>
+              <th>Views</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -783,6 +784,28 @@ padding: 0;
         <button class="btn-modal-danger" onclick="doRemoveListing(false)">🗑️ Remove Listing</button>
         <button class="btn-modal-primary" onclick="doRemoveListing(true)">✅ Mark as Sold</button>
       </div>
+  <!-- VISITOR DETAILS MODAL -->
+  <div class="modal-overlay" id="visitorModal">
+    <div class="modal-box" style="max-width: 600px; width: 90%;">
+      <div class="modal-title" id="visitorModalTitle">👁️ Visitor Insights</div>
+      <div class="modal-sub" id="visitorModalSub" style="margin-bottom: 16px;"></div>
+      <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--silver); margin-bottom: 20px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border); background: rgba(0,0,0,0.03); text-align: left;">
+              <th style="padding: 10px;">User Name</th>
+              <th style="padding: 10px;">Mobile</th>
+              <th style="padding: 10px;">Time Visited</th>
+            </tr>
+          </thead>
+          <tbody id="visitorTableBody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-actions" style="justify-content: flex-end;">
+        <button class="btn-modal-primary" onclick="closeModal('visitorModal')">Close</button>
+      </div>
     </div>
   </div>
 
@@ -796,6 +819,7 @@ padding: 0;
     let currentUser = localStorage.getItem('mg_current_user') || '';
     let currentUserMobile = localStorage.getItem('mg_current_user_mobile') || '';
     let userType = localStorage.getItem('mg_current_user_type') || 'private';
+    let globalViews = [];
 
     // Redirect to login if no session exists
     if (!currentUser) {
@@ -841,7 +865,23 @@ padding: 0;
                 } catch(e) { globalWishlist = []; }
                 renderStats();
                 renderWishlist();
-                renderUserListings();
+                
+                // Fetch views stats
+                fetch(API_BASE + '/api/cars/view-stats', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ user_mobile: currentUserMobile, role: userType })
+                })
+                .then(r => r.json())
+                .then(vdata => {
+                  if (vdata.status === 'success') {
+                    globalViews = vdata.views || [];
+                  }
+                  renderUserListings();
+                }).catch(err => {
+                  console.error(err);
+                  renderUserListings();
+                });
             }
         }).catch(err => console.error(err));
     }
@@ -908,24 +948,55 @@ padding: 0;
       const tbody = document.getElementById('listingsTable');
 
       if (userCars.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding:32px;">You haven't listed any cars for sale yet. <a href="sell.html" style="color:var(--primary);font-weight:700;">List your first car →</a></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--muted); padding:32px;">You haven't listed any cars for sale yet. <a href="sell.html" style="color:var(--primary);font-weight:700;">List your first car →</a></td></tr>`;
         return;
       }
 
-      tbody.innerHTML = userCars.map(c => `
-      <tr>
-        <td><strong>${c.name || c.title || 'Unknown Car'}</strong></td>
-        <td>${c.year}</td>
-        <td style="font-weight:700;color:var(--primary)">₹${c.price}L</td>
-        <td>${c.km || '—'} km</td>
-        <td>${c.fuel || '—'}</td>
-        <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>
-        <td style="display:flex;gap:8px;align-items:center;">
-          <button class="action-btn action-edit" onclick="openEditModal(${c.id})">✏️ Edit</button>
-          <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id})">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
-        </td>
-      </tr>
-    `).join('');
+      tbody.innerHTML = userCars.map(c => {
+        const carViews = globalViews.filter(v => v.car_id === c.id);
+        const viewCount = carViews.length;
+        
+        return `
+        <tr>
+          <td><strong>${c.name || c.title || 'Unknown Car'}</strong></td>
+          <td>${c.year}</td>
+          <td style="font-weight:700;color:var(--primary)">₹${c.price}L</td>
+          <td>${c.km || '—'} km</td>
+          <td>${c.fuel || '—'}</td>
+          <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>
+          <td>
+            <a href="#" onclick="event.preventDefault(); showVisitorDetails(${c.id}, '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="color: var(--blue); font-weight: bold; text-decoration: underline; display: flex; align-items: center; gap: 4px;">
+              👁️ ${viewCount}
+            </a>
+          </td>
+          <td style="display:flex;gap:8px;align-items:center;">
+            <button class="action-btn action-edit" onclick="openEditModal(${c.id})">✏️ Edit</button>
+            <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id})">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
+          </td>
+        </tr>
+      `;
+      }).join('');
+    }
+
+    function showVisitorDetails(carId, carName) {
+      const carViews = globalViews.filter(v => v.car_id === carId);
+      document.getElementById('visitorModalTitle').textContent = `👁️ Views: ${carName}`;
+      document.getElementById('visitorModalSub').textContent = `Total unique/repeat views: ${carViews.length}`;
+      
+      const vtbody = document.getElementById('visitorTableBody');
+      if (carViews.length === 0) {
+        vtbody.innerHTML = `<tr><td colspan="3" style="text-align: center; padding: 20px; color: var(--muted);">No views recorded yet.</td></tr>`;
+      } else {
+        vtbody.innerHTML = carViews.map(v => `
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px;">${v.user_name || 'Guest'}</td>
+            <td style="padding: 10px; font-family: monospace;">${v.user_mobile || 'N/A'}</td>
+            <td style="padding: 10px; color: var(--muted);">${v.viewed_at || '—'}</td>
+          </tr>
+        `).join('');
+      }
+      
+      document.getElementById('visitorModal').classList.add('show');
     }
 
     /* --- Modal Handlers --- */
