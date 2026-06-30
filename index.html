@@ -3371,11 +3371,6 @@
               initials = currentUser.substring(0, 2).toUpperCase();
             }
           } catch (e) { }
-          if (accountBtn) {
-            accountBtn.innerHTML = initials;
-            accountBtn.style.fontWeight = '700';
-            accountBtn.style.fontSize = '16px';
-          }
           asTitle.textContent = 'My Account';
           asBody.innerHTML = `
           <div class="as-user-info">

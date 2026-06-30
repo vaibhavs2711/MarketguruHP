@@ -2379,28 +2379,21 @@
 
     function checkLoginState() {
       const currentUser = localStorage.getItem('mg_current_user');
-      const navActions = document.getElementById('nav-actions');
-      if (navActions) {
-        if (currentUser) {
-          let initials = '👤';
-          try {
-            const userObj = JSON.parse(currentUser);
-            const name = userObj.name || '';
-            if (name) {
-              const parts = name.split(' ');
-              initials = parts.length > 1 ? (parts[0][0] + parts[1][0]).toUpperCase() : name.substring(0, 2).toUpperCase();
+      if (currentUser) {
+        const loginLinks = document.querySelectorAll('a[href="login.html"]');
+        loginLinks.forEach(link => {
+          link.href = 'customer-dashboard.html';
+          const btn = link.querySelector('button');
+          if (btn) {
+            if (btn.textContent.trim().toLowerCase() === 'login') {
+              btn.textContent = 'Dashboard';
             }
-          } catch (e) { }
-          navActions.innerHTML = `
-        <a href="customer-dashboard.html" title="My Profile" style="text-decoration:none; display:block;">
-          <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(249, 115, 22, 0.15); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--primary); text-transform: uppercase; transition: all 0.2s;">
-            ${initials}
-          </div>
-        </a>
-      `;
-        } else {
-          navActions.innerHTML = `<a href="login.html" style="text-decoration:none;"><button class="btn-outline-white">Login</button></a>`;
-        }
+          } else {
+            if (link.textContent.includes('Login / Register')) {
+              link.textContent = 'My Dashboard';
+            }
+          }
+        });
       }
     }
     checkLoginState();
