@@ -282,6 +282,51 @@
       display: none; /* Hide View Site on very small screens */
     }
   }
+
+/* Account Sidebar Styles */
+.nav-account-circle {
+  width: 42px; height: 42px; border-radius: 50%; 
+  background: rgba(249, 115, 22, 0.15); 
+  border: 2px solid var(--primary); 
+  display: flex; align-items: center; justify-content: center; 
+  font-size: 18px; color: var(--primary); 
+  cursor: pointer; transition: all 0.2s; margin-left: 10px;
+}
+.nav-account-circle:hover { 
+  background: rgba(249, 115, 22, 0.25);
+}
+
+.account-sidebar-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5); z-index: 9999;
+  opacity: 0; visibility: hidden; transition: 0.3s;
+}
+.account-sidebar-overlay.open { opacity: 1; visibility: visible; }
+.account-sidebar {
+  position: fixed; top: 0; right: -400px; width: 400px; height: 100vh;
+  background: #fff; z-index: 10000; box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+  transition: right 0.3s ease; display: flex; flex-direction: column;
+}
+.account-sidebar.open { right: 0; }
+.as-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.as-header h2 { font-size: 18px; font-weight: 700; color: #1e293b; margin: 0; }
+.as-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: #64748b; line-height: 1; padding: 0; margin: 0; }
+.as-body { padding: 24px; flex: 1; overflow-y: auto; }
+/* Logged out */
+.as-login-view p { font-size: 14px; color: #64748b; margin-bottom: 24px;}
+.as-btn { width: 100%; padding: 14px; background: #f97316; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.2s; text-align: center; display: block; text-decoration: none;}
+.as-btn:hover { background: #ea580c; }
+/* Logged in */
+.as-user-info { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+.as-avatar { width: 50px; height: 50px; border-radius: 50%; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #10b981;}
+.as-user-details h4 { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 4px; margin-top: 0;}
+.as-user-details p { font-size: 14px; color: #64748b; margin: 0;}
+.as-edit-btn { margin-left: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #3b82f6;}
+.as-section-title { font-size: 12px; color: #10b981; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #10b981;}
+.as-menu { list-style: none; padding: 0; margin: 0 0 24px 0;}
+.as-menu li a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f1f5f9; color: #1e293b; font-weight: 600; text-decoration: none; font-size: 15px; }
+.as-menu li a:hover { color: #f97316; }
+@media(max-width: 480px) { .account-sidebar { width: 100%; right: -100%; } }
 </style>
 </head>
 <body>
@@ -1491,5 +1536,101 @@ document.addEventListener('DOMContentLoaded', loadAdminCarData);
 
 </script>
 </script>
+
+<!-- ACCOUNT SIDEBAR -->
+<div class="account-sidebar-overlay" id="as-overlay"></div>
+<div class="account-sidebar" id="account-sidebar">
+  <div class="as-header">
+    <h2 id="as-title">My Account</h2>
+    <button class="as-close" id="as-close-btn">&times;</button>
+  </div>
+  <div class="as-body" id="as-body">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accountBtn = document.getElementById('nav-account-btn');
+    const asSidebar = document.getElementById('account-sidebar');
+    const asOverlay = document.getElementById('as-overlay');
+    const asClose = document.getElementById('as-close-btn');
+    const asBody = document.getElementById('as-body');
+    const asTitle = document.getElementById('as-title');
+
+    function openSidebar() {
+      if(asSidebar) asSidebar.classList.add('open');
+      if(asOverlay) asOverlay.classList.add('open');
+      renderSidebar();
+    }
+    function closeSidebar() {
+      if(asSidebar) asSidebar.classList.remove('open');
+      if(asOverlay) asOverlay.classList.remove('open');
+    }
+
+    if (accountBtn) accountBtn.addEventListener('click', openSidebar);
+    if (asClose) asClose.addEventListener('click', closeSidebar);
+    if (asOverlay) asOverlay.addEventListener('click', closeSidebar);
+
+    function renderSidebar() {
+      const currentUser = localStorage.getItem('mg_current_user');
+      const mobile = localStorage.getItem('mg_current_user_mobile') || '';
+      
+      if (currentUser && currentUser !== 'Guest User') {
+        let initials = '👤';
+        try {
+          const parts = currentUser.split(' ');
+          if (parts.length > 1) {
+            initials = (parts[0][0] + parts[1][0]).toUpperCase();
+          } else {
+            initials = currentUser.substring(0, 2).toUpperCase();
+          }
+        } catch(e) {}
+        if(accountBtn) {
+            accountBtn.innerHTML = initials;
+            accountBtn.style.fontWeight = '700';
+            accountBtn.style.fontSize = '16px';
+        }
+        asTitle.textContent = 'My Account';
+        asBody.innerHTML = `
+          <div class="as-user-info">
+            <div class="as-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+            <div class="as-user-details">
+              <h4>${currentUser}</h4>
+              <p>${mobile}</p>
+            </div>
+            <button class="as-edit-btn" onclick="window.location='customer-dashboard.html'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+          </div>
+          <div class="as-section-title">SELL CAR</div>
+          <ul class="as-menu">
+            <li><a href="customer-dashboard.html">View My Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="sell.html">Post a New Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="customer-dashboard.html">Dashboard <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+          </ul>
+          <ul class="as-menu">
+            <li><a href="#" id="as-logout-btn">Logout <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></a></li>
+          </ul>
+        `;
+        document.getElementById('as-logout-btn').addEventListener('click', (e) => {
+           e.preventDefault();
+           localStorage.removeItem('mg_current_user');
+           localStorage.removeItem('mg_current_user_mobile');
+           localStorage.removeItem('mg_current_user_type');
+           closeSidebar();
+           window.location.reload();
+        });
+      } else {
+        asTitle.textContent = 'Welcome to Market Guru HP';
+        asBody.innerHTML = `
+          <div class="as-login-view">
+            <p>Login to manage your car listings, view analytics, and save your favourite cars.</p>
+            <a href="login.html" class="as-btn">Login / Register</a>
+          </div>
+        `;
+      }
+    }
+  });
+</script>
 </body>
+
 </html>

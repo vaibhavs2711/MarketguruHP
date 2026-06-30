@@ -1,56 +1,8 @@
 import os
-import glob
 import re
 
-footer_css_new = """  /* FOOTER */
-  .footer { background: var(--charcoal); padding: 40px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
-  .footer-inner { max-width: 1280px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
-  .footer-col-brand .logo { display: block; margin-bottom: 20px; height: 85px; }
-  .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
-  .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; margin-top: 10px; }
-  
-  .footer-col h4 { font-size: 16px; font-weight: 600; color: var(--red); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
-  .footer-col a { display: block; font-size: 14px; color: #e0e5eb; margin-bottom: 12px; transition: color 0.2s; font-weight: 500; }
-  .footer-col a:hover { color: var(--red); }
-  
-  .quick-links-split { display: flex; gap: 30px; }
-  .ql-divider { width: 1px; background: var(--red); opacity: 0.5; }
-  .ql-col { display: flex; flex-direction: column; }
-
-  .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-  .footer-contact .contact-icon { width: 20px; height: 20px; stroke: var(--red); flex-shrink: 0; }
-  .footer-contact .contact-item a { margin-bottom: 0; font-size: 15px; color: #fff; font-weight: 500; letter-spacing: 0.5px; }
-  
-  .footer-bottom-bar { 
-    background: #333; 
-    border-radius: 40px; 
-    padding: 12px 24px; 
-    display: flex; justify-content: space-between; align-items: center;
-    color: #bbb; font-size: 13px; font-weight: 500;
-  }
-  .fbb-left { display: flex; align-items: center; gap: 16px; }
-  .fbb-connect-text { font-size: 15px; font-weight: 500; color: #fff; font-family: 'Inter', sans-serif; letter-spacing: 0.5px; }
-  .fbb-socials { display: flex; gap: 12px; }
-  .fbb-socials a {
-    display: flex; align-items: center; justify-content: center;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: #fff; color: #111;
-    transition: all 0.3s ease;
-  }
-  .fbb-socials a:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-  .fbb-socials svg { width: 16px; height: 16px; fill: currentColor; }
-  
-  .fbb-links { display: flex; gap: 8px; align-items: center; }
-  .fbb-links a { color: #bbb; text-decoration: none; transition: color 0.2s; font-size: 13px; font-weight: 600; }
-  .fbb-links a:hover { color: var(--white); }
-  
-  @media(max-width: 800px) {
-    .footer-bottom-bar { flex-direction: column; gap: 16px; border-radius: 16px; text-align: center; }
-    .fbb-left { flex-direction: column; gap: 10px; }
-  }"""
-
-footer_html_new = """<footer class="footer">
+FOOTER_HTML = """<!-- FOOTER -->
+  <footer class="footer">
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-col-brand">
@@ -58,7 +10,7 @@ footer_html_new = """<footer class="footer">
           <img src="logo.png" alt="Market Guru HP Logo">
         </a>
         <div class="footer-copyright">
-          © 2006 - 2026 Market Guru HP.<br>
+          &copy; 2006 - 2026 Market Guru HP.<br>
           All rights reserved in favour of Market Guru HP.
         </div>
       </div>
@@ -66,8 +18,8 @@ footer_html_new = """<footer class="footer">
         <h4>Quick guide links</h4>
         <div class="quick-links-split">
           <div class="ql-col">
-            <a href="buy-cars.html">Buy car</a>
-            <a href="sell.html">Sell car</a>
+            <a href="buy-cars.html">Buy Vehicle</a>
+            <a href="sell.html">Sell Vehicles</a>
           </div>
           <div class="ql-divider"></div>
           <div class="ql-col">
@@ -88,7 +40,6 @@ footer_html_new = """<footer class="footer">
         </div>
       </div>
     </div>
-    
     <div class="footer-bottom-bar">
       <div class="fbb-left">
         <div class="fbb-connect-text">Connect with us :</div>
@@ -102,34 +53,34 @@ footer_html_new = """<footer class="footer">
           <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
             <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
+          <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
         </div>
       </div>
       <div class="fbb-links">
-        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="terms-of-service.html">Terms of Service</a>
       </div>
     </div>
   </div>
 </footer>"""
 
-for file in glob.glob("e:/MarketguruHP/MarketguruHP/MarketguruHP/*.html"):
-    with open(file, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
-    # We will use regex to find the old footer CSS and replace it
-    css_pattern = re.compile(r'  /\* FOOTER \*/.*?\.toast \{', re.DOTALL)
-    html_pattern = re.compile(r'<footer class="footer">.*?</footer>', re.DOTALL)
-    
-    modified = False
-    
-    if css_pattern.search(content):
-        content = css_pattern.sub(footer_css_new + '\n\n  .toast {', content)
-        modified = True
+html_files = ["sell.html", "customer-dashboard.html", "dashboard.html"]
+
+for f in html_files:
+    if os.path.exists(f):
+        with open(f, 'r', encoding='utf-8') as file:
+            content = file.read()
         
-    if html_pattern.search(content):
-        content = html_pattern.sub(footer_html_new, content)
-        modified = True
+        # Regex to match any footer tag
+        pattern = re.compile(r'<footer[^>]*>.*?</footer>', re.DOTALL | re.IGNORECASE)
         
-    if modified:
-        with open(file, 'w', encoding='utf-8') as f:
-            f.write(content)
-        print(f"Updated {file}")
+        if pattern.search(content):
+            new_content = pattern.sub(FOOTER_HTML, content)
+            with open(f, 'w', encoding='utf-8') as file:
+                file.write(new_content)
+            print(f"Updated {f}")
+        else:
+            print(f"Footer not found in {f}")

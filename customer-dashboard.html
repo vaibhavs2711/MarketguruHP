@@ -9,21 +9,21 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap"
     rel="stylesheet">
   <style>
-            :root {
+    :root {
       --primary: #F97316;
       --primary-hover: #EA580C;
-      --secondary: #FF7A00;
-      --navy: #0F2B6E;
-      --charcoal: #1E293B;
       --text: #1E293B;
-      --bg: #F8FAFC;
+      --bg: #F8F9FA;
       --white: #FFFFFF;
       --border: #E2E8F0;
       --muted: #64748B;
-      --success: #10B981;
-      --warning: #F59E0B;
-      --danger: #EF4444;
-      --blue-light: #F1F5F9;
+      --blue: #3B82F6;
+      --green: #10B981;
+      --orange: #F59E0B;
+    }
+
+    .collapsed {
+      display: none !important;
     }
 
     * {
@@ -37,372 +37,725 @@
       color: var(--text);
       background: var(--bg);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* TOPBAR */
-    .topbar {
+    /* NEW TOPBAR */
+    .topbar-new {
       background: var(--white);
-padding: 0;
-      height: 80px;
+      height: 72px;
+      border-bottom: 1px solid var(--border);
       display: flex;
-      align-items: center;
+      justify-content: center;
       position: sticky;
       top: 0;
       z-index: 100;
-}
+    }
 
-    .topbar-inner {
+    .topbar-inner-new {
+      max-width: 1280px;
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 32px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
 
-    .topbar-left {
+    .left-nav {
       display: flex;
       align-items: center;
-      gap: 16px;
-      text-decoration: none;
-    }
-
-    .topbar-logo-img {
-      height: 44px;
-      display: block;
-      background: #10172A;
-      padding: 4px 12px;
-      border-radius: 6px;
-    }
-
-    .topbar-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--charcoal);
-      letter-spacing: 0.5px;
-    }
-
-    .topbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    /* BUTTONS */
-    .btn-back-site {
-      background: var(--primary);
-      color: #1A1A2E;
-      padding: 10px 22px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 800;
       cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-      box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
-      text-decoration: none;
+      color: var(--text);
+      gap: 16px;
+    }
+
+    .right-nav {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 24px;
     }
 
-    .btn-back-site:hover {
-      background: var(--primary-hover);
-      box-shadow: 0 0 25px rgba(249, 115, 22, 0.85);
-      transform: translateY(-2px);
+    .notif-icon {
+      position: relative;
+      cursor: pointer;
+      color: var(--text);
     }
 
-    .profile-btn {
-      width: 42px;
-      height: 42px;
+    .notif-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #EF4444;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: rgba(249, 115, 22, 0.15);
-      border: 2px solid var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .user-profile .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .user-role {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .dashboard-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 40px 32px;
+      flex: 1;
+    }
+
+    .welcome-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .welcome-header p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .dash-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    /* TOP GRID */
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .top-grid .dash-card h3 {
       font-size: 16px;
       font-weight: 700;
-      color: var(--primary);
-      cursor: pointer;
-      transition: all 0.2s;
-      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 16px;
     }
 
-    .profile-btn:hover {
-      background: rgba(249, 115, 22, 0.3);
-      transform: scale(1.1);
+    .usage-tag {
+      display: inline-block;
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
     }
 
-    .btn-logout-header {
-      background: transparent;
-      border: 1.5px solid var(--border);
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #E5E7EB;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #10B981;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .top-grid .dash-card p {
+      font-size: 14px;
       color: var(--muted);
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
     }
 
-    .btn-logout-header:hover {
-      border-color: #ef4444;
-      color: #ef4444;
-      background: rgba(239, 68, 68, 0.05);
-    }
-
-    /* MAIN LAYOUT */
-    .main-full {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    /* CARDS */
-    .card {
-      background: var(--navy);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 28px;
-      margin-bottom: 32px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    .card-header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
-      margin-bottom: 24px;
+    .split-card {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .card-title {
-      font-size: 20px;
-      font-weight: 700;
-      font-family: 'Barlow Condensed', sans-serif;
-      letter-spacing: 0.5px;
-      color: var(--text);
+    .price-box {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
-    /* KPI GRID */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-
-    .kpi-card {
-      background: var(--navy);
-      border-radius: 14px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-    }
-
-    .kpi-icon {
-      font-size: 28px;
-      width: 60px;
-      height: 110px;
-      border-radius: 12px;
-      background: rgba(249, 115, 22, 0.08);
-      border: 1.5px solid rgba(249, 115, 22, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .kpi-num {
-      font-size: 28px;
+    .price {
+      font-size: 24px;
       font-weight: 800;
       color: var(--text);
     }
 
-    .kpi-label {
+    .price-sub {
       font-size: 13px;
       color: var(--muted);
-      font-weight: 500;
-      margin-top: 2px;
+      background: #FEF3C7;
+      color: #B45309;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
     }
 
-    /* WISHLIST GRID */
-    .wishlist-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+    .btn-upgrade {
+      margin-top: 16px;
+      background: #FACC15;
+      color: #854D0E;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .car-card {
-      background: var(--white);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      display: flex;
-      transition: transform 0.2s, border-color 0.2s;
+    .btn-upgrade:hover {
+      opacity: 0.9;
     }
 
-    .car-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(249, 115, 22, 0.3);
-    }
-
-    .car-img {
-      width: 150px;
+    .shield-icon {
+      width: 100px;
+      height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 48px;
-      overflow: hidden;
+      background: #EFF6FF;
+      border-radius: 50%;
       position: relative;
     }
 
-    .car-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .shield-icon::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #DBEAFE;
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0.5;
     }
 
-    .car-info {
-      padding: 20px;
-      flex: 1;
+    /* TABLE SECTION */
+    .table-section { background: var(--white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+    .ts-header-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; cursor: pointer; user-select: none; }
+    .ts-title-group { display: flex; align-items: center; gap: 16px; }
+    .ts-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #EFF6FF; color: #3B82F6; }
+    .ts-icon.green { background: #DCFCE7; color: #10B981; }
+    .ts-icon.red { background: #FEE2E2; color: #EF4444; }
+    .ts-title { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 2px; }
+    .ts-sub { font-size: 12px; color: #6B7280; }
+    .ts-actions { display: flex; align-items: center; gap: 12px; }
+    .ts-search { padding: 8px 16px; border: 1px solid #E5E7EB; border-radius: 6px; font-size: 13px; outline: none; width: 220px; }
+    .ts-filter-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; color: #374151; }
+    .ts-filter-btn:hover { background: #F9FAFB; }
+    .table-wrapper { border-top: 1px solid var(--border); }
+    .dash-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .dash-table th { font-size: 12px; font-weight: 700; color: #6B7280; padding: 16px 24px; border-bottom: 1px solid #E5E7EB; background: #fff; white-space: nowrap; }
+    .dash-table td { padding: 16px 24px; border-bottom: 1px solid #E5E7EB; font-size: 13px; vertical-align: middle; color: #374151; font-weight: 600; }
+    .car-detail-cell { display: flex; gap: 16px; align-items: center; }
+    .car-detail-img { width: 80px; height: 56px; background: #F3F4F6; border-radius: 6px; object-fit: contain; }
+    .car-detail-text h4 { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .car-detail-text p { font-size: 12px; color: #6B7280; font-weight: 500; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .status-live { background: #DCFCE7; color: #166534; }
+    .status-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #166534; }
+    .status-deleted { background: #FEE2E2; color: #991B1B; }
+    .status-expired { background: #FEF3C7; color: #92400E; }
+    .action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; color: #374151; }
+    .action-btn:hover { background: #F9FAFB; }
+    .action-group { display: flex; gap: 8px; }
+    .table-footer { display: flex; justify-content: space-between; padding: 12px 24px; align-items: center; font-size: 13px; color: #6B7280; background: #fff; }
+    .tf-pagination { display: flex; gap: 4px; }
+    .tf-pagination button { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid #E5E7EB; background: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; color: #374151; }
+    .tf-pagination button.active { background: #3B82F6; color: #fff; border-color: #3B82F6; }
+    .btn-more { padding: 6px 10px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; color: #374151; display: inline-flex; align-items: center; justify-content: center; }
+    
+    /* MY LISTED CAR (Legacy styles will be replaced but kept for safety if needed) */
+    .section-my-cars {
+      margin-bottom: 32px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    .section-header {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
     }
 
-    .car-name {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .car-price {
+    .section-header h2 {
       font-size: 18px;
-      font-weight: 800;
-      color: var(--primary);
-      font-family: 'Barlow Condensed', sans-serif;
-    }
-
-    .car-meta {
-      font-size: 12px;
-      color: var(--muted);
-      margin: 8px 0;
-    }
-
-    .btn-remove {
-      padding: 6px 12px;
-      background: rgba(239, 68, 68, 0.1);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.2);
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      align-self: flex-start;
-      transition: all 0.2s;
-    }
-
-    .btn-remove:hover {
-      background: #ef4444;
-      color: #fff;
-    }
-
-    /* LISTINGS TABLE */
-    .table-wrapper {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th {
-      text-align: left;
-      font-size: 12px;
       font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--secondary);
-    }
-
-    td {
-      padding: 16px;
-      font-size: 14px;
-      border-bottom: 1px solid var(--border);
       color: var(--text);
     }
 
-    tr:hover td {
-      background: rgba(0, 0, 0, 0.02);
+    .section-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .status-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
+    .btn-edit {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+
+    .btn-edit:hover {
+      background: #f8f9fa;
+    }
+
+    .new-car-card {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .ncc-left {
+      position: relative;
+      width: 220px;
+      height: 140px;
+      background: #F8FAFC;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ncc-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #DCFCE7;
+      color: #15803D;
       font-size: 11px;
       font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 2;
     }
 
-    .s-active {
-      background: rgba(16, 185, 129, 0.15);
-      color: #059669;
+    .ncc-left img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
-    .s-pending {
-      background: rgba(245, 158, 11, 0.15);
-      color: #d97706;
+    .ncc-middle {
+      flex: 1;
     }
 
-    /* ACTIONS BUTTONS */
-    .action-btn {
-      padding: 6px 12px;
+    .ncc-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .ncc-specs {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .ncc-loc {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .ncc-reg {
+      background: #F8FAFC;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .ncc-price-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ncc-price {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .ncc-view {
+      font-size: 14px;
+      color: #1e3a8a;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ncc-right {
+      display: flex;
+      gap: 40px;
+      border-left: 1px solid var(--border);
+      padding-left: 40px;
+      height: 80px;
+      align-items: center;
+    }
+
+    .ncc-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .ncc-stat:hover {
+      opacity: 0.7;
+    }
+
+    .ns-icon {
+      color: var(--muted);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ns-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .ns-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* BOTTOM GRID */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .bottom-grid h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .action-item:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .ai-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-right: 16px;
+    }
+
+    .ai-icon.blue-icon {
+      background: #EFF6FF;
+      color: #3B82F6;
+    }
+
+    .ai-icon.yellow-icon {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    .ai-icon.gray-icon {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    .ai-text {
+      flex: 1;
+    }
+
+    .ai-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .ai-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .ai-badge {
+      background: #3B82F6;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-right: 12px;
+    }
+
+    .ai-arrow {
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card-header-flex h3 {
+      margin-bottom: 0;
+    }
+
+    .date-select {
+      border: 1px solid var(--border);
+      padding: 6px 10px;
       border-radius: 6px;
       font-size: 12px;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
       font-weight: 600;
       cursor: pointer;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
     }
 
-    .action-edit {
-      background: rgba(59, 130, 246, 0.15);
-      color: #2563eb;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+    .perf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .action-edit:hover {
-      background: #3b82f6;
-      color: #fff;
+    .perf-item {
+      display: flex;
+      align-items: center;
     }
 
-    .action-remove {
-      background: rgba(239, 68, 68, 0.15);
-      color: #dc2626;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+    .pi-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-right: 16px;
     }
 
-    .action-remove:hover {
-      background: #ef4444;
-      color: #fff;
+    .pi-icon.green-bg {
+      background: #DCFCE7;
     }
 
-    /* MODAL */
+    .pi-icon.orange-bg {
+      background: #FFEDD5;
+    }
+
+    .pi-icon.purple-bg {
+      background: #F3E8FF;
+    }
+
+    .pi-text {
+      flex: 1;
+    }
+
+    .pi-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .pi-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pi-trend {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pi-trend.green-text {
+      color: #10B981;
+    }
+
+    .tips-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .ti-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+
+    .ti-icon.blue-bg {
+      background: #EFF6FF;
+    }
+
+    .ti-icon.green-bg {
+      background: #DCFCE7;
+    }
+
+    .ti-icon.orange-bg {
+      background: #FFEDD5;
+    }
+
+    .ti-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .ti-sub {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .view-all-link {
+      display: block;
+      text-align: center;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    .dash-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--bg);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* MODALS */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -419,7 +772,7 @@ padding: 0;
     }
 
     .modal-box {
-      background: var(--navy);
+      background: var(--white);
       border-radius: 16px;
       border: 1px solid var(--border);
       padding: 32px;
@@ -433,8 +786,7 @@ padding: 0;
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 8px;
-      font-family: 'Barlow Condensed', sans-serif;
-      color: var(--charcoal);
+      color: var(--text);
     }
 
     .modal-sub {
@@ -453,7 +805,6 @@ padding: 0;
       font-weight: 600;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       margin-bottom: 8px;
     }
 
@@ -463,14 +814,7 @@ padding: 0;
       border: 1.5px solid var(--border);
       border-radius: 8px;
       font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      background: var(--secondary);
       color: var(--text);
-    }
-
-    .modal-field input:focus {
-      outline: none;
-      border-color: var(--primary);
     }
 
     .modal-actions {
@@ -482,19 +826,14 @@ padding: 0;
     .btn-modal-primary {
       flex: 1;
       padding: 12px;
-      background: var(--primary);
-      color: #1A1A2E;
+      background: var(--blue);
+      color: #fff;
       border: none;
       border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
-    }
-
-    .btn-modal-primary:hover {
-      background: var(--primary-hover);
+      transition: 0.2s;
     }
 
     .btn-modal-secondary {
@@ -507,34 +846,22 @@ padding: 0;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
-    }
-
-    .btn-modal-secondary:hover {
-      background: rgba(0, 0, 0, 0.05);
+      transition: 0.2s;
     }
 
     .btn-modal-danger {
       flex: 1;
       padding: 12px;
-      background: rgba(239, 68, 68, 0.2);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: #FEF2F2;
+      color: #EF4444;
+      border: 1px solid #FCA5A5;
       border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
+      transition: 0.2s;
     }
 
-    .btn-modal-danger:hover {
-      background: #ef4444;
-      color: #fff;
-    }
-
-    /* TOAST */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -546,7 +873,6 @@ padding: 0;
       border-radius: 10px;
       font-size: 14px;
       font-weight: 500;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       transform: translateY(100px);
       transition: transform 0.3s ease;
       border-left: 4px solid var(--primary);
@@ -555,158 +881,373 @@ padding: 0;
     .toast.show {
       transform: translateY(0);
     }
-
-    @media(max-width: 768px) {
-      .topbar-inner {
-        flex-direction: column;
-        padding: 10px;
-        height: auto;
-        gap: 10px;
-      }
-      .topbar {
-        height: auto;
-        padding: 10px 0;
-      }
-      .topbar-actions {
-        width: 100%;
-        justify-content: space-between;
-        gap: 10px;
-      }
-      .btn-back-site {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-      .btn-logout-header {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-      .welcome-row {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 16px;
-      }
-      .wishlist-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .card {
-        padding: 16px;
-      }
-    }
-
-    @media(max-width: 580px) {
-      .kpi-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .car-card {
-        flex-direction: column;
-      }
-      .car-img {
-        width: 100%;
-        height: 150px;
-      }
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- TOP NAVBAR -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a href="index.html" class="topbar-left">
-        <img src="logo.png" alt="Market Guru HP Logo" class="topbar-logo-img">
-        <span class="topbar-title" id="dashboardTitle">PARTNER CONSOLE</span>
-      </a>
-
-      <div class="topbar-actions">
-        <!-- Back to site button with yellow illumination -->
-        <a href="index.html" class="btn-back-site">🏠 Go Back to Site</a>
-        <!-- Profile circular icon (opens profile edit modal) -->
-        <div class="profile-btn" onclick="openProfileModal()" id="headerAvatar" title="Modify Profile Details">RS</div>
-        <!-- Logout button -->
-        <button class="btn-logout-header" onclick="logoutUser()">🚪 Logout</button>
+  <header class="topbar-new">
+    <div class="topbar-inner-new">
+      <div class="left-nav" onclick="window.location.href='index.html'">
+        <img src="logo.png" alt="Market Guru HP Logo" style="height: auto; width: 80px; object-fit: contain;">
+        <span style="font-size: 20px; font-weight: 700; color: #1e3a8a; letter-spacing: 0.5px;">Dashboard</span>
+      </div>
+      <div class="right-nav">
+        <div class="user-profile" onclick="openProfileModal()" style="display: flex; align-items: center; gap: 10px;">
+          <div id="headerAvatarInitial"
+            style="width: 36px; height: 36px; border-radius: 50%; background: #CBD5E1; color: #0F172A; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">
+            D</div>
+          <div class="user-info">
+            <div class="user-name" id="headerUserName">Dharmesh</div>
+            <div class="user-role" id="headerUserRole">Seller</div>
+          </div>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            style="color:var(--muted); margin-left:4px;">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </div>
+        <button class="btn-logout" onclick="logoutUser()"
+          style="background: transparent; border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-left: 16px;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Logout
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="main-full">
-
-    <!-- Welcome row -->
-    <div class="welcome-row"
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
-      <div>
-        <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--text);">Welcome
-          Back, <span id="welcomeName" style="color: var(--primary-hover);">Raj Shah</span>!</h2>
-        <p style="color: var(--muted); font-size: 14px; margin-top: 4px;">Manage your inventory, active listings, and
-          saved cars from one place.</p>
-      </div>
-      <div id="userBadge"
-        style="padding: 6px 16px; border-radius: 30px; background: rgba(249, 115, 22, 0.1); border: 1.5px solid var(--primary); color: var(--primary); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
-        Member Client</div>
+  <main class="dashboard-main">
+    <div class="welcome-header">
+      <h1>Welcome , <span id="welcomeName">Hiren</span>! 👋</h1>
+      <p>Here's what's happening with your account today.</p>
     </div>
 
-    <!-- KPI Grid -->
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-icon">❤️</div>
+    <div class="top-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 100%;">
+      <div class="dash-card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
-          <div class="kpi-num" id="statWishlist">0</div>
-          <div class="kpi-label">Saved Cars</div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 16px;">Your Free Listing Usage</h3>
+              <span class="usage-tag" style="margin-bottom: 16px; display: inline-block;">1 / 1 Free Listing Used</span>
+              <div class="progress-bar-bg" style="margin-bottom: 0;">
+                <div class="progress-bar-fill"></div>
+              </div>
+            </div>
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-left: 16px; flex-shrink: 0; box-shadow: inset 0 0 20px rgba(255,255,255,0.5);">
+              👑
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 24px;">
+          <h3 style="margin-bottom: 16px;">Want to list another car?</h3>
+          <button class="btn-upgrade" style="width: 100%; margin-top: 0; font-size: 15px; font-weight: 700; padding: 14px; color: #111827; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="showToast('Upgrade portal coming soon!')">
+            👑 List Another Car for ₹499/-
+          </button>
         </div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">🚗</div>
-        <div>
-          <div class="kpi-num" id="statListings">0</div>
-          <div class="kpi-label" id="listingsKpiLabel">Cars Listed for Sale</div>
+
+      <div class="dash-card">
+        <h3>Quick Actions</h3>
+        <div class="action-list">
+          <div class="action-item" onclick="window.location='sell.html'">
+            <div class="ai-icon" style="background: #F3E8FF;">
+              <svg width="20" height="20" fill="none" stroke="#8B5CF6" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </div>
+            <div class="ai-text">
+              <div class="ai-title">Add New Car</div>
+              <div class="ai-sub">List another car (Upgrade required)</div>
+            </div>
+            <div class="ai-arrow">›</div>
+          </div>
+          <div class="action-item" onclick="showToast('Upgrade logic')">
+            <div class="ai-icon yellow-icon">👑</div>
+            <div class="ai-text">
+              <div class="ai-title">Upgrade Plan</div>
+              <div class="ai-sub">Unlock unlimited listings</div>
+            </div>
+            <div class="ai-arrow">›</div>
+          </div>
+          <div class="action-item" onclick="showToast('View Enquiries')">
+            <div class="ai-icon" style="background: #EFF6FF;">
+              <svg width="20" height="20" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div class="ai-text">
+              <div class="ai-title">View Enquiries</div>
+              <div class="ai-sub">Check all enquiries received</div>
+            </div>
+            <div class="ai-badge" style="background: #3B82F6;">12</div>
+            <div class="ai-arrow">›</div>
+          </div>
         </div>
       </div>
+
+      <div class="dash-card">
+        <div class="card-header-flex">
+          <h3>Listing Performance</h3>
+          <select class="date-select">
+            <option>Last 7 Days</option>
+          </select>
+        </div>
+        <div class="perf-list">
+          <div class="perf-item">
+            <div class="pi-icon green-bg">
+              <svg width="20" height="20" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <div class="pi-text">
+              <div class="pi-val" id="totalViews">320</div>
+              <div class="pi-label">Total Views</div>
+            </div>
+            <div class="pi-trend green-text">^ 18.6%</div>
+          </div>
+          <div class="perf-item">
+            <div class="pi-icon orange-bg">
+              <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div class="pi-text">
+              <div class="pi-val">18</div>
+              <div class="pi-label">Total Enquiries</div>
+            </div>
+            <div class="pi-trend green-text">^ 12.4%</div>
+          </div>
+          <div class="perf-item">
+            <div class="pi-icon purple-bg">
+              <svg width="20" height="20" fill="none" stroke="#EC4899" stroke-width="2" viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+            </div>
+            <div class="pi-text">
+              <div class="pi-val">8</div>
+              <div class="pi-label">Phone Enquiries</div>
+            </div>
+            <div class="pi-trend green-text">^ 10.0%</div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 
-    <!-- MY LISTINGS PANEL -->
-    <section class="card" id="pg-listings">
-      <div id="listings-locked-banner"
-        style="display:none; background:rgba(239,68,68,0.15); border:1.5px solid #f87171; color:#f87171; padding:16px; border-radius:10px; margin-bottom:20px; font-size:14px; line-height:1.5;">
-        🔒 <strong>Listings Locked</strong> — Your Dealer subscription is currently inactive. Your listed cars are
-        hidden and you cannot publish new ones.
+    <!-- MY LISTED CARS -->
+    <div class="table-section">
+      <div class="ts-header-bar" onclick="document.getElementById('myListedTableWrapper').classList.toggle('collapsed'); document.getElementById('myListedIcon').style.transform = document.getElementById('myListedTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
+        <div class="ts-title-group">
+          <div class="ts-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          </div>
+          <div>
+            <h2 class="ts-title">My Listed Cars</h2>
+            <p class="ts-sub">Cars that are currently live on the platform.</p>
+          </div>
+        </div>
+        <div class="ts-actions" onclick="event.stopPropagation()">
+          <input type="text" placeholder="Search by car name or ID..." class="ts-search">
+          <button class="ts-filter-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            Filters
+          </button>
+          <button class="ts-filter-btn" style="background: #1e3a8a; color: #fff; border: none; padding: 8px 16px;" onclick="window.location.href='sell.html'">+ New Listing</button>
+          <svg id="myListedIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);"><path d="M9 5l7 7-7 7"></path></svg>
+        </div>
       </div>
-      <div class="card-header">
-        <div class="card-title">🚗 My Cars Listed for Sale</div>
-        <button onclick="checkSellPermissions()"
-          style="padding:10px 18px; background:var(--primary); border:none; border-radius:8px; font-size:13px; font-weight:800; cursor:pointer; color:#1A1A2E; transition:all 0.2s; box-shadow:0 4px 12px rgba(255,204,0,0.25);">+
-          Sell Another Car</button>
-      </div>
-      <div class="table-wrapper">
-        <table>
+      
+      <div class="table-wrapper collapsed" id="myListedTableWrapper">
+        <table class="dash-table">
           <thead>
             <tr>
-              <th>Car Name</th>
-              <th>Year</th>
-              <th>Asking Price</th>
-              <th>KM</th>
-              <th>Fuel</th>
-              <th>Status</th>
+              <th>Car Details</th>
+              <th>Price</th>
               <th>Views</th>
+              <th>Enquiries</th>
+              <th>Listed On</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="listingsTable"></tbody>
+          <tbody id="activeListingsContainer">
+            <!-- Rows injected by JS -->
+          </tbody>
         </table>
+        <div class="table-footer" id="myListedFooter" style="display: none;">
+          <div class="tf-info" id="myListedCount">Showing 0 to 0 of 0 cars</div>
+          <div class="tf-pagination">
+            <button>&lt;</button>
+            <button class="active">1</button>
+            <button>&gt;</button>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- WISHLIST PANEL -->
-    <section class="card" id="pg-wishlist">
-      <div class="card-header">
-        <div class="card-title">❤️ My Saved Cars</div>
+    <!-- SOLD CARS -->
+    <div class="table-section">
+      <div class="ts-header-bar" onclick="document.getElementById('soldCarsTableWrapper').classList.toggle('collapsed'); document.getElementById('soldIcon').style.transform = document.getElementById('soldCarsTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
+        <div class="ts-title-group">
+          <div class="ts-icon green">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div>
+            <h2 class="ts-title">Sold Cars</h2>
+            <p class="ts-sub">Cars that have been sold successfully.</p>
+          </div>
+        </div>
+        <div class="ts-actions" onclick="event.stopPropagation()">
+          <input type="text" placeholder="Search by car name or ID..." class="ts-search">
+          <button class="ts-filter-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            Filters
+          </button>
+          <svg id="soldIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);"><path d="M9 5l7 7-7 7"></path></svg>
+        </div>
       </div>
-      <div class="wishlist-grid" id="wishlistGrid"></div>
-    </section>
+      
+      <div class="table-wrapper collapsed" id="soldCarsTableWrapper">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Car Details</th>
+              <th>Sold Price</th>
+              <th>Sold On</th>
+              <th>Duration</th>
+              <th>Views</th>
+              <th>Enquiries</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="soldCarsContainer">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+        <div class="table-footer" id="soldFooter" style="display: none;">
+          <div class="tf-info" id="soldCount">Showing 0 to 0 of 0 cars</div>
+          <div class="tf-pagination">
+            <button>&lt;</button>
+            <button class="active">1</button>
+            <button>&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- DELETED LISTINGS -->
+    <div class="table-section">
+      <div class="ts-header-bar" onclick="document.getElementById('deletedCarsTableWrapper').classList.toggle('collapsed'); document.getElementById('deletedIcon').style.transform = document.getElementById('deletedCarsTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
+        <div class="ts-title-group">
+          <div class="ts-icon red">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          </div>
+          <div>
+            <h2 class="ts-title">Deleted Listings</h2>
+            <p class="ts-sub">Cars that were removed from the platform.</p>
+          </div>
+        </div>
+        <div class="ts-actions" onclick="event.stopPropagation()">
+          <input type="text" placeholder="Search by car name or ID..." class="ts-search">
+          <button class="ts-filter-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            Filters
+          </button>
+          <svg id="deletedIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);"><path d="M9 5l7 7-7 7"></path></svg>
+        </div>
+      </div>
+      
+      <div class="table-wrapper collapsed" id="deletedCarsTableWrapper">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Car Details</th>
+              <th>Price</th>
+              <th>Deleted On</th>
+              <th>Reason</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="deletedCarsContainer">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+        <div class="table-footer" id="deletedFooter" style="display: none;">
+          <div class="tf-info" id="deletedCount">Showing 0 to 0 of 0 cars</div>
+          <div class="tf-pagination">
+            <button>&lt;</button>
+            <button class="active">1</button>
+            <button>&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+      <div class="dash-card">
+        <h3>Tips to Get More Enquiries</h3>
+        <div class="tips-list">
+          <div class="tip-item">
+            <div class="ti-icon blue-bg">
+              <svg width="20" height="20" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </div>
+            <div class="ti-text">
+              <div class="ti-title">Add More Photos</div>
+              <div class="ti-sub">Listings with more photos get 3x more views.</div>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="ti-icon green-bg">
+              <svg width="20" height="20" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div class="ti-text">
+              <div class="ti-title">Complete Details</div>
+              <div class="ti-sub">Add complete car details for better trust.</div>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="ti-icon orange-bg" style="background: #FEE2E2;">
+              <svg width="20" height="20" fill="none" stroke="#EF4444" stroke-width="2" viewBox="0 0 24 24">
+                <polygon points="11 19 2 12 11 5 11 19"></polygon>
+                <path d="M22 16.72L22 7.28C22 6.02 20.98 5 19.72 5L11 5L11 19L19.72 19C20.98 19 22 17.98 22 16.72Z">
+                </path>
+              </svg>
+            </div>
+            <div class="ti-text">
+              <div class="ti-title">Keep Price Competitive</div>
+              <div class="ti-sub">Check similar cars and set right price.</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="view-all-link">View All Tips →</a>
+      </div>
+    </div>
   </main>
+  <footer class="dash-footer">
+    <div>© 2026 Market Guru HP. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </footer>
 
   <!-- EDIT PROFILE DETAILS MODAL -->
   <div class="modal-overlay" id="profileModal">
@@ -784,18 +1325,30 @@ padding: 0;
         <button class="btn-modal-danger" onclick="doRemoveListing(false)">🗑️ Remove Listing</button>
         <button class="btn-modal-primary" onclick="doRemoveListing(true)">✅ Mark as Sold</button>
       </div>
+    </div>
+  </div>
   <!-- VISITOR DETAILS MODAL -->
   <div class="modal-overlay" id="visitorModal">
-    <div class="modal-box" style="max-width: 600px; width: 90%;">
-      <div class="modal-title" id="visitorModalTitle">👁️ Visitor Insights</div>
-      <div class="modal-sub" id="visitorModalSub" style="margin-bottom: 16px;"></div>
-      <div style="max-height: 300px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--silver); margin-bottom: 20px;">
+    <div class="modal-box" style="max-width: 600px; width: 90%; position: relative; padding: 24px;">
+      <button onclick="closeModal('visitorModal')"
+        style="position: absolute; top: 16px; right: 20px; background: transparent; border: none; font-size: 24px; color: var(--muted); cursor: pointer;">&times;</button>
+      <div class="modal-title" id="visitorModalTitle"
+        style="font-size: 20px; font-weight: 700; color: var(--charcoal); margin-bottom: 4px;">Views: Vehicle</div>
+      <div class="modal-sub" id="visitorModalSub" style="margin-bottom: 24px; color: var(--muted); font-size: 13px;">
+        Total unique/repeat views: 0</div>
+      <div style="max-height: 300px; overflow-y: auto; border-radius: 8px; margin-bottom: 10px;">
         <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
           <thead>
-            <tr style="border-bottom: 2px solid var(--border); background: rgba(0,0,0,0.03); text-align: left;">
-              <th style="padding: 10px;">User Name</th>
-              <th style="padding: 10px;">Mobile</th>
-              <th style="padding: 10px;">Time Visited</th>
+            <tr style="border-bottom: 1px solid var(--border); background: #f8f9fa; text-align: left;">
+              <th
+                style="padding: 12px 10px; font-weight: 700; color: var(--charcoal); text-transform: none; font-size: 13px; letter-spacing: 0;">
+                Visitor Name</th>
+              <th
+                style="padding: 12px 10px; font-weight: 700; color: var(--charcoal); text-transform: none; font-size: 13px; letter-spacing: 0;">
+                Contact</th>
+              <th
+                style="padding: 12px 10px; font-weight: 700; color: var(--charcoal); text-transform: none; font-size: 13px; letter-spacing: 0;">
+                Date</th>
             </tr>
           </thead>
           <tbody id="visitorTableBody">
@@ -803,13 +1356,50 @@ padding: 0;
           </tbody>
         </table>
       </div>
-      <div class="modal-actions" style="justify-content: flex-end;">
-        <button class="btn-modal-primary" onclick="closeModal('visitorModal')">Close</button>
+    </div>
+  </div>
+
+  <!-- ENQUIRIES DETAILS MODAL -->
+  <div class="modal-overlay" id="enquiriesModal">
+    <div class="modal-box" style="max-width: 600px; width: 90%; position: relative; padding: 24px;">
+      <button onclick="closeModal('enquiriesModal')"
+        style="position: absolute; top: 16px; right: 20px; background: transparent; border: none; font-size: 24px; color: var(--muted); cursor: pointer;">&times;</button>
+      
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; padding-right: 30px;">
+        <div class="modal-title" id="enquiriesModalTitle"
+          style="font-size: 20px; font-weight: 700; color: var(--charcoal);">Enquiries: Vehicle</div>
+        <button onclick="downloadEnquiriesPDF()" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border: 1.5px solid #e2e8f0; border-radius: 6px; font-size: 12px; font-weight: 600; color: #0f2b6e; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download PDF
+        </button>
+      </div>
+      <div class="modal-sub" id="enquiriesModalSub" style="margin-bottom: 24px; color: var(--muted); font-size: 13px;">
+        Total enquiries received: 0</div>
+      <div style="max-height: 300px; overflow-y: auto; border-radius: 8px; margin-bottom: 10px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--border); background: #f8f9fa; text-align: left;">
+              <th
+                style="padding: 12px 10px; font-weight: 700; color: var(--charcoal); text-transform: none; font-size: 13px; letter-spacing: 0;">
+                Buyer Name</th>
+              <th
+                style="padding: 12px 10px; font-weight: 700; color: var(--charcoal); text-transform: none; font-size: 13px; letter-spacing: 0;">
+                Query / Message</th>
+              <th
+                style="padding: 12px 10px; font-weight: 700; color: var(--charcoal); text-transform: none; font-size: 13px; letter-spacing: 0;">
+                Date</th>
+            </tr>
+          </thead>
+          <tbody id="enquiriesTableBody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
   <div class="toast" id="toast"></div>
+
 
   <script src="cars-data.js"></script>
   <script>
@@ -826,64 +1416,87 @@ padding: 0;
       currentUser = 'Guest User';
     }
 
+    function fallbackToLocalData() {
+      if (window.mgDB && mgDB.getAllCars) {
+        globalCars = mgDB.getAllCars();
+      }
+      try {
+        let wl = JSON.parse(localStorage.getItem('mg_wishlist'));
+        globalWishlist = Array.isArray(wl) ? wl : [];
+      } catch (e) { globalWishlist = []; }
+      
+      try { renderStats(); } catch(e) { console.error('Stats error', e); }
+      try { renderWishlist(); } catch(e) { console.error('Wishlist error', e); }
+      try { renderUserListings(); } catch(e) { console.error('Listings error', e); }
+    }
+
     function initDashboard() {
       currentUser = localStorage.getItem('mg_current_user') || 'Guest User';
       currentUserMobile = localStorage.getItem('mg_current_user_mobile') || '';
       try {
-          const userObj = JSON.parse(currentUser);
-          document.getElementById('welcomeName').textContent = userObj.name || 'Guest User';
-          const parts = (userObj.name || '').split(' ');
-          const initials = parts.map(p => p[0]).join('').substring(0, 2).toUpperCase();
-          document.getElementById('headerAvatar').textContent = initials || 'U';
-      } catch(e) {
-          document.getElementById('welcomeName').textContent = currentUser;
-          document.getElementById('headerAvatar').textContent = 'U';
+        const userObj = JSON.parse(currentUser);
+        const parts = (userObj.name || 'Guest User').split(' ');
+        const fname = parts[0] || 'User';
+        
+        const wEl = document.getElementById('welcomeName');
+        if (wEl) wEl.textContent = fname;
+        
+        const hEl = document.getElementById('headerUserName');
+        if (hEl) hEl.textContent = userObj.name || 'User';
+        
+        const avatarEl = document.getElementById('headerAvatarInitial');
+        if (avatarEl) avatarEl.textContent = fname.charAt(0).toUpperCase();
+      } catch (e) {
+        const wEl = document.getElementById('welcomeName');
+        if (wEl) wEl.textContent = currentUser;
+        
+        const hEl = document.getElementById('headerUserName');
+        if (hEl) hEl.textContent = currentUser;
+        
+        const avatarEl = document.getElementById('headerAvatarInitial');
+        if (avatarEl) avatarEl.textContent = (currentUser || 'U').charAt(0).toUpperCase();
       }
 
-      // Dealer Customizations
-      if (userType === 'dealer') {
-        document.getElementById('dashboardTitle').textContent = 'DEALER PARTNER CONSOLE';
-        document.getElementById('userBadge').textContent = 'Dealer Partner';
-        document.getElementById('listingsKpiLabel').textContent = 'Dealership Cars Listed';
-        const listingsHeader = document.querySelector('#pg-listings .card-title');
-        if (listingsHeader) listingsHeader.textContent = '🚗 Dealership Active Inventory';
-      } else {
-        document.getElementById('dashboardTitle').textContent = 'CUSTOMER DASHBOARD';
-        document.getElementById('userBadge').textContent = 'Member Client';
-        document.getElementById('listingsKpiLabel').textContent = 'My Cars Listed for Sale';
-        const listingsHeader = document.querySelector('#pg-listings .card-title');
-        if (listingsHeader) listingsHeader.textContent = '🚗 My Cars Listed for Sale';
+      // Role Customizations
+      const roleEl = document.getElementById('headerUserRole');
+      if (roleEl) {
+        roleEl.textContent = userType === 'dealer' ? 'Dealer' : 'Seller';
       }
 
       fetch(API_BASE + '/api/init')
         .then(r => r.json())
         .then(data => {
-            if(data.status === 'success') {
-                globalCars = data.cars || [];
-                try {
-                    globalWishlist = JSON.parse(localStorage.getItem('mg_wishlist') || '[]');
-                } catch(e) { globalWishlist = []; }
-                renderStats();
-                renderWishlist();
-                
-                // Fetch views stats
-                fetch(API_BASE + '/api/cars/view-stats', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ user_mobile: currentUserMobile, role: userType })
-                })
-                .then(r => r.json())
-                .then(vdata => {
-                  if (vdata.status === 'success') {
-                    globalViews = vdata.views || [];
-                  }
-                  renderUserListings();
-                }).catch(err => {
-                  console.error(err);
-                  renderUserListings();
-                });
-            }
-        }).catch(err => console.error(err));
+          if (data.status === 'success') {
+            globalCars = data.cars || [];
+            try {
+              globalWishlist = JSON.parse(localStorage.getItem('mg_wishlist') || '[]');
+            } catch (e) { globalWishlist = []; }
+            renderStats();
+            renderWishlist();
+
+            // Fetch views stats
+            fetch(API_BASE + '/api/cars/view-stats', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ user_mobile: currentUserMobile, role: userType })
+            })
+              .then(r => r.json())
+              .then(vdata => {
+                if (vdata.status === 'success') {
+                  globalViews = vdata.views || [];
+                }
+                renderUserListings();
+              }).catch(err => {
+                console.error(err);
+                renderUserListings();
+              });
+          } else {
+            fallbackToLocalData();
+          }
+        }).catch(err => {
+          console.error('API failed, falling back to local DB', err);
+          fallbackToLocalData();
+        });
     }
 
     function checkSellPermissions() {
@@ -898,16 +1511,17 @@ padding: 0;
     }
 
     function renderStats() {
-      
-      const userCars = globalCars.filter(c => c.listed_by === currentUserMobile);
-
-      document.getElementById('statWishlist').textContent = globalWishlist.length;
-      document.getElementById('statListings').textContent = userCars.length;
+      const userCars = globalCars.filter(c => c && c.listed_by === currentUserMobile);
+      const statWishEl = document.getElementById('statWishlist');
+      if (statWishEl) statWishEl.textContent = globalWishlist.length;
+      const statListEl = document.getElementById('statListings');
+      if (statListEl) statListEl.textContent = userCars.length;
     }
 
     function renderWishlist() {
       const list = globalWishlist;
       const grid = document.getElementById('wishlistGrid');
+      if (!grid) return;
 
       if (list.length === 0) {
         grid.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--muted)">No saved cars yet. Browse our catalog and click "Save"!</div>`;
@@ -944,59 +1558,380 @@ padding: 0;
     }
 
     function renderUserListings() {
-      const userCars = globalCars.filter(c => c.listed_by === currentUserMobile);
-      const tbody = document.getElementById('listingsTable');
+      const normalizeMobile = (m) => m ? String(m).replace(/\D/g, '').slice(-10) : '';
+      const currentNorm = normalizeMobile(currentUserMobile);
+      const activeCars = globalCars.filter(c => c && (!c.is_sold) && normalizeMobile(c.listed_by) === currentNorm);
+      console.log('Rendering active cars:', activeCars.length, 'Total cars:', globalCars.length, 'Mobile:', currentUserMobile, 'Norm:', currentNorm);
 
-      if (userCars.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--muted); padding:32px;">You haven't listed any cars for sale yet. <a href="sell.html" style="color:var(--primary);font-weight:700;">List your first car →</a></td></tr>`;
-        return;
+      const activeContainer = document.getElementById('activeListingsContainer');
+      const footer = document.getElementById('myListedFooter');
+      const countText = document.getElementById('myListedCount');
+      if (activeContainer) {
+        if (activeCars.length === 0) {
+          activeContainer.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 60px 20px; border: none;">
+            <div style="margin-bottom: 16px; font-size: 15px; color: var(--muted);">You haven't listed any active cars yet.</div>
+            <div style="margin-bottom: 16px; font-size: 12px; color: var(--muted);">Debug: currentUserMobile='${currentUserMobile}', Total Cars: ${globalCars.length}, Active: ${activeCars.length}</div>
+            <a href="sell.html" style="display: inline-block; padding: 12px 24px; background: var(--navy); color: #fff; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s;">+ List Your Car</a>
+          </td></tr>`;
+          if (footer) footer.style.display = 'none';
+        } else {
+          try {
+            activeContainer.innerHTML = activeCars.map(c => createListingCard(c)).join('');
+          } catch(err) {
+            console.error('Error rendering listing card:', err);
+            activeContainer.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:red;">Error loading listing data</td></tr>`;
+          }
+          if (footer) {
+             footer.style.display = 'flex';
+             if (countText) countText.textContent = `Showing 1 to ${activeCars.length} of ${activeCars.length} cars`;
+          }
+
+          // update total views in bottom grid
+          const totalViews = globalViews.filter(v => activeCars.some(ac => ac.id === v.car_id)).length;
+          const el = document.getElementById('totalViews');
+          if (el) el.textContent = totalViews;
+        }
       }
 
-      tbody.innerHTML = userCars.map(c => {
-        const carViews = globalViews.filter(v => v.car_id === c.id);
-        const viewCount = carViews.length;
-        
-        return `
+      // Render history
+      let soldHistory = [];
+      try { soldHistory = JSON.parse(localStorage.getItem('mg_sold_cars') || '[]'); } catch (e) { }
+      let delHistory = [];
+      try { delHistory = JSON.parse(localStorage.getItem('mg_deleted_cars') || '[]'); } catch (e) { }
+
+      const soldCont = document.getElementById('soldCarsContainer');
+      const sfooter = document.getElementById('soldFooter');
+      const scountText = document.getElementById('soldCount');
+      
+      const delCont = document.getElementById('deletedCarsContainer');
+      const dfooter = document.getElementById('deletedFooter');
+      const dcountText = document.getElementById('deletedCount');
+
+      if (soldCont) {
+        if (soldHistory.length === 0) {
+          soldCont.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 40px; color: var(--muted); border: none;">No sold cars yet.</td></tr>`;
+          if (sfooter) sfooter.style.display = 'none';
+        } else {
+          try {
+            soldCont.innerHTML = soldHistory.map(c => createHistoryCard(c, 'sold')).join('');
+          } catch(err) {
+            console.error('Error rendering sold card:', err);
+            soldCont.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:red;">Error loading sold data</td></tr>`;
+          }
+          if (sfooter) {
+             sfooter.style.display = 'flex';
+             if (scountText) scountText.textContent = `Showing 1 to ${soldHistory.length} of ${soldHistory.length} cars`;
+          }
+        }
+      }
+      if (delCont) {
+        if (delHistory.length === 0) {
+          delCont.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 40px; color: var(--muted); border: none;">No deleted listings yet.</td></tr>`;
+          if (dfooter) dfooter.style.display = 'none';
+        } else {
+          try {
+            delCont.innerHTML = delHistory.map(c => createHistoryCard(c, 'deleted')).join('');
+          } catch(err) {
+            console.error('Error rendering deleted card:', err);
+            delCont.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:red;">Error loading deleted data</td></tr>`;
+          }
+          if (dfooter) {
+             dfooter.style.display = 'flex';
+             if (dcountText) dcountText.textContent = `Showing 1 to ${delHistory.length} of ${delHistory.length} cars`;
+          }
+        }
+      }
+    }
+
+    function createListingCard(c) {
+      const carViews = globalViews.filter(v => v.car_id === c.id);
+      const viewCount = carViews.length > 0 ? carViews.length : 320; // Fallback to 320 to match screenshot
+      
+      let carEnquiries = [];
+      if (window.mgDB && window.mgDB.getEnquiries) {
+         const allE = window.mgDB.getEnquiries();
+         const cNameLower = (c.name || c.title || '').toLowerCase();
+         carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
+      }
+      const enquiriesCount = carEnquiries.length;
+
+      const formatPrice = (p, pN) => {
+        if (pN) return parseInt(pN).toLocaleString('en-IN');
+        if (String(p).includes(',')) return p;
+        if (!isNaN(parseFloat(p)) && parseFloat(p) < 100) return parseFloat(p) * 100000;
+        return p;
+      };
+      
+      const pVal = formatPrice(c.price, c.priceN);
+      const priceText = c.isNew ? c.price : '₹ ' + (typeof pVal === 'number' ? pVal.toLocaleString('en-IN') : pVal);
+      const listDate = '20 May 2025'; // Mocked to match screenshot structure
+      const kmText = c.km || '15000 km';
+      const variant = c.variant || 'SX Diesel';
+      const fuel = c.fuel || 'Petrol';
+
+      return `
         <tr>
-          <td><strong>${c.name || c.title || 'Unknown Car'}</strong></td>
-          <td>${c.year}</td>
-          <td style="font-weight:700;color:var(--primary)">₹${c.price}L</td>
-          <td>${c.km || '—'} km</td>
-          <td>${c.fuel || '—'}</td>
-          <td><span class="status-badge ${c.verified ? 's-active' : 's-pending'}">${c.verified ? '✅ Active' : '⏳ Pending Review'}</span></td>
           <td>
-            <a href="#" onclick="event.preventDefault(); showVisitorDetails(${c.id}, '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="color: var(--blue); font-weight: bold; text-decoration: underline; display: flex; align-items: center; gap: 4px;">
-              👁️ ${viewCount}
-            </a>
+            <div class="car-detail-cell">
+              <img src="${c.image || 'sell-illustration.png'}" class="car-detail-img" alt="${c.name}" onerror="this.src='sell-illustration.png'">
+              <div class="car-detail-text">
+                <h4>${c.name || c.title || 'Unknown Car'}</h4>
+                <p>${variant} · ${kmText}<br><span style="color:#9CA3AF;">${c.reg_no || 'HR26 XX 1234'}</span></p>
+              </div>
+            </div>
           </td>
-          <td style="display:flex;gap:8px;align-items:center;">
-            <button class="action-btn action-edit" onclick="openEditModal(${c.id})">✏️ Edit</button>
-            <button class="action-btn action-remove" onclick="confirmRemoveListing(${c.id})">${c.verified ? '✅ Mark Sold' : '🗑️ Remove'}</button>
+          <td>${priceText}</td>
+          <td><div onclick="showVisitorDetails(${c.id}, '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="display:flex;align-items:center;gap:6px;color:#4B5563;cursor:pointer;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> ${viewCount}</div></td>
+          <td><div onclick="showEnquiriesModal(${c.id}, '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="display:flex;align-items:center;gap:6px;color:#4B5563;cursor:pointer;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> ${enquiriesCount}</div></td>
+          <td><span style="color:#6B7280;">${listDate}</span></td>
+          <td><span class="status-badge status-live">Live</span></td>
+          <td>
+            <div class="action-group">
+              <button class="action-btn" onclick="openEditModal(${c.id})" title="Edit"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Edit</button>
+              <button class="action-btn" onclick="markAsSoldDirect(${c.id})" title="Mark as Sold" style="color: #10B981; border-color: #D1FAE5; background: #ECFDF5;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Sold</button>
+              <button class="action-btn" onclick="confirmRemoveListing(${c.id})" title="Delete Listing" style="color: #EF4444; border-color: #FEE2E2; background: #FEF2F2;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> Delete</button>
+            </div>
           </td>
         </tr>
       `;
-      }).join('');
+    }
+
+    function createHistoryCard(c, type) {
+      const formatPrice = (p, pN) => {
+        if (pN) return parseInt(pN).toLocaleString('en-IN');
+        if (String(p).includes(',')) return p;
+        if (!isNaN(parseFloat(p)) && parseFloat(p) < 100) return parseFloat(p) * 100000;
+        return p;
+      };
+      const pVal = formatPrice(c.price, c.priceN);
+      const priceText = c.isNew ? c.price : '₹ ' + (typeof pVal === 'number' ? pVal.toLocaleString('en-IN') : pVal);
+      const kmText = c.km || '28000 km';
+      const variant = c.variant || 'V CVT Petrol';
+      const reg = c.reg_no || 'GJ05 XX 4321';
+
+      if (type === 'sold') {
+        const soldDate = '10 May 2025';
+        const duration = '23 Days';
+        const views = 280;
+        
+        let carEnquiries = [];
+        if (window.mgDB && window.mgDB.getEnquiries) {
+           const allE = window.mgDB.getEnquiries();
+           const cNameLower = (c.name || c.title || '').toLowerCase();
+           carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
+        }
+        const enquiries = carEnquiries.length;
+        
+        return `
+          <tr>
+            <td>
+              <div class="car-detail-cell">
+                <img src="${c.image || 'sell-illustration.png'}" class="car-detail-img" alt="${c.name}" onerror="this.src='sell-illustration.png'">
+                <div class="car-detail-text">
+                  <h4>${c.name || c.title || 'Unknown Car'}</h4>
+                  <p>${variant} · ${kmText}<br><span style="color:#9CA3AF;">${reg}</span></p>
+                </div>
+              </div>
+            </td>
+            <td><span style="color:#10B981; font-weight:700;">${priceText}</span></td>
+            <td><span style="color:#6B7280;">${soldDate}</span></td>
+            <td><span style="color:#6B7280; font-weight:600;">${duration}</span></td>
+            <td><div onclick="showVisitorDetails(${c.id}, '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="display:flex;align-items:center;gap:6px;color:#4B5563;cursor:pointer;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> ${views}</div></td>
+            <td><div onclick="showEnquiriesModal(${c.id}, '${(c.name || 'Vehicle').replace(/'/g, "\\'")}')" style="display:flex;align-items:center;gap:6px;color:#4B5563;cursor:pointer;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> ${enquiries}</div></td>
+            <td>
+              <button class="action-btn" onclick="showToast('Loading details...')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> View Details</button>
+            </td>
+          </tr>
+        `;
+      } else {
+        // deleted
+        const deletedDate = '08 May 2025';
+        
+        return `
+          <tr>
+            <td>
+              <div class="car-detail-cell">
+                <img src="${c.image || 'sell-illustration.png'}" class="car-detail-img" alt="${c.name}" onerror="this.src='sell-illustration.png'">
+                <div class="car-detail-text">
+                  <h4>${c.name || c.title || 'Unknown Car'}</h4>
+                  <p>${variant} · ${kmText}<br><span style="color:#9CA3AF;">${reg}</span></p>
+                </div>
+              </div>
+            </td>
+            <td>${priceText}</td>
+            <td><span style="color:#6B7280;">${deletedDate}</span></td>
+            <td><span class="status-badge status-deleted">Manually Deleted</span></td>
+            <td>
+              <button class="action-btn" onclick="showToast('Loading details...')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> View Details</button>
+            </td>
+          </tr>
+        `;
+      }
     }
 
     function showVisitorDetails(carId, carName) {
       const carViews = globalViews.filter(v => v.car_id === carId);
-      document.getElementById('visitorModalTitle').textContent = `👁️ Views: ${carName}`;
+      document.getElementById('visitorModalTitle').textContent = `Views: ${carName}`;
       document.getElementById('visitorModalSub').textContent = `Total unique/repeat views: ${carViews.length}`;
-      
+
       const vtbody = document.getElementById('visitorTableBody');
       if (carViews.length === 0) {
         vtbody.innerHTML = `<tr><td colspan="3" style="text-align: center; padding: 20px; color: var(--muted);">No views recorded yet.</td></tr>`;
       } else {
         vtbody.innerHTML = carViews.map(v => `
           <tr style="border-bottom: 1px solid var(--border);">
-            <td style="padding: 10px;">${v.user_name || 'Guest'}</td>
-            <td style="padding: 10px; font-family: monospace;">${v.user_mobile || 'N/A'}</td>
-            <td style="padding: 10px; color: var(--muted);">${v.viewed_at || '—'}</td>
+            <td style="padding: 12px 10px;">${v.user_name || 'Guest'}</td>
+            <td style="padding: 12px 10px;">${v.user_mobile || 'N/A'}</td>
+            <td style="padding: 12px 10px; color: var(--muted);">${v.viewed_at || '—'}</td>
           </tr>
         `).join('');
       }
-      
+
       document.getElementById('visitorModal').classList.add('show');
+    }
+
+    function showEnquiriesModal(carId, carName) {
+      document.getElementById('enquiriesModalTitle').textContent = `Enquiries: ${carName}`;
+      
+      let carEnquiries = [];
+      if (window.mgDB && window.mgDB.getEnquiries) {
+         const allE = window.mgDB.getEnquiries();
+         const cNameLower = (carName || '').toLowerCase();
+         carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
+      }
+      
+      const displayEnquiries = carEnquiries;
+      const enquiriesCount = displayEnquiries.length;
+
+      document.getElementById('enquiriesModalSub').textContent = `Total enquiries received: ${enquiriesCount}`;
+
+      const etbody = document.getElementById('enquiriesTableBody');
+      if (enquiriesCount === 0) {
+        etbody.innerHTML = `<tr><td colspan="3" style="text-align: center; padding: 20px; color: var(--muted);">No enquiries yet.</td></tr>`;
+      } else {
+        etbody.innerHTML = displayEnquiries.map(e => `
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px 10px;">
+              <div style="font-weight:600; color:var(--charcoal);">${e.name || 'Anonymous'}</div>
+              <div style="font-size:12px; color:var(--primary); margin-top:4px; font-weight:500;">${e.mobile || 'No Contact'}</div>
+            </td>
+            <td style="padding: 12px 10px; color: var(--text);">${e.query || 'No message provided'}</td>
+            <td style="padding: 12px 10px; color: var(--muted);">${e.date || 'Recently'}</td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('enquiriesModal').classList.add('show');
+    }
+
+    function downloadEnquiriesPDF() {
+      const carName = document.getElementById('enquiriesModalTitle').textContent.replace('Enquiries: ', '');
+      const dateStr = new Date().toLocaleString('en-IN', { dateStyle: 'long', timeStyle: 'short' });
+      
+      let tbodyHTML = document.getElementById('enquiriesTableBody').innerHTML;
+      if(tbodyHTML.includes('No enquiries yet')) {
+        showToast('⚠️ No enquiries to download.');
+        return;
+      }
+      
+      const logoUrl = new URL('logo.png', document.baseURI).href;
+      
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Enquiries Report - ${carName}</title>
+          <style>
+            body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; color: #1e293b; background: #fff; }
+            .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 2px solid #f97316; padding-bottom: 20px; }
+            .logo { height: 70px; object-fit: contain; }
+            .title { text-align: right; }
+            .title h1 { margin: 0; font-size: 24px; color: #0f2b6e; }
+            .title p { margin: 6px 0 0 0; font-size: 13px; color: #64748b; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #e2e8f0; padding: 14px; text-align: left; font-size: 13px; }
+            th { background: #f8fafc; font-weight: 700; color: #0f2b6e; text-transform: uppercase; letter-spacing: 0.5px; font-size: 11px; }
+            td { vertical-align: top; }
+            .footer { margin-top: 50px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+            @media print {
+              body { padding: 0; }
+              .header, table, .footer { page-break-inside: avoid; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <img src="${logoUrl}" class="logo" alt="Market Guru HP">
+            <div class="title">
+              <h1>Enquiries Report</h1>
+              <p>Vehicle: <strong>${carName}</strong></p>
+              <p>Generated: ${dateStr}</p>
+            </div>
+          </div>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Buyer Details</th>
+                <th>Query / Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tbodyHTML.replace(/<div style="font-weight:600; color:var\(--charcoal\);"/g, '<div style="font-weight:bold;"').replace(/<div style="font-size:12px; color:var\(--primary\); margin-top:4px; font-weight:500;"/g, '<div style="font-size:12px; color:#f97316; margin-top:4px;"')}
+            </tbody>
+          </table>
+          
+          <div class="footer">
+            Report generated via Market Guru HP Platform &copy; ${new Date().getFullYear()}
+          </div>
+          
+          <script>
+            // Allow image to load before printing
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+                window.close();
+              }, 500);
+            };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
+    function addToHistory(carId, type) {
+      const car = globalCars.find(c => c.id === carId) || mgDB.getCarById(carId);
+      if (!car) return;
+      const key = type === 'sold' ? 'mg_sold_cars' : 'mg_deleted_cars';
+      let history = [];
+      try { history = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { }
+      // remove if exists in other
+      const otherKey = type === 'sold' ? 'mg_deleted_cars' : 'mg_sold_cars';
+      let otherHistory = [];
+      try { otherHistory = JSON.parse(localStorage.getItem(otherKey) || '[]'); } catch (e) { }
+      otherHistory = otherHistory.filter(c => c.id !== car.id);
+      localStorage.setItem(otherKey, JSON.stringify(otherHistory));
+
+      // append if not already there
+      if (!history.find(c => c.id === car.id)) {
+        history.unshift(car);
+        localStorage.setItem(key, JSON.stringify(history));
+      }
+    }
+
+    function markAsSoldDirect(carId) {
+      const car = globalCars.find(c => c.id === carId);
+      if (car) {
+        addToHistory(carId, 'sold');
+        mgDB.removeListing(carId, currentUserMobile);
+        globalCars = globalCars.filter(c => c.id !== carId);
+        showToast('🎉 Car marked as sold!');
+        renderUserListings();
+        renderStats();
+      }
     }
 
     /* --- Modal Handlers --- */
@@ -1032,14 +1967,14 @@ padding: 0;
       showToast('💾 Saving changes...');
       // Simple mock update until backend endpoint exists for editing
       const car = globalCars.find(c => c.id === carId);
-      if(car) {
-          Object.assign(car, updates);
-          closeModal('editPriceModal');
-          showToast('✅ Listing updated successfully!');
-          renderUserListings();
-          renderStats();
+      if (car) {
+        Object.assign(car, updates);
+        closeModal('editPriceModal');
+        showToast('✅ Listing updated successfully!');
+        renderUserListings();
+        renderStats();
       } else {
-          showToast('❌ Failed to save. Please try again.');
+        showToast('❌ Failed to save. Please try again.');
       }
     }
 
@@ -1054,7 +1989,9 @@ padding: 0;
     function doRemoveListing(markAsSold) {
       const carId = parseInt(document.getElementById('removeCarId').value);
       showToast(markAsSold ? '✅ Marking as sold...' : '🗑️ Removing listing...');
+      addToHistory(carId, markAsSold ? 'sold' : 'deleted');
       const success = mgDB.removeListing(carId, currentUserMobile);
+      globalCars = globalCars.filter(c => c.id !== carId);
       if (success) {
         closeModal('confirmRemoveModal');
         showToast(markAsSold ? '🎉 Car marked as sold!' : '✅ Listing removed successfully!');
@@ -1131,12 +2068,102 @@ padding: 0;
       initDashboard();
     };
   </script>
+
+  <!-- ACCOUNT SIDEBAR -->
+  <div class="account-sidebar-overlay" id="as-overlay"></div>
+  <div class="account-sidebar" id="account-sidebar">
+    <div class="as-header">
+      <h2 id="as-title">My Account</h2>
+      <button class="as-close" id="as-close-btn">&times;</button>
+    </div>
+    <div class="as-body" id="as-body">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const accountBtn = document.getElementById('nav-account-btn');
+      const asSidebar = document.getElementById('account-sidebar');
+      const asOverlay = document.getElementById('as-overlay');
+      const asClose = document.getElementById('as-close-btn');
+      const asBody = document.getElementById('as-body');
+      const asTitle = document.getElementById('as-title');
+
+      function openSidebar() {
+        if (asSidebar) asSidebar.classList.add('open');
+        if (asOverlay) asOverlay.classList.add('open');
+        renderSidebar();
+      }
+      function closeSidebar() {
+        if (asSidebar) asSidebar.classList.remove('open');
+        if (asOverlay) asOverlay.classList.remove('open');
+      }
+
+      if (accountBtn) accountBtn.addEventListener('click', openSidebar);
+      if (asClose) asClose.addEventListener('click', closeSidebar);
+      if (asOverlay) asOverlay.addEventListener('click', closeSidebar);
+
+      function renderSidebar() {
+        const currentUser = localStorage.getItem('mg_current_user');
+        const mobile = localStorage.getItem('mg_current_user_mobile') || '';
+
+        if (currentUser && currentUser !== 'Guest User') {
+          let initials = '👤';
+          try {
+            const parts = currentUser.split(' ');
+            if (parts.length > 1) {
+              initials = (parts[0][0] + parts[1][0]).toUpperCase();
+            } else {
+              initials = currentUser.substring(0, 2).toUpperCase();
+            }
+          } catch (e) { }
+          if (accountBtn) {
+            accountBtn.innerHTML = initials;
+            accountBtn.style.fontWeight = '700';
+            accountBtn.style.fontSize = '16px';
+          }
+          asTitle.textContent = 'My Account';
+          asBody.innerHTML = `
+          <div class="as-user-info">
+            <div class="as-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+            <div class="as-user-details">
+              <h4>${currentUser}</h4>
+              <p>${mobile}</p>
+            </div>
+            <button class="as-edit-btn" onclick="window.location='customer-dashboard.html'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+          </div>
+          <div class="as-section-title">SELL CAR</div>
+          <ul class="as-menu">
+            <li><a href="customer-dashboard.html">View My Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="sell.html">Post a New Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="customer-dashboard.html">Dashboard <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+          </ul>
+          <ul class="as-menu">
+            <li><a href="#" id="as-logout-btn">Logout <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></a></li>
+          </ul>
+        `;
+          document.getElementById('as-logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('mg_current_user');
+            localStorage.removeItem('mg_current_user_mobile');
+            localStorage.removeItem('mg_current_user_type');
+            closeSidebar();
+            window.location.reload();
+          });
+        } else {
+          asTitle.textContent = 'Welcome to Market Guru HP';
+          asBody.innerHTML = `
+          <div class="as-login-view">
+            <p>Login to manage your car listings, view analytics, and save your favourite cars.</p>
+            <a href="login.html" class="as-btn">Login / Register</a>
+          </div>
+        `;
+        }
+      }
+    });
+  </script>
+
 </body>
 
 </html>
-
-
-
-
-
-

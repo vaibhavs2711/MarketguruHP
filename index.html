@@ -10,7 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap"
     rel="stylesheet">
   <style>
-        :root {
+    :root {
       --primary: #F97316;
       --primary-hover: #EA580C;
       --secondary: #FF7A00;
@@ -44,26 +44,26 @@
       color: inherit;
     }
 
-    
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
 
     /* PROFILE ICON (shown when logged in) */
     .profile-btn {
@@ -1026,157 +1026,220 @@
       background: var(--red);
     }
 
-    
-  
-  
-  
-  .footer-col-brand 
-  .footer-col-brand 
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  @media(max-width: 800px) {
-    
-    
-  }
 
-  /* TOAST */
-  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--charcoal); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.15); transform: translateY(100px); transition: transform 0.3s ease; border-left: 4px solid var(--red); }
-  .toast.show { transform: translateY(0); }
 
-  /* STATIC SOCIAL BANNER */
-  .social-banner-container {
-    display: flex;
-    background: var(--silver);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    width: 100%;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
-    justify-content: space-between;
-  }
-  .sb-left-wrap {
-    position: relative;
-    display: flex; align-items: center; gap: 10px;
-    padding: 12px 30px 12px 20px;
-    z-index: 1;
-    min-width: max-content;
-  }
-  .sb-left-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -50px; right: 0; bottom: 0;
-    background: linear-gradient(90deg, var(--blue-light) 0%, var(--silver) 100%);
-    transform: skewX(-20deg);
-    transform-origin: bottom right;
-    border-right: 2px solid var(--charcoal);
-    box-shadow: 4px 0 15px rgba(26,61,143,0.08);
-    z-index: -1;
-  }
-  .sb-left-icon svg { width: 30px; height: 30px; stroke: var(--charcoal); }
-  .sb-left-text { display: flex; flex-direction: column; }
-  .sb-left-text h4 { color: var(--charcoal); font-size: 13px; font-weight: 800; margin: 0 0 2px; letter-spacing: 0.5px; white-space: nowrap; }
-  .sb-left-text p { color: var(--text); font-size: 11px; margin: 0; font-weight: 500; white-space: nowrap; }
 
-  .sb-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    gap: 0px;
-  }
-  .sb-link-block {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    text-decoration: none;
-    transition: transform 0.2s;
-  }
-  .sb-link-block:hover {
-    transform: translateY(-2px);
-  }
-  .sb-divider {
-    width: 1px;
-    height: 30px;
-    background: rgba(255,255,255,0.1);
-    margin: 0 4px;
-  }
-  .sb-logo svg {
-    width: 36px !important; height: 36px !important; display: block;
-  }
-  .sb-info {
-    display: flex; flex-direction: column;
-  }
-  .sb-info h5 {
-    font-size: 14px; font-weight: 800; color: var(--text); margin: 0 0 2px 0; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
-  }
-  .sb-info span {
-    font-size: 11px; font-weight: 600; color: var(--charcoal); white-space: nowrap;
-  }
-  .sb-btn {
-    margin-left: 6px;
-    border: 1px solid var(--charcoal);
-    border-radius: 20px;
-    color: var(--charcoal);
-    font-size: 10px;
-    font-weight: 800;
-    padding: 5px 12px;
-    letter-spacing: 0.5px;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .sb-link-block:hover .sb-btn {
-    background: var(--charcoal); color: #fff;
-  }
+    .footer-col-brand .footer-col-brand @media(max-width: 800px) {}
 
-  .sb-right-wrap {
-    position: relative;
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    padding: 12px 20px 12px 40px;
-    z-index: 1;
-    min-width: max-content;
-  }
-  .sb-right-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: -50px; bottom: 0;
-    background: linear-gradient(90deg, var(--silver) 0%, var(--blue-light) 100%);
-    transform: skewX(-20deg);
-    transform-origin: bottom left;
-    border-left: 2px solid var(--charcoal);
-    box-shadow: -4px 0 15px rgba(26,61,143,0.08);
-    z-index: -1;
-  }
-  .sb-right-text { text-align: right; }
-  .sb-right-text h4 { font-size: 13px; font-weight: 700; color: var(--text); margin: 0; line-height: 1.2; white-space: nowrap; }
-  .sb-right-text h4.yellow { color: var(--charcoal); font-weight: 900; font-size: 16px; }
-  
-  
-  
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: var(--charcoal);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transform: translateY(100px);
+      transition: transform 0.3s ease;
+      border-left: 4px solid var(--red);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    /* STATIC SOCIAL BANNER */
+    .social-banner-container {
+      display: flex;
+      background: var(--silver);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      justify-content: space-between;
+    }
+
+    .sb-left-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 30px 12px 20px;
+      z-index: 1;
+      min-width: max-content;
+    }
+
+    .sb-left-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50px;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, var(--blue-light) 0%, var(--silver) 100%);
+      transform: skewX(-20deg);
+      transform-origin: bottom right;
+      border-right: 2px solid var(--charcoal);
+      box-shadow: 4px 0 15px rgba(26, 61, 143, 0.08);
+      z-index: -1;
+    }
+
+    .sb-left-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--charcoal);
+    }
+
+    .sb-left-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sb-left-text h4 {
+      color: var(--charcoal);
+      font-size: 13px;
+      font-weight: 800;
+      margin: 0 0 2px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .sb-left-text p {
+      color: var(--text);
+      font-size: 11px;
+      margin: 0;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .sb-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 0px;
+    }
+
+    .sb-link-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .sb-link-block:hover {
+      transform: translateY(-2px);
+    }
+
+    .sb-divider {
+      width: 1px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0 4px;
+    }
+
+    .sb-logo svg {
+      width: 36px !important;
+      height: 36px !important;
+      display: block;
+    }
+
+    .sb-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sb-info h5 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0 0 2px 0;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .sb-info span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--charcoal);
+      white-space: nowrap;
+    }
+
+    .sb-btn {
+      margin-left: 6px;
+      border: 1px solid var(--charcoal);
+      border-radius: 20px;
+      color: var(--charcoal);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 5px 12px;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .sb-link-block:hover .sb-btn {
+      background: var(--charcoal);
+      color: #fff;
+    }
+
+    .sb-right-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 20px 12px 40px;
+      z-index: 1;
+      min-width: max-content;
+    }
+
+    .sb-right-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: -50px;
+      bottom: 0;
+      background: linear-gradient(90deg, var(--silver) 0%, var(--blue-light) 100%);
+      transform: skewX(-20deg);
+      transform-origin: bottom left;
+      border-left: 2px solid var(--charcoal);
+      box-shadow: -4px 0 15px rgba(26, 61, 143, 0.08);
+      z-index: -1;
+    }
+
+    .sb-right-text {
+      text-align: right;
+    }
+
+    .sb-right-text h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .sb-right-text h4.yellow {
+      color: var(--charcoal);
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+
+
 
     .hero-stats {
       display: flex;
@@ -1194,104 +1257,131 @@
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
-  @media(max-width: 1150px) {
-    .sb-left-wrap, .sb-right-wrap { display: none; }
-    .sb-links { flex-wrap: wrap; padding: 16px 0; gap: 10px; }
-    .sb-divider { display: none; }
-  }
 
-  @media(max-width: 992px) {
-    .hero { padding: 40px 20px; }
-    .hero-content {
-      grid-template-columns: 1fr;
-      gap: 30px;
-      text-align: center;
-    }
-    .hero-stats {
-      justify-content: center;
-    }
-    .hero-right {
-      order: -1;
-    }
-    .influencer-card {
-      margin: 0 auto;
-      max-width: 320px;
-    }
-    .influencer-img-wrapper {
-      height: 380px;
-    }
-  }
+    @media(max-width: 1150px) {
 
-  @media(max-width: 768px) {
-    
-    
-    
-    
-    
-    .nav-links.active {
-      display: flex;
-    }
-    
-    .nav-actions.active {
-      display: flex;
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 6px);
-    }
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -6px);
+      .sb-left-wrap,
+      .sb-right-wrap {
+        display: none;
+      }
+
+      .sb-links {
+        flex-wrap: wrap;
+        padding: 16px 0;
+        gap: 10px;
+      }
+
+      .sb-divider {
+        display: none;
+      }
     }
 
-    .search-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .btn-search {
-      width: 100%;
+    @media(max-width: 992px) {
+      .hero {
+        padding: 40px 20px;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .influencer-card {
+        margin: 0 auto;
+        max-width: 320px;
+      }
+
+      .influencer-img-wrapper {
+        height: 380px;
+      }
     }
 
-    .cars-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .brands-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .dealer-promo-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    
-    
-    
+    @media(max-width: 768px) {
 
-    /* Hide background cards in 3D Carousel on mobile to prevent overflow */
-    .trust-item[data-pos="-1"], 
-    .trust-item[data-pos="1"], 
-    .trust-item[data-pos="-2"], 
-    .trust-item[data-pos="2"] {
-      opacity: 0 !important;
-      pointer-events: none;
-    }
-    .trust-item[data-pos="0"] {
-      transform: translateX(0) scale(1.02) !important;
-      opacity: 1 !important;
-    }
-  }
 
-  @media(max-width: 480px) {
-    .brands-grid {
-      grid-template-columns: repeat(2, 1fr);
+
+
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-actions.active {
+        display: flex;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+      }
+
+      .search-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .btn-search {
+        width: 100%;
+      }
+
+      .cars-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .brands-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .dealer-promo-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+
+
+
+      /* Hide background cards in 3D Carousel on mobile to prevent overflow */
+      .trust-item[data-pos="-1"],
+      .trust-item[data-pos="1"],
+      .trust-item[data-pos="-2"],
+      .trust-item[data-pos="2"] {
+        opacity: 0 !important;
+        pointer-events: none;
+      }
+
+      .trust-item[data-pos="0"] {
+        transform: translateX(0) scale(1.02) !important;
+        opacity: 1 !important;
+      }
     }
-    .section-title {
-      font-size: 32px;
+
+    @media(max-width: 480px) {
+      .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
     }
-  }
 
     /* NAVBAR */
     .navbar {
@@ -1320,7 +1410,7 @@
       display: flex;
       align-items: center;
       margin-right: 40px;
-      height: 110px;
+      height: 80px;
       transition: transform 0.3s ease;
     }
 
@@ -1336,32 +1426,44 @@
 
     .nav-links {
       display: flex;
-      gap: 6px;
-      flex: 1;
+      gap: 12px;
       align-items: center;
+      flex: 1;
     }
 
     .nav-links a {
       color: var(--charcoal);
       font-size: 15px;
       font-weight: 700;
-      padding: 10px 18px;
-      border-radius: 30px;
-      transition: all 0.3s ease;
+      padding: 10px 20px;
+      border-radius: 50px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a svg {
+      width: 18px;
+      height: 18px;
+      color: var(--muted);
     }
 
     .nav-links a:hover {
-      color: var(--navy);
-      background: rgba(15, 43, 110, 0.06);
+      background: var(--blue-light);
+    }
+
+    .nav-links a:hover svg {
+      color: var(--primary);
     }
 
     .nav-links a.active {
-      color: #FFFFFF !important;
-      background: var(--charcoal);
-      box-shadow: 0 4px 12px rgba(15, 43, 110, 0.2);
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .nav-links a.active svg {
+      color: var(--primary);
     }
 
     .nav-actions {
@@ -1413,13 +1515,16 @@
         justify-content: space-between;
         height: 91px;
       }
+
       .logo {
         margin-right: 0;
-        height: 65px;
+        height: 80px;
       }
+
       .menu-toggle {
         display: flex;
       }
+
       .nav-links {
         display: none;
         flex-direction: column;
@@ -1430,13 +1535,15 @@
         background: #FFFFFF;
         padding: 20px;
         gap: 12px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         border-top: 1px solid var(--border);
         z-index: 9999;
       }
+
       .nav-links.active {
         display: flex;
       }
+
       .nav-actions {
         display: none;
         position: absolute;
@@ -1445,20 +1552,24 @@
         right: 0;
         background: #FFFFFF;
         padding: 10px 20px 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         z-index: 9998;
         border-top: 1px solid var(--border);
         justify-content: center;
       }
+
       .nav-actions.active {
         display: flex;
       }
+
       .menu-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(6px, 6px);
       }
+
       .menu-toggle.active span:nth-child(2) {
         opacity: 0;
       }
+
       .menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
       }
@@ -1466,10 +1577,9 @@
 
     /* FOOTER */
     .footer {
-      background: #0B0F19;
-      color: #94A3B8;
-      padding: 60px 20px 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--charcoal);
+      padding: 40px 20px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       margin-top: 60px;
     }
 
@@ -1482,13 +1592,13 @@
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr;
       gap: 40px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .footer-col-brand .logo {
       display: block;
-      margin-bottom: 24px;
-      height: 78px;
+      margin-bottom: 20px;
+      height: 80px;
     }
 
     .footer-col-brand .logo img {
@@ -1498,35 +1608,35 @@
     }
 
     .footer-copyright {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.8;
-      color: #64748B;
+      color: #8a9abf;
       font-weight: 500;
-      margin-top: 16px;
+      margin-top: 10px;
     }
 
     .footer-col h4 {
-      font-size: 13px;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 20px;
       font-family: 'Inter', sans-serif;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      text-transform: none;
+      letter-spacing: normal;
     }
 
     .footer-col a {
       display: block;
-      font-size: 15px;
-      color: #94A3B8;
-      margin-bottom: 14px;
-      transition: all 0.2s ease;
+      font-size: 16px;
+      color: #e0e5eb;
+      margin-bottom: 12px;
+      transition: color 0.2s;
       font-weight: 500;
     }
 
     .footer-col a:hover {
-      color: var(--red);
-      transform: translateX(4px);
+      color: var(--primary);
+      transform: none;
     }
 
     .quick-links-split {
@@ -1536,7 +1646,8 @@
 
     .ql-divider {
       width: 1px;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--primary);
+      opacity: 0.5;
     }
 
     .ql-col {
@@ -1548,47 +1659,47 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .footer-contact .contact-icon {
       width: 20px;
       height: 20px;
-      stroke: var(--red);
+      stroke: var(--primary);
       flex-shrink: 0;
     }
 
     .footer-contact .contact-item a {
       margin-bottom: 0;
       font-size: 15px;
-      color: #FFFFFF;
-      font-weight: 600;
+      color: #fff;
+      font-weight: 500;
       letter-spacing: 0.5px;
     }
 
     .footer-bottom-bar {
-      background: #111827;
-      border-radius: 20px;
-      padding: 16px 32px;
+      background: #333;
+      border-radius: 40px;
+      padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #64748B;
-      font-size: 14px;
+      color: #bbb;
+      font-size: 13px;
       font-weight: 500;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: none;
     }
 
     .fbb-left {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
 
     .fbb-connect-text {
-      font-size: 14px;
-      font-weight: 600;
-      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
       font-family: 'Inter', sans-serif;
       letter-spacing: 0.5px;
     }
@@ -1602,35 +1713,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: #FFFFFF;
+      background: #fff;
+      color: #111;
       transition: all 0.3s ease;
     }
 
     .fbb-socials a:hover {
-      background: var(--red);
-      color: #0B0F19;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(249, 115, 22, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .fbb-socials svg {
-      width: 18px !important;
-      height: 18px !important;
+      width: 16px !important;
+      height: 16px !important;
       fill: currentColor;
     }
 
     .fbb-links {
       display: flex;
-      gap: 16px;
+      gap: 8px;
       align-items: center;
     }
 
     .fbb-links a {
-      color: #94A3B8;
+      color: #bbb;
       text-decoration: none;
       transition: color 0.2s;
       font-size: 13px;
@@ -1638,15 +1747,25 @@
     }
 
     .fbb-links a:hover {
-      color: #FFFFFF;
+      color: var(--white);
     }
 
-    #footer-brand-logo img {
-      filter: brightness(0) invert(1) opacity(0.8);
+    @media(max-width: 800px) {
+      .footer-bottom-bar {
+        flex-direction: column;
+        gap: 16px;
+        border-radius: 16px;
+        text-align: center;
+      }
+
+      .fbb-left {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
 
     /* HERO SECTION REFRESH */
-    
+
     .hero-new::after {
       content: '';
       position: absolute;
@@ -1654,7 +1773,7 @@
       left: 0;
       width: 100%;
       height: 250px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -1663,17 +1782,19 @@
       background: url('land_bg.png') no-repeat center center;
       background-size: cover;
       position: relative;
-      padding: 60px 20px 120px 20px;
+      padding: 60px 0 120px 0;
       overflow: hidden;
       min-height: calc(100vh - 85px);
     }
+
     .hero-new-inner {
-      padding-left: 20px;
-      max-width: 1320px;
+      padding: 0 20px;
+      max-width: 1280px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
     }
+
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -1683,8 +1804,11 @@
       max-width: 70%;
       text-align: left;
     }
-    .hero-content-left { padding-top: 80px; }
-    
+
+    .hero-content-left {
+      padding-top: 80px;
+    }
+
     .hero-content-left h1 {
       font-family: 'Inter', sans-serif !important;
       font-size: 52px !important;
@@ -1692,6 +1816,7 @@
       letter-spacing: -1.5px !important;
       line-height: 1.15 !important;
     }
+
     .hero-content-left p {
       color: #475569 !important;
       font-size: 18px !important;
@@ -1699,7 +1824,11 @@
       line-height: 1.6 !important;
       letter-spacing: -0.3px !important;
     }
-    .hero-checks svg { background: transparent !important; padding: 0 !important; }
+
+    .hero-checks svg {
+      background: transparent !important;
+      padding: 0 !important;
+    }
 
     .hero-content-left h1 {
       font-size: clamp(40px, 4.5vw, 64px);
@@ -1709,35 +1838,213 @@
       letter-spacing: -1px;
       margin-bottom: 20px;
     }
-    .hero-content-left h1 span.highlight { color: var(--primary); }
-    .hero-checks { display: flex; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
-    .hero-checks span { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--charcoal); font-size: 15px; }
-    .hero-checks svg { color: var(--primary); background: rgba(249, 115, 22, 0.1); border-radius: 50%; padding: 2px; }
-    .hero-content-left p { color: var(--muted); font-size: 17px; line-height: 1.6; max-width: 600px; margin-bottom: 30px; }
-    .hero-social-stats { display: flex; gap: 16px; flex-wrap: wrap; }
-    .hs-card { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 50px; padding: 8px 20px 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-    .hs-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); }
-    .hs-icon.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .hs-icon.fb { background: #1877F2; }
-    .hs-icon.yt { background: #FF0000; }
-    .hs-info { display: flex; flex-direction: column; }
-    .hs-info strong { color: var(--primary); font-size: 18px; font-weight: 900; line-height: 1; }
-    .hs-info span { font-size: 10px; font-weight: 800; color: var(--muted); letter-spacing: 0.5px; }
-    .hero-search-box { background: var(--white); border-radius: 60px; padding: 12px 12px 12px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid var(--border); max-width: 1100px; margin: 60px auto 30px 0; z-index: 10; position: relative; }
-    .h-search-field { flex: 1; display: flex; flex-direction: column; border-right: 1px solid var(--border); padding-right: 20px; }
-    .h-search-field:last-of-type { border-right: none; }
-    .h-search-field label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .h-search-field select { border: none; font-size: 16px; font-weight: 700; color: var(--charcoal); outline: none; background: transparent; width: 100%; cursor: pointer; }
-    .btn-search-primary { background: var(--secondary); color: var(--white); border: none; border-radius: 50px; padding: 16px 36px; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
-    .btn-search-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(234, 88, 12, 0.3); }
-    .hero-features-bar { display: flex; justify-content: flex-start; gap: 40px; background: var(--white); padding: 20px; border-radius: 20px; max-width: 1100px; margin: 0 auto 0 0; border: 1px solid var(--border); flex-wrap: wrap; }
-    .hf-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); font-weight: 600; }
-    .hf-item strong { color: var(--charcoal); font-size: 16px; font-weight: 900; }
-    .hf-icon { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--charcoal); }
+
+    .hero-content-left h1 span.highlight {
+      color: var(--primary);
+    }
+
+    .hero-checks {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-checks span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--charcoal);
+      font-size: 15px;
+    }
+
+    .hero-checks svg {
+      color: var(--primary);
+      background: rgba(249, 115, 22, 0.1);
+      border-radius: 50%;
+      padding: 2px;
+    }
+
+    .hero-content-left p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .hero-social-stats {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hs-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 20px 8px 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .hs-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+
+    .hs-icon.ig {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .hs-icon.fb {
+      background: #1877F2;
+    }
+
+    .hs-icon.yt {
+      background: #FF0000;
+    }
+
+    .hs-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hs-info strong {
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .hs-info span {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .hero-search-box {
+      background: var(--white);
+      border-radius: 60px;
+      padding: 12px 12px 12px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 60px auto 30px 0;
+      z-index: 10;
+      position: relative;
+    }
+
+    .h-search-field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      padding-right: 20px;
+    }
+
+    .h-search-field:last-of-type {
+      border-right: none;
+    }
+
+    .h-search-field label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .h-search-field select {
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--charcoal);
+      outline: none;
+      background: transparent;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .btn-search-primary {
+      background: var(--secondary);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 16px 36px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-search-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(234, 88, 12, 0.3);
+    }
+
+    .hero-features-bar {
+      display: flex;
+      justify-content: flex-start;
+      gap: 40px;
+      background: var(--white);
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 1100px;
+      margin: 0 auto 0 0;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .hf-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hf-item strong {
+      color: var(--charcoal);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .hf-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--charcoal);
+    }
 
     /* Fix image styling */
-    img { max-width: 100%; height: auto; }
-\n
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     /* NAVBAR */
     .navbar {
       background: var(--white);
@@ -1746,6 +2053,7 @@
       z-index: 100;
       border-bottom: 1px solid var(--border);
     }
+
     .nav-main {
       max-width: 1280px;
       margin: 0 auto;
@@ -1755,18 +2063,23 @@
       padding: 0 20px;
       height: auto;
     }
+
     .logo {
-      height: 110px;
+      height: 80px;
     }
+
     .logo img {
       height: 100%;
       width: auto;
     }
+
     .nav-links {
       display: flex;
       gap: 12px;
       align-items: center;
+      flex: 1;
     }
+
     .nav-links a {
       color: var(--charcoal);
       font-size: 15px;
@@ -1778,27 +2091,35 @@
       gap: 8px;
       transition: all 0.2s;
     }
+
     .nav-links a svg {
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
       color: var(--muted);
     }
+
     .nav-links a:hover {
       background: var(--blue-light);
     }
+
     .nav-links a:hover svg {
       color: var(--primary);
     }
+
     .nav-links a.active {
       background: var(--navy);
       color: var(--white);
     }
+
     .nav-links a.active svg {
       color: var(--primary);
     }
+
     .nav-actions {
       display: flex;
       align-items: center;
     }
+
     .nav-account-btn {
       display: flex;
       align-items: center;
@@ -1812,17 +2133,504 @@
       transition: all 0.2s;
       background: var(--white);
     }
+
     .nav-account-btn:hover {
       border-color: var(--primary);
       color: var(--primary);
     }
-\n</style>
+
+    /* Account Sidebar Styles */
+    .nav-account-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(249, 115, 22, 0.15);
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-left: 10px;
+      padding: 0;
+    }
+
+    .nav-account-circle:hover {
+      background: rgba(249, 115, 22, 0.25);
+    }
+
+    .account-sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+
+    .account-sidebar-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .account-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
+      background: #fff;
+      z-index: 10000;
+      box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .account-sidebar.open {
+      right: 0;
+    }
+
+    .as-header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .as-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .as-close {
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #64748b;
+      line-height: 1;
+      padding: 0;
+      margin: 0;
+    }
+
+    .as-body {
+      padding: 24px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    /* Logged out */
+    .as-login-view p {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .as-btn {
+      width: 100%;
+      padding: 14px;
+      background: #f97316;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    }
+
+    .as-btn:hover {
+      background: #ea580c;
+    }
+
+    /* Logged in */
+    .as-user-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .as-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #10b981;
+    }
+
+    .as-user-details h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+      margin-top: 0;
+    }
+
+    .as-user-details p {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .as-edit-btn {
+      margin-left: auto;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #3b82f6;
+    }
+
+    .as-section-title {
+      font-size: 12px;
+      color: #10b981;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #10b981;
+    }
+
+    .as-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+    }
+
+    .as-menu li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .as-menu li a:hover {
+      color: #f97316;
+    }
+
+    @media(max-width: 480px) {
+      .account-sidebar {
+        width: 100%;
+        right: -100%;
+      }
+    }
+
+    
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #f1f5f9;
+      margin-bottom: 24px;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      color: var(--primary-hover);
+      border-bottom-color: var(--primary);
+    }
+
+    .form-panel {
+      display: none;
+    }
+
+    .form-panel.active {
+      display: block;
+    }
+
+    /* FORM FIELDS */
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #0f172a;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+    }
+
+    /* MOBILE INPUT FIELD COMBINED */
+    .mobile-input-container {
+      display: flex;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      transition: all 0.2s;
+    }
+
+    .mobile-input-container:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+    }
+
+    .country-code {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 14px;
+      background: #f8fafc;
+      border-right: 1.5px solid #cbd5e1;
+      font-size: 14px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .country-arrow {
+      font-size: 8px;
+      color: #64748b;
+    }
+
+    .mobile-input-container input {
+      flex: 1;
+      border: none !important;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #0f172a;
+      box-shadow: none !important;
+    }
+
+    .field-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .remember input {
+      width: auto;
+      accent-color: var(--primary);
+    }
+
+    .forgot {
+      color: var(--primary-hover);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* BUTTONS */
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: #1A1A2E;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-login:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .divider {
+      text-align: center;
+      margin: 24px 0;
+      color: #94a3b8;
+      font-size: 12px;
+      position: relative;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .divider span {
+      background: var(--white);
+      padding: 0 12px;
+      position: relative;
+    }
+
+    .btn-google {
+      width: 100%;
+      padding: 12px;
+      background: var(--white);
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .btn-google:hover {
+      border-color: #0f172a;
+      background: #f8fafc;
+    }
+
+    .switch-note {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13.5px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .switch-note a {
+      color: var(--primary-hover);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* ROLE SELECTION PILLS */
+    .role-select {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .role-pill {
+      flex: 1;
+      padding: 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #64748b;
+    }
+
+    .role-pill.active {
+      border-color: var(--primary);
+      color: #1e293b;
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: var(--charcoal);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transform: translateY(100px);
+      transition: transform 0.3s ease;
+      border-left: 4px solid var(--primary);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    /* BOTTOM FULL-WIDTH FOOTER */
+    .account-sidebar .toast { position: absolute; z-index: 10001; }
+  </style>
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-    <!-- NAVBAR -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-main">
       <a href="index.html" class="logo" id="brand-logo">
@@ -1830,12 +2638,12 @@
       </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link-home active">🏠 Home</a>
-        <a href="buy-cars.html" class="nav-link-buy ">Buy Vehicle</a>
-        <a href="sell.html" class="nav-link-sell ">Sell Vehicles</a>
-        <a href="about.html" class="nav-link-about ">About</a>
+        <a href="buy-cars.html" class="nav-link-buy">Buy Vehicle</a>
+        <a href="sell.html" class="nav-link-sell">Sell Vehicles</a>
+        <a href="about.html" class="nav-link-about">About</a>
       </div>
       <div class="nav-actions" id="nav-actions">
-        <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
+        <button class="nav-account-circle" id="nav-account-btn" aria-label="Account">👤</button>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
         <span></span>
@@ -1845,55 +2653,92 @@
     </div>
   </nav>
 
-  
+
   <!-- HERO SECTION REFRESH -->
   <section class="hero-new">
     <div class="hero-new-inner">
       <div class="hero-grid">
         <div class="hero-content-left">
-           <h1>Gujarat's Most Trusted<br>Certified <span class="highlight">Used Vehicles</span></h1>
-           <div class="hero-checks">
-               <span><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--primary)" stroke="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="var(--primary)"/><path d="M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#fff"/></svg> All Vehicle Information!</span>
-               <span><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--primary)" stroke="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="var(--primary)"/><path d="M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#fff"/></svg> Transparent Buying Experience!</span>
-           </div>
-           <p>Explore Market Guru HP's verified vehicle listings, in-detail<br>information and connect directly with sellers and dealers<br>from all over Gujarat.</p>
-           
-           <div class="hero-social-stats">
-               <div class="hs-card">
-                  <div class="hs-icon ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
-                  <div class="hs-info"><strong>566K+</strong><span>INSTAGRAM FOLLOWERS</span></div>
-               </div>
-               <div class="hs-card">
-                  <div class="hs-icon fb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></div>
-                  <div class="hs-info"><strong>300K+</strong><span>FACEBOOK REACH</span></div>
-               </div>
-               <div class="hs-card">
-                  <div class="hs-icon yt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></div>
-                  <div class="hs-info"><strong>70K+</strong><span>YOUTUBE SUBSCRIBERS</span></div>
-               </div>
-           </div>
+          <h1>Gujarat's Most Trusted<br>Certified <span class="highlight">Used Vehicles</span></h1>
+          <div class="hero-checks">
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--primary)" stroke="none">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  fill="var(--primary)" />
+                <path d="M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#fff" />
+              </svg> All Vehicle Information!</span>
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--primary)" stroke="none">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  fill="var(--primary)" />
+                <path d="M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#fff" />
+              </svg> Transparent Buying Experience!</span>
+          </div>
+          <p>Explore Market Guru HP's verified vehicle listings, in-detail<br>information and connect directly with
+            sellers and dealers<br>from all over Gujarat.</p>
+
+          <div class="hero-social-stats">
+            <div class="hs-card">
+              <div class="hs-icon ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg></div>
+              <div class="hs-info"><strong>566K+</strong><span>INSTAGRAM FOLLOWERS</span></div>
+            </div>
+            <div class="hs-card">
+              <div class="hs-icon fb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg></div>
+              <div class="hs-info"><strong>300K+</strong><span>FACEBOOK REACH</span></div>
+            </div>
+            <div class="hs-card">
+              <div class="hs-icon yt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z">
+                  </path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg></div>
+              <div class="hs-info"><strong>70K+</strong><span>YOUTUBE SUBSCRIBERS</span></div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="hero-search-box">
-         <div class="h-search-field">
-           <label>BRAND</label>
-           <select id="brandSelect" onchange="filterModel(this)"><option value="">All Brands</option></select>
-         </div>
-         <div class="h-search-field">
-           <label>MODEL</label>
-           <select id="modelSelect"><option value="">All Models</option></select>
-         </div>
-         <div class="h-search-field">
-           <label>CITY</label>
-           <select><option value="">All Cities</option><option>Vadodara</option><option>Ahmedabad</option><option>Surat</option></select>
-         </div>
-         <button class="btn-search-primary" onclick="window.location='buy-cars.html'">
-           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> SEARCH CARS
-         </button>
+        <div class="h-search-field">
+          <label>BRAND</label>
+          <select id="brandSelect" onchange="filterModel(this)">
+            <option value="">All Brands</option>
+          </select>
+        </div>
+        <div class="h-search-field">
+          <label>MODEL</label>
+          <select id="modelSelect">
+            <option value="">All Models</option>
+          </select>
+        </div>
+        <div class="h-search-field">
+          <label>CITY</label>
+          <select>
+            <option value="">All Cities</option>
+            <option>Vadodara</option>
+            <option>Ahmedabad</option>
+            <option>Surat</option>
+          </select>
+        </div>
+        <button class="btn-search-primary" onclick="window.location='buy-cars.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg> SEARCH CARS
+        </button>
       </div>
 
-      </div>
+    </div>
   </section>
 
 
@@ -2050,80 +2895,95 @@
   </section>
 
   <!-- FOOTER -->
-    <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-grid">
         <div class="footer-col-brand">
           <a href="index.html" class="logo" id="footer-brand-logo">
-            <img src="logo.png" alt="Market Guru HP Logo">
+            <img src="footer_logo.png" alt="Market Guru HP Logo">
           </a>
           <div class="footer-copyright">
-            &copy; 2026 Market Guru HP. All rights reserved.<br>
-            Gujarat's Most Trusted Certified Used Vehicles Portal.
+            &copy; 2006 - 2026 Market Guru HP.<br>
+            All rights reserved in favour of Market Guru HP.
           </div>
         </div>
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h4>Quick guide links</h4>
           <div class="quick-links-split">
             <div class="ql-col">
-              <a href="index.html">Home</a>
               <a href="buy-cars.html">Buy Vehicle</a>
-              <a href="sell.html">Sell Vehicle</a>
+              <a href="sell.html">Sell Vehicles</a>
             </div>
             <div class="ql-divider"></div>
             <div class="ql-col">
-              <a href="about.html">About Us</a>
-              <a href="login.html" class="footer-login-link">Seller Login</a>
+              <a href="about.html">About us</a>
+              <a href="login.html">Account</a>
             </div>
           </div>
         </div>
         <div class="footer-col footer-contact">
-          <h4>Connect With Us</h4>
+          <h4>Contact Us</h4>
           <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            <a href="tel:+919825822550">+91 98258 22550</a>
-          </div>
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            <a href="mailto:info@marketguruhp.com">info@marketguruhp.com</a>
+            <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+            <a href="tel:08600004513">08600004513</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom-bar">
         <div class="fbb-left">
-          <span class="fbb-connect-text">Follow Us:</span>
+          <div class="fbb-connect-text">Connect with us :</div>
           <div class="fbb-socials">
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4.000 4.000 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook"
+              aria-label="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
             </a>
-            <a href="#" aria-label="YouTube">
-              <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.483 20.455 12 20.455 12 20.455s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+            <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube"
+              aria-label="YouTube">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp"
+              aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
             </a>
           </div>
         </div>
         <div class="fbb-links">
           <a href="privacy-policy.html">Privacy Policy</a>
-          <span style="opacity:0.3;">|</span>
+          <span>|</span>
           <a href="terms-of-service.html">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
-
-  <div class="toast" id="toast"></div>
 
   <script src="cars-data.js"></script>
   <script>
@@ -2144,8 +3004,8 @@
       const grid = document.getElementById('featuredCars');
       const featured = mgDB.getUsedCars().slice(0, 8); // Grab up to 8 cars
 
-      if(grid) {
-          grid.innerHTML = featured.map(c => `
+      if (grid) {
+        grid.innerHTML = featured.map(c => `
         <div class="car-card" onclick="window.location='car-detail.html?id=${c.id}'">
           <div class="car-img" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
             ${c.image ? `<img src="${c.image}" style="width:100%;height:100%;object-fit:contain;" />` : (c.emoji || '🚗')}
@@ -2184,37 +3044,37 @@
     }
 
     function toggleCompare(id, event) {
-      if(event) event.stopPropagation();
+      if (event) event.stopPropagation();
       try {
         let list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
-        if(list.includes(id)) {
-            list = list.filter(x => x !== id);
-            showToast('⚖️ Removed from compare list');
+        if (list.includes(id)) {
+          list = list.filter(x => x !== id);
+          showToast('⚖️ Removed from compare list');
         } else {
-            if(list.length >= 3) {
-                showToast('⚠️ You can compare up to 3 cars at once');
-                return;
-            }
-            list.push(id);
-            showToast('⚖️ Added to compare list');
+          if (list.length >= 3) {
+            showToast('⚠️ You can compare up to 3 cars at once');
+            return;
+          }
+          list.push(id);
+          showToast('⚖️ Added to compare list');
         }
         localStorage.setItem('mg_compare_list', JSON.stringify(list));
         updateCompareBar();
         renderCars();
-      } catch (err) {}
+      } catch (err) { }
     }
-function updateCompareBar() {
+    function updateCompareBar() {
       const bar = document.getElementById('compare-bar');
       const text = document.getElementById('compare-bar-text');
       if (!bar) return;
-      
+
       let list = [];
       try {
         list = JSON.parse(localStorage.getItem('mg_compare_list')) || [];
       } catch (err) {
         list = [];
       }
-      
+
       if (list.length > 0) {
         bar.style.display = 'flex';
         text.textContent = `⚖️ ${list.length} vehicle${list.length > 1 ? 's' : ''} selected for comparison`;
@@ -2248,53 +3108,53 @@ function updateCompareBar() {
       el.classList.add('active');
     }
 
-    
-// Dynamic Automotive API Fetching
-document.addEventListener('DOMContentLoaded', () => {
-  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-makes')
-    .then(r => r.json())
-    .then(makes => {
-      const brandSel = document.getElementById('brandSelect');
-      if (!brandSel) return;
-      makes.forEach(m => {
-        const o = document.createElement('option');
-        o.value = m.id;
-        o.textContent = m.name;
-        brandSel.appendChild(o);
-      });
-    })
-    .catch(e => console.error("Error loading makes:", e));
-});
 
-function filterModel(sel) {
-  const makeId = sel.value;
-  const m = document.getElementById('modelSelect');
-  m.innerHTML = '<option value="">All Models</option>';
-  m.disabled = true;
-  
-  if (!makeId) {
-      m.disabled = false;
-      return;
-  }
-  
-  m.innerHTML = '<option value="">Loading...</option>';
-  fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-models?makeId=' + makeId)
-    .then(r => r.json())
-    .then(models => {
-      m.innerHTML = '<option value="">All Models</option>';
-      m.disabled = false;
-      models.forEach(v => {
-        const o = document.createElement('option');
-        o.value = v.id;
-        o.textContent = v.name;
-        m.appendChild(o);
-      });
-    })
-    .catch(e => {
-      console.error("Error loading models:", e);
-      m.innerHTML = '<option value="">Error Loading</option>';
+    // Dynamic Automotive API Fetching
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-makes')
+        .then(r => r.json())
+        .then(makes => {
+          const brandSel = document.getElementById('brandSelect');
+          if (!brandSel) return;
+          makes.forEach(m => {
+            const o = document.createElement('option');
+            o.value = m.id;
+            o.textContent = m.name;
+            brandSel.appendChild(o);
+          });
+        })
+        .catch(e => console.error("Error loading makes:", e));
     });
-}
+
+    function filterModel(sel) {
+      const makeId = sel.value;
+      const m = document.getElementById('modelSelect');
+      m.innerHTML = '<option value="">All Models</option>';
+      m.disabled = true;
+
+      if (!makeId) {
+        m.disabled = false;
+        return;
+      }
+
+      m.innerHTML = '<option value="">Loading...</option>';
+      fetch((window.location.protocol === 'file:' ? 'http://localhost:5000' : '') + '/api/car-models?makeId=' + makeId)
+        .then(r => r.json())
+        .then(models => {
+          m.innerHTML = '<option value="">All Models</option>';
+          m.disabled = false;
+          models.forEach(v => {
+            const o = document.createElement('option');
+            o.value = v.id;
+            o.textContent = v.name;
+            m.appendChild(o);
+          });
+        })
+        .catch(e => {
+          console.error("Error loading models:", e);
+          m.innerHTML = '<option value="">Error Loading</option>';
+        });
+    }
 
 
     function searchCars() {
@@ -2460,12 +3320,687 @@ function filterModel(sel) {
 
   </script>
 
+
+  <!-- ACCOUNT SIDEBAR -->
+  <div class="account-sidebar-overlay" id="as-overlay"></div>
+  <div class="account-sidebar" id="account-sidebar">
+    <div class="as-header">
+      <h2 id="as-title">My Account</h2>
+      <button class="as-close" id="as-close-btn">&times;</button>
+    </div>
+    <div class="as-body" id="as-body">
+      <!-- Populated by JS -->
+    </div>
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const accountBtn = document.getElementById('nav-account-btn');
+      const asSidebar = document.getElementById('account-sidebar');
+      const asOverlay = document.getElementById('as-overlay');
+      const asClose = document.getElementById('as-close-btn');
+      const asBody = document.getElementById('as-body');
+      const asTitle = document.getElementById('as-title');
+
+      function openSidebar() {
+        if (asSidebar) asSidebar.classList.add('open');
+        if (asOverlay) asOverlay.classList.add('open');
+        renderSidebar();
+      }
+      function closeSidebar() {
+        if (asSidebar) asSidebar.classList.remove('open');
+        if (asOverlay) asOverlay.classList.remove('open');
+      }
+
+      if (accountBtn) accountBtn.addEventListener('click', openSidebar);
+      if (asClose) asClose.addEventListener('click', closeSidebar);
+      if (asOverlay) asOverlay.addEventListener('click', closeSidebar);
+
+      function renderSidebar() {
+        const currentUser = localStorage.getItem('mg_current_user');
+        const mobile = localStorage.getItem('mg_current_user_mobile') || '';
+
+        if (currentUser && currentUser !== 'Guest User') {
+          let initials = '👤';
+          try {
+            const parts = currentUser.split(' ');
+            if (parts.length > 1) {
+              initials = (parts[0][0] + parts[1][0]).toUpperCase();
+            } else {
+              initials = currentUser.substring(0, 2).toUpperCase();
+            }
+          } catch (e) { }
+          if (accountBtn) {
+            accountBtn.innerHTML = initials;
+            accountBtn.style.fontWeight = '700';
+            accountBtn.style.fontSize = '16px';
+          }
+          asTitle.textContent = 'My Account';
+          asBody.innerHTML = `
+          <div class="as-user-info">
+            <div class="as-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+            <div class="as-user-details">
+              <h4>${currentUser}</h4>
+              <p>${mobile}</p>
+            </div>
+            <button class="as-edit-btn" onclick="window.location='customer-dashboard.html'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+          </div>
+          <div class="as-section-title">SELL CAR</div>
+          <ul class="as-menu">
+            <li><a href="customer-dashboard.html">View My Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="sell.html">Post a New Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="customer-dashboard.html">Dashboard <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+          </ul>
+          <ul class="as-menu">
+            <li><a href="#" id="as-logout-btn">Logout <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></a></li>
+          </ul>
+        `;
+          document.getElementById('as-logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('mg_current_user');
+            localStorage.removeItem('mg_current_user_mobile');
+            localStorage.removeItem('mg_current_user_type');
+            closeSidebar();
+            window.location.reload();
+          });
+        } else {
+          asTitle.textContent = 'Login or Register';
+          asBody.innerHTML = `
+<div class="tabs">
+        <div class="tab active" id="tab-login" onclick="switchTab('login')">Login</div>
+        <div class="tab" id="tab-register" onclick="switchTab('register')">Register</div>
+      </div>
+
+      <!-- LOGIN PANEL -->
+      <div class="form-panel active" id="panel-login">
+        <div id="login-step-1">
+          <div class="role-select">
+            <div class="role-pill active" onclick="selectRole(this,'individual')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z"/></svg>
+              Individual
+            </div>
+            <div class="role-pill" onclick="selectRole(this,'dealer')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm10 8h-8V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z"/></svg>
+              Dealer
+            </div>
+          </div>
+          <div class="field">
+            <label>Mobile Number</label>
+            <div class="mobile-input-container">
+              <div class="country-code">
+                <span>+91</span>
+                <span class="country-arrow">▼</span>
+              </div>
+              <input type="tel" placeholder="XXXXXX XXXXX" id="loginMobile">
+            </div>
+          </div>
+          <div id="login-fields-dealer" style="display:none;">
+            <div id="dealer-password-field">
+              <div class="field">
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" id="loginPwd">
+              </div>
+              <div class="field-row">
+                <label class="remember"><input type="checkbox"> Remember me</label>
+                <span class="forgot" id="lnkToggleDealerLogin" onclick="setDealerLoginMode('otp')">Login with OTP instead</span>
+              </div>
+            </div>
+            <div id="dealer-otp-toggle-back" style="display:none; margin-bottom: 16px;">
+              <div class="field-row" style="justify-content: flex-end;">
+                <span class="forgot" onclick="setDealerLoginMode('password')">Login with Password instead</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn-login" id="btnLoginMain" onclick="sendLoginOTP()">Send OTP →</button>
+          <div class="divider"><span>OR</span></div>
+          <button class="btn-google" type="button" onclick="showToast('Google authentication is not configured.')">
+            <svg viewBox="0 0 24 24" width="18" height="18" style="display:block;">
+              <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.99 5.99 0 0 1 7.99 12.5a5.99 5.99 0 0 1 6.002-6.015c1.472 0 2.825.539 3.882 1.43l3.14-3.14A10.233 10.233 0 0 0 14 .01 10.24 10.24 0 0 0 3.75 10.25a10.24 10.24 0 0 0 10.25 10.24c5.68 0 10.26-4.57 10.26-10.25 0-.585-.05-1.162-.14-1.725H12.24Z"/>
+              <path fill="#4285F4" d="M23.86 10.285c.09.563.14 1.14.14 1.725 0 5.68-4.58 10.25-10.26 10.25a10.24 10.24 0 0 1-10.25-10.24c0-5.655 4.58-10.24 10.25-10.24 2.89 0 5.513 1.07 7.502 2.82l-3.14 3.14a5.99 5.99 0 0 0-4.362-1.965c-3.326 0-6.002 2.685-6.002 6.015 0 3.33 2.676 6.015 6.002 6.015 2.617 0 4.488-1.704 5.136-4.114h-6.887v-4.115Z"/>
+            </svg>
+            Continue with Google
+          </button>
+        </div>
+
+        <div id="login-step-2" style="display:none;">
+          <div class="field" style="text-align:center;">
+            <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong id="login-otp-display-number"></strong></label>
+            <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            </div>
+          </div>
+          <button class="btn-login" onclick="verifyLoginOTP()">Sign In →</button>
+          <div class="switch-note"><a onclick="backToLogin()">← Back</a></div>
+        </div>
+        
+        <p style="text-align:center; margin-top: 24px; font-size: 14px; color: #64748b;">
+          Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--primary-hover);font-weight:600;text-decoration:underline;">Register free</a>
+        </p>
+      </div>
+
+      <!-- REGISTER PANEL -->
+      <div class="form-panel" id="panel-register">
+        <div id="reg-step-1">
+          <div class="role-select">
+            <div class="role-pill active" onclick="selectRole(this,'individual')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z"/></svg>
+              Individual
+            </div>
+            <div class="role-pill" onclick="selectRole(this,'dealer')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm10 8h-8V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z"/></svg>
+              Dealer
+            </div>
+          </div>
+          
+          <!-- INDIVIDUAL FIELDS -->
+          <div id="reg-fields-individual">
+            <div class="field"><label>Full Name</label><input type="text" id="regFullName" placeholder="Raj Shah"></div>
+          </div>
+
+          <!-- DEALER FIELDS -->
+          <div id="reg-fields-dealer" style="display:none;">
+            <div class="field"><label>Dealership Name</label><input type="text" id="regDealerName" placeholder="Market Guru Motors"></div>
+            <div class="field"><label>Address</label><input type="text" id="regAddress" placeholder="123 Main St"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field">
+                <label>State</label>
+                <select id="regState" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
+                  <option value="Gujarat" selected>Gujarat</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="field"><label>City</label><input type="text" id="regCity" placeholder="Vadodara"></div>
+            </div>
+            <div class="field"><label>Email (Optional)</label><input type="email" id="regEmail" placeholder="dealer@example.com"></div>
+            <div class="field"><label>Password</label><input type="password" id="regPwd" placeholder="Create a strong password"></div>
+          </div>
+
+          <!-- SHARED -->
+          <div class="field">
+            <label>Mobile Number</label>
+            <div class="mobile-input-container">
+              <div class="country-code">
+                <span>+91</span>
+                <span class="country-arrow">▼</span>
+              </div>
+              <input type="tel" id="regMobile" placeholder="XXXXXX XXXXX">
+            </div>
+          </div>
+          
+          <button class="btn-login" onclick="sendOTP()">Create Account →</button>
+        </div>
+
+        <div id="reg-step-2" style="display:none;">
+          <div class="field" style="text-align:center;">
+            <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong id="otp-display-number"></strong></label>
+            <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+            </div>
+          </div>
+          <button class="btn-login" onclick="verifyOTPAndRegister()">Verify OTP</button>
+          <div class="switch-note"><a onclick="backToRegister()">← Back</a></div>
+        </div>
+        `;
+        }
+      }
+    });
+function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+    }
+    let currentRole = 'individual';
+    let dealerLoginMode = 'password'; // 'password' or 'otp'
+    function setDealerLoginMode(mode) {
+      dealerLoginMode = mode;
+      const passwordField = document.getElementById('dealer-password-field');
+      const otpToggleBack = document.getElementById('dealer-otp-toggle-back');
+      const btn = document.getElementById('btnLoginMain');
+
+      if (mode === 'otp') {
+        passwordField.style.display = 'none';
+        otpToggleBack.style.display = 'block';
+        btn.innerText = 'Send OTP →';
+        btn.onclick = sendLoginOTP;
+      } else {
+        passwordField.style.display = 'block';
+        otpToggleBack.style.display = 'none';
+        btn.innerText = 'Sign In →';
+        btn.onclick = verifyLoginPassword;
+      }
+    }
+
+    function selectRole(el, role) {
+      const panel = el.closest('.form-panel');
+      panel.querySelectorAll('.role-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+
+      if (panel.id === 'panel-register') {
+        currentRole = role;
+        document.getElementById('reg-fields-individual').style.display = role === 'individual' ? 'block' : 'none';
+        document.getElementById('reg-fields-dealer').style.display = role === 'dealer' ? 'block' : 'none';
+      } else if (panel.id === 'panel-login') {
+        currentRole = role;
+        const dealerFields = document.getElementById('login-fields-dealer');
+        const btn = document.getElementById('btnLoginMain');
+        if (role === 'dealer') {
+          dealerFields.style.display = 'block';
+          setDealerLoginMode('password');
+        } else {
+          dealerFields.style.display = 'none';
+          btn.innerText = 'Send OTP →';
+          btn.onclick = sendLoginOTP;
+        }
+      }
+    }
+
+    function sendOTP() {
+      const mobile = document.getElementById('regMobile').value.trim();
+      if (currentRole === 'individual') {
+        const fName = document.getElementById('regFullName').value.trim();
+        if (!fName || !mobile) {
+          showToast('⚠️ Please enter Full Name and Mobile number!');
+          return;
+        }
+      } else {
+        const dName = document.getElementById('regDealerName').value.trim();
+        const address = document.getElementById('regAddress').value.trim();
+        const city = document.getElementById('regCity').value.trim();
+        const pwd = document.getElementById('regPwd').value;
+        if (!dName || !address || !city || !pwd || !mobile) {
+          showToast('⚠️ Please fill all required Dealership details!');
+          return;
+        }
+      }
+
+      if (mgDB.isBackendOnline()) {
+        showToast('🔍 Checking mobile number...');
+        fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: mobile, check_all: true })
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'success' && data.exists) {
+              showToast('❌ Mobile number is already registered! Please Login instead.');
+            } else {
+              proceedToSendOTP(mobile);
+            }
+          })
+          .catch(err => {
+            proceedToSendOTP(mobile);
+          });
+      } else {
+        let exists = false;
+        const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+        const customers = mgDB.getCustomers();
+        exists = dealers.some(d => d.mobile === mobile) || customers.some(c => c.mobile === mobile);
+
+        if (exists) {
+          showToast('❌ Mobile number is already registered! Please Login instead.');
+        } else {
+          proceedToSendOTP(mobile);
+        }
+      }
+    }
+
+    function proceedToSendOTP(mobile) {
+      document.getElementById('otp-display-number').innerText = mobile;
+      document.getElementById('reg-step-1').style.display = 'none';
+      document.getElementById('reg-step-2').style.display = 'block';
+      showToast('📲 OTP sent to ' + mobile);
+    }
+
+    function sendLoginOTP() {
+      const mobile = document.getElementById('loginMobile').value.trim();
+      if (!mobile) {
+        showToast('⚠️ Please enter Mobile number!');
+        return;
+      }
+
+      if (mgDB.isBackendOnline()) {
+        fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: mobile, role: currentRole })
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'success') {
+              if (data.exists) {
+                document.getElementById('login-otp-display-number').innerText = mobile;
+                document.getElementById('login-step-1').style.display = 'none';
+                document.getElementById('login-step-2').style.display = 'block';
+                showToast('📲 OTP sent to ' + mobile);
+              } else if (data.registered_role === 'dealer') {
+                showToast('❌ Mobile number is registered as a Dealer. Please select Dealer option above to login.');
+              } else if (data.registered_role === 'individual') {
+                showToast('❌ Mobile number is registered as an Individual. Please select Individual option above to login.');
+              } else {
+                showToast('❌ Number not registered. Please register first.');
+              }
+            } else {
+              showToast('❌ Error checking number registration.');
+            }
+          })
+          .catch(err => {
+            showToast('❌ Error connecting to server.');
+          });
+        return;
+      }
+
+      let exists = false;
+      let registeredRole = null;
+
+      const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+      const hasDealer = dealers.find(d => d.mobile === mobile || d.mobile === '+91 ' + mobile || mobile === '9876543210');
+
+      const customers = mgDB.getCustomers();
+      const hasCustomer = customers.find(c => c.mobile === mobile || c.mobile === '+91 ' + mobile || mobile === '9999999999' || mobile.toLowerCase() === 'admin');
+
+      if (currentRole === 'dealer') {
+        if (hasDealer) {
+          exists = true;
+        } else if (hasCustomer) {
+          registeredRole = 'individual';
+        }
+      } else {
+        if (hasCustomer) {
+          exists = true;
+        } else if (hasDealer) {
+          registeredRole = 'dealer';
+        }
+      }
+
+      if (exists) {
+        document.getElementById('login-otp-display-number').innerText = mobile;
+        document.getElementById('login-step-1').style.display = 'none';
+        document.getElementById('login-step-2').style.display = 'block';
+        showToast('📲 OTP sent to ' + mobile);
+      } else if (registeredRole === 'dealer') {
+        showToast('❌ Mobile number is registered as a Dealer. Please select Dealer option above to login.');
+      } else if (registeredRole === 'individual') {
+        showToast('❌ Mobile number is registered as an Individual. Please select Individual option above to login.');
+      } else {
+        showToast('❌ Number not registered. Please register first.');
+      }
+    }
+
+    function moveToNext(el, ev) {
+      if (ev.key === 'Backspace' && !el.value) {
+        if (el.previousElementSibling) el.previousElementSibling.focus();
+      } else if (el.value) {
+        if (el.nextElementSibling) el.nextElementSibling.focus();
+      }
+    }
+
+    function backToRegister() {
+      document.getElementById('reg-step-2').style.display = 'none';
+      document.getElementById('reg-step-1').style.display = 'block';
+    }
+
+    function backToLogin() {
+      document.getElementById('login-step-2').style.display = 'none';
+      document.getElementById('login-step-1').style.display = 'block';
+    }
+
+    function redirectAfterLogin() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get('redirect');
+      if (redirectUrl) {
+        window.location = redirectUrl;
+      } else {
+        const userType = localStorage.getItem('mg_current_user_type');
+        if (userType === 'admin') {
+          window.location = 'admin/dashboard.html';
+        } else {
+          window.location = 'customer-dashboard.html';
+        }
+      }
+    }
+
+    function executeLogin(id, pwd) {
+      if (mgDB.isBackendOnline()) {
+        showToast('🔐 Authenticating...');
+        fetch(`${mgDB.getApiBase()}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id, password: pwd, role: currentRole })
+        })
+          .then(res => {
+            if (res.ok) return res.json();
+            return res.json().then(d => { throw new Error(d.message || 'Invalid credentials'); });
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              localStorage.setItem('mg_current_user', data.user.name);
+              localStorage.setItem('mg_current_user_mobile', data.user.mobile || id);
+              localStorage.setItem('mg_current_user_type', data.user.type || data.user.role || currentRole);
+              showToast('✅ Login successful! Redirecting...');
+              setTimeout(redirectAfterLogin, 1200);
+            }
+          })
+          .catch(err => {
+            if (id.toLowerCase() === 'admin' || id === '9999999999') {
+              localStorage.setItem('mg_current_user', 'Super Admin');
+              localStorage.setItem('mg_current_user_type', 'admin');
+              showToast('✅ Admin Login successful! Redirecting...');
+              setTimeout(redirectAfterLogin, 1200);
+            } else {
+              showToast('❌ Login failed: ' + err.message);
+            }
+          });
+        return;
+      }
+
+      // Save credentials to mock session (Fallback)
+      let name = "Guest User";
+      let uType = currentRole === 'dealer' ? "dealer" : "private";
+      if (id.toLowerCase() === 'admin' || id === '9999999999') {
+        name = "Super Admin";
+        uType = "admin";
+      } else if (uType === 'dealer') {
+        const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+        const d = dealers.find(x => x.mobile === id || x.email === id || (id === '9876543210' && pwd === 'password123'));
+        if (id === '9876543210' && (pwd === 'password123' || pwd === 'OTP_LOGIN')) {
+          name = "Market Guru Motors";
+          localStorage.setItem('mg_current_user_mobile', id);
+        } else if (d) {
+          if (pwd === 'OTP_LOGIN' || d.password === pwd) {
+            name = d.dealership_name;
+            localStorage.setItem('mg_current_user_mobile', d.mobile);
+          } else {
+            showToast('❌ Incorrect password.');
+            return;
+          }
+        } else {
+          showToast('❌ Dealer details not found. Please register.');
+          return;
+        }
+      } else {
+        const customers = mgDB.getCustomers();
+        const c = customers.find(x => x.mobile === id || x.mobile === '+91 ' + id);
+        if (!c) {
+          showToast('❌ Incorrect details, please register.');
+          return;
+        }
+        name = c.name;
+        localStorage.setItem('mg_current_user_mobile', id);
+      }
+      localStorage.setItem('mg_current_user', name);
+      localStorage.setItem('mg_current_user_type', uType);
+
+      showToast('✅ Login successful! Redirecting...');
+      setTimeout(redirectAfterLogin, 1500);
+    }
+
+    function verifyLoginOTP() {
+      const id = document.getElementById('loginMobile').value.trim();
+      if (!id) { showToast('⚠️ Please enter Mobile number!'); return; }
+      executeLogin(id, 'OTP_LOGIN');
+    }
+
+    function verifyLoginPassword() {
+      const id = document.getElementById('loginMobile').value.trim();
+      const pwd = document.getElementById('loginPwd').value;
+      if (!id || !pwd) { showToast('⚠️ Please enter Mobile number and Password!'); return; }
+      executeLogin(id, pwd);
+    }
+
+    function verifyOTPAndRegister() {
+      const mobile = document.getElementById('regMobile').value.trim();
+      let uType = currentRole === 'dealer' ? 'dealer' : 'private';
+
+      let fName = '';
+      let lName = '';
+      let pwd = 'OTP_LOGIN';
+      let emailStr = '';
+
+      let dealership_name = '';
+      let address = '';
+      let city = '';
+      let state = '';
+
+      if (currentRole === 'individual') {
+        let fullName = document.getElementById('regFullName').value.trim();
+        let names = fullName.split(' ');
+        fName = names[0];
+        lName = names.slice(1).join(' ') || '';
+        emailStr = `${fName.toLowerCase()}@example.com`;
+      } else {
+        dealership_name = document.getElementById('regDealerName').value.trim();
+        fName = dealership_name;
+        pwd = document.getElementById('regPwd').value;
+        emailStr = document.getElementById('regEmail').value.trim() || `dealer@example.com`;
+        address = document.getElementById('regAddress').value.trim();
+        city = document.getElementById('regCity').value.trim();
+        state = document.getElementById('regState').value;
+      }
+
+      if (mgDB.isBackendOnline()) {
+        showToast('💾 Creating account...');
+        fetch(`${mgDB.getApiBase()}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fName: fName,
+            lName: lName,
+            mobile: mobile,
+            email: emailStr,
+            password: pwd,
+            account_type: uType,
+            dealership_name: dealership_name,
+            address: address,
+            city: city,
+            state: state
+          })
+        })
+          .then(res => {
+            if (res.ok) return res.json();
+            return res.json().then(d => { throw new Error(d.message || 'Registration failed'); });
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              localStorage.setItem('mg_current_user', data.user.name);
+              localStorage.setItem('mg_current_user_mobile', data.user.mobile);
+              localStorage.setItem('mg_current_user_type', data.user.type);
+              showToast('✅ Account created! Redirecting...');
+              setTimeout(redirectAfterLogin, 1200);
+            }
+          })
+          .catch(err => {
+            showToast('❌ Register failed: ' + err.message);
+          });
+        return;
+      }
+
+      // Fallback
+      const uName = fName + (lName ? ' ' + lName : '');
+      if (uType === 'private') {
+        const customers = mgDB.getCustomers();
+        customers.push({
+          name: uName,
+          mobile: mobile,
+          city: '',
+          interests: '',
+          purchases: '0',
+          last: 'Today'
+        });
+        localStorage.setItem('mg_customers', JSON.stringify(customers));
+      } else {
+        const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+        dealers.push({
+          dealership_name: dealership_name,
+          address: address,
+          state: state,
+          city: city,
+          email: emailStr,
+          mobile: mobile,
+          password: pwd
+        });
+        localStorage.setItem('mg_dealers', JSON.stringify(dealers));
+      }
+
+      localStorage.setItem('mg_current_user', uName);
+      localStorage.setItem('mg_current_user_mobile', mobile);
+      localStorage.setItem('mg_current_user_type', uType);
+
+      showToast('✅ Account created! Redirecting...');
+      setTimeout(redirectAfterLogin, 1500);
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Handle Query Parameters on load
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab');
+      const type = params.get('type');
+
+      if (tab === 'register') {
+        switchTab('register');
+      }
+
+      if (type === 'dealer') {
+        const currentPanel = document.querySelector('.form-panel.active');
+        if (currentPanel) {
+          const dealerPill = currentPanel.querySelector('.role-pill:nth-child(2)');
+          if (dealerPill) selectRole(dealerPill, 'dealer');
+        }
+      }
+
+      const currentUser = localStorage.getItem('mg_current_user');
+      if (currentUser) {
+        showToast('⚡ Already logged in! Redirecting...');
+        setTimeout(redirectAfterLogin, 1200);
+      }
+    };
+  </script>
 </body>
 
+
+
+
+
 </html>
-
-
-
-
-
-

@@ -66,7 +66,7 @@
       display: flex;
       align-items: center;
       margin-right: 40px;
-      height: 110px;
+      height: 80px;
       
     }
 
@@ -398,7 +398,7 @@
     .footer-col-brand .logo {
       display: block;
       margin-bottom: 20px;
-      height: 110px;
+      height: 80px;
     }
     .footer-col-brand .logo img {
       height: 100%;
@@ -625,7 +625,52 @@
         transform: rotate(-45deg) translate(5px, -6px);
       }
     }
-  </style>
+  
+/* Account Sidebar Styles */
+.nav-account-circle {
+  width: 42px; height: 42px; border-radius: 50%; 
+  background: rgba(249, 115, 22, 0.15); 
+  border: 2px solid var(--primary); 
+  display: flex; align-items: center; justify-content: center; 
+  font-size: 18px; color: var(--primary); 
+  cursor: pointer; transition: all 0.2s; margin-left: 10px;
+}
+.nav-account-circle:hover { 
+  background: rgba(249, 115, 22, 0.25);
+}
+
+.account-sidebar-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5); z-index: 9999;
+  opacity: 0; visibility: hidden; transition: 0.3s;
+}
+.account-sidebar-overlay.open { opacity: 1; visibility: visible; }
+.account-sidebar {
+  position: fixed; top: 0; right: -400px; width: 400px; height: 100vh;
+  background: #fff; z-index: 10000; box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+  transition: right 0.3s ease; display: flex; flex-direction: column;
+}
+.account-sidebar.open { right: 0; }
+.as-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.as-header h2 { font-size: 18px; font-weight: 700; color: #1e293b; margin: 0; }
+.as-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: #64748b; line-height: 1; padding: 0; margin: 0; }
+.as-body { padding: 24px; flex: 1; overflow-y: auto; }
+/* Logged out */
+.as-login-view p { font-size: 14px; color: #64748b; margin-bottom: 24px;}
+.as-btn { width: 100%; padding: 14px; background: #f97316; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.2s; text-align: center; display: block; text-decoration: none;}
+.as-btn:hover { background: #ea580c; }
+/* Logged in */
+.as-user-info { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+.as-avatar { width: 50px; height: 50px; border-radius: 50%; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #10b981;}
+.as-user-details h4 { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 4px; margin-top: 0;}
+.as-user-details p { font-size: 14px; color: #64748b; margin: 0;}
+.as-edit-btn { margin-left: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #3b82f6;}
+.as-section-title { font-size: 12px; color: #10b981; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #10b981;}
+.as-menu { list-style: none; padding: 0; margin: 0 0 24px 0;}
+.as-menu li a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #f1f5f9; color: #1e293b; font-weight: 600; text-decoration: none; font-size: 15px; }
+.as-menu li a:hover { color: #f97316; }
+@media(max-width: 480px) { .account-sidebar { width: 100%; right: -100%; } }
+</style>
 </head>
 <body>
 
@@ -636,13 +681,13 @@
         <img src="logo.png" alt="Market Guru HP Logo">
       </a>
       <div class="nav-links">
-        <a href="index.html">🏠 Home</a>
-        <a href="buy-cars.html">Buy Vehicle</a>
-        <a href="sell.html">Sell Vehicles</a>
-        <a href="about.html">About</a>
+        <a href="index.html" class="nav-link-home">🏠 Home</a>
+        <a href="buy-cars.html" class="nav-link-buy">Buy Vehicle</a>
+        <a href="sell.html" class="nav-link-sell">Sell Vehicles</a>
+        <a href="about.html" class="nav-link-about">About</a>
       </div>
-      <div class="nav-actions">
-        <a href="login.html" id="nav-login-link"><button class="btn-outline-white" id="nav-login-btn">Login</button></a>
+      <div class="nav-actions" id="nav-actions">
+        <button class="nav-account-circle" id="nav-account-btn" aria-label="Account">👤</button>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
         <span></span>
@@ -666,68 +711,69 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-col-brand">
-          <a href="index.html" class="logo" id="footer-brand-logo">
-            <img src="logo.png" alt="Market Guru HP Logo">
-          </a>
-          <div class="footer-copyright">
-            © 2006 - 2026 Market Guru HP.<br>
-            All rights reserved in favour of Market Guru HP.
-          </div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col-brand">
+        <a href="index.html" class="logo" id="footer-brand-logo">
+          <img src="footer_logo.png" alt="Market Guru HP Logo">
+        </a>
+        <div class="footer-copyright">
+          &copy; 2006 - 2026 Market Guru HP.<br>
+          All rights reserved in favour of Market Guru HP.
         </div>
-        <div class="footer-col">
-          <h4>Quick guide links</h4>
-          <div class="quick-links-split">
-            <div class="ql-col">
-              <a href="buy-cars.html">Buy Vehicle</a>
-              <a href="sell.html">Sell Vehicles</a>
-            </div>
-            <div class="ql-divider"></div>
-            <div class="ql-col">
-              <a href="about.html">About us</a>
-              <a href="login.html">Account</a>
-            </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick guide links</h4>
+        <div class="quick-links-split">
+          <div class="ql-col">
+            <a href="buy-cars.html">Buy Vehicle</a>
+            <a href="sell.html">Sell Vehicles</a>
           </div>
-        </div>
-        <div class="footer-col footer-contact">
-          <h4>Contact Us</h4>
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
-          </div>
-          <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <a href="tel:08600004513">08600004513</a>
+          <div class="ql-divider"></div>
+          <div class="ql-col">
+            <a href="about.html">About us</a>
+            <a href="login.html">Account</a>
           </div>
         </div>
       </div>
-
-      <div class="footer-bottom-bar">
-        <div class="fbb-left">
-          <div class="fbb-connect-text">Connect with us :</div>
-          <div class="fbb-socials">
-            <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-            <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp" aria-label="WhatsApp">
-              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.79 9.79 0 0 0-6.979-2.88c-5.439 0-9.865 4.37-9.87 9.8-.001 1.774.475 3.503 1.378 5.027L1.993 21.5l5.59-1.464c-.305-.186-.612-.372-.936-.882zM17.15 14.54c-.28-.14-1.65-.81-1.902-.9-.253-.09-.438-.14-.623.14-.184.28-.714.9-.876 1.09-.162.19-.323.21-.603.07-1.125-.56-1.96-1.03-2.67-2.24-.26-.45-.06-.7.14-.9.18-.18.4-.47.6-.7.2-.23.27-.38.4-.64.13-.26.07-.49-.03-.7-.1-.21-.87-2.1-1.2-2.88-.31-.77-.64-.67-.88-.68-.22-.01-.48-.01-.73-.01-.26 0-.67.1-1.02.48-.35.38-1.35 1.32-1.35 3.22s1.38 3.73 1.58 3.99c.2.26 2.72 4.15 6.59 5.82.92.4 1.64.64 2.2.82.93.3 1.77.26 2.44.16.74-.11 2.28-.93 2.6-1.83.32-.9.32-1.67.22-1.83-.09-.16-.35-.26-.63-.4z"/></svg>
-            </a>
-          </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
         </div>
-        <div class="fbb-links">
-          <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <a href="tel:08600004513">08600004513</a>
         </div>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom-bar">
+      <div class="fbb-left">
+        <div class="fbb-connect-text">Connect with us :</div>
+        <div class="fbb-socials">
+          <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="fbb-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <div class="toast" id="toast"></div>
 
@@ -911,7 +957,103 @@
       contentDiv.innerHTML = tableHtml;
     }
   </script>
+
+<!-- ACCOUNT SIDEBAR -->
+<div class="account-sidebar-overlay" id="as-overlay"></div>
+<div class="account-sidebar" id="account-sidebar">
+  <div class="as-header">
+    <h2 id="as-title">My Account</h2>
+    <button class="as-close" id="as-close-btn">&times;</button>
+  </div>
+  <div class="as-body" id="as-body">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accountBtn = document.getElementById('nav-account-btn');
+    const asSidebar = document.getElementById('account-sidebar');
+    const asOverlay = document.getElementById('as-overlay');
+    const asClose = document.getElementById('as-close-btn');
+    const asBody = document.getElementById('as-body');
+    const asTitle = document.getElementById('as-title');
+
+    function openSidebar() {
+      if(asSidebar) asSidebar.classList.add('open');
+      if(asOverlay) asOverlay.classList.add('open');
+      renderSidebar();
+    }
+    function closeSidebar() {
+      if(asSidebar) asSidebar.classList.remove('open');
+      if(asOverlay) asOverlay.classList.remove('open');
+    }
+
+    if (accountBtn) accountBtn.addEventListener('click', openSidebar);
+    if (asClose) asClose.addEventListener('click', closeSidebar);
+    if (asOverlay) asOverlay.addEventListener('click', closeSidebar);
+
+    function renderSidebar() {
+      const currentUser = localStorage.getItem('mg_current_user');
+      const mobile = localStorage.getItem('mg_current_user_mobile') || '';
+      
+      if (currentUser && currentUser !== 'Guest User') {
+        let initials = '👤';
+        try {
+          const parts = currentUser.split(' ');
+          if (parts.length > 1) {
+            initials = (parts[0][0] + parts[1][0]).toUpperCase();
+          } else {
+            initials = currentUser.substring(0, 2).toUpperCase();
+          }
+        } catch(e) {}
+        if(accountBtn) {
+            accountBtn.innerHTML = initials;
+            accountBtn.style.fontWeight = '700';
+            accountBtn.style.fontSize = '16px';
+        }
+        asTitle.textContent = 'My Account';
+        asBody.innerHTML = `
+          <div class="as-user-info">
+            <div class="as-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+            <div class="as-user-details">
+              <h4>${currentUser}</h4>
+              <p>${mobile}</p>
+            </div>
+            <button class="as-edit-btn" onclick="window.location='customer-dashboard.html'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+          </div>
+          <div class="as-section-title">SELL CAR</div>
+          <ul class="as-menu">
+            <li><a href="customer-dashboard.html">View My Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="sell.html">Post a New Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="customer-dashboard.html">Dashboard <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+          </ul>
+          <ul class="as-menu">
+            <li><a href="#" id="as-logout-btn">Logout <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></a></li>
+          </ul>
+        `;
+        document.getElementById('as-logout-btn').addEventListener('click', (e) => {
+           e.preventDefault();
+           localStorage.removeItem('mg_current_user');
+           localStorage.removeItem('mg_current_user_mobile');
+           localStorage.removeItem('mg_current_user_type');
+           closeSidebar();
+           window.location.reload();
+        });
+      } else {
+        asTitle.textContent = 'Welcome to Market Guru HP';
+        asBody.innerHTML = `
+          <div class="as-login-view">
+            <p>Login to manage your car listings, view analytics, and save your favourite cars.</p>
+            <a href="login.html" class="as-btn">Login / Register</a>
+          </div>
+        `;
+      }
+    }
+  });
+</script>
 </body>
+
 </html>
 
 

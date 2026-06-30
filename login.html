@@ -1,30 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Market Guru HP</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<<style>
-          :root {
-      --primary: #F97316;
-      --primary-hover: #EA580C;
-      --secondary: #FF7A00;
-      --navy: #0F2B6E;
-      --charcoal: #1E293B;
-      --text: #1E293B;
-      --bg: #F8FAFC;
-      --white: #FFFFFF;
-      --border: #E2E8F0;
-      --muted: #64748B;
-      --success: #10B981;
-      --warning: #F59E0B;
-      --danger: #EF4444;
-      --blue-light: #F1F5F9;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Market Guru HP</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <<style>
+    /* FOOTER */
+    .footer { background: var(--charcoal); padding: 60px 20px 60px; border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 60px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; }
+    .footer-col-brand .logo { display: block; margin-bottom: 30px; height: 85px; }
+    .footer-col-brand .logo img { height: 100%; width: auto; display: block; }
+    .footer-connect h4 { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 14px; font-family: 'Inter',
+    sans-serif; letter-spacing: 0.5px; }
+    .footer-socials { display: flex; gap: 12px; margin-bottom: 30px; }
+    .footer-socials a {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #bbb; color: #111;
+    transition: all 0.3s ease;
     }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  body {
+    .footer-socials a:hover {
+    transform: translateY(-3px);
+    background: var(--white);
+    }
+    .footer-socials svg { width: 18px; height: 18px; fill: currentColor; }
+    .footer-copyright { font-size: 13px; line-height: 1.8; color: #8a9abf; font-weight: 500; }
+
+    .footer-col h4 { font-size: 18px; font-weight: 600; color: var(--red); margin-bottom: 24px; font-family: 'Inter',
+    sans-serif; }
+    .footer-col a { display: block; font-size: 15px; color: #e0e5eb; margin-bottom: 14px; transition: color 0.2s;
+    font-weight: 500; }
+    .footer-col a:hover { color: var(--red); }
+
+    .footer-contact .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .footer-contact .contact-icon { width: 22px; height: 22px; stroke: var(--red); flex-shrink: 0; }
+    .footer-contact .contact-item a { margin-bottom: 0; font-size: 17px; color: #fff; font-weight: 500; font-family:
+    'Inter', sans-serif; letter-spacing: 0.5px; }
+    .footer-contact .contact-item a:hover { color: var(--red); }
+
+    :root {
+    --primary: #F97316;
+    --primary-hover: #EA580C;
+    --secondary: #FF7A00;
+    --navy: #0F2B6E;
+    --charcoal: #1E293B;
+    --text: #1E293B;
+    --bg: #F8FAFC;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --muted: #64748B;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --blue-light: #F1F5F9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
     font-family: 'Inter', sans-serif;
     background: url('login-bg.png') no-repeat center center fixed;
     background-size: cover;
@@ -35,10 +73,10 @@
     color: #fff;
     position: relative;
     overflow-x: hidden;
-  }
+    }
 
-  /* TOP HEADER */
-  .login-header {
+    /* TOP HEADER */
+    .login-header {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -50,9 +88,9 @@
     left: 0;
     right: 0;
     z-index: 10;
-  }
+    }
 
-  .back-to-site {
+    .back-to-site {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -65,16 +103,16 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.2s ease;
-  }
+    }
 
-  .back-to-site:hover {
+    .back-to-site:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-1px);
-  }
+    }
 
-  /* MAIN LAYOUT WRAPPER */
-  .login-main-wrapper {
+    /* MAIN LAYOUT WRAPPER */
+    .login-main-wrapper {
     flex: 1;
     width: 100%;
     max-width: 1280px;
@@ -84,59 +122,59 @@
     grid-template-columns: 1.25fr 0.75fr;
     gap: 60px;
     align-items: center;
-  }
+    }
 
-  /* LEFT SIDE */
-  .login-left-section {
+    /* LEFT SIDE */
+    .login-left-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     padding-top: 20px;
-  }
+    }
 
-  .login-logo {
+    .login-logo {
     margin-bottom: 24px;
     height: 80px;
     align-self: flex-start;
-  }
+    }
 
-  .login-logo img {
+    .login-logo img {
     height: 100%;
     width: auto;
     display: block;
-  }
+    }
 
-  .login-left-section h2 {
+    .login-left-section h2 {
     font-family: 'Inter', sans-serif;
     font-size: 38px;
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 12px;
     color: #fff;
-  }
+    }
 
-  .login-left-section h2 span {
+    .login-left-section h2 span {
     color: var(--primary);
-  }
+    }
 
-  .login-left-section p {
+    .login-left-section p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 120px;
-  }
+    }
 
-  /* PERKS AT THE BOTTOM OF LEFT */
-  .login-perks {
+    /* PERKS AT THE BOTTOM OF LEFT */
+    .login-perks {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     width: 100%;
     margin-top: auto;
-  }
+    }
 
-  .perk {
+    .perk {
     background: rgba(11, 15, 25, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -148,43 +186,43 @@
     align-items: flex-start;
     text-align: left;
     transition: all 0.2s ease;
-  }
+    }
 
-  .perk:hover {
+    .perk:hover {
     background: rgba(11, 15, 25, 0.85);
     border-color: rgba(249, 115, 22, 0.3);
     transform: translateY(-2px);
-  }
+    }
 
-  .perk-icon {
+    .perk-icon {
     font-size: 20px;
     color: var(--primary);
     margin-bottom: 8px;
-  }
+    }
 
-  .perk-label {
+    .perk-label {
     font-size: 12px;
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 2px;
     line-height: 1.3;
-  }
+    }
 
-  .perk-sub {
+    .perk-sub {
     font-size: 10.5px;
     color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
     line-height: 1.3;
-  }
+    }
 
-  /* RIGHT CARD SIDE */
-  .login-right-section {
+    /* RIGHT CARD SIDE */
+    .login-right-section {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
+    }
 
-  .login-card {
+    .login-card {
     background: var(--white);
     color: #1e293b;
     border-radius: 24px;
@@ -192,24 +230,24 @@
     width: 100%;
     max-width: 460px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  }
+    }
 
-  .login-card h3 {
+    .login-card h3 {
     font-size: 26px;
     font-weight: 800;
     margin-bottom: 24px;
     color: #0f172a;
     letter-spacing: -0.5px;
-  }
+    }
 
-  /* TABS */
-  .tabs {
+    /* TABS */
+    .tabs {
     display: flex;
     border-bottom: 2px solid #f1f5f9;
     margin-bottom: 24px;
-  }
+    }
 
-  .tab {
+    .tab {
     flex: 1;
     text-align: center;
     padding: 12px;
@@ -220,27 +258,27 @@
     border-bottom: 2px solid transparent;
     margin-bottom: -2px;
     transition: all 0.2s;
-  }
+    }
 
-  .tab.active {
+    .tab.active {
     color: var(--primary-hover);
     border-bottom-color: var(--primary);
-  }
+    }
 
-  .form-panel {
+    .form-panel {
     display: none;
-  }
+    }
 
-  .form-panel.active {
+    .form-panel.active {
     display: block;
-  }
+    }
 
-  /* FORM FIELDS */
-  .field {
+    /* FORM FIELDS */
+    .field {
     margin-bottom: 20px;
-  }
+    }
 
-  .field label {
+    .field label {
     display: block;
     font-size: 11px;
     font-weight: 700;
@@ -248,9 +286,9 @@
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin-bottom: 8px;
-  }
+    }
 
-  .field input, .field select, .field textarea {
+    .field input, .field select, .field textarea {
     width: 100%;
     padding: 12px 16px;
     border: 1.5px solid #cbd5e1;
@@ -259,30 +297,30 @@
     color: #0f172a;
     font-family: 'Inter', sans-serif;
     transition: all 0.2s;
-  }
+    }
 
-  .field input:focus, .field select:focus, .field textarea:focus {
+    .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
-  }
+    }
 
-  /* MOBILE INPUT FIELD COMBINED */
-  .mobile-input-container {
+    /* MOBILE INPUT FIELD COMBINED */
+    .mobile-input-container {
     display: flex;
     border: 1.5px solid #cbd5e1;
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
     transition: all 0.2s;
-  }
+    }
 
-  .mobile-input-container:focus-within {
+    .mobile-input-container:focus-within {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
-  }
+    }
 
-  .country-code {
+    .country-code {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -293,56 +331,56 @@
     font-weight: 700;
     color: #334155;
     cursor: pointer;
-  }
+    }
 
-  .country-arrow {
+    .country-arrow {
     font-size: 8px;
     color: #64748b;
-  }
+    }
 
-  .mobile-input-container input {
+    .mobile-input-container input {
     flex: 1;
     border: none !important;
     padding: 12px 16px;
     font-size: 14px;
     color: #0f172a;
     box-shadow: none !important;
-  }
+    }
 
-  .field-row {
+    .field-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     font-size: 13px;
-  }
+    }
 
-  .remember {
+    .remember {
     display: flex;
     align-items: center;
     gap: 6px;
     color: #475569;
     font-weight: 500;
-  }
+    }
 
-  .remember input {
+    .remember input {
     width: auto;
     accent-color: var(--primary);
-  }
+    }
 
-  .forgot {
+    .forgot {
     color: var(--primary-hover);
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
-  }
+    }
 
-  .forgot:hover {
+    .forgot:hover {
     text-decoration: underline;
-  }
+    }
 
-  /* BUTTONS */
-  .btn-login {
+    /* BUTTONS */
+    .btn-login {
     width: 100%;
     padding: 14px;
     background: var(--primary);
@@ -355,15 +393,15 @@
     font-family: 'Inter', sans-serif;
     transition: all 0.2s;
     box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
-  }
+    }
 
-  .btn-login:hover {
+    .btn-login:hover {
     background: var(--primary-hover);
     box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
     transform: translateY(-1px);
-  }
+    }
 
-  .divider {
+    .divider {
     text-align: center;
     margin: 24px 0;
     color: #94a3b8;
@@ -372,9 +410,9 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-  }
+    }
 
-  .divider::before {
+    .divider::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -382,15 +420,15 @@
     right: 0;
     height: 1px;
     background: #e2e8f0;
-  }
+    }
 
-  .divider span {
+    .divider span {
     background: var(--white);
     padding: 0 12px;
     position: relative;
-  }
+    }
 
-  .btn-google {
+    .btn-google {
     width: 100%;
     padding: 12px;
     background: var(--white);
@@ -406,36 +444,36 @@
     justify-content: center;
     gap: 10px;
     transition: all 0.2s;
-  }
+    }
 
-  .btn-google:hover {
+    .btn-google:hover {
     border-color: #0f172a;
     background: #f8fafc;
-  }
+    }
 
-  .switch-note {
+    .switch-note {
     text-align: center;
     margin-top: 24px;
     font-size: 13.5px;
     color: #64748b;
     font-weight: 500;
-  }
+    }
 
-  .switch-note a {
+    .switch-note a {
     color: var(--primary-hover);
     font-weight: 700;
     cursor: pointer;
     text-decoration: underline;
-  }
+    }
 
-  /* ROLE SELECTION PILLS */
-  .role-select {
+    /* ROLE SELECTION PILLS */
+    .role-select {
     display: flex;
     gap: 12px;
     margin-bottom: 20px;
-  }
+    }
 
-  .role-pill {
+    .role-pill {
     flex: 1;
     padding: 12px;
     border: 1.5px solid #cbd5e1;
@@ -446,15 +484,15 @@
     cursor: pointer;
     transition: all 0.2s;
     color: #64748b;
-  }
+    }
 
-  .role-pill.active {
+    .role-pill.active {
     border-color: var(--primary);
     color: #1e293b;
     background: rgba(249, 115, 22, 0.08);
-  }
+    }
 
-  .toast {
+    .toast {
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -469,14 +507,14 @@
     transform: translateY(100px);
     transition: transform 0.3s ease;
     border-left: 4px solid var(--primary);
-  }
+    }
 
-  .toast.show {
+    .toast.show {
     transform: translateY(0);
-  }
+    }
 
-  /* BOTTOM FULL-WIDTH FOOTER */
-  .login-footer {
+    /* BOTTOM FULL-WIDTH FOOTER */
+    .login-footer {
     width: 100%;
     background: rgba(11, 15, 25, 0.85);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -484,9 +522,9 @@
     -webkit-backdrop-filter: blur(10px);
     padding: 20px;
     z-index: 10;
-  }
+    }
 
-  .login-footer-inner {
+    .login-footer-inner {
     max-width: 1280px;
     margin: 0 auto;
     display: flex;
@@ -494,776 +532,1026 @@
     align-items: center;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.6);
-  }
+    }
 
-  .footer-trust-badges {
+    .footer-trust-badges {
     display: flex;
     gap: 24px;
     align-items: center;
-  }
+    }
 
-  .trust-badge {
+    .trust-badge {
     display: flex;
     align-items: center;
     gap: 8px;
     font-weight: 600;
     color: #fff;
-  }
+    }
 
-  .trust-badge svg {
+    .trust-badge svg {
     width: 16px;
     height: 16px;
     stroke: var(--primary);
-  }
+    }
 
-  @media(max-width: 992px) {
+    @media(max-width: 992px) {
     .login-main-wrapper {
-      grid-template-columns: 1fr;
-      gap: 40px;
-      padding-top: 100px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 100px;
     }
     .login-left-section {
-      text-align: center;
-      align-items: center;
+    text-align: center;
+    align-items: center;
     }
     .login-logo {
-      align-self: center;
+    align-self: center;
     }
     .login-left-section p {
-      margin-bottom: 40px;
+    margin-bottom: 40px;
     }
     .login-right-section {
-      justify-content: center;
+    justify-content: center;
     }
-  }
+    }
 
-  @media(max-width: 768px) {
+    @media(max-width: 768px) {
     .login-perks {
-      grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     }
     .login-footer-inner {
-      flex-direction: column;
-      gap: 16px;
-      text-align: center;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
     }
-  }
+    }
 
-  @media(max-width: 480px) {
+    @media(max-width: 480px) {
     .login-perks {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
     }
     .login-card {
-      padding: 24px;
+    padding: 24px;
     }
     .login-left-section h2 {
-      font-size: 28px;
+    font-size: 28px;
     }
     .login-main-wrapper {
-      padding-top: 80px;
+    padding-top: 80px;
     }
     .login-logo {
-      height: 110px;
+    height: 110px;
     }
     .footer-trust-badges {
-      flex-direction: column;
-      gap: 10px;
+    flex-direction: column;
+    gap: 10px;
     }
     .footer-trust-badges div {
-      display: none !important; /* Hide separator lines */
+    display: none !important; /* Hide separator lines */
     }
-  }
-</style>
+    }
+
+    /* Account Sidebar Styles */
+    .nav-account-circle {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(249, 115, 22, 0.15);
+    border: 2px solid var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--primary);
+    cursor: pointer; transition: all 0.2s; margin-left: 10px;
+    }
+    .nav-account-circle:hover {
+    background: rgba(249, 115, 22, 0.25);
+    }
+
+    .account-sidebar-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5); z-index: 9999;
+    opacity: 0; visibility: hidden; transition: 0.3s;
+    }
+    .account-sidebar-overlay.open { opacity: 1; visibility: visible; }
+    .account-sidebar {
+    position: fixed; top: 0; right: -400px; width: 400px; height: 100vh;
+    background: #fff; z-index: 10000; box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+    transition: right 0.3s ease; display: flex; flex-direction: column;
+    }
+    .account-sidebar.open { right: 0; }
+    .as-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;
+    align-items: center; }
+    .as-header h2 { font-size: 18px; font-weight: 700; color: #1e293b; margin: 0; }
+    .as-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: #64748b; line-height: 1;
+    padding: 0; margin: 0; }
+    .as-body { padding: 24px; flex: 1; overflow-y: auto; }
+    /* Logged out */
+    .as-login-view p { font-size: 14px; color: #64748b; margin-bottom: 24px;}
+    .as-btn { width: 100%; padding: 14px; background: #f97316; color: #fff; border: none; border-radius: 8px; font-size:
+    16px; font-weight: 700; cursor: pointer; transition: 0.2s; text-align: center; display: block; text-decoration:
+    none;}
+    .as-btn:hover { background: #ea580c; }
+    /* Logged in */
+    .as-user-info { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .as-avatar { width: 50px; height: 50px; border-radius: 50%; background: #f8fafc; border: 1px solid #e2e8f0; display:
+    flex; align-items: center; justify-content: center; color: #10b981;}
+    .as-user-details h4 { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 4px; margin-top: 0;}
+    .as-user-details p { font-size: 14px; color: #64748b; margin: 0;}
+    .as-edit-btn { margin-left: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 50%; width: 32px;
+    height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #3b82f6;}
+    .as-section-title { font-size: 12px; color: #10b981; font-weight: 800; text-transform: uppercase; margin-bottom:
+    12px; padding-bottom: 8px; border-bottom: 2px solid #10b981;}
+    .as-menu { list-style: none; padding: 0; margin: 0 0 24px 0;}
+    .as-menu li a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom:
+    1px solid #f1f5f9; color: #1e293b; font-weight: 600; text-decoration: none; font-size: 15px; }
+    .as-menu li a:hover { color: #f97316; }
+    @media(max-width: 480px) { .account-sidebar { width: 100%; right: -100%; } }
+    </style>
 </head>
+
 <body>
 
-<header class="login-header">
-  <a href="index.html" class="back-to-site">
-    <span class="back-icon">←</span> Go Back to Site
-  </a>
-</header>
+  <header class="login-header">
+    <a href="index.html" class="back-to-site">
+      <span class="back-icon">←</span> Go Back to Site
+    </a>
+  </header>
 
-<div class="login-main-wrapper">
-  <!-- LEFT SECTION -->
-  <div class="login-left-section">
-    <div class="login-logo">
-      <img src="logo.png" alt="Market Guru HP Logo">
-    </div>
-    <h2>Welcome Back to <span>Market Guru HP</span></h2>
-    <p>Your gateway to Gujarat's best pre-owned car deals.<br>Buy, sell, and manage everything in one place.</p>
-    
-    <div class="login-perks">
-      <div class="perk">
-        <div class="perk-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="10" width="14" height="6" rx="1"/>
-            <path d="M7 10V7c0-1.5 1.5-2 5-2s5 .5 5 2v3"/>
-            <circle cx="8" cy="13" r="1" fill="currentColor"/>
-            <circle cx="16" cy="13" r="1" fill="currentColor"/>
-          </svg>
-        </div>
-        <div class="perk-label">Browse 2,400+</div>
-        <div class="perk-sub">verified cars</div>
+  <div class="login-main-wrapper">
+    <!-- LEFT SECTION -->
+    <div class="login-left-section">
+      <div class="login-logo">
+        <img src="logo.png" alt="Market Guru HP Logo">
       </div>
-      <div class="perk">
-        <div class="perk-icon" style="font-family:'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; color: var(--primary);">₹</div>
-        <div class="perk-label">Get instant</div>
-        <div class="perk-sub">car valuation</div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-            <rect x="8" y="2" width="8" height="4" rx="1" fill="rgba(255,204,0,0.15)"/>
-            <path d="M9 12h6M9 16h6"/>
-          </svg>
-        </div>
-        <div class="perk-label">Track your</div>
-        <div class="perk-sub">listings &amp; enquiries</div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <div class="perk-label">Secure payments</div>
-        <div class="perk-sub">and RC transfer</div>
-      </div>
-    </div>
-  </div>
+      <h2>Welcome Back to <span>Market Guru HP</span></h2>
+      <p>Your gateway to Gujarat's best pre-owned car deals.<br>Buy, sell, and manage everything in one place.</p>
 
-  <!-- RIGHT CARD SECTION -->
-  <div class="login-right-section">
-    <div class="login-card">
-      <h3>Sign in to Market Guru HP</h3>
-
-      <div class="tabs">
-        <div class="tab active" id="tab-login" onclick="switchTab('login')">Login</div>
-        <div class="tab" id="tab-register" onclick="switchTab('register')">Register</div>
-      </div>
-
-      <!-- LOGIN PANEL -->
-      <div class="form-panel active" id="panel-login">
-        <div id="login-step-1">
-          <div class="role-select">
-            <div class="role-pill active" onclick="selectRole(this,'individual')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z"/></svg>
-              Individual
-            </div>
-            <div class="role-pill" onclick="selectRole(this,'dealer')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm10 8h-8V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z"/></svg>
-              Dealer
-            </div>
-          </div>
-          <div class="field">
-            <label>Mobile Number</label>
-            <div class="mobile-input-container">
-              <div class="country-code">
-                <span>+91</span>
-                <span class="country-arrow">▼</span>
-              </div>
-              <input type="tel" placeholder="XXXXXX XXXXX" id="loginMobile">
-            </div>
-          </div>
-          <div id="login-fields-dealer" style="display:none;">
-            <div id="dealer-password-field">
-              <div class="field">
-                <label>Password</label>
-                <input type="password" placeholder="Enter your password" id="loginPwd">
-              </div>
-              <div class="field-row">
-                <label class="remember"><input type="checkbox"> Remember me</label>
-                <span class="forgot" id="lnkToggleDealerLogin" onclick="setDealerLoginMode('otp')">Login with OTP instead</span>
-              </div>
-            </div>
-            <div id="dealer-otp-toggle-back" style="display:none; margin-bottom: 16px;">
-              <div class="field-row" style="justify-content: flex-end;">
-                <span class="forgot" onclick="setDealerLoginMode('password')">Login with Password instead</span>
-              </div>
-            </div>
-          </div>
-          <button class="btn-login" id="btnLoginMain" onclick="sendLoginOTP()">Send OTP →</button>
-          <div class="divider"><span>OR</span></div>
-          <button class="btn-google" type="button" onclick="showToast('Google authentication is not configured.')">
-            <svg viewBox="0 0 24 24" width="18" height="18" style="display:block;">
-              <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.99 5.99 0 0 1 7.99 12.5a5.99 5.99 0 0 1 6.002-6.015c1.472 0 2.825.539 3.882 1.43l3.14-3.14A10.233 10.233 0 0 0 14 .01 10.24 10.24 0 0 0 3.75 10.25a10.24 10.24 0 0 0 10.25 10.24c5.68 0 10.26-4.57 10.26-10.25 0-.585-.05-1.162-.14-1.725H12.24Z"/>
-              <path fill="#4285F4" d="M23.86 10.285c.09.563.14 1.14.14 1.725 0 5.68-4.58 10.25-10.26 10.25a10.24 10.24 0 0 1-10.25-10.24c0-5.655 4.58-10.24 10.25-10.24 2.89 0 5.513 1.07 7.502 2.82l-3.14 3.14a5.99 5.99 0 0 0-4.362-1.965c-3.326 0-6.002 2.685-6.002 6.015 0 3.33 2.676 6.015 6.002 6.015 2.617 0 4.488-1.704 5.136-4.114h-6.887v-4.115Z"/>
+      <div class="login-perks">
+        <div class="perk">
+          <div class="perk-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="10" width="14" height="6" rx="1" />
+              <path d="M7 10V7c0-1.5 1.5-2 5-2s5 .5 5 2v3" />
+              <circle cx="8" cy="13" r="1" fill="currentColor" />
+              <circle cx="16" cy="13" r="1" fill="currentColor" />
             </svg>
-            Continue with Google
-          </button>
-        </div>
-
-        <div id="login-step-2" style="display:none;">
-          <div class="field" style="text-align:center;">
-            <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong id="login-otp-display-number"></strong></label>
-            <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-            </div>
           </div>
-          <button class="btn-login" onclick="verifyLoginOTP()">Sign In →</button>
-          <div class="switch-note"><a onclick="backToLogin()">← Back</a></div>
+          <div class="perk-label">Browse 2,400+</div>
+          <div class="perk-sub">verified cars</div>
         </div>
-        
-        <p style="text-align:center; margin-top: 24px; font-size: 14px; color: #64748b;">
-          Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--primary-hover);font-weight:600;text-decoration:underline;">Register free</a>
-        </p>
+        <div class="perk">
+          <div class="perk-icon"
+            style="font-family:'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; color: var(--primary);">
+            ₹</div>
+          <div class="perk-label">Get instant</div>
+          <div class="perk-sub">car valuation</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" fill="rgba(255,204,0,0.15)" />
+              <path d="M9 12h6M9 16h6" />
+            </svg>
+          </div>
+          <div class="perk-label">Track your</div>
+          <div class="perk-sub">listings &amp; enquiries</div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="perk-label">Secure payments</div>
+          <div class="perk-sub">and RC transfer</div>
+        </div>
       </div>
+    </div>
 
-      <!-- REGISTER PANEL -->
-      <div class="form-panel" id="panel-register">
-        <div id="reg-step-1">
-          <div class="role-select">
-            <div class="role-pill active" onclick="selectRole(this,'individual')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z"/></svg>
-              Individual
-            </div>
-            <div class="role-pill" onclick="selectRole(this,'dealer')" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;"><path d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm10 8h-8V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z"/></svg>
-              Dealer
-            </div>
-          </div>
-          
-          <!-- INDIVIDUAL FIELDS -->
-          <div id="reg-fields-individual">
-            <div class="field"><label>Full Name</label><input type="text" id="regFullName" placeholder="Raj Shah"></div>
-          </div>
+    <!-- RIGHT CARD SECTION -->
+    <div class="login-right-section">
+      <div class="login-card">
+        <h3>Sign in to Market Guru HP</h3>
 
-          <!-- DEALER FIELDS -->
-          <div id="reg-fields-dealer" style="display:none;">
-            <div class="field"><label>Dealership Name</label><input type="text" id="regDealerName" placeholder="Market Guru Motors"></div>
-            <div class="field"><label>Address</label><input type="text" id="regAddress" placeholder="123 Main St"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              <div class="field">
-                <label>State</label>
-                <select id="regState" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
-                  <option value="Gujarat" selected>Gujarat</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="West Bengal">West Bengal</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div class="field"><label>City</label><input type="text" id="regCity" placeholder="Vadodara"></div>
-            </div>
-            <div class="field"><label>Email (Optional)</label><input type="email" id="regEmail" placeholder="dealer@example.com"></div>
-            <div class="field"><label>Password</label><input type="password" id="regPwd" placeholder="Create a strong password"></div>
-          </div>
-
-          <!-- SHARED -->
-          <div class="field">
-            <label>Mobile Number</label>
-            <div class="mobile-input-container">
-              <div class="country-code">
-                <span>+91</span>
-                <span class="country-arrow">▼</span>
-              </div>
-              <input type="tel" id="regMobile" placeholder="XXXXXX XXXXX">
-            </div>
-          </div>
-          
-          <button class="btn-login" onclick="sendOTP()">Create Account →</button>
+        <div class="tabs">
+          <div class="tab active" id="tab-login" onclick="switchTab('login')">Login</div>
+          <div class="tab" id="tab-register" onclick="switchTab('register')">Register</div>
         </div>
 
-        <div id="reg-step-2" style="display:none;">
-          <div class="field" style="text-align:center;">
-            <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong id="otp-display-number"></strong></label>
-            <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
-              <input type="text" maxlength="1" style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;" onkeyup="moveToNext(this, event)">
+        <!-- LOGIN PANEL -->
+        <div class="form-panel active" id="panel-login">
+          <div id="login-step-1">
+            <div class="role-select">
+              <div class="role-pill active" onclick="selectRole(this,'individual')"
+                style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z" />
+                </svg>
+                Individual
+              </div>
+              <div class="role-pill" onclick="selectRole(this,'dealer')"
+                style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;">
+                  <path
+                    d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm10 8h-8V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z" />
+                </svg>
+                Dealer
+              </div>
             </div>
+            <div class="field">
+              <label>Mobile Number</label>
+              <div class="mobile-input-container">
+                <div class="country-code">
+                  <span>+91</span>
+                  <span class="country-arrow">▼</span>
+                </div>
+                <input type="tel" placeholder="XXXXXX XXXXX" id="loginMobile">
+              </div>
+            </div>
+            <div id="login-fields-dealer" style="display:none;">
+              <div id="dealer-password-field">
+                <div class="field">
+                  <label>Password</label>
+                  <input type="password" placeholder="Enter your password" id="loginPwd">
+                </div>
+                <div class="field-row">
+                  <label class="remember"><input type="checkbox"> Remember me</label>
+                  <span class="forgot" id="lnkToggleDealerLogin" onclick="setDealerLoginMode('otp')">Login with OTP
+                    instead</span>
+                </div>
+              </div>
+              <div id="dealer-otp-toggle-back" style="display:none; margin-bottom: 16px;">
+                <div class="field-row" style="justify-content: flex-end;">
+                  <span class="forgot" onclick="setDealerLoginMode('password')">Login with Password instead</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn-login" id="btnLoginMain" onclick="sendLoginOTP()">Send OTP →</button>
+
           </div>
-          <button class="btn-login" onclick="verifyOTPAndRegister()">Verify OTP</button>
-          <div class="switch-note"><a onclick="backToRegister()">← Back</a></div>
+
+          <div id="login-step-2" style="display:none;">
+            <div class="field" style="text-align:center;">
+              <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong
+                  id="login-otp-display-number"></strong></label>
+              <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+              </div>
+            </div>
+            <button class="btn-login" onclick="verifyLoginOTP()">Sign In →</button>
+            <div class="switch-note"><a onclick="backToLogin()">← Back</a></div>
+          </div>
+
+          <p style="text-align:center; margin-top: 24px; font-size: 14px; color: #64748b;">
+            Don't have an account? <a href="#" onclick="switchTab('register')"
+              style="color:var(--primary-hover);font-weight:600;text-decoration:underline;">Register free</a>
+          </p>
+        </div>
+
+        <!-- REGISTER PANEL -->
+        <div class="form-panel" id="panel-register">
+          <div id="reg-step-1">
+            <div class="role-select">
+              <div class="role-pill active" onclick="selectRole(this,'individual')"
+                style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z" />
+                </svg>
+                Individual
+              </div>
+              <div class="role-pill" onclick="selectRole(this,'dealer')"
+                style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color: inherit;">
+                  <path
+                    d="M12 7V3H2v18h20V7H12zm-2 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V9h6v2zm10 8h-8V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z" />
+                </svg>
+                Dealer
+              </div>
+            </div>
+
+            <!-- INDIVIDUAL FIELDS -->
+            <div id="reg-fields-individual">
+              <div class="field"><label>Full Name</label><input type="text" id="regFullName" placeholder="Raj Shah">
+              </div>
+            </div>
+
+            <!-- DEALER FIELDS -->
+            <div id="reg-fields-dealer" style="display:none;">
+              <div class="field"><label>Dealership Name</label><input type="text" id="regDealerName"
+                  placeholder="Market Guru Motors"></div>
+              <div class="field"><label>Address</label><input type="text" id="regAddress" placeholder="123 Main St">
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="field">
+                  <label>State</label>
+                  <select id="regState"
+                    style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;">
+                    <option value="Gujarat" selected>Gujarat</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="field"><label>City</label><input type="text" id="regCity" placeholder="Vadodara"></div>
+              </div>
+              <div class="field"><label>Email (Optional)</label><input type="email" id="regEmail"
+                  placeholder="dealer@example.com"></div>
+              <div class="field"><label>Password</label><input type="password" id="regPwd"
+                  placeholder="Create a strong password"></div>
+            </div>
+
+            <!-- SHARED -->
+            <div class="field">
+              <label>Mobile Number</label>
+              <div class="mobile-input-container">
+                <div class="country-code">
+                  <span>+91</span>
+                  <span class="country-arrow">▼</span>
+                </div>
+                <input type="tel" id="regMobile" placeholder="XXXXXX XXXXX">
+              </div>
+            </div>
+
+            <button class="btn-login" onclick="sendOTP()">Create Account →</button>
+          </div>
+
+          <div id="reg-step-2" style="display:none;">
+            <div class="field" style="text-align:center;">
+              <label style="margin-bottom: 12px; font-size: 14px; text-transform: none;">Enter the OTP sent to <strong
+                  id="otp-display-number"></strong></label>
+              <div style="display:flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+                <input type="text" maxlength="1"
+                  style="width: 45px; height: 50px; text-align: center; font-size: 20px; font-weight: bold; border: 1.5px solid var(--border); border-radius: 8px;"
+                  onkeyup="moveToNext(this, event)">
+              </div>
+            </div>
+            <button class="btn-login" onclick="verifyOTPAndRegister()">Verify OTP</button>
+            <div class="switch-note"><a onclick="backToRegister()">← Back</a></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- FULL WIDTH BOTTOM FOOTER -->
-<footer class="login-footer">
-  <div class="login-footer-inner">
-    <div class="footer-trust-badges">
-      <div class="trust-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        <span>100% Secure</span>
+  <!-- FULL WIDTH BOTTOM FOOTER -->
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="index.html" class="logo" id="footer-brand-logo">
+            <img src="footer_logo.png" alt="Market Guru HP Logo">
+          </a>
+          <div class="footer-copyright">
+            &copy; 2006 - 2026 Market Guru HP.<br>
+            All rights reserved in favour of Market Guru HP.
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick guide links</h4>
+          <div class="quick-links-split">
+            <div class="ql-col">
+              <a href="buy-cars.html">Buy Vehicle</a>
+              <a href="sell.html">Sell Vehicles</a>
+            </div>
+            <div class="ql-divider"></div>
+            <div class="ql-col">
+              <a href="about.html">About us</a>
+              <a href="login.html">Account</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Contact Us</h4>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <a href="mailto:contact@brotomotiv.in">contact@brotomotiv.in</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+            <a href="tel:08600004513">08600004513</a>
+          </div>
+        </div>
       </div>
-      <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.15)"></div>
-      <div class="trust-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-        <span>Verified Dealers</span>
-      </div>
-      <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.15)"></div>
-      <div class="trust-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span>24/7 Support</span>
+      <div class="footer-bottom-bar">
+        <div class="fbb-left">
+          <div class="fbb-connect-text">Connect with us :</div>
+          <div class="fbb-socials">
+            <a href="https://www.facebook.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="facebook"
+              aria-label="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/marketguruhp" target="_blank" rel="noopener noreferrer" class="instagram"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@marketguruhp" target="_blank" rel="noopener noreferrer" class="youtube"
+              aria-label="YouTube">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.002 3.002 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/918600004513" target="_blank" rel="noopener noreferrer" class="whatsapp"
+              aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="fbb-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>|</span>
+          <a href="terms-of-service.html">Terms of Service</a>
+        </div>
       </div>
     </div>
-    <div>
-      <span>&copy; 2024 Market Guru HP. All rights reserved.</span>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 
-<div class="toast" id="toast"></div>
+  <div class="toast" id="toast"></div>
 
-<script src="cars-data.js"></script>
-<script>
-function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-  document.getElementById('panel-'+tab).classList.add('active');
-}
-let currentRole = 'individual';
-let dealerLoginMode = 'password'; // 'password' or 'otp'
-function setDealerLoginMode(mode) {
-  dealerLoginMode = mode;
-  const passwordField = document.getElementById('dealer-password-field');
-  const otpToggleBack = document.getElementById('dealer-otp-toggle-back');
-  const btn = document.getElementById('btnLoginMain');
-  
-  if (mode === 'otp') {
-    passwordField.style.display = 'none';
-    otpToggleBack.style.display = 'block';
-    btn.innerText = 'Send OTP →';
-    btn.onclick = sendLoginOTP;
-  } else {
-    passwordField.style.display = 'block';
-    otpToggleBack.style.display = 'none';
-    btn.innerText = 'Sign In →';
-    btn.onclick = verifyLoginPassword;
-  }
-}
-
-function selectRole(el, role) {
-  const panel = el.closest('.form-panel');
-  panel.querySelectorAll('.role-pill').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  
-  if (panel.id === 'panel-register') {
-    currentRole = role;
-    document.getElementById('reg-fields-individual').style.display = role === 'individual' ? 'block' : 'none';
-    document.getElementById('reg-fields-dealer').style.display = role === 'dealer' ? 'block' : 'none';
-  } else if (panel.id === 'panel-login') {
-    currentRole = role;
-    const dealerFields = document.getElementById('login-fields-dealer');
-    const btn = document.getElementById('btnLoginMain');
-    if (role === 'dealer') {
-      dealerFields.style.display = 'block';
-      setDealerLoginMode('password');
-    } else {
-      dealerFields.style.display = 'none';
-      btn.innerText = 'Send OTP →';
-      btn.onclick = sendLoginOTP;
+  <script src="cars-data.js"></script>
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
     }
-  }
-}
+    let currentRole = 'individual';
+    let dealerLoginMode = 'password'; // 'password' or 'otp'
+    function setDealerLoginMode(mode) {
+      dealerLoginMode = mode;
+      const passwordField = document.getElementById('dealer-password-field');
+      const otpToggleBack = document.getElementById('dealer-otp-toggle-back');
+      const btn = document.getElementById('btnLoginMain');
 
-function sendOTP() {
-  const mobile = document.getElementById('regMobile').value.trim();
-  if (currentRole === 'individual') {
-    const fName = document.getElementById('regFullName').value.trim();
-    if(!fName || !mobile) {
-      showToast('⚠️ Please enter Full Name and Mobile number!');
-      return;
-    }
-  } else {
-    const dName = document.getElementById('regDealerName').value.trim();
-    const address = document.getElementById('regAddress').value.trim();
-    const city = document.getElementById('regCity').value.trim();
-    const pwd = document.getElementById('regPwd').value;
-    if(!dName || !address || !city || !pwd || !mobile) {
-      showToast('⚠️ Please fill all required Dealership details!');
-      return;
-    }
-  }
-
-  if (mgDB.isBackendOnline()) {
-    showToast('🔍 Checking mobile number...');
-    fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ mobile: mobile, check_all: true })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === 'success' && data.exists) {
-        showToast('❌ Mobile number is already registered! Please Login instead.');
+      if (mode === 'otp') {
+        passwordField.style.display = 'none';
+        otpToggleBack.style.display = 'block';
+        btn.innerText = 'Send OTP →';
+        btn.onclick = sendLoginOTP;
       } else {
-        proceedToSendOTP(mobile);
+        passwordField.style.display = 'block';
+        otpToggleBack.style.display = 'none';
+        btn.innerText = 'Sign In →';
+        btn.onclick = verifyLoginPassword;
       }
-    })
-    .catch(err => {
-      proceedToSendOTP(mobile);
-    });
-  } else {
-    let exists = false;
-    const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
-    const customers = mgDB.getCustomers();
-    exists = dealers.some(d => d.mobile === mobile) || customers.some(c => c.mobile === mobile);
-    
-    if (exists) {
-      showToast('❌ Mobile number is already registered! Please Login instead.');
-    } else {
-      proceedToSendOTP(mobile);
     }
-  }
-}
 
-function proceedToSendOTP(mobile) {
-  document.getElementById('otp-display-number').innerText = mobile;
-  document.getElementById('reg-step-1').style.display = 'none';
-  document.getElementById('reg-step-2').style.display = 'block';
-  showToast('📲 OTP sent to ' + mobile);
-}
+    function selectRole(el, role) {
+      const panel = el.closest('.form-panel');
+      panel.querySelectorAll('.role-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
 
-function sendLoginOTP() {
-  const mobile = document.getElementById('loginMobile').value.trim();
-  if(!mobile) {
-    showToast('⚠️ Please enter Mobile number!');
-    return;
-  }
-  
-  if (mgDB.isBackendOnline()) {
-    fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ mobile: mobile, role: currentRole })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === 'success') {
-        if (data.exists) {
-          document.getElementById('login-otp-display-number').innerText = mobile;
-          document.getElementById('login-step-1').style.display = 'none';
-          document.getElementById('login-step-2').style.display = 'block';
-          showToast('📲 OTP sent to ' + mobile);
-        } else if (data.registered_role === 'dealer') {
-          showToast('❌ Mobile number is registered as a Dealer. Please select Dealer option above to login.');
-        } else if (data.registered_role === 'individual') {
-          showToast('❌ Mobile number is registered as an Individual. Please select Individual option above to login.');
+      if (panel.id === 'panel-register') {
+        currentRole = role;
+        document.getElementById('reg-fields-individual').style.display = role === 'individual' ? 'block' : 'none';
+        document.getElementById('reg-fields-dealer').style.display = role === 'dealer' ? 'block' : 'none';
+      } else if (panel.id === 'panel-login') {
+        currentRole = role;
+        const dealerFields = document.getElementById('login-fields-dealer');
+        const btn = document.getElementById('btnLoginMain');
+        if (role === 'dealer') {
+          dealerFields.style.display = 'block';
+          setDealerLoginMode('password');
         } else {
-          showToast('❌ Number not registered. Please register first.');
+          dealerFields.style.display = 'none';
+          btn.innerText = 'Send OTP →';
+          btn.onclick = sendLoginOTP;
+        }
+      }
+    }
+
+    function sendOTP() {
+      const mobile = document.getElementById('regMobile').value.trim();
+      if (currentRole === 'individual') {
+        const fName = document.getElementById('regFullName').value.trim();
+        if (!fName || !mobile) {
+          showToast('⚠️ Please enter Full Name and Mobile number!');
+          return;
         }
       } else {
-        showToast('❌ Error checking number registration.');
+        const dName = document.getElementById('regDealerName').value.trim();
+        const address = document.getElementById('regAddress').value.trim();
+        const city = document.getElementById('regCity').value.trim();
+        const pwd = document.getElementById('regPwd').value;
+        if (!dName || !address || !city || !pwd || !mobile) {
+          showToast('⚠️ Please fill all required Dealership details!');
+          return;
+        }
       }
-    })
-    .catch(err => {
-      showToast('❌ Error connecting to server.');
-    });
-    return;
-  }
-  
-  let exists = false;
-  let registeredRole = null;
-  
-  const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
-  const hasDealer = dealers.find(d => d.mobile === mobile || d.mobile === '+91 ' + mobile || mobile === '9876543210');
-  
-  const customers = mgDB.getCustomers();
-  const hasCustomer = customers.find(c => c.mobile === mobile || c.mobile === '+91 ' + mobile || mobile === '9999999999' || mobile.toLowerCase() === 'admin');
 
-  if (currentRole === 'dealer') {
-    if (hasDealer) {
-      exists = true;
-    } else if (hasCustomer) {
-      registeredRole = 'individual';
-    }
-  } else {
-    if (hasCustomer) {
-      exists = true;
-    } else if (hasDealer) {
-      registeredRole = 'dealer';
-    }
-  }
-
-  if (exists) {
-    document.getElementById('login-otp-display-number').innerText = mobile;
-    document.getElementById('login-step-1').style.display = 'none';
-    document.getElementById('login-step-2').style.display = 'block';
-    showToast('📲 OTP sent to ' + mobile);
-  } else if (registeredRole === 'dealer') {
-    showToast('❌ Mobile number is registered as a Dealer. Please select Dealer option above to login.');
-  } else if (registeredRole === 'individual') {
-    showToast('❌ Mobile number is registered as an Individual. Please select Individual option above to login.');
-  } else {
-    showToast('❌ Number not registered. Please register first.');
-  }
-}
-
-function moveToNext(el, ev) {
-  if (ev.key === 'Backspace' && !el.value) {
-    if (el.previousElementSibling) el.previousElementSibling.focus();
-  } else if (el.value) {
-    if (el.nextElementSibling) el.nextElementSibling.focus();
-  }
-}
-
-function backToRegister() {
-  document.getElementById('reg-step-2').style.display = 'none';
-  document.getElementById('reg-step-1').style.display = 'block';
-}
-
-function backToLogin() {
-  document.getElementById('login-step-2').style.display = 'none';
-  document.getElementById('login-step-1').style.display = 'block';
-}
-
-function redirectAfterLogin() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const redirectUrl = urlParams.get('redirect');
-  if (redirectUrl) {
-    window.location = redirectUrl;
-  } else {
-    const userType = localStorage.getItem('mg_current_user_type');
-    if (userType === 'admin') {
-      window.location = 'admin/dashboard.html';
-    } else {
-      window.location = 'customer-dashboard.html';
-    }
-  }
-}
-
-function executeLogin(id, pwd) {
-  if (mgDB.isBackendOnline()) {
-    showToast('🔐 Authenticating...');
-    fetch(`${mgDB.getApiBase()}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: id, password: pwd, role: currentRole })
-    })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json().then(d => { throw new Error(d.message || 'Invalid credentials'); });
-    })
-    .then(data => {
-      if (data.status === 'success') {
-        localStorage.setItem('mg_current_user', data.user.name);
-        localStorage.setItem('mg_current_user_mobile', data.user.mobile || id);
-        localStorage.setItem('mg_current_user_type', data.user.type || data.user.role || currentRole);
-        showToast('✅ Login successful! Redirecting...');
-        setTimeout(redirectAfterLogin, 1200);
-      }
-    })
-    .catch(err => {
-      if (id.toLowerCase() === 'admin' || id === '9999999999') {
-        localStorage.setItem('mg_current_user', 'Super Admin');
-        localStorage.setItem('mg_current_user_type', 'admin');
-        showToast('✅ Admin Login successful! Redirecting...');
-        setTimeout(redirectAfterLogin, 1200);
+      if (mgDB.isBackendOnline()) {
+        showToast('🔍 Checking mobile number...');
+        fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: mobile, check_all: true })
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'success' && data.exists) {
+              showToast('❌ Mobile number is already registered! Please Login instead.');
+            } else {
+              proceedToSendOTP(mobile);
+            }
+          })
+          .catch(err => {
+            proceedToSendOTP(mobile);
+          });
       } else {
-        showToast('❌ Login failed: ' + err.message);
+        let exists = false;
+        const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+        const customers = mgDB.getCustomers();
+        exists = dealers.some(d => d.mobile === mobile) || customers.some(c => c.mobile === mobile);
+
+        if (exists) {
+          showToast('❌ Mobile number is already registered! Please Login instead.');
+        } else {
+          proceedToSendOTP(mobile);
+        }
       }
-    });
-    return;
-  }
-  
-  // Save credentials to mock session (Fallback)
-  let name = "Guest User";
-  let uType = currentRole === 'dealer' ? "dealer" : "private";
-  if (id.toLowerCase() === 'admin' || id === '9999999999') {
-    name = "Super Admin";
-    uType = "admin";
-  } else if (uType === 'dealer') {
-    const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
-    const d = dealers.find(x => x.mobile === id || x.email === id || (id === '9876543210' && pwd === 'password123'));
-    if (id === '9876543210' && (pwd === 'password123' || pwd === 'OTP_LOGIN')) {
-      name = "Market Guru Motors";
-      localStorage.setItem('mg_current_user_mobile', id);
-    } else if (d) {
-      if (pwd === 'OTP_LOGIN' || d.password === pwd) {
-        name = d.dealership_name;
-        localStorage.setItem('mg_current_user_mobile', d.mobile);
-      } else {
-        showToast('❌ Incorrect password.');
+    }
+
+    function proceedToSendOTP(mobile) {
+      document.getElementById('otp-display-number').innerText = mobile;
+      document.getElementById('reg-step-1').style.display = 'none';
+      document.getElementById('reg-step-2').style.display = 'block';
+      showToast('📲 OTP sent to ' + mobile);
+    }
+
+    function sendLoginOTP() {
+      const mobile = document.getElementById('loginMobile').value.trim();
+      if (!mobile) {
+        showToast('⚠️ Please enter Mobile number!');
         return;
       }
-    } else {
-      showToast('❌ Dealer details not found. Please register.');
-      return;
+
+      if (mgDB.isBackendOnline()) {
+        fetch(`${mgDB.getApiBase()}/auth/check-mobile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: mobile, role: currentRole })
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'success') {
+              if (data.exists) {
+                document.getElementById('login-otp-display-number').innerText = mobile;
+                document.getElementById('login-step-1').style.display = 'none';
+                document.getElementById('login-step-2').style.display = 'block';
+                showToast('📲 OTP sent to ' + mobile);
+              } else if (data.registered_role === 'dealer') {
+                showToast('❌ Mobile number is registered as a Dealer. Please select Dealer option above to login.');
+              } else if (data.registered_role === 'individual') {
+                showToast('❌ Mobile number is registered as an Individual. Please select Individual option above to login.');
+              } else {
+                showToast('❌ Number not registered. Please register first.');
+              }
+            } else {
+              showToast('❌ Error checking number registration.');
+            }
+          })
+          .catch(err => {
+            showToast('❌ Error connecting to server.');
+          });
+        return;
+      }
+
+      let exists = false;
+      let registeredRole = null;
+
+      const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+      const hasDealer = dealers.find(d => d.mobile === mobile || d.mobile === '+91 ' + mobile || mobile === '9876543210');
+
+      const customers = mgDB.getCustomers();
+      const hasCustomer = customers.find(c => c.mobile === mobile || c.mobile === '+91 ' + mobile || mobile === '9999999999' || mobile.toLowerCase() === 'admin');
+
+      if (currentRole === 'dealer') {
+        if (hasDealer) {
+          exists = true;
+        } else if (hasCustomer) {
+          registeredRole = 'individual';
+        }
+      } else {
+        if (hasCustomer) {
+          exists = true;
+        } else if (hasDealer) {
+          registeredRole = 'dealer';
+        }
+      }
+
+      if (exists) {
+        document.getElementById('login-otp-display-number').innerText = mobile;
+        document.getElementById('login-step-1').style.display = 'none';
+        document.getElementById('login-step-2').style.display = 'block';
+        showToast('📲 OTP sent to ' + mobile);
+      } else if (registeredRole === 'dealer') {
+        showToast('❌ Mobile number is registered as a Dealer. Please select Dealer option above to login.');
+      } else if (registeredRole === 'individual') {
+        showToast('❌ Mobile number is registered as an Individual. Please select Individual option above to login.');
+      } else {
+        showToast('❌ Number not registered. Please register first.');
+      }
     }
-  } else {
-    const customers = mgDB.getCustomers();
-    const c = customers.find(x => x.mobile === id || x.mobile === '+91 ' + id);
-    if (!c) {
-      showToast('❌ Incorrect details, please register.');
-      return;
+
+    function moveToNext(el, ev) {
+      if (ev.key === 'Backspace' && !el.value) {
+        if (el.previousElementSibling) el.previousElementSibling.focus();
+      } else if (el.value) {
+        if (el.nextElementSibling) el.nextElementSibling.focus();
+      }
     }
-    name = c.name;
-    localStorage.setItem('mg_current_user_mobile', id);
-  }
-  localStorage.setItem('mg_current_user', name);
-  localStorage.setItem('mg_current_user_type', uType);
-  
-  showToast('✅ Login successful! Redirecting...');
-  setTimeout(redirectAfterLogin, 1500);
-}
 
-function verifyLoginOTP() {
-  const id = document.getElementById('loginMobile').value.trim();
-  if (!id) { showToast('⚠️ Please enter Mobile number!'); return; }
-  executeLogin(id, 'OTP_LOGIN');
-}
+    function backToRegister() {
+      document.getElementById('reg-step-2').style.display = 'none';
+      document.getElementById('reg-step-1').style.display = 'block';
+    }
 
-function verifyLoginPassword() {
-  const id = document.getElementById('loginMobile').value.trim();
-  const pwd = document.getElementById('loginPwd').value;
-  if (!id || !pwd) { showToast('⚠️ Please enter Mobile number and Password!'); return; }
-  executeLogin(id, pwd);
-}
+    function backToLogin() {
+      document.getElementById('login-step-2').style.display = 'none';
+      document.getElementById('login-step-1').style.display = 'block';
+    }
 
-function verifyOTPAndRegister() {
-  const mobile = document.getElementById('regMobile').value.trim();
-  let uType = currentRole === 'dealer' ? 'dealer' : 'private';
-  
-  let fName = '';
-  let lName = '';
-  let pwd = 'OTP_LOGIN';
-  let emailStr = '';
-  
-  let dealership_name = '';
-  let address = '';
-  let city = '';
-  let state = '';
-  
-  if (currentRole === 'individual') {
-    let fullName = document.getElementById('regFullName').value.trim();
-    let names = fullName.split(' ');
-    fName = names[0];
-    lName = names.slice(1).join(' ') || '';
-    emailStr = `${fName.toLowerCase()}@example.com`;
-  } else {
-    dealership_name = document.getElementById('regDealerName').value.trim();
-    fName = dealership_name;
-    pwd = document.getElementById('regPwd').value;
-    emailStr = document.getElementById('regEmail').value.trim() || `dealer@example.com`;
-    address = document.getElementById('regAddress').value.trim();
-    city = document.getElementById('regCity').value.trim();
-    state = document.getElementById('regState').value;
-  }
+    function redirectAfterLogin() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get('redirect');
+      if (redirectUrl) {
+        window.location = redirectUrl;
+      } else {
+        const userType = localStorage.getItem('mg_current_user_type');
+        if (userType === 'admin') {
+          window.location = 'admin/dashboard.html';
+        } else {
+          window.location = 'customer-dashboard.html';
+        }
+      }
+    }
 
-  if (mgDB.isBackendOnline()) {
-    showToast('💾 Creating account...');
-    fetch(`${mgDB.getApiBase()}/auth/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        fName: fName,
-        lName: lName,
-        mobile: mobile,
-        email: emailStr,
-        password: pwd,
-        account_type: uType,
-        dealership_name: dealership_name,
-        address: address,
-        city: city,
-        state: state
-      })
-    })
-    .then(res => {
-      if (res.ok) return res.json();
-      return res.json().then(d => { throw new Error(d.message || 'Registration failed'); });
-    })
-    .then(data => {
-      if (data.status === 'success') {
-        localStorage.setItem('mg_current_user', data.user.name);
-        localStorage.setItem('mg_current_user_mobile', data.user.mobile);
-        localStorage.setItem('mg_current_user_type', data.user.type);
-        showToast('✅ Account created! Redirecting...');
+    function executeLogin(id, pwd) {
+      if (mgDB.isBackendOnline()) {
+        showToast('🔐 Authenticating...');
+        fetch(`${mgDB.getApiBase()}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id, password: pwd, role: currentRole })
+        })
+          .then(res => {
+            if (res.ok) return res.json();
+            return res.json().then(d => { throw new Error(d.message || 'Invalid credentials'); });
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              localStorage.setItem('mg_current_user', data.user.name);
+              localStorage.setItem('mg_current_user_mobile', data.user.mobile || id);
+              localStorage.setItem('mg_current_user_type', data.user.type || data.user.role || currentRole);
+              showToast('✅ Login successful! Redirecting...');
+              setTimeout(redirectAfterLogin, 1200);
+            }
+          })
+          .catch(err => {
+            if (id.toLowerCase() === 'admin' || id === '9999999999') {
+              localStorage.setItem('mg_current_user', 'Super Admin');
+              localStorage.setItem('mg_current_user_type', 'admin');
+              showToast('✅ Admin Login successful! Redirecting...');
+              setTimeout(redirectAfterLogin, 1200);
+            } else {
+              showToast('❌ Login failed: ' + err.message);
+            }
+          });
+        return;
+      }
+
+      // Save credentials to mock session (Fallback)
+      let name = "Guest User";
+      let uType = currentRole === 'dealer' ? "dealer" : "private";
+      if (id.toLowerCase() === 'admin' || id === '9999999999') {
+        name = "Super Admin";
+        uType = "admin";
+      } else if (uType === 'dealer') {
+        const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+        const d = dealers.find(x => x.mobile === id || x.email === id || (id === '9876543210' && pwd === 'password123'));
+        if (id === '9876543210' && (pwd === 'password123' || pwd === 'OTP_LOGIN')) {
+          name = "Market Guru Motors";
+          localStorage.setItem('mg_current_user_mobile', id);
+        } else if (d) {
+          if (pwd === 'OTP_LOGIN' || d.password === pwd) {
+            name = d.dealership_name;
+            localStorage.setItem('mg_current_user_mobile', d.mobile);
+          } else {
+            showToast('❌ Incorrect password.');
+            return;
+          }
+        } else {
+          showToast('❌ Dealer details not found. Please register.');
+          return;
+        }
+      } else {
+        const customers = mgDB.getCustomers();
+        const c = customers.find(x => x.mobile === id || x.mobile === '+91 ' + id);
+        if (!c) {
+          showToast('❌ Incorrect details, please register.');
+          return;
+        }
+        name = c.name;
+        localStorage.setItem('mg_current_user_mobile', id);
+      }
+      localStorage.setItem('mg_current_user', name);
+      localStorage.setItem('mg_current_user_type', uType);
+
+      showToast('✅ Login successful! Redirecting...');
+      setTimeout(redirectAfterLogin, 1500);
+    }
+
+    function verifyLoginOTP() {
+      const id = document.getElementById('loginMobile').value.trim();
+      if (!id) { showToast('⚠️ Please enter Mobile number!'); return; }
+      executeLogin(id, 'OTP_LOGIN');
+    }
+
+    function verifyLoginPassword() {
+      const id = document.getElementById('loginMobile').value.trim();
+      const pwd = document.getElementById('loginPwd').value;
+      if (!id || !pwd) { showToast('⚠️ Please enter Mobile number and Password!'); return; }
+      executeLogin(id, pwd);
+    }
+
+    function verifyOTPAndRegister() {
+      const mobile = document.getElementById('regMobile').value.trim();
+      let uType = currentRole === 'dealer' ? 'dealer' : 'private';
+
+      let fName = '';
+      let lName = '';
+      let pwd = 'OTP_LOGIN';
+      let emailStr = '';
+
+      let dealership_name = '';
+      let address = '';
+      let city = '';
+      let state = '';
+
+      if (currentRole === 'individual') {
+        let fullName = document.getElementById('regFullName').value.trim();
+        let names = fullName.split(' ');
+        fName = names[0];
+        lName = names.slice(1).join(' ') || '';
+        emailStr = `${fName.toLowerCase()}@example.com`;
+      } else {
+        dealership_name = document.getElementById('regDealerName').value.trim();
+        fName = dealership_name;
+        pwd = document.getElementById('regPwd').value;
+        emailStr = document.getElementById('regEmail').value.trim() || `dealer@example.com`;
+        address = document.getElementById('regAddress').value.trim();
+        city = document.getElementById('regCity').value.trim();
+        state = document.getElementById('regState').value;
+      }
+
+      if (mgDB.isBackendOnline()) {
+        showToast('💾 Creating account...');
+        fetch(`${mgDB.getApiBase()}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fName: fName,
+            lName: lName,
+            mobile: mobile,
+            email: emailStr,
+            password: pwd,
+            account_type: uType,
+            dealership_name: dealership_name,
+            address: address,
+            city: city,
+            state: state
+          })
+        })
+          .then(res => {
+            if (res.ok) return res.json();
+            return res.json().then(d => { throw new Error(d.message || 'Registration failed'); });
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              localStorage.setItem('mg_current_user', data.user.name);
+              localStorage.setItem('mg_current_user_mobile', data.user.mobile);
+              localStorage.setItem('mg_current_user_type', data.user.type);
+              showToast('✅ Account created! Redirecting...');
+              setTimeout(redirectAfterLogin, 1200);
+            }
+          })
+          .catch(err => {
+            showToast('❌ Register failed: ' + err.message);
+          });
+        return;
+      }
+
+      // Fallback
+      const uName = fName + (lName ? ' ' + lName : '');
+      if (uType === 'private') {
+        const customers = mgDB.getCustomers();
+        customers.push({
+          name: uName,
+          mobile: mobile,
+          city: '',
+          interests: '',
+          purchases: '0',
+          last: 'Today'
+        });
+        localStorage.setItem('mg_customers', JSON.stringify(customers));
+      } else {
+        const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
+        dealers.push({
+          dealership_name: dealership_name,
+          address: address,
+          state: state,
+          city: city,
+          email: emailStr,
+          mobile: mobile,
+          password: pwd
+        });
+        localStorage.setItem('mg_dealers', JSON.stringify(dealers));
+      }
+
+      localStorage.setItem('mg_current_user', uName);
+      localStorage.setItem('mg_current_user_mobile', mobile);
+      localStorage.setItem('mg_current_user_type', uType);
+
+      showToast('✅ Account created! Redirecting...');
+      setTimeout(redirectAfterLogin, 1500);
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Handle Query Parameters on load
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab');
+      const type = params.get('type');
+
+      if (tab === 'register') {
+        switchTab('register');
+      }
+
+      if (type === 'dealer') {
+        const currentPanel = document.querySelector('.form-panel.active');
+        if (currentPanel) {
+          const dealerPill = currentPanel.querySelector('.role-pill:nth-child(2)');
+          if (dealerPill) selectRole(dealerPill, 'dealer');
+        }
+      }
+
+      const currentUser = localStorage.getItem('mg_current_user');
+      if (currentUser) {
+        showToast('⚡ Already logged in! Redirecting...');
         setTimeout(redirectAfterLogin, 1200);
       }
-    })
-    .catch(err => {
-      showToast('❌ Register failed: ' + err.message);
-    });
-    return;
-  }
-  
-  // Fallback
-  const uName = fName + (lName ? ' ' + lName : '');
-  if (uType === 'private') {
-    const customers = mgDB.getCustomers();
-    customers.push({
-      name: uName,
-      mobile: mobile,
-      city: '',
-      interests: '',
-      purchases: '0',
-      last: 'Today'
-    });
-    localStorage.setItem('mg_customers', JSON.stringify(customers));
-  } else {
-    const dealers = JSON.parse(localStorage.getItem('mg_dealers') || '[]');
-    dealers.push({
-      dealership_name: dealership_name,
-      address: address,
-      state: state,
-      city: city,
-      email: emailStr,
-      mobile: mobile,
-      password: pwd
-    });
-    localStorage.setItem('mg_dealers', JSON.stringify(dealers));
-  }
-  
-  localStorage.setItem('mg_current_user', uName);
-  localStorage.setItem('mg_current_user_mobile', mobile);
-  localStorage.setItem('mg_current_user_type', uType);
-  
-  showToast('✅ Account created! Redirecting...');
-  setTimeout(redirectAfterLogin, 1500);
-}
-function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
+    };
+  </script>
 
-// Handle Query Parameters on load
-window.onload = function() {
-  const params = new URLSearchParams(window.location.search);
-  const tab = params.get('tab');
-  const type = params.get('type');
-  
-  if (tab === 'register') {
-    switchTab('register');
-  }
-  
-  if (type === 'dealer') {
-    const currentPanel = document.querySelector('.form-panel.active');
-    if (currentPanel) {
-       const dealerPill = currentPanel.querySelector('.role-pill:nth-child(2)');
-       if (dealerPill) selectRole(dealerPill, 'dealer');
-    }
-  }
-  
-  const currentUser = localStorage.getItem('mg_current_user');
-  if (currentUser) {
-    showToast('⚡ Already logged in! Redirecting...');
-    setTimeout(redirectAfterLogin, 1200);
-  }
-};
-</script>
+  <!-- ACCOUNT SIDEBAR -->
+  <div class="account-sidebar-overlay" id="as-overlay"></div>
+  <div class="account-sidebar" id="account-sidebar">
+    <div class="as-header">
+      <h2 id="as-title">My Account</h2>
+      <button class="as-close" id="as-close-btn">&times;</button>
+    </div>
+    <div class="as-body" id="as-body">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const accountBtn = document.getElementById('nav-account-btn');
+      const asSidebar = document.getElementById('account-sidebar');
+      const asOverlay = document.getElementById('as-overlay');
+      const asClose = document.getElementById('as-close-btn');
+      const asBody = document.getElementById('as-body');
+      const asTitle = document.getElementById('as-title');
+
+      function openSidebar() {
+        if (asSidebar) asSidebar.classList.add('open');
+        if (asOverlay) asOverlay.classList.add('open');
+        renderSidebar();
+      }
+      function closeSidebar() {
+        if (asSidebar) asSidebar.classList.remove('open');
+        if (asOverlay) asOverlay.classList.remove('open');
+      }
+
+      if (accountBtn) accountBtn.addEventListener('click', openSidebar);
+      if (asClose) asClose.addEventListener('click', closeSidebar);
+      if (asOverlay) asOverlay.addEventListener('click', closeSidebar);
+
+      function renderSidebar() {
+        const currentUser = localStorage.getItem('mg_current_user');
+        const mobile = localStorage.getItem('mg_current_user_mobile') || '';
+
+        if (currentUser && currentUser !== 'Guest User') {
+          let initials = '👤';
+          try {
+            const parts = currentUser.split(' ');
+            if (parts.length > 1) {
+              initials = (parts[0][0] + parts[1][0]).toUpperCase();
+            } else {
+              initials = currentUser.substring(0, 2).toUpperCase();
+            }
+          } catch (e) { }
+          if (accountBtn) {
+            accountBtn.innerHTML = initials;
+            accountBtn.style.fontWeight = '700';
+            accountBtn.style.fontSize = '16px';
+          }
+          asTitle.textContent = 'My Account';
+          asBody.innerHTML = `
+          <div class="as-user-info">
+            <div class="as-avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+            <div class="as-user-details">
+              <h4>${currentUser}</h4>
+              <p>${mobile}</p>
+            </div>
+            <button class="as-edit-btn" onclick="window.location='customer-dashboard.html'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+          </div>
+          <div class="as-section-title">SELL CAR</div>
+          <ul class="as-menu">
+            <li><a href="customer-dashboard.html">View My Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="sell.html">Post a New Ad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+            <li><a href="customer-dashboard.html">Dashboard <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+          </ul>
+          <ul class="as-menu">
+            <li><a href="#" id="as-logout-btn">Logout <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></a></li>
+          </ul>
+        `;
+          document.getElementById('as-logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('mg_current_user');
+            localStorage.removeItem('mg_current_user_mobile');
+            localStorage.removeItem('mg_current_user_type');
+            closeSidebar();
+            window.location.reload();
+          });
+        } else {
+          asTitle.textContent = 'Welcome to Market Guru HP';
+          asBody.innerHTML = `
+          <div class="as-login-view">
+            <p>Login to manage your car listings, view analytics, and save your favourite cars.</p>
+            <a href="login.html" class="as-btn">Login / Register</a>
+          </div>
+        `;
+        }
+      }
+    });
+  </script>
 </body>
+
 </html>
-
-
-
-
-
-
-

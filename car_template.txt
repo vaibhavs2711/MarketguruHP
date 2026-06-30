@@ -1,4 +1,0 @@
-`
-    <div class="car-card" onclick="window.location='car-detail.html?id=${c.id}'">
-      <div class="car-img" style="background:linear-gradient(135deg,${c.color || '#e8eef5'},#ccd4e0)">
-        ${c.image ? `
