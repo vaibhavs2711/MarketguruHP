@@ -293,6 +293,21 @@ def update_car():
         if 'description' in data:
             updates.append('description = %s')
             params.append(str(data['description']))
+        if 'image' in data:
+            updates.append('image = %s')
+            params.append(data['image'] if data['image'] else None)
+        if 'images' in data:
+            import json
+            updates.append('images = %s')
+            params.append(json.dumps(data['images']) if data['images'] else None)
+        if 'features' in data:
+            updates.append('features = %s')
+            features_list = data['features']
+            if isinstance(features_list, list):
+                features_str = ", ".join(features_list)
+            else:
+                features_str = str(features_list)
+            params.append(features_str)
 
         if not updates:
             return jsonify({"status": "error", "message": "No fields to update"}), 400

@@ -275,40 +275,256 @@
     }
 
     /* TABLE SECTION */
-    .table-section { background: var(--white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
-    .ts-header-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; cursor: pointer; user-select: none; }
-    .ts-title-group { display: flex; align-items: center; gap: 16px; }
-    .ts-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #EFF6FF; color: #3B82F6; }
-    .ts-icon.green { background: #DCFCE7; color: #10B981; }
-    .ts-icon.red { background: #FEE2E2; color: #EF4444; }
-    .ts-title { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 2px; }
-    .ts-sub { font-size: 12px; color: #6B7280; }
-    .ts-actions { display: flex; align-items: center; gap: 12px; }
-    .ts-search { padding: 8px 16px; border: 1px solid #E5E7EB; border-radius: 6px; font-size: 13px; outline: none; width: 220px; }
-    .ts-filter-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; color: #374151; }
-    .ts-filter-btn:hover { background: #F9FAFB; }
-    .table-wrapper { border-top: 1px solid var(--border); }
-    .dash-table { width: 100%; border-collapse: collapse; text-align: left; }
-    .dash-table th { font-size: 12px; font-weight: 700; color: #6B7280; padding: 16px 24px; border-bottom: 1px solid #E5E7EB; background: #fff; white-space: nowrap; }
-    .dash-table td { padding: 16px 24px; border-bottom: 1px solid #E5E7EB; font-size: 13px; vertical-align: middle; color: #374151; font-weight: 600; }
-    .car-detail-cell { display: flex; gap: 16px; align-items: center; }
-    .car-detail-img { width: 80px; height: 56px; background: #F3F4F6; border-radius: 6px; object-fit: contain; }
-    .car-detail-text h4 { font-size: 14px; font-weight: 700; color: #111827; margin-bottom: 4px; }
-    .car-detail-text p { font-size: 12px; color: #6B7280; font-weight: 500; }
-    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-    .status-live { background: #DCFCE7; color: #166534; }
-    .status-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #166534; }
-    .status-deleted { background: #FEE2E2; color: #991B1B; }
-    .status-expired { background: #FEF3C7; color: #92400E; }
-    .action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; color: #374151; }
-    .action-btn:hover { background: #F9FAFB; }
-    .action-group { display: flex; gap: 8px; }
-    .table-footer { display: flex; justify-content: space-between; padding: 12px 24px; align-items: center; font-size: 13px; color: #6B7280; background: #fff; }
-    .tf-pagination { display: flex; gap: 4px; }
-    .tf-pagination button { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid #E5E7EB; background: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; color: #374151; }
-    .tf-pagination button.active { background: #3B82F6; color: #fff; border-color: #3B82F6; }
-    .btn-more { padding: 6px 10px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; color: #374151; display: inline-flex; align-items: center; justify-content: center; }
-    
+    .table-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .ts-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .ts-title-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ts-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #EFF6FF;
+      color: #3B82F6;
+    }
+
+    .ts-icon.green {
+      background: #DCFCE7;
+      color: #10B981;
+    }
+
+    .ts-icon.red {
+      background: #FEE2E2;
+      color: #EF4444;
+    }
+
+    .ts-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 2px;
+    }
+
+    .ts-sub {
+      font-size: 12px;
+      color: #6B7280;
+    }
+
+    .ts-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ts-search {
+      padding: 8px 16px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      width: 220px;
+    }
+
+    .ts-filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    .ts-filter-btn:hover {
+      background: #F9FAFB;
+    }
+
+    .table-wrapper {
+      border-top: 1px solid var(--border);
+    }
+
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .dash-table th {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6B7280;
+      padding: 16px 24px;
+      border-bottom: 1px solid #E5E7EB;
+      background: #fff;
+      white-space: nowrap;
+    }
+
+    .dash-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid #E5E7EB;
+      font-size: 13px;
+      vertical-align: middle;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    .car-detail-cell {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .car-detail-img {
+      width: 80px;
+      height: 56px;
+      background: #F3F4F6;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .car-detail-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .car-detail-text p {
+      font-size: 12px;
+      color: #6B7280;
+      font-weight: 500;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-live {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .status-live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #166534;
+    }
+
+    .status-deleted {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .status-expired {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    .action-btn:hover {
+      background: #F9FAFB;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .table-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 24px;
+      align-items: center;
+      font-size: 13px;
+      color: #6B7280;
+      background: #fff;
+    }
+
+    .tf-pagination {
+      display: flex;
+      gap: 4px;
+    }
+
+    .tf-pagination button {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #E5E7EB;
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .tf-pagination button.active {
+      background: #3B82F6;
+      color: #fff;
+      border-color: #3B82F6;
+    }
+
+    .btn-more {
+      padding: 6px 10px;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #374151;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* MY LISTED CAR (Legacy styles will be replaced but kept for safety if needed) */
     .section-my-cars {
       margin-bottom: 32px;
@@ -936,15 +1152,18 @@
                 <div class="progress-bar-fill"></div>
               </div>
             </div>
-            <div style="width: 80px; height: 80px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-left: 16px; flex-shrink: 0; box-shadow: inset 0 0 20px rgba(255,255,255,0.5);">
+            <div
+              style="width: 80px; height: 80px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-left: 16px; flex-shrink: 0; box-shadow: inset 0 0 20px rgba(255,255,255,0.5);">
               👑
             </div>
           </div>
         </div>
-        
+
         <div style="margin-top: 24px;">
           <h3 style="margin-bottom: 16px;">Want to list another car?</h3>
-          <button class="btn-upgrade" style="width: 100%; margin-top: 0; font-size: 15px; font-weight: 700; padding: 14px; color: #111827; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="showToast('Upgrade portal coming soon!')">
+          <button class="btn-upgrade"
+            style="width: 100%; margin-top: 0; font-size: 15px; font-weight: 700; padding: 14px; color: #111827; display: flex; align-items: center; justify-content: center; gap: 8px;"
+            onclick="showToast('Upgrade portal coming soon!')">
             👑 List Another Car for ₹499/-
           </button>
         </div>
@@ -1044,10 +1263,17 @@
 
     <!-- MY LISTED CARS -->
     <div class="table-section">
-      <div class="ts-header-bar" onclick="document.getElementById('myListedTableWrapper').classList.toggle('collapsed'); document.getElementById('myListedIcon').style.transform = document.getElementById('myListedTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
+      <div class="ts-header-bar"
+        onclick="document.getElementById('myListedTableWrapper').classList.toggle('collapsed'); document.getElementById('myListedIcon').style.transform = document.getElementById('myListedTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
         <div class="ts-title-group">
           <div class="ts-icon">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+              </path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
           </div>
           <div>
             <h2 class="ts-title">My Listed Cars</h2>
@@ -1057,14 +1283,20 @@
         <div class="ts-actions" onclick="event.stopPropagation()">
           <input type="text" placeholder="Search by car name or ID..." class="ts-search">
           <button class="ts-filter-btn">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
             Filters
           </button>
-          <button class="ts-filter-btn" style="background: #1e3a8a; color: #fff; border: none; padding: 8px 16px;" onclick="window.location.href='sell.html'">+ New Listing</button>
-          <svg id="myListedIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);"><path d="M9 5l7 7-7 7"></path></svg>
+          <button class="ts-filter-btn" style="background: #1e3a8a; color: #fff; border: none; padding: 8px 16px;"
+            onclick="window.location.href='sell.html'">+ New Listing</button>
+          <svg id="myListedIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);">
+            <path d="M9 5l7 7-7 7"></path>
+          </svg>
         </div>
       </div>
-      
+
       <div class="table-wrapper collapsed" id="myListedTableWrapper">
         <table class="dash-table">
           <thead>
@@ -1095,10 +1327,14 @@
 
     <!-- SOLD CARS -->
     <div class="table-section">
-      <div class="ts-header-bar" onclick="document.getElementById('soldCarsTableWrapper').classList.toggle('collapsed'); document.getElementById('soldIcon').style.transform = document.getElementById('soldCarsTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
+      <div class="ts-header-bar"
+        onclick="document.getElementById('soldCarsTableWrapper').classList.toggle('collapsed'); document.getElementById('soldIcon').style.transform = document.getElementById('soldCarsTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
         <div class="ts-title-group">
           <div class="ts-icon green">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
           </div>
           <div>
             <h2 class="ts-title">Sold Cars</h2>
@@ -1108,13 +1344,18 @@
         <div class="ts-actions" onclick="event.stopPropagation()">
           <input type="text" placeholder="Search by car name or ID..." class="ts-search">
           <button class="ts-filter-btn">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
             Filters
           </button>
-          <svg id="soldIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);"><path d="M9 5l7 7-7 7"></path></svg>
+          <svg id="soldIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);">
+            <path d="M9 5l7 7-7 7"></path>
+          </svg>
         </div>
       </div>
-      
+
       <div class="table-wrapper collapsed" id="soldCarsTableWrapper">
         <table class="dash-table">
           <thead>
@@ -1145,10 +1386,16 @@
 
     <!-- DELETED LISTINGS -->
     <div class="table-section">
-      <div class="ts-header-bar" onclick="document.getElementById('deletedCarsTableWrapper').classList.toggle('collapsed'); document.getElementById('deletedIcon').style.transform = document.getElementById('deletedCarsTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
+      <div class="ts-header-bar"
+        onclick="document.getElementById('deletedCarsTableWrapper').classList.toggle('collapsed'); document.getElementById('deletedIcon').style.transform = document.getElementById('deletedCarsTableWrapper').classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(90deg)';">
         <div class="ts-title-group">
           <div class="ts-icon red">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
           </div>
           <div>
             <h2 class="ts-title">Deleted Listings</h2>
@@ -1158,13 +1405,18 @@
         <div class="ts-actions" onclick="event.stopPropagation()">
           <input type="text" placeholder="Search by car name or ID..." class="ts-search">
           <button class="ts-filter-btn">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
             Filters
           </button>
-          <svg id="deletedIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);"><path d="M9 5l7 7-7 7"></path></svg>
+          <svg id="deletedIcon" class="ts-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" style="transform: rotate(0deg);">
+            <path d="M9 5l7 7-7 7"></path>
+          </svg>
         </div>
       </div>
-      
+
       <div class="table-wrapper collapsed" id="deletedCarsTableWrapper">
         <table class="dash-table">
           <thead>
@@ -1301,6 +1553,108 @@
         <label>Description / Notes</label>
         <input type="text" id="editDesc" placeholder="Any updates for buyers...">
       </div>
+      <style>
+        .cd-wrapper {
+          position: relative;
+          width: 100%;
+          user-select: none;
+          z-index: 10;
+          margin-bottom: 20px;
+        }
+
+        .cd-box {
+          padding: 14px 16px;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--charcoal);
+          background: var(--white) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 16px center/16px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .cd-box.open {
+          border-color: var(--primary);
+          box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+          background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18 15 12 9 6 15'%3e%3c/polyline%3e%3c/svg%3e");
+        }
+
+        .cd-list {
+          position: absolute;
+          top: calc(100% + 6px);
+          left: 0;
+          right: 0;
+          background: var(--white);
+          border-radius: 10px;
+          border: 1px solid var(--border);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          max-height: 200px;
+          overflow-y: auto;
+          z-index: 100;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-10px);
+          transition: all 0.2s ease;
+        }
+
+        .cd-list.open {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .cd-item {
+          padding: 10px 16px;
+          font-size: 14px;
+          color: var(--charcoal);
+          cursor: pointer;
+          transition: background 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .cd-item:hover {
+          background: #f8f9fa;
+        }
+
+        .cd-item.selected {
+          background: rgba(249, 115, 22, 0.05);
+          font-weight: 600;
+          color: var(--primary);
+        }
+
+        .cd-item input[type="checkbox"] {
+          accent-color: var(--primary);
+          width: 16px;
+          height: 16px;
+          pointer-events: none;
+        }
+      </style>
+      <div class="modal-field cd-wrapper" id="editFeaturesWrapper" style="margin-bottom: 12px;">
+        <label>Key Features</label>
+        <div class="cd-box" id="editFeaturesBox" onclick="toggleEditFeaturesDropdown()">Select Features</div>
+        <div class="cd-list" id="editFeaturesList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      <div class="modal-field">
+        <label>Manage Photos</label>
+        <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;" id="editPhotosContainer">
+          <!-- Add Photo Button -->
+          <div
+            style="width: 80px; height: 60px; border-radius: 6px; border: 1.5px dashed var(--border); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--muted); cursor: pointer; background: #f8faFC; transition: 0.2s;"
+            onclick="document.getElementById('editPhotoUpload').click()" onmouseover="this.style.background='#f1f5f9'"
+            onmouseout="this.style.background='#f8faFC'">
+            +
+          </div>
+        </div>
+        <input type="file" id="editPhotoUpload" multiple accept="image/*" style="display: none;"
+          onchange="handleEditPhotoUpload(event)">
+        <div style="font-size: 11px; color: var(--muted); margin-top: 6px;">You can add up to 5 photos. Click × to
+          delete.</div>
+      </div>
       <div class="modal-actions">
         <button class="btn-modal-secondary" onclick="closeModal('editPriceModal')">Cancel</button>
         <button class="btn-modal-primary" onclick="saveEditPrice()">💾 Save Changes</button>
@@ -1364,12 +1718,18 @@
     <div class="modal-box" style="max-width: 600px; width: 90%; position: relative; padding: 24px;">
       <button onclick="closeModal('enquiriesModal')"
         style="position: absolute; top: 16px; right: 20px; background: transparent; border: none; font-size: 24px; color: var(--muted); cursor: pointer;">&times;</button>
-      
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; padding-right: 30px;">
+
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; padding-right: 30px;">
         <div class="modal-title" id="enquiriesModalTitle"
           style="font-size: 20px; font-weight: 700; color: var(--charcoal);">Enquiries: Vehicle</div>
-        <button onclick="downloadEnquiriesPDF()" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border: 1.5px solid #e2e8f0; border-radius: 6px; font-size: 12px; font-weight: 600; color: #0f2b6e; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <button onclick="downloadEnquiriesPDF()"
+          style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border: 1.5px solid #e2e8f0; border-radius: 6px; font-size: 12px; font-weight: 600; color: #0f2b6e; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
           Download PDF
         </button>
       </div>
@@ -1401,6 +1761,8 @@
   <div class="toast" id="toast"></div>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
   <script src="cars-data.js"></script>
   <script>
     const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:5000' : '';
@@ -1424,10 +1786,10 @@
         let wl = JSON.parse(localStorage.getItem('mg_wishlist'));
         globalWishlist = Array.isArray(wl) ? wl : [];
       } catch (e) { globalWishlist = []; }
-      
-      try { renderStats(); } catch(e) { console.error('Stats error', e); }
-      try { renderWishlist(); } catch(e) { console.error('Wishlist error', e); }
-      try { renderUserListings(); } catch(e) { console.error('Listings error', e); }
+
+      try { renderStats(); } catch (e) { console.error('Stats error', e); }
+      try { renderWishlist(); } catch (e) { console.error('Wishlist error', e); }
+      try { renderUserListings(); } catch (e) { console.error('Listings error', e); }
     }
 
     function initDashboard() {
@@ -1437,22 +1799,22 @@
         const userObj = JSON.parse(currentUser);
         const parts = (userObj.name || 'Guest User').split(' ');
         const fname = parts[0] || 'User';
-        
+
         const wEl = document.getElementById('welcomeName');
         if (wEl) wEl.textContent = fname;
-        
+
         const hEl = document.getElementById('headerUserName');
         if (hEl) hEl.textContent = userObj.name || 'User';
-        
+
         const avatarEl = document.getElementById('headerAvatarInitial');
         if (avatarEl) avatarEl.textContent = fname.charAt(0).toUpperCase();
       } catch (e) {
         const wEl = document.getElementById('welcomeName');
         if (wEl) wEl.textContent = currentUser;
-        
+
         const hEl = document.getElementById('headerUserName');
         if (hEl) hEl.textContent = currentUser;
-        
+
         const avatarEl = document.getElementById('headerAvatarInitial');
         if (avatarEl) avatarEl.textContent = (currentUser || 'U').charAt(0).toUpperCase();
       }
@@ -1577,13 +1939,13 @@
         } else {
           try {
             activeContainer.innerHTML = activeCars.map(c => createListingCard(c)).join('');
-          } catch(err) {
+          } catch (err) {
             console.error('Error rendering listing card:', err);
             activeContainer.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:red;">Error loading listing data</td></tr>`;
           }
           if (footer) {
-             footer.style.display = 'flex';
-             if (countText) countText.textContent = `Showing 1 to ${activeCars.length} of ${activeCars.length} cars`;
+            footer.style.display = 'flex';
+            if (countText) countText.textContent = `Showing 1 to ${activeCars.length} of ${activeCars.length} cars`;
           }
 
           // update total views in bottom grid
@@ -1602,7 +1964,7 @@
       const soldCont = document.getElementById('soldCarsContainer');
       const sfooter = document.getElementById('soldFooter');
       const scountText = document.getElementById('soldCount');
-      
+
       const delCont = document.getElementById('deletedCarsContainer');
       const dfooter = document.getElementById('deletedFooter');
       const dcountText = document.getElementById('deletedCount');
@@ -1614,13 +1976,13 @@
         } else {
           try {
             soldCont.innerHTML = soldHistory.map(c => createHistoryCard(c, 'sold')).join('');
-          } catch(err) {
+          } catch (err) {
             console.error('Error rendering sold card:', err);
             soldCont.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:red;">Error loading sold data</td></tr>`;
           }
           if (sfooter) {
-             sfooter.style.display = 'flex';
-             if (scountText) scountText.textContent = `Showing 1 to ${soldHistory.length} of ${soldHistory.length} cars`;
+            sfooter.style.display = 'flex';
+            if (scountText) scountText.textContent = `Showing 1 to ${soldHistory.length} of ${soldHistory.length} cars`;
           }
         }
       }
@@ -1631,13 +1993,13 @@
         } else {
           try {
             delCont.innerHTML = delHistory.map(c => createHistoryCard(c, 'deleted')).join('');
-          } catch(err) {
+          } catch (err) {
             console.error('Error rendering deleted card:', err);
             delCont.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:red;">Error loading deleted data</td></tr>`;
           }
           if (dfooter) {
-             dfooter.style.display = 'flex';
-             if (dcountText) dcountText.textContent = `Showing 1 to ${delHistory.length} of ${delHistory.length} cars`;
+            dfooter.style.display = 'flex';
+            if (dcountText) dcountText.textContent = `Showing 1 to ${delHistory.length} of ${delHistory.length} cars`;
           }
         }
       }
@@ -1646,12 +2008,12 @@
     function createListingCard(c) {
       const carViews = globalViews.filter(v => v.car_id === c.id);
       const viewCount = carViews.length > 0 ? carViews.length : 320; // Fallback to 320 to match screenshot
-      
+
       let carEnquiries = [];
       if (window.mgDB && window.mgDB.getEnquiries) {
-         const allE = window.mgDB.getEnquiries();
-         const cNameLower = (c.name || c.title || '').toLowerCase();
-         carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
+        const allE = window.mgDB.getEnquiries();
+        const cNameLower = (c.name || c.title || '').toLowerCase();
+        carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
       }
       const enquiriesCount = carEnquiries.length;
 
@@ -1661,7 +2023,7 @@
         if (!isNaN(parseFloat(p)) && parseFloat(p) < 100) return parseFloat(p) * 100000;
         return p;
       };
-      
+
       const pVal = formatPrice(c.price, c.priceN);
       const priceText = c.isNew ? c.price : '₹ ' + (typeof pVal === 'number' ? pVal.toLocaleString('en-IN') : pVal);
       const listDate = '20 May 2025'; // Mocked to match screenshot structure
@@ -1713,15 +2075,15 @@
         const soldDate = '10 May 2025';
         const duration = '23 Days';
         const views = 280;
-        
+
         let carEnquiries = [];
         if (window.mgDB && window.mgDB.getEnquiries) {
-           const allE = window.mgDB.getEnquiries();
-           const cNameLower = (c.name || c.title || '').toLowerCase();
-           carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
+          const allE = window.mgDB.getEnquiries();
+          const cNameLower = (c.name || c.title || '').toLowerCase();
+          carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
         }
         const enquiries = carEnquiries.length;
-        
+
         return `
           <tr>
             <td>
@@ -1746,7 +2108,7 @@
       } else {
         // deleted
         const deletedDate = '08 May 2025';
-        
+
         return `
           <tr>
             <td>
@@ -1792,14 +2154,14 @@
 
     function showEnquiriesModal(carId, carName) {
       document.getElementById('enquiriesModalTitle').textContent = `Enquiries: ${carName}`;
-      
+
       let carEnquiries = [];
       if (window.mgDB && window.mgDB.getEnquiries) {
-         const allE = window.mgDB.getEnquiries();
-         const cNameLower = (carName || '').toLowerCase();
-         carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
+        const allE = window.mgDB.getEnquiries();
+        const cNameLower = (carName || '').toLowerCase();
+        carEnquiries = allE.filter(e => e.car && (e.car.toLowerCase().includes(cNameLower) || cNameLower.includes(e.car.toLowerCase())));
       }
-      
+
       const displayEnquiries = carEnquiries;
       const enquiriesCount = displayEnquiries.length;
 
@@ -1826,80 +2188,257 @@
 
     function downloadEnquiriesPDF() {
       const carName = document.getElementById('enquiriesModalTitle').textContent.replace('Enquiries: ', '');
-      const dateStr = new Date().toLocaleString('en-IN', { dateStyle: 'long', timeStyle: 'short' });
-      
-      let tbodyHTML = document.getElementById('enquiriesTableBody').innerHTML;
-      if(tbodyHTML.includes('No enquiries yet')) {
+
+      const tbody = document.getElementById('enquiriesTableBody');
+      if (tbody.innerHTML.includes('No enquiries yet')) {
         showToast('⚠️ No enquiries to download.');
         return;
       }
-      
-      const logoUrl = new URL('logo.png', document.baseURI).href;
-      
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Enquiries Report - ${carName}</title>
-          <style>
-            body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; color: #1e293b; background: #fff; }
-            .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 2px solid #f97316; padding-bottom: 20px; }
-            .logo { height: 70px; object-fit: contain; }
-            .title { text-align: right; }
-            .title h1 { margin: 0; font-size: 24px; color: #0f2b6e; }
-            .title p { margin: 6px 0 0 0; font-size: 13px; color: #64748b; }
-            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-            th, td { border: 1px solid #e2e8f0; padding: 14px; text-align: left; font-size: 13px; }
-            th { background: #f8fafc; font-weight: 700; color: #0f2b6e; text-transform: uppercase; letter-spacing: 0.5px; font-size: 11px; }
-            td { vertical-align: top; }
-            .footer { margin-top: 50px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 15px; }
-            @media print {
-              body { padding: 0; }
-              .header, table, .footer { page-break-inside: avoid; }
+
+      showToast('Generating PDF... Please wait.');
+
+      const imagesToLoad = [
+        { src: 'logo.png', id: 'logo' },
+        { src: 'blue_car.png', id: 'car' },
+        { src: 'orange_calendar.png', id: 'calendar' },
+        { src: 'profile_icon.png', id: 'profile' }
+      ];
+
+      const loadedImages = {};
+      let loadCount = 0;
+      let generateTriggered = false;
+
+      function triggerGenerate() {
+        if (!generateTriggered) {
+          generateTriggered = true;
+          generatePDF(loadedImages);
+        }
+      }
+
+      imagesToLoad.forEach(imgData => {
+        const img = new Image();
+        img.src = imgData.src;
+        img.onload = () => {
+          loadedImages[imgData.id] = img;
+          loadCount++;
+          if (loadCount === imagesToLoad.length) triggerGenerate();
+        };
+        img.onerror = () => {
+          loadCount++;
+          if (loadCount === imagesToLoad.length) triggerGenerate();
+        }
+      });
+      setTimeout(triggerGenerate, 1500);
+
+      function generatePDF(images) {
+        try {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+
+          const pBlue = [15, 43, 110]; // #0f2b6e
+          const pOrange = [249, 115, 22]; // #f97316
+          const tGray = [100, 116, 139]; // #64748b
+
+          // Top right design
+          doc.setFillColor(...pBlue);
+          doc.triangle(180, 0, 210, 0, 210, 30, 'F');
+          doc.setFillColor(...pOrange);
+          doc.triangle(200, 0, 210, 0, 210, 10, 'F');
+
+          const logoImg = images['logo'];
+          const carImg = images['car'];
+          const calImg = images['calendar'];
+          const profImg = images['profile'];
+
+          // Header Logo
+          if (logoImg) {
+            const targetWidthMm = 80 * 0.264583; // 80px to mm
+            const aspect = logoImg.height / logoImg.width;
+            const targetHeightMm = targetWidthMm * aspect;
+            doc.addImage(logoImg, 'PNG', 14, 15, targetWidthMm, targetHeightMm);
+          }
+
+          // Continuous Orange Line
+          doc.setDrawColor(...pOrange);
+          doc.setLineWidth(0.6);
+          doc.line(14, 32, 105, 32);
+
+          // Title
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(22);
+          doc.setTextColor(...pBlue);
+          doc.text("Enquiries Report", 60, 22);
+
+          // Subtitle
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.setTextColor(...tGray);
+          doc.text("Your leads. Your opportunities.", 60, 28);
+
+          // Left Card (Vehicle)
+          doc.setFillColor(244, 247, 252);
+          doc.setDrawColor(226, 232, 240);
+          doc.setLineWidth(0.3);
+          doc.roundedRect(14, 40, 85, 26, 2, 2, 'FD');
+
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...pBlue);
+          doc.text("Vehicle", 19, 48);
+          doc.setDrawColor(...pBlue);
+          doc.line(19, 50, 44, 50);
+
+          // Left Card Circle
+          doc.setFillColor(226, 235, 248);
+          doc.circle(27, 58, 6, 'F');
+          if (carImg) {
+            doc.addImage(carImg, 'PNG', 21.5, 52.5, 11, 11);
+          }
+
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8);
+          doc.setTextColor(...tGray);
+          doc.text("Listed Vehicle", 37, 56);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...pBlue);
+          doc.text(carName.length > 30 ? carName.substring(0, 27) + '...' : carName, 37, 61);
+
+          // Right Card (Report Summary)
+          doc.setFillColor(255, 248, 243);
+          doc.setDrawColor(253, 235, 222);
+          doc.roundedRect(105, 40, 90, 26, 2, 2, 'FD');
+
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...pOrange);
+          doc.text("Report Summary", 110, 48);
+          doc.setDrawColor(...pOrange);
+          doc.line(110, 50, 135, 50);
+
+          // Right Card Circle
+          doc.setFillColor(254, 225, 205);
+          doc.circle(118, 58, 6, 'F');
+          if (calImg) {
+            doc.addImage(calImg, 'PNG', 114, 54, 8, 8);
+          }
+
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8);
+          doc.setTextColor(...tGray);
+          doc.text("Report Generated On", 128, 56);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...pBlue);
+          const dateStr = new Date().toLocaleString('en-IN', { dateStyle: 'long', timeStyle: 'short' });
+          doc.text(dateStr, 128, 61);
+
+          // Section title
+          doc.setFillColor(...pBlue);
+          doc.circle(19, 80, 5, 'F');
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(12);
+          doc.setTextColor(...pBlue);
+          doc.text("Enquiries List", 28, 82);
+          doc.setDrawColor(...pOrange);
+          doc.setLineWidth(0.6);
+          doc.line(28, 85, 55, 85);
+
+          // Extract Data
+          const rows = [];
+          const trs = tbody.querySelectorAll('tr');
+          let index = 1;
+          trs.forEach(tr => {
+            const tds = tr.querySelectorAll('td');
+            if (tds.length === 3) {
+              const nameEl = tds[0].querySelector('div:nth-child(1)');
+              const mobileEl = tds[0].querySelector('div:nth-child(2)');
+              const buyer = (nameEl ? nameEl.textContent : '') + '\n' + (mobileEl ? mobileEl.textContent : '');
+              const query = tds[1].textContent;
+              const date = tds[2].textContent;
+              rows.push([index++, buyer, query, date]);
+            } else if (tds.length === 1) {
+              rows.push([{ content: tds[0].textContent, colSpan: 4, styles: { halign: 'center' } }]);
             }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <img src="${logoUrl}" class="logo" alt="Market Guru HP">
-            <div class="title">
-              <h1>Enquiries Report</h1>
-              <p>Vehicle: <strong>${carName}</strong></p>
-              <p>Generated: ${dateStr}</p>
-            </div>
-          </div>
-          
-          <table>
-            <thead>
-              <tr>
-                <th>Buyer Details</th>
-                <th>Query / Message</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${tbodyHTML.replace(/<div style="font-weight:600; color:var\(--charcoal\);"/g, '<div style="font-weight:bold;"').replace(/<div style="font-size:12px; color:var\(--primary\); margin-top:4px; font-weight:500;"/g, '<div style="font-size:12px; color:#f97316; margin-top:4px;"')}
-            </tbody>
-          </table>
-          
-          <div class="footer">
-            Report generated via Market Guru HP Platform &copy; ${new Date().getFullYear()}
-          </div>
-          
-          <script>
-            // Allow image to load before printing
-            window.onload = function() {
-              setTimeout(function() {
-                window.print();
-                window.close();
-              }, 500);
-            };
-          <\/script>
-        </body>
-        </html>
-      `);
-      printWindow.document.close();
+          });
+
+          // Add Table
+          doc.autoTable({
+            startY: 92,
+            head: [['#', 'Buyer Details', 'Query / Message', 'Date']],
+            body: rows,
+            theme: 'grid',
+            headStyles: {
+              fillColor: pBlue,
+              textColor: [255, 255, 255],
+              fontStyle: 'bold',
+              halign: 'left',
+              valign: 'middle'
+            },
+            styles: {
+              fontSize: 9,
+              cellPadding: 6,
+              textColor: [30, 41, 59],
+              lineColor: [226, 232, 240],
+              lineWidth: 0.1
+            },
+            columnStyles: {
+              0: { cellWidth: 15, halign: 'center', fontStyle: 'bold' },
+              1: { cellWidth: 55 },
+              2: { cellWidth: 'auto' },
+              3: { cellWidth: 40 }
+            },
+            didParseCell: function (data) {
+              if (data.section === 'body' && data.column.index === 1 && data.cell.raw !== '') {
+                data.cell.styles.cellPadding = { top: 6, left: 20, right: 6, bottom: 6 };
+              }
+              if (data.section === 'body' && data.column.index === 0) {
+                data.cell.styles.fontStyle = 'bold';
+                data.cell.styles.textColor = pBlue;
+              }
+            },
+            didDrawCell: function (data) {
+              if (data.section === 'body' && data.column.index === 1 && data.cell.raw && data.cell.raw !== '') {
+                const cy = data.cell.y + (data.cell.height / 2);
+                const cx = data.cell.x + 10;
+                if (profImg) {
+                  // Draw only the profile icon, sizing it correctly for the row
+                  doc.addImage(profImg, 'PNG', cx - 7.5, cy - 6.5, 13, 13);
+                }
+              }
+            }
+          });
+
+          // Footer
+          const finalY = doc.lastAutoTable.finalY + 15;
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8);
+          doc.setTextColor(...tGray);
+          doc.text("Note: This report contains enquiry details received for the above vehicle listing.", 105, finalY, { align: "center" });
+
+          const pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+
+          doc.setDrawColor(...pOrange);
+          doc.setLineWidth(0.5);
+          doc.line(14, pageHeight - 15, 196, pageHeight - 15);
+
+          doc.setFontSize(9);
+          doc.setTextColor(...tGray);
+          doc.text("+91 98765 43210", 25, pageHeight - 8);
+          doc.text("support@marketguru.hp.com", 75, pageHeight - 8);
+
+          doc.setFillColor(...pBlue);
+          doc.rect(140, pageHeight - 15, 70, 15, 'F');
+          doc.setTextColor(255, 255, 255);
+          doc.text("www.marketguru.hp.com", 155, pageHeight - 6);
+
+          doc.save(`Enquiries_${carName.replace(/[^a-z0-9]/gi, '_')}.pdf`);
+          showToast('✅ PDF Downloaded Successfully');
+        } catch (err) {
+          console.error(err);
+          showToast('❌ Error generating PDF');
+        }
+      }
     }
 
     function addToHistory(carId, type) {
@@ -1943,8 +2482,96 @@
       document.getElementById('editPrice').value = car.price || '';
       document.getElementById('editKm').value = car.km || '';
       document.getElementById('editDesc').value = car.description || car.desc || '';
+      if (document.getElementById('editFeaturesBox')) {
+        window.currentEditFeatures = [...(car.features || [])];
+        renderEditFeatures();
+      }
+
+      // Photos logic
+      const pc = document.getElementById('editPhotosContainer');
+      if (pc) {
+        pc.innerHTML = `
+          <div style="width: 80px; height: 60px; border-radius: 6px; border: 1.5px dashed var(--border); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--muted); cursor: pointer; background: #f8faFC; transition: 0.2s;" onclick="document.getElementById('editPhotoUpload').click()" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8faFC'">
+            +
+          </div>
+        `;
+        let imagesToLoad = [];
+        if (car.images && car.images.length > 0) {
+          imagesToLoad = car.images;
+        } else if (car.image) {
+          imagesToLoad = [car.image];
+        }
+
+        if (imagesToLoad.length > 0) {
+          for (let i = imagesToLoad.length - 1; i >= 0; i--) {
+            const imgUrl = imagesToLoad[i];
+            const existingPhoto = document.createElement('div');
+            existingPhoto.style = "position: relative; width: 80px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border);";
+            existingPhoto.innerHTML = `
+                  <img src="${imgUrl}" style="width: 100%; height: 100%; object-fit: cover;">
+                  <button style="position: absolute; top: 0; right: 0; background: #EF4444; color: white; border: none; border-bottom-left-radius: 6px; width: 24px; height: 24px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;" onclick="this.parentElement.remove(); window.currentEditCarPhotosAdded=true; showToast('Photo deleted'); event.preventDefault();">×</button>
+                `;
+            pc.insertBefore(existingPhoto, pc.firstChild);
+          }
+        } else {
+          const existingPhoto = document.createElement('div');
+          existingPhoto.style = "position: relative; width: 80px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border);";
+          existingPhoto.innerHTML = `
+              <div style="width: 100%; height: 100%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 24px;">${car.emoji || '🚗'}</div>
+            `;
+          pc.insertBefore(existingPhoto, pc.firstChild);
+        }
+        window.currentEditCarPhotosAdded = false; // Reset the dirty flag
+      }
+
       document.getElementById('editPriceModal').classList.add('show');
     }
+
+    const AVAILABLE_FEATURES = ['Sunroof', 'Alloy Wheels', 'Touchscreen', 'Airbags', 'ABS', 'Rear Camera', 'Bluetooth', 'Cruise Control', 'Leather Seats', 'Ventilated Seats', '360 Degree Camera', 'Keyless Entry', 'Push Start'];
+
+    window.toggleEditFeaturesDropdown = function () {
+      document.getElementById('editFeaturesList').classList.toggle('open');
+      document.getElementById('editFeaturesBox').classList.toggle('open');
+    };
+
+    window.toggleFeatureSelect = function (feat) {
+      if (!window.currentEditFeatures) window.currentEditFeatures = [];
+      const idx = window.currentEditFeatures.indexOf(feat);
+      if (idx > -1) {
+        window.currentEditFeatures.splice(idx, 1);
+      } else {
+        window.currentEditFeatures.push(feat);
+      }
+      renderEditFeatures();
+    };
+
+    window.renderEditFeatures = function () {
+      const box = document.getElementById('editFeaturesBox');
+      if (window.currentEditFeatures && window.currentEditFeatures.length > 0) {
+        box.textContent = window.currentEditFeatures.join(', ');
+      } else {
+        box.textContent = 'Select Features';
+      }
+
+      const list = document.getElementById('editFeaturesList');
+      let html = '';
+      AVAILABLE_FEATURES.forEach(f => {
+        const isSel = window.currentEditFeatures && window.currentEditFeatures.includes(f);
+        html += `<div class="cd-item ${isSel ? 'selected' : ''}" onclick="toggleFeatureSelect('${f}')">
+          <input type="checkbox" ${isSel ? 'checked' : ''}> ${f}
+        </div>`;
+      });
+      list.innerHTML = html;
+    };
+
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('#editFeaturesWrapper')) {
+        const elList = document.getElementById('editFeaturesList');
+        const elBox = document.getElementById('editFeaturesBox');
+        if (elList) elList.classList.remove('open');
+        if (elBox) elBox.classList.remove('open');
+      }
+    });
 
     function saveEditPrice() {
       const carId = parseInt(document.getElementById('editCarId').value);
@@ -1964,17 +2591,39 @@
       if (km) updates.km = km;
       if (desc) updates.description = desc;
 
+      if (document.getElementById('editFeaturesBox')) {
+        updates.features = [...(window.currentEditFeatures || [])];
+      }
+
+      if (window.currentEditCarPhotosAdded) {
+        const imgs = Array.from(document.querySelectorAll('#editPhotosContainer img'));
+        if (imgs.length > 0) {
+          updates.images = imgs.map(img => img.src);
+          updates.image = updates.images[0];
+        } else {
+          updates.images = [];
+          updates.image = null;
+        }
+      }
+
       showToast('💾 Saving changes...');
-      // Simple mock update until backend endpoint exists for editing
-      const car = globalCars.find(c => c.id === carId);
-      if (car) {
-        Object.assign(car, updates);
+
+      const success = mgDB.updateListing(carId, updates, currentUserMobile);
+      if (success) {
         closeModal('editPriceModal');
         showToast('✅ Listing updated successfully!');
-        renderUserListings();
-        renderStats();
+        initDashboard(); // Re-fetch all data and re-render
       } else {
-        showToast('❌ Failed to save. Please try again.');
+        // Fallback for cars not in user_cars (e.g. default cars for demo)
+        const car = globalCars.find(c => c.id === carId);
+        if (car) {
+          Object.assign(car, updates);
+          closeModal('editPriceModal');
+          showToast('✅ Listing updated successfully (Local session)!');
+          initDashboard();
+        } else {
+          showToast('❌ Failed to save. Please try again.');
+        }
       }
     }
 
@@ -2063,6 +2712,35 @@
       t.textContent = msg; t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2500);
     }
+
+    window.handleEditPhotoUpload = async function (event) {
+      const files = event.target.files;
+      if (!files || files.length === 0) return;
+      const pc = document.getElementById('editPhotosContainer');
+      const addBtn = pc.lastElementChild;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        const base64Url = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+          reader.readAsDataURL(file);
+        });
+
+        window.currentEditCarPhotosAdded = true;
+
+        const photoDiv = document.createElement('div');
+        photoDiv.style = "position: relative; width: 80px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border);";
+        photoDiv.innerHTML = `
+          <img src="${base64Url}" style="width: 100%; height: 100%; object-fit: cover;">
+          <button style="position: absolute; top: 0; right: 0; background: #EF4444; color: white; border: none; border-bottom-left-radius: 6px; width: 24px; height: 24px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;" onclick="this.parentElement.remove(); window.currentEditCarPhotosAdded=true; showToast('Photo removed'); event.preventDefault();">×</button>
+        `;
+        pc.insertBefore(photoDiv, addBtn);
+      }
+      showToast(files.length + ' photo(s) added.');
+    };
 
     window.onload = function () {
       initDashboard();
