@@ -175,14 +175,17 @@ def add_car():
         # Check if listed_by is a dealer or private
         user_type = data.get('user_type', 'private')
         if listed_by:
-            if user_type == 'dealer':
-                # Verify they are actually registered as a dealer
-                is_dealer = query_db("SELECT id FROM dealers WHERE mobile = %s", (listed_by,), one=True)
-                if not is_dealer:
-                    return jsonify({"status": "error", "message": "Account is not registered as a dealer partner."}), 400
-            else:
+            mobile_bare = str(listed_by).lstrip('+').replace(' ', '').replace('-', '')
+            if mobile_bare.startswith('91') and len(mobile_bare) == 12:
+                mobile_bare = mobile_bare[2:]
+            
+            is_dealer = query_db("SELECT id FROM dealers WHERE mobile = %s OR mobile = %s OR mobile = %s", (listed_by, mobile_bare, '+91'+mobile_bare), one=True)
+            if is_dealer:
+                user_type = 'dealer'
+                
+            if user_type != 'dealer':
                 # Individual seller: check active listing count
-                active_count = query_db("SELECT COUNT(*) as count FROM cars WHERE listed_by = %s", (listed_by,), one=True)
+                active_count = query_db("SELECT COUNT(*) as count FROM cars WHERE listed_by = %s OR listed_by = %s OR listed_by = %s", (listed_by, mobile_bare, '+91'+mobile_bare), one=True)
                 if active_count and active_count.get('count', 0) >= 1:
                     return jsonify({"status": "error", "message": "Individual sellers are limited to exactly 1 car listing."}), 400
 

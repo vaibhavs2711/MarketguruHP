@@ -1224,7 +1224,7 @@
               </svg>
             </div>
             <div class="pi-text">
-              <div class="pi-val" id="totalViews">320</div>
+              <div class="pi-val" id="totalViews">0</div>
               <div class="pi-label">Total Views</div>
             </div>
             <div class="pi-trend green-text">^ 18.6%</div>
@@ -2007,7 +2007,7 @@
 
     function createListingCard(c) {
       const carViews = globalViews.filter(v => v.car_id === c.id);
-      const viewCount = carViews.length > 0 ? carViews.length : 320; // Fallback to 320 to match screenshot
+      const viewCount = carViews.length;
 
       let carEnquiries = [];
       if (window.mgDB && window.mgDB.getEnquiries) {
@@ -2074,7 +2074,7 @@
       if (type === 'sold') {
         const soldDate = '10 May 2025';
         const duration = '23 Days';
-        const views = 280;
+        const views = 0;
 
         let carEnquiries = [];
         if (window.mgDB && window.mgDB.getEnquiries) {
